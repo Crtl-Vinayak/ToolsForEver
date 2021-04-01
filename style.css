@@ -18,8 +18,7 @@ body {
   min-width: 1000px;
 }
 
-/* replace the grid to yellow background and yeah.... */
-#columnOne {
+#grid {
   display: grid;
   grid-template-columns: 10px 2fr 9fr 3fr 10px;
   grid-template-rows: 10px 100px 100px 100px;
