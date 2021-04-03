@@ -28,7 +28,7 @@
           <label for="naam" id="naamLabel">naam</label>
           <input type="text" name="naam" value="" id="naamInput">
           <label for="wachtwoord" id="wachtwoordLabel">wachtwoord</label>
-          <input type="text" name="wwoord" value="" id="wachtwoordInput">
+          <input type="password" name="wwoord" value="" id="wachtwoordInput">
           <input type="submit" name="inlog" value="inloggen" id="inlogSubmit">
         </form>
       </div>
