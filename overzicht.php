@@ -38,8 +38,10 @@
             <option value=""><?php echo "Workmate";?></option>
             <option value=""><?php echo "Kruislijnlaserset";?></option>
           </select>
-          <input type="submit" name="verzend" value="verzenden" id="verzendSubmit">
-          <input type="submit" name="uitlog" value="uitloggen" id="uitlogSubmit">
+          <div id="submitDiv">
+            <input type="submit" name="verzend" value="verzenden" id="verzendSubmit">
+            <input type="submit" name="uitlog" value="uitloggen" id="uitlogSubmit">
+          </div>
         </form>
       </div>
     </div>
