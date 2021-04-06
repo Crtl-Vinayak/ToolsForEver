@@ -7,19 +7,6 @@
   </head>
   <body>
     <div id="yellow_bg">
-
-    <!-- top part is where the logo is,
-    the blue bold text is
-    and the "Medewerker name is" -->
-
-    <!-- middle part is where the form is,
-    it shows the text "Kies een locatie en een product"
-    en de 2 keuze lijst met 2 knoppen. -->
-
-    <!-- below part is where the overzicht is van het product
-    type, fabriek, in voorraad, verkoopprijs, locatie en waarschijnlijk
-    zijn er nog meer, hier gebruik je de database gegevens... -->
-
       <div id="grid">
         <div id="logoDiv"><img src="Tools_For_Ever_Logo.png" alt="ToolsForEver_logo" id="logo"></div>
         <div id="tfeDiv"><span id="tfeText">ToolsForEver Vooraad</span></div>

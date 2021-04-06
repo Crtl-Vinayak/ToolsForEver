@@ -21,7 +21,7 @@ body {
 #grid {
   display: grid;
   grid-template-columns: 10px 2fr 9fr 3fr 10px;
-  grid-template-rows: 10px 100px 100px 100px;
+  grid-template-rows: 10px 100px 30px 160px 100px 100px;
 }
 
 #logoDiv {
@@ -61,73 +61,136 @@ body {
   grid-row-end: 3;
 }
 
+/**
+  column:
+  10px from the begin left side.
+  1px for the border (left-top side).
+  80px border, left side of the span text "Kies een locatie en een product".
+
+  //250px for the span text "Kies een locatie en een product".
+  150px for span text.
+  100px for locatie select options
+  50px for empty space between the 2 select options
+  100px for address select options.
+  50px for empty space between the 2 select options
+  100px for product select options.
+
+  auto for the right side of the span text "Kies een locatie en een product".
+  1px for the border (top-right side).
+  10px from the end right side.
+
+  rows:
+  9px for the span text "Kies een locatie en een product".
+  1px for the top border line.
+  20px for the line and in between the lines are empty spaces.
+  60px for the line too and in between are selects from the form html.
+  1px for the bottom border line.
+  100px for the last 2 submit buttons.
+
+*/
 form {
   display: grid;
-  grid-template-columns: 10px 2fr 9fr 3fr 10px;
-  grid-template-rows: 50px 50px;
+  grid-template-columns: 10px 1px 80px 150px 100px 50px 100px 50px 100px auto 1px 10px;
+  grid-template-rows: 9px 1px 20px 30px 20px 1px 20px 30px;
 
   grid-column-start: 2;
   grid-column-end: 5;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#line1 {
+  height: 0px;
+  border: 1px solid #707070;
+
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#line2 {
+  height: 0px;
+  border: 1px solid #707070;
+
+  grid-column-start: 6;
+  grid-column-end: 12;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#line3 {
+  width: 0px;
+  border: 1px solid #707070;
+
+  grid-column-start: 2;
+  grid-column-end: 3;
   grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-end: 7;
 }
 
-#naamLabel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Segoe UI";
+#line4 {
+  width: 0px;
+  border: 1px solid #707070;
+
+  grid-column-start: 11;
+  grid-column-end: 12;
+  grid-row-start: 3;
+  grid-row-end: 7;
+}
+
+#line5 {
+  height: 0px;
+  border: 1px solid #707070;
+
   grid-column-start: 2;
-  grid-column-end: 3;
+  grid-column-end: 12;
+  grid-row-start: 7;
+  grid-row-end: 8;
+}
+
+#kiesTxt {
+  font-family: "Segoe UI";
+  margin-left: auto;
+  margin-right: auto;
+
+  grid-column-start: 4;
+  grid-column-end: 6;
   grid-row-start: 1;
   grid-row-end: 2;
 }
 
-#naamInput {
-  margin-top: 15px;
-  margin-bottom: 5px;
-  width: 580px;
-  margin-left: auto;
-  margin-right: auto;
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#wachtwoordLabel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Segoe UI";
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-
-#wachtwoordInput {
-  margin-top: 15px;
-  margin-bottom: 5px;
-  width: 580px;
-  margin-left: auto;
-  margin-right: auto;
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-
-#inlogSubmit {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-  margin-bottom: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+#locatieSelect {
   grid-column-start: 4;
   grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#addressSelect {
+  grid-column-start: 6;
+  grid-column-end: 7;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#productSelect {
+  grid-column-start: 9;
+  grid-column-end: 10;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#verzendSubmit {
+  grid-column-start: 5;
+  grid-column-end: 7;
+  grid-row-start: 8;
+  grid-row-end: 9;
+}
+
+#uitlogSubmit {
+  grid-column-start: 8;
+  grid-column-end: 10;
+  grid-row-start: 8;
+  grid-row-end: 9;
 }
