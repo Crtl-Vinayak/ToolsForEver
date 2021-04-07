@@ -39,11 +39,13 @@
             if($row[1].' '.$row[3] == $_POST['naam'] && password_verify($_POST['wwoord'], $row[4])) {
               echo "naam is correct";
               echo "<br><br>";
+              header('Location: '.URL.'overzicht.php', TRUE, 302);
             }
           } else {
             if($row[1].' '.$row[2].' '.$row[3] == $_POST['naam'] && password_verify($_POST['wwoord'], $row[4])) {
               echo "naam is correct";
               echo "<br><br>";
+              header('Location: '.URL.'overzicht.php', TRUE, 302);
             }
           }
         }
@@ -57,6 +59,7 @@
 ?>
 
 <?php
+  define('URL', 'http://localhost/toolsforever/');
   $object = new Dbh;
   $object->inloggen();
 ?>
