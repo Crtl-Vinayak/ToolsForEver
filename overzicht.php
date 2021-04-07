@@ -21,7 +21,7 @@
         $username = "root";
         $password = "";
         $dbname = "toolsforever";
-        $charset = "utf8";
+        $charset = "utf8mb4";
 
         try {
           $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
@@ -102,7 +102,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" type="text/css" href="style/overzicht.css">
     <title>ToolsForEver voorraad opvragen</title>
   </head>
@@ -140,6 +140,33 @@
               }
             ?>
           </select>
+
+          <script type="text/javascript">
+            if (<?php if (!empty($_GET['locatie'])) { echo "true"; } ?>) {
+              document.getElementById('locatieSelect').value = "<?php
+                if(isset($_GET['verzend'])) {
+                  echo $GLOBALS['locatieSelected'];
+                }
+              ?>";
+            }
+
+            if (<?php if (!empty($_GET['address'])) { echo "true"; } ?>) {
+              document.getElementById('addressSelect').value = "<?php
+                if(isset($_GET['verzend'])) {
+                  echo $GLOBALS['addressSelected'];
+                }
+              ?>";
+            }
+
+            if (<?php if (!empty($_GET['product'])) { echo "true"; } ?>) {
+              document.getElementById('productSelect').value = "<?php
+                if(isset($_GET['verzend'])) {
+                  echo $GLOBALS['productSelected'];
+                }
+              ?>";
+            }
+          </script>
+
           <div id="submitDiv">
             <input type="submit" name="verzend" value="verzenden" id="verzendSubmit">
             <input type="submit" name="uitlog" value="uitloggen" id="uitlogSubmit">
@@ -168,11 +195,11 @@
           </span>
           <div id="table">
             <!-- Col means column -->
-            <span id="productCol" class="textStyleBold"><?php echo "Product";?></span>
-            <span id="typeCol" class="textStyleBold"><?php echo "Type";?></span>
-            <span id="fabriekCol" class="textStyleBold"><?php echo "Fabriek";?></span>
-            <span id="inVoorraadCol" class="textStyleBold"><?php echo "In voorraad";?></span>
-            <span id="verkoopprijsCol" class="textStyleBold"><?php echo "Verkoopprijs";?></span>
+            <span id="productCol" class="textStyleBold">Product</span>
+            <span id="typeCol" class="textStyleBold">Type</span>
+            <span id="fabriekCol" class="textStyleBold">Fabriek</span>
+            <span id="inVoorraadCol" class="textStyleBold">In voorraad</span>
+            <span id="verkoopprijsCol" class="textStyleBold">Verkoopprijs</span>
             <!-- Val means Value -->
             <span id="productVal" class="textStyle">
               <?php
@@ -188,7 +215,7 @@
                 if (empty($GLOBALS['productInfo'])) {
                   echo "---";
                 } else {
-                  echo $GLOBALS['productInfo'][0];
+                  echo utf8_encode($GLOBALS['productInfo'][0]);
                 }
               ?>
             </span>
@@ -197,7 +224,7 @@
               if (empty($GLOBALS['productInfo'])) {
                 echo "---";
               } else {
-                echo $GLOBALS['productInfo'][1];
+                echo utf8_encode($GLOBALS['productInfo'][1]);
               }
               ?>
             </span>
