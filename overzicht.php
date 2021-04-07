@@ -7,6 +7,14 @@
       private $dbname;
       private $charset;
 
+      public function uitlog() {
+        if(isset($_GET['uitlog'])) {
+          session_unset();
+          session_destroy();
+          header('Location: '.URL.'index.php', TRUE, 302);
+        }
+      }
+
       public function verzend() {
         if(isset($_GET['verzend'])) {
           $GLOBALS['locatieSelected'] = $_GET['locatie'];
@@ -94,10 +102,15 @@
 
 <?php
   define('URL', 'http://localhost/toolsforever/');
-  session_start();
   $object = new Dbh;
+  session_start();
+  if (empty($_SESSION['naam'])) {
+    header('Location: '.URL.'index.php', TRUE, 302);
+  }
+
   $object->verzend();
   $object->connect();
+  $object->uitlog();
 ?>
 
 <!DOCTYPE html>
@@ -178,11 +191,18 @@
               ?>";
             }
           </script>
-
           <div id="submitDiv">
-            <input type="submit" name="verzend" value="verzenden" id="verzendSubmit">
-            <input type="submit" name="uitlog" value="uitloggen" id="uitlogSubmit">
-          </div>
+            <?php
+              if($_SESSION['rol'] == 1) {
+                echo "<input type=\"submit\" name=\"verzend\" value=\"verzenden\" id=\"verzendSubmita\" style=\"grid-column-start: 2; grid-column-end: 4; grid-row-start: 1; grid-row-end: 2;\">";
+                echo "<input type=\"submit\" name=\"admin\" value=\"Naar admin venster\" id=\"adminSubmit\" style=\"grid-column-start: 5; grid-column-end: 8; grid-row-start: 1; grid-row-end: 2;\">";
+                echo "<input type=\"submit\" name=\"uitlog\" value=\"uitloggen\" id=\"uitlogSubmita\" style=\"grid-column-start: 9; grid-column-end: 11; grid-row-start: 1; grid-row-end: 2;\">";
+              } else {
+                echo "<input type=\"submit\" name=\"verzend\" value=\"verzenden\" id=\"verzendSubmitb\" style=\"grid-column-start: 2; grid-column-end: 3; grid-row-start: 1; grid-row-end: 2;\">";
+                echo "<input type=\"submit\" name=\"uitlog\" value=\"uitloggen\" id=\"uitlogSubmitb\" style=\"grid-column-start: 4; grid-column-end: 5; grid-row-start: 1; grid-row-end: 2;\">";
+              }
+            ?>
+        </div>
         </form>
         <div id="overzicht">
           <span id="locatieTxt">
