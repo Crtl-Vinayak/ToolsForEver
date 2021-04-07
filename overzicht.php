@@ -17,9 +17,12 @@
 
       public function verzend() {
         if(isset($_GET['verzend'])) {
-          echo $_GET['locatie'];
-          echo $_GET['address'];
-          echo $_GET['product'];
+          $GLOBALS['locatieSelected'] = $_GET['locatie'];
+          $GLOBALS['addressSelected'] = $_GET['address'];
+          $GLOBALS['productSelected'] = $_GET['product'];
+          echo $GLOBALS['locatieSelected'];
+          echo $GLOBALS['addressSelected'];
+          echo $GLOBALS['productSelected'];
         }
       }
 
@@ -95,21 +98,21 @@
           <select name="locatie" id="locatieSelect">
             <?php
               foreach ($GLOBALS['locatie'] as $val) {
-                echo "<option value=\"\">".$val."</option>";
+                echo "<option value=\"".$val."\">".$val."</option>";
               }
             ?>
           </select>
           <select name="address" id="addressSelect">
             <?php
               foreach ($GLOBALS['address'] as $val) {
-                echo "<option value=\"\">".$val."</option>";
+                echo "<option value=\"".$val."\">".$val."</option>";
               }
             ?>
           </select>
           <select name="product" id="productSelect">
             <?php
               foreach ($GLOBALS['product'] as $val) {
-                echo "<option value=\"\">".$val."</option>";
+                echo "<option value=\"".$val."\">".$val."</option>";
               }
             ?>
           </select>
@@ -119,8 +122,26 @@
           </div>
         </form>
         <div id="overzicht">
-          <span id="locatieTxt">Locatie: Rotterdam</span>
-          <span id="addressTxt">Address: 3401 VR</span>
+          <span id="locatieTxt">
+            Locatie:
+            <?php
+              if (empty($GLOBALS['locatieSelected'])) {
+                echo "---";
+              } else {
+                echo $GLOBALS['locatieSelected'];
+              }
+            ?>
+          </span>
+          <span id="addressTxt">
+            Address:
+            <?php
+              if (empty($GLOBALS['addressSelected'])) {
+                echo "---";
+              } else {
+                echo $GLOBALS['addressSelected'];
+              }
+            ?>
+          </span>
           <div id="table">
             <!-- Col means column -->
             <span id="productCol" class="textStyleBold"><?php echo "Product";?></span>
@@ -129,11 +150,35 @@
             <span id="inVoorraadCol" class="textStyleBold"><?php echo "In voorraad";?></span>
             <span id="verkoopprijsCol" class="textStyleBold"><?php echo "Verkoopprijs";?></span>
             <!-- Val means Value -->
-            <span id="productVal" class="textStyle"><?php echo "Accu Boorhamer";?></span>
-            <span id="typeVal" class="textStyle"><?php echo "WX 382";?></span>
-            <span id="fabriekVal" class="textStyle"><?php echo "Worx";?></span>
-            <span id="inVoorraadVal" class="textStyle"><?php echo "10";?></span>
-            <span id="verkoopprijsVal" class="textStyle"><?php echo "€ 111,75";?></span>
+            <span id="productVal" class="textStyle">
+              <?php
+                if (empty($GLOBALS['productSelected'])) {
+                  echo "---";
+                } else {
+                  echo $GLOBALS['productSelected'];
+                }
+              ?>
+            </span>
+            <span id="typeVal" class="textStyle">
+              <?php
+              echo "WX 382";
+              ?>
+            </span>
+            <span id="fabriekVal" class="textStyle">
+              <?php
+              echo "Worx";
+              ?>
+            </span>
+            <span id="inVoorraadVal" class="textStyle">
+              <?php
+              echo "10";
+              ?>
+            </span>
+            <span id="verkoopprijsVal" class="textStyle">
+              <?php
+              echo "€ 111,75";
+              ?>
+            </span>
           </div>
         </div>
       </div>
