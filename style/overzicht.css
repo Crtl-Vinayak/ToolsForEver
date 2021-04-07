@@ -61,33 +61,6 @@ body {
   grid-row-end: 3;
 }
 
-/**
-  column:
-  10px from the begin left side.
-  1px for the border (left-top side).
-  80px border, left side of the span text "Kies een locatie en een product".
-
-  //250px for the span text "Kies een locatie en een product".
-  150px for span text.
-  100px for locatie select options
-  50px for empty space between the 2 select options
-  100px for address select options.
-  50px for empty space between the 2 select options
-  100px for product select options.
-
-  auto for the right side of the span text "Kies een locatie en een product".
-  1px for the border (top-right side).
-  10px from the end right side.
-
-  rows:
-  9px for the span text "Kies een locatie en een product".
-  1px for the top border line.
-  20px for the line and in between the lines are empty spaces.
-  60px for the line too and in between are selects from the form html.
-  1px for the bottom border line.
-  100px for the last 2 submit buttons.
-
-*/
 form {
   display: grid;
   grid-template-columns: 10px auto 1px 80px 150px 100px 50px 100px 50px 100px 250px auto 1px 10px;
@@ -195,41 +168,6 @@ form {
   grid-row-start: 8;
   grid-row-end: 9;
 }
-
-/* #verzendSubmita {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#adminSubmit {
-  grid-column-start: 4;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#uitlogSubmita {
-  grid-column-start: 6;
-  grid-column-end: 7;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#verzendSubmitb {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#uitlogSubmitb {
-  grid-column-start: 4;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 2;
-} */
 
 #overzicht {
   display: grid;

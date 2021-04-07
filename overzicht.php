@@ -44,7 +44,6 @@
 
           // get other values of products
           $GLOBALS['productInfo'] = array("");
-          //foreach ($pdo->query("SELECT type, fabriek, voorraad, verkoopprijs FROM products WHERE product = \"".$_GET['product']."\" ") as $row) {
           foreach ($pdo->query("SELECT products.type, products.fabriek, products.voorraad, products.verkoopprijs \n
             FROM products \n
             INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
