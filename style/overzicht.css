@@ -21,7 +21,7 @@ body {
 #grid {
   display: grid;
   grid-template-columns: 10px 2fr 9fr 3fr 10px;
-  grid-template-rows: 10px 100px 30px 160px 100px 100px;
+  grid-template-rows: 10px 100px 30px 160px 50px 150px 50px;
 }
 
 #logoDiv {
@@ -186,14 +186,14 @@ form {
 }
 
 #submitDiv {
+  display: grid;
+  grid-template-columns: auto 250px 50px 250px auto;
+  grid-template-rows: auto;
+
   grid-column-start: 1;
   grid-column-end: 15;
   grid-row-start: 8;
   grid-row-end: 9;
-
-  display: grid;
-  grid-template-columns: auto 250px 50px 250px auto;
-  grid-template-rows: auto;
 }
 
 #verzendSubmit {
@@ -208,4 +208,57 @@ form {
   grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 2;
+}
+
+#overzicht {
+  display: grid;
+  grid-template-columns: auto 800px auto;
+  grid-template-rows: 20px 20px 20px auto;
+
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+#locatieTxt {
+    font-family: "Segoe UI";
+    text-align: center;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+#addressTxt {
+    font-family: "Segoe UI";
+    text-align: center;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+#table {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr 1fr;
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 5;
+
+  border: 1px solid black;
+}
+
+.textStyleBold {
+  font-family: "Segoe UI";
+  text-align: center;
+  font-weight: bold;
+}
+
+.textStyle {
+  font-family: "Segoe UI";
+  text-align: center;
 }

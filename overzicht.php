@@ -43,6 +43,24 @@
             <input type="submit" name="uitlog" value="uitloggen" id="uitlogSubmit">
           </div>
         </form>
+        <div id="overzicht">
+          <span id="locatieTxt">Locatie: Rotterdam</span>
+          <span id="addressTxt">Address: 3401 VR</span>
+          <div id="table">
+            <!-- Col means column -->
+            <span id="productCol" class="textStyleBold"><?php echo "Product";?></span>
+            <span id="typeCol" class="textStyleBold"><?php echo "Type";?></span>
+            <span id="fabriekCol" class="textStyleBold"><?php echo "Fabriek";?></span>
+            <span id="inVoorraadCol" class="textStyleBold"><?php echo "In voorraad";?></span>
+            <span id="verkoopprijsCol" class="textStyleBold"><?php echo "Verkoopprijs";?></span>
+            <!-- Val means Value -->
+            <span id="productVal" class="textStyle"><?php echo "Accu Boorhamer";?></span>
+            <span id="typeVal" class="textStyle"><?php echo "WX 382";?></span>
+            <span id="fabriekVal" class="textStyle"><?php echo "Worx";?></span>
+            <span id="inVoorraadVal" class="textStyle"><?php echo "10";?></span>
+            <span id="verkoopprijsVal" class="textStyle"><?php echo "€ 111,75";?></span>
+          </div>
+        </div>
       </div>
     </div>
   </body>
