@@ -50,7 +50,7 @@
           }
         }
         $pdo = null;
-      } catch (PDOException $e){
+      } catch (PDOException $e) {
         echo "Connection failed: ".$e->getMessage();
         die();
       }

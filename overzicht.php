@@ -1,47 +1,75 @@
 <?php
-  //   class Dbh {
-  //
-  //
-  //
-  //     private $servername;
-  //     private $username;
-  //     private $password;
-  //     private $dbname;
-  //     private $charset;
-  //
-  //     public function inloggen() {
-  //       if(isset($_POST['inloggen'])) {
-  //         $this->connect();
-  //       }
-  //     }
-  //
-  //     public function connect() {
-  //       $servername = "localhost";
-  //       $username = "root";
-  //       $password = "";
-  //       $dbname = "toolsforever";
-  //       $charset = "utf8";
-  //
-  //     try {
-  //       $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
-  //       $pdo = new PDO($dsn, $username, $password);
-  //       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  //       foreach ($pdo->query("SELECT locatie FROM medewerkers") as $row) {
-  //
-  //       }
-  //       $pdo = null;
-  //     } catch (PDOException $e){
-  //       echo "Connection failed: ".$e->getMessage();
-  //       die();
-  //     }
-  //   }
-  // }
+    class Dbh {
+
+      public $locatie;
+      public $address;
+      public $product;
+      public $type;
+      public $fabriek;
+      public $inVoorraad;
+      public $verkoopprijs;
+
+      private $servername;
+      private $username;
+      private $password;
+      private $dbname;
+      private $charset;
+
+      public function verzend() {
+        if(isset($_GET['verzend'])) {
+          echo $_GET['locatie'];
+          echo $_GET['address'];
+          echo $_GET['product'];
+        }
+      }
+
+      public function connect() {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "toolsforever";
+        $charset = "utf8";
+
+      try {
+        $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
+        $pdo = new PDO($dsn, $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // get locatie values
+        $GLOBALS['locatie'] = array("");
+        foreach ($pdo->query("SELECT naam FROM locatie") as $row) {
+          array_push($GLOBALS['locatie'], $row[0]);
+        }
+        array_shift($GLOBALS['locatie']);
+
+        // get address values
+        $GLOBALS['address'] = array("");
+        foreach ($pdo->query("SELECT address FROM locatie") as $row) {
+          array_push($GLOBALS['address'], $row[0]);
+        }
+        array_shift($GLOBALS['address']);
+
+        // get product values
+        $GLOBALS['product'] = array("");
+        foreach ($pdo->query("SELECT product FROM products") as $row) {
+          array_push($GLOBALS['product'], $row[0]);
+        }
+        array_shift($GLOBALS['product']);
+
+        $pdo = null;
+      } catch (PDOException $e) {
+        echo "Connection failed: ".$e->getMessage();
+        die();
+      }
+    }
+  }
 ?>
 
 <?php
-  // define('URL', 'http://localhost/toolsforever/');
-  // $object = new Dbh;
-  // $object->inloggen();
+  define('URL', 'http://localhost/toolsforever/');
+  $object = new Dbh;
+  $object->verzend();
+  $object->connect();
 ?>
 
 <!DOCTYPE html>
@@ -65,24 +93,25 @@
           <div id="line5"></div>
           <span id="kiesTxt">Kies een locatie en een product</span>
           <select name="locatie" id="locatieSelect">
-            <option value=""><?php echo "Rotterdam";?></option>
-            <option value=""><?php echo "Almere";?></option>
-            <option value=""><?php echo "Eindhoven";?></option>
+            <?php
+              foreach ($GLOBALS['locatie'] as $val) {
+                echo "<option value=\"\">".$val."</option>";
+              }
+            ?>
           </select>
           <select name="address" id="addressSelect">
-            <option value=""><?php echo "3401 VR";?></option>
-            <option value=""><?php echo "8102 IR";?></option>
-            <option value=""><?php echo "2771 TM";?></option>
+            <?php
+              foreach ($GLOBALS['address'] as $val) {
+                echo "<option value=\"\">".$val."</option>";
+              }
+            ?>
           </select>
           <select name="product" id="productSelect">
-            <option value=""><?php echo "accuboorhamer";?></option>
-            <option value=""><?php echo "4-in-1 schuurmachine";?></option>
-            <option value=""><?php echo "verstekzaag";?></option>
-            <option value=""><?php echo "alleszuiger";?></option>
-            <option value=""><?php echo "accuboormachine";?></option>
-            <option value=""><?php echo "33-delige borenset";?></option>
-            <option value=""><?php echo "Workmate";?></option>
-            <option value=""><?php echo "Kruislijnlaserset";?></option>
+            <?php
+              foreach ($GLOBALS['product'] as $val) {
+                echo "<option value=\"\">".$val."</option>";
+              }
+            ?>
           </select>
           <div id="submitDiv">
             <input type="submit" name="verzend" value="verzenden" id="verzendSubmit">
