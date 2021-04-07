@@ -21,7 +21,7 @@ body {
 #grid {
   display: grid;
   grid-template-columns: 10px 2fr 9fr 3fr 10px;
-  grid-template-rows: 10px 100px 30px 160px 50px 150px 50px;
+  grid-template-rows: 10px 100px 30px 160px 50px 130px 50px;
 }
 
 #logoDiv {
@@ -248,17 +248,42 @@ form {
   grid-column-end: 3;
   grid-row-start: 4;
   grid-row-end: 5;
-
-  border: 1px solid black;
 }
 
 .textStyleBold {
   font-family: "Segoe UI";
   text-align: center;
   font-weight: bold;
+
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #D3D3D3;
+}
+
+#verkoopprijsCol {
+  border-right: 1px solid black;
 }
 
 .textStyle {
   font-family: "Segoe UI";
   text-align: center;
+
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #D3D3D3;
+}
+
+#verkoopprijsVal {
+  border-right: 1px solid black;
 }
