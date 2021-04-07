@@ -35,34 +35,26 @@
         $pdo = new PDO($dsn, $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         foreach ($pdo->query("SELECT * FROM medewerkers") as $row) {
-          // print_r($row);
-          // echo "<br><br>";
-
-          if($row[2] == '') {
-            print_r($row[1].' '.$row[3]);
+          if($row[2] == "") {
+            if($row[1].' '.$row[3] == $_POST['naam'] && password_verify($_POST['wwoord'], $row[4])) {
+              echo "naam is correct";
+              echo "<br><br>";
+            }
           } else {
-            print_r($row[1].' '.$row[2].' '.$row[3]);
-          }
-          echo "<br><br>";
-          // print_r($row[4]);
-          // echo "<br><br>";
-          // echo password_verify("hJm-'GPn=3DLC_HF", $row[4]);
-          // echo password_verify("7\\52AMZ83{,s_{XZ", $row[4]);
-          // echo "<br><br>";
-
-          if ($row[1].' '.$row[2].' '.$row[3] == $_POST['naam']) {
-            echo "naam is correct";
+            if($row[1].' '.$row[2].' '.$row[3] == $_POST['naam'] && password_verify($_POST['wwoord'], $row[4])) {
+              echo "naam is correct";
+              echo "<br><br>";
+            }
           }
         }
         $pdo = null;
-        //$row = $stmt->fetchAll(PDO::FETCH_ASSOC);
       } catch (PDOException $e){
         echo "Connection failed: ".$e->getMessage();
         die();
       }
     }
   }
- ?>
+?>
 
 <?php
   $object = new Dbh;
