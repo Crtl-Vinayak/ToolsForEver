@@ -21,7 +21,7 @@ body {
 #grid {
   display: grid;
   grid-template-columns: 10px 2fr 9fr 3fr 10px;
-  grid-template-rows: 10px 100px 100px 100px;
+  grid-template-rows: 10px 100px 10px 30px 1px 200px 1px 200px 1px 200px 1px 150px;
 }
 
 #logoDiv {
@@ -54,73 +54,19 @@ body {
   width: 98%;
 }
 
-form {
+#naam_formDiv {
   display: grid;
-  grid-template-columns: 10px 2fr 9fr 3fr 10px;
-  grid-template-rows: 50px 50px;
+  grid-template-columns: auto;
+  grid-template-rows: 1fr 1fr;
 
-  grid-column-start: 2;
-  grid-column-end: 5;
-  grid-row-start: 3;
-  grid-row-end: 4;
-}
-
-#naamLabel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Segoe UI";
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#naamInput {
-  margin-top: 15px;
-  margin-bottom: 5px;
-  width: 580px;
-  margin-left: auto;
-  margin-right: auto;
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#wachtwoordLabel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Segoe UI";
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-
-#wachtwoordInput {
-  margin-top: 15px;
-  margin-bottom: 5px;
-  width: 580px;
-  margin-left: auto;
-  margin-right: auto;
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-
-#inlogSubmit {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-  margin-bottom: 30px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
   grid-column-start: 4;
   grid-column-end: 5;
-  grid-row-start: 1;
+  grid-row-start: 2;
   grid-row-end: 3;
+}
+
+#uitlogSubmit {
+  margin-left: 10px;
+  width: 110px;
+  height: 30px;
 }

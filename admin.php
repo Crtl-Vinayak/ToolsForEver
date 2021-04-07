@@ -62,6 +62,7 @@
 
 <?php
   define('URL', 'http://localhost/toolsforever/');
+  session_start();
   $object = new Dbh;
 ?>
 
@@ -69,7 +70,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="style/admin.css">
     <title>ToolsForEver voorraad opvragen</title>
   </head>
   <body>
@@ -77,13 +78,13 @@
       <div id="grid">
         <div id="logoDiv"><img src="Tools_For_Ever_Logo.png" alt="ToolsForEver_logo" id="logo"></div>
         <div id="tfeDiv"><span id="tfeText">ToolsForEver Vooraad</span></div>
-        <form method="POST">
-          <label for="naam" id="naamLabel">naam</label>
-          <input type="text" name="naam" value="" id="naamInput" required>
-          <label for="wachtwoord" id="wachtwoordLabel">wachtwoord</label>
-          <input type="password" name="wwoord" value="" id="wachtwoordInput" required>
-          <input type="submit" name="inloggen" value="inloggen" id="inlogSubmit">
-        </form>
+        <div id="naam_formDiv">
+          <p>Manager. <?php echo $_SESSION['naam']; ?></p>
+          <form method="GET">
+            <input type="submit" name="uitlog" value="uitloggen" id="uitlogSubmit">
+          </form>
+        </div>
+
       </div>
     </div>
   </body>
