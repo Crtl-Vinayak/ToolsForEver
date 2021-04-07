@@ -15,6 +15,12 @@
         }
       }
 
+      public function admin() {
+        if(isset($_GET['admin'])) {
+          header('Location: '.URL.'admin.php', TRUE, 302);
+        }
+      }
+
       public function verzend() {
         if(isset($_GET['verzend'])) {
           $GLOBALS['locatieSelected'] = $_GET['locatie'];
@@ -111,6 +117,7 @@
   $object->verzend();
   $object->connect();
   $object->uitlog();
+  $object->admin();
 ?>
 
 <!DOCTYPE html>
@@ -198,8 +205,8 @@
                 echo "<input type=\"submit\" name=\"admin\" value=\"Naar admin venster\" id=\"adminSubmit\" style=\"grid-column-start: 5; grid-column-end: 8; grid-row-start: 1; grid-row-end: 2;\">";
                 echo "<input type=\"submit\" name=\"uitlog\" value=\"uitloggen\" id=\"uitlogSubmita\" style=\"grid-column-start: 9; grid-column-end: 11; grid-row-start: 1; grid-row-end: 2;\">";
               } else {
-                echo "<input type=\"submit\" name=\"verzend\" value=\"verzenden\" id=\"verzendSubmitb\" style=\"grid-column-start: 2; grid-column-end: 3; grid-row-start: 1; grid-row-end: 2;\">";
-                echo "<input type=\"submit\" name=\"uitlog\" value=\"uitloggen\" id=\"uitlogSubmitb\" style=\"grid-column-start: 4; grid-column-end: 5; grid-row-start: 1; grid-row-end: 2;\">";
+                echo "<input type=\"submit\" name=\"verzend\" value=\"verzenden\" id=\"verzendSubmitb\" style=\"grid-column-start: 3; grid-column-end: 6; grid-row-start: 1; grid-row-end: 2;\">";
+                echo "<input type=\"submit\" name=\"uitlog\" value=\"uitloggen\" id=\"uitlogSubmitb\" style=\"grid-column-start: 7; grid-column-end: 10; grid-row-start: 1; grid-row-end: 2;\">";
               }
             ?>
         </div>
