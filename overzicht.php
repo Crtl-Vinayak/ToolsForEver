@@ -94,6 +94,7 @@
 
 <?php
   define('URL', 'http://localhost/toolsforever/');
+  session_start();
   $object = new Dbh;
   $object->verzend();
   $object->connect();
@@ -111,7 +112,18 @@
       <div id="grid">
         <div id="logoDiv"><img src="Tools_For_Ever_Logo.png" alt="ToolsForEver_logo" id="logo"></div>
         <div id="tfeDiv"><span id="tfeText">ToolsForEver Vooraad</span></div>
-        <div id="naamDiv"><?php echo "<p>Medewerker: J. Hanssen</p>";?></div>
+        <div id="naamDiv"><?php
+
+        $rol;
+        if ($_SESSION['rol'] == 1) {
+          $rol = "Manager";
+        } else {
+          $rol = "Medewerker";
+        }
+
+        echo "<p>".$rol.". ".$_SESSION['naam']."</p>";
+
+          ?></div>
         <form action="overzicht.php" method="GET">
           <div id="line1"></div>
           <div id="line2"></div>

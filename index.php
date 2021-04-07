@@ -37,14 +37,16 @@
         foreach ($pdo->query("SELECT * FROM medewerkers") as $row) {
           if($row[2] == "") {
             if($row[1].' '.$row[3] == $_POST['naam'] && password_verify($_POST['wwoord'], $row[4])) {
-              echo "naam is correct";
-              echo "<br><br>";
+              session_start();
+              $_SESSION["rol"] = $row[5];
+              $_SESSION["naam"] = substr($row[1], 0, 1).' '.$row[3];
               header('Location: '.URL.'overzicht.php', TRUE, 302);
             }
           } else {
             if($row[1].' '.$row[2].' '.$row[3] == $_POST['naam'] && password_verify($_POST['wwoord'], $row[4])) {
-              echo "naam is correct";
-              echo "<br><br>";
+              session_start();
+              $_SESSION["rol"] = $row[5];
+              $_SESSION["naam"] = substr($row[1], 0, 1).'. '.$row[2].'. '.$row[3];
               header('Location: '.URL.'overzicht.php', TRUE, 302);
             }
           }
