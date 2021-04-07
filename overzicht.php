@@ -1,14 +1,6 @@
 <?php
     class Dbh {
 
-      public $locatie;
-      public $address;
-      public $product;
-      public $type;
-      public $fabriek;
-      public $inVoorraad;
-      public $verkoopprijs;
-
       private $servername;
       private $username;
       private $password;
@@ -20,9 +12,41 @@
           $GLOBALS['locatieSelected'] = $_GET['locatie'];
           $GLOBALS['addressSelected'] = $_GET['address'];
           $GLOBALS['productSelected'] = $_GET['product'];
-          echo $GLOBALS['locatieSelected'];
-          echo $GLOBALS['addressSelected'];
-          echo $GLOBALS['productSelected'];
+          $this->getTableData();
+        }
+      }
+
+      public function getTableData() {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "toolsforever";
+        $charset = "utf8";
+
+        try {
+          $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
+          $pdo = new PDO($dsn, $username, $password);
+          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          // get other values of products
+          $GLOBALS['productInfo'] = array("");
+          //foreach ($pdo->query("SELECT type, fabriek, voorraad, verkoopprijs FROM products WHERE product = \"".$_GET['product']."\" ") as $row) {
+          foreach ($pdo->query("SELECT products.type, products.fabriek, products.voorraad, products.verkoopprijs \n
+            FROM products \n
+            INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
+            INNER JOIN locatie ON locatie_has_products.idlocatie = locatie.idlocatie \n
+            WHERE locatie.naam = \"".$_GET['locatie']."\" AND locatie.address = \"".$_GET['address']."\" AND products.product = \"".$_GET['product']."\";") as $row) {
+            array_push($GLOBALS['productInfo'], $row[0]);
+            array_push($GLOBALS['productInfo'], $row[1]);
+            array_push($GLOBALS['productInfo'], $row[2]);
+            array_push($GLOBALS['productInfo'], $row[3]);
+          }
+          array_shift($GLOBALS['productInfo']);
+
+          $pdo = null;
+        } catch (PDOException $e) {
+          echo "Connection failed: ".$e->getMessage();
+          die();
         }
       }
 
@@ -161,22 +185,38 @@
             </span>
             <span id="typeVal" class="textStyle">
               <?php
-              echo "WX 382";
+                if (empty($GLOBALS['productInfo'])) {
+                  echo "---";
+                } else {
+                  echo $GLOBALS['productInfo'][0];
+                }
               ?>
             </span>
             <span id="fabriekVal" class="textStyle">
               <?php
-              echo "Worx";
+              if (empty($GLOBALS['productInfo'])) {
+                echo "---";
+              } else {
+                echo $GLOBALS['productInfo'][1];
+              }
               ?>
             </span>
             <span id="inVoorraadVal" class="textStyle">
               <?php
-              echo "10";
+              if (empty($GLOBALS['productInfo'])) {
+                echo "---";
+              } else {
+                echo $GLOBALS['productInfo'][2];
+              }
               ?>
             </span>
             <span id="verkoopprijsVal" class="textStyle">
               <?php
-              echo "€ 111,75";
+              if (empty($GLOBALS['productInfo'])) {
+                echo "---";
+              } else {
+                echo "€".$GLOBALS['productInfo'][3];
+              }
               ?>
             </span>
           </div>
