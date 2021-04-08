@@ -436,7 +436,7 @@ body {
 #productChangeDiv {
   display: grid;
   grid-template-columns: 50px auto;
-  grid-template-rows: 24px 24px 300px 24px 200px 24px 200px;
+  grid-template-rows: 24px 24px 220px 24px 200px 24px 200px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -455,7 +455,7 @@ body {
 #changeProductForm1 {
   display: grid;
   grid-template-columns: 200px 20px 300px auto 120px auto;
-  grid-template-rows: repeat(5, 24px 35px);
+  grid-template-rows: repeat(3, 24px 35px);
 
   grid-column-start: 2;
   grid-column-end: 3;
@@ -464,31 +464,52 @@ body {
 }
 
 #changeProductsNaamSelect {
-
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 
 #changeProductsTypeSelect {
-
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 4;
+  grid-row-end: 5;
 }
 
 #changeProductsFabriekSelect {
-
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 6;
+  grid-row-end: 7;
 }
 
 #changeProductsNaam {
-
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 
 #changeProductsType {
-
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
 }
 
 #changeProductsFabriek {
-
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 6;
+  grid-row-end: 7;
 }
 
-#changeProductsInfoSelect {
-
+#changeProductSubmit1 {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 6;
+  grid-row-end: 7;
 }
 
 #changeProductForm2 {
@@ -501,6 +522,8 @@ body {
   grid-row-start: 5;
   grid-row-end: 6;
 }
+
+
 
 #productInfo3 {
   font-family: "Segoe UI";

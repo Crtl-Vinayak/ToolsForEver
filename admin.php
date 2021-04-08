@@ -164,7 +164,7 @@
               </form>
             </div>
             <div id="productChangeDiv">
-              <span id="productInfo2">- artiekel, type, fabriek, voorraad, (locatie van artiekel), minimumvoorraad, verkoopprijs wijzigen.</span>
+              <span id="productInfo2">- artiekel, type, fabriek wijzigen.</span>
               <form method="GET" id="changeProductForm1">
                 <select name="changeProductsNaamSelect" id="changeProductsNaamSelect">
                   <option value="Accu Boorhamer">Accu Boorhamer</option>
@@ -184,10 +184,9 @@
                 <input type="text" name="changeProductsNaam" value="" placeholder="type hier de gewijzigde product naam" id="changeProductsNaam">
                 <input type="text" name="changeProductsType" value="" placeholder="type hier de gewijzigde product naam" id="changeProductsType">
                 <input type="text" name="changeProductsFabriek" value="" placeholder="type hier de gewijzigde product naam" id="changeProductsFabriek">
-                <input type="number" name="changeProductsVoorraad" value="" min="0" placeholder="type hier het getal van hoeveel van dit product in het voorraad zit" id="changeProductsVoorraad">
-                <input type="text" value="Selecteer hier beneden de nieuwe gewijzigde locatie en address, van waar het voorraad ligt van het product." id="changeProductsInfoSelect" readonly>
+                <input type="submit" name="changeProductSubmit1" value="Opslaan" id="changeProductSubmit1">
               </form>
-              <span id="productInfo3">- artiekel voorraad, minimumvoorraad en verkoopprijs wijzigen. (Selecteer links, van welke product je de gegevens wilt wijzigen).</span>
+              <span id="productInfo3">- artiekel locatie voorraad wijzigen</span>
               <form method="GET" id="changeProductForm2">
                 <select name="changeProductsNaamSelect2" id="changeProductsNaamSelect2">
                   <option value="Accu Boorhamer">Accu Boorhamer</option>
@@ -204,11 +203,40 @@
                   <option value="Worx">Worx</option>
                   <option value="Worx">Worx</option>
                 </select>
+                <select name="changeProductsLocatieSelect" id="changeProductsLocatieSelect">
+                  <option value="Rotterdam">Rotterdam</option>
+                  <option value="Rotterdam">Rotterdam</option>
+                  <option value="Rotterdam">Rotterdam</option>
+                </select>
+                <select name="changeProductsAddressSelect" id="changeProductsAddressSelect">
+                  <option value="1234AB">1234AB</option>
+                  <option value="1234AB">1234AB</option>
+                  <option value="1234AB">1234AB</option>
+                </select>
+                <input type="submit" name="changeProductSubmit2" value="Opslaan" id="chanageProductSubmit2">
+              </form>
+              <span id="productInfo4">- artiekel voorraad, minimumvoorraad en verkoopprijs wijzigen.</span>
+              <form method="GET" id="changeProductorm3">
+                <select name="changeProductsNaamSelect3" id="changeProductsNaamSelect3">
+                  <option value="Accu Boorhamer">Accu Boorhamer</option>
+                  <option value="Accu Boorhamer">Accu Boorhamer</option>
+                  <option value="Accu Boorhamer">Accu Boorhamer</option>
+                </select>
+                <select name="changeProductsTypeSelect3" id="changeProductsTypeSelect3">
+                  <option value="WX 382">WX 382</option>
+                  <option value="WX 382">WX 382</option>
+                  <option value="WX 382">WX 382</option>
+                </select>
+                <select name="changeProductsFabriekSelect3" id="changeProductsFabriekSelect3">
+                  <option value="Worx">Worx</option>
+                  <option value="Worx">Worx</option>
+                  <option value="Worx">Worx</option>
+                </select>
                 <input type="number" name="changeProductsVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van hoeveel van dit product in het voorraad zit" id="changeProductsVoorraad">
                 <input type="number" name="changeProductsMinimumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van het minimum voorraad van dit product" id="changeProductsMinimumVoorraad">
                 <input type="number" name="changeProductsVerkoopprijs" value="" min="0" step=".01" placeholder="type hier wat de nieuwe verkoopprijs is van dit product" id="changeProductsVerkoopprijs">
+                <input type="submit" name="changeProductSubmit3" value="Opslaan" id="chanageProductSubmit3">
               </form>
-              <span id="productInfo4">- </span>
             </div>
             <div id="productRemoveDiv"></div>
           </div>
