@@ -62,7 +62,7 @@ class Dbh {
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         foreach ($pdo->query("SELECT naam FROM locatie") as $row) {
-          
+
         }
 
         $pdo = null;
@@ -73,7 +73,27 @@ class Dbh {
     }
 
     public function addLocatie() {
+      if(isset($_GET['addLocatie']) && isset($_GET['addAddress']) && isset($_GET['addPlaceSubmit'])) {
 
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "toolsforever";
+        $charset = "utf8mb4";
+
+        $locatie = $_GET['addLocatie'];
+        $address = $_GET['addAddress'];
+
+        try {
+          $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $sql = "INSERT INTO locatie (naam, address) VALUES ('$locatie', '$address')";
+          $conn->exec($sql);
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+        $conn = null;
+      }
     }
 
     public function changeLocatie() {
