@@ -213,7 +213,7 @@
                   <option value="1234AB">1234AB</option>
                   <option value="1234AB">1234AB</option>
                 </select>
-                <input type="submit" name="changeProductSubmit2" value="Opslaan" id="chanageProductSubmit2">
+                <input type="submit" name="changeProductSubmit2" value="Opslaan" id="changeProductSubmit2">
               </form>
               <span id="productInfo4">- artiekel voorraad, minimumvoorraad en verkoopprijs wijzigen.</span>
               <form method="GET" id="changeProductorm3">
@@ -235,7 +235,7 @@
                 <input type="number" name="changeProductsVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van hoeveel van dit product in het voorraad zit" id="changeProductsVoorraad">
                 <input type="number" name="changeProductsMinimumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van het minimum voorraad van dit product" id="changeProductsMinimumVoorraad">
                 <input type="number" name="changeProductsVerkoopprijs" value="" min="0" step=".01" placeholder="type hier wat de nieuwe verkoopprijs is van dit product" id="changeProductsVerkoopprijs">
-                <input type="submit" name="changeProductSubmit3" value="Opslaan" id="chanageProductSubmit3">
+                <input type="submit" name="changeProductSubmit3" value="Opslaan" id="changeProductSubmit3">
               </form>
             </div>
             <div id="productRemoveDiv"></div>
