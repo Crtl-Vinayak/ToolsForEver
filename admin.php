@@ -138,7 +138,34 @@
               </form>
             </div>
           </div>
-          <div id="productDiv"></div>
+          <div id="productDiv">
+            <span id="productInfo">Hier kan je de product informatie wijzigen, toevoegen of verwijderen.</span>
+            <div id="productAddDiv">
+              <span id="productInfo1">- artiekel, type, fabriek, voorraad, (locatie van artiekel), minimumvoorraad, verkoopprijs toevoegen</span>
+              <form method="GET" id="addProductForm">
+                <input type="text" name="addProductsNaam" value="" placeholder="type hier de nieuwe product naam" id="addProductsNaam" required>
+                <input type="text" name="addProductsType" value="" placeholder="type hier de type van het product" id="addProductsType" required>
+                <input type="text" name="addProductsFabriek" value="" placeholder="type hier van welke fabriek het product komt" id="addProductsFabriek" required>
+                <input type="number" name="addProductsVoorraad" value="" min="0" placeholder="type hier het getal van hoeveel van dit product in het voorraad zit" id="addProductsVoorraad" required>
+                <input type="text" value="Selecteer hier beneden de nieuwe locatie en address, van waar het voorraad ligt van het product." id="addProductsInfoSelect" readonly>
+                <select name="addProductsLocatieSelect" id="addProductsLocatieSelect">
+                  <option value="Rotterdam">Rotterdam</option>
+                  <option value="Rotterdam">Rotterdam</option>
+                  <option value="Rotterdam">Rotterdam</option>
+                </select>
+                <select name="addProductsAddressSelect" id="addProductsAddressSelect">
+                  <option value="1234AB">1234AB</option>
+                  <option value="1234AB">1234AB</option>
+                  <option value="1234AB">1234AB</option>
+                </select>
+                <input type="number" name="addProductsMinimumVoorraad" value="" min="0" placeholder="type hier het getal van het minimum voorraad van dit product" id="addProductsMinimumVoorraad" required>
+                <input type="number" name="addProductsVerkoopprijs" value="" min="0" step=".01" placeholder="type hier wat de nieuwe verkoopprijs is van dit product" id="addProductsVerkoopprijs" required>
+                <input type="submit" name="addProductSubmit" value="Toevoegen" id="addProductSubmit">
+              </form>
+            </div>
+            <div id="productChangeDiv"></div>
+            <div id="productRemoveDiv"></div>
+          </div>
           <div id="medewerkerDiv"></div>
           <div id="lastDiv_overzichtVenster"></div>
         </div>
