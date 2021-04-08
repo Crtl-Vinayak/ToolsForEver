@@ -71,20 +71,31 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style/admin.css">
-    <title>ToolsForEver voorraad opvragen</title>
+    <title>ToolsForEver administatie venster</title>
   </head>
   <body>
     <div id="yellow_bg">
       <div id="grid">
         <div id="logoDiv"><img src="Tools_For_Ever_Logo.png" alt="ToolsForEver_logo" id="logo"></div>
-        <div id="tfeDiv"><span id="tfeText">ToolsForEver Vooraad</span></div>
+        <div id="tfeDiv"><span id="tfeText">ToolsForEver</span></div>
         <div id="naam_formDiv">
           <p>Manager. <?php echo $_SESSION['naam']; ?></p>
           <form method="GET">
             <input type="submit" name="uitlog" value="uitloggen" id="uitlogSubmit">
           </form>
         </div>
-
+        <div id="bigFormDiv">
+          <div id="line1"></div>
+          <div id="line2"></div>
+          <div id="line3"></div>
+          <div id="line4"></div>
+          <div id="locatieDiv">
+            <span id="locatieInfo">Hier kan je de locatie EN ADDRESS wijzigen, toevoegen of verwijderen.</span>
+          </div>
+          <div id="productDiv"></div>
+          <div id="medewerkerDiv"></div>
+          <div id="lastDiv_overzichtVenster"></div>
+        </div>
       </div>
     </div>
   </body>

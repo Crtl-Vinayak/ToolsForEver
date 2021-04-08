@@ -21,7 +21,7 @@ body {
 #grid {
   display: grid;
   grid-template-columns: 10px 2fr 9fr 3fr 10px;
-  grid-template-rows: 10px 100px 10px 30px 1px 200px 1px 200px 1px 200px 1px 150px;
+  grid-template-rows: 10px 100px 10px 500px auto 10px;
 }
 
 #logoDiv {
@@ -69,4 +69,81 @@ body {
   margin-left: 10px;
   width: 110px;
   height: 30px;
+}
+
+#bigFormDiv {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 1px auto 1px auto 1px auto 1px auto;
+
+  grid-column-start: 1;
+  grid-column-end: 6;
+  grid-row-start: 4;
+  grid-row-end: 6;
+}
+
+#line1 {
+  border: 1px solid #707070;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#line2 {
+  border: 1px solid #707070;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#line3 {
+  border: 1px solid #707070;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+#line4 {
+  border: 1px solid #707070;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 7;
+  grid-row-end: 8;
+}
+
+#locatieDiv {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#locatieInfo {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+#productDiv {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#medewerkerDiv {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+#lastDiv_overzichtVenster {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 8;
+  grid-row-end: 9;
 }
