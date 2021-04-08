@@ -1,69 +1,123 @@
 <?php
-    class Dbh {
+  define('URL', 'http://localhost/toolsforever/');
+  session_start();
+  $object = new Dbh;
 
-      private $servername;
-      private $username;
-      private $password;
-      private $dbname;
-      private $charset;
+  if (empty($_SESSION['naam'])) {
+    header('Location: '.URL.'index.php', TRUE, 302);
+  }
 
-      public function inloggen() {
-        if(isset($_POST['inloggen'])) {
-          $this->connect();
-        }
+  $object->verzend();
+  $object->connect();
+  $object->uitlog();
+  $object->overzicht();
+?>
+
+<?php
+class Dbh {
+
+    private $servername;
+    private $username;
+    private $password;
+    private $dbname;
+    private $charset;
+
+    public function uitlog() {
+      if(isset($_GET['uitlog'])) {
+        session_unset();
+        session_destroy();
+        header('Location: '.URL.'index.php', TRUE, 302);
       }
+    }
 
-      // p1 = 7\52AMZ83{,s_{XZ
-      // p2 = tY\cjLE^s=D7w{%)
-      // p3 = JXd}}H)e+7Za6q^q
-      // p4 = RQ/w`zG{yk%5[yv%
-      // p5 = hJm-'GPn=3DLC_HF
-      // p6 = gT88]e.)XCmdTv!'
-      // p7 = swC%M,zv8Z,(/;!6
-      // p8 = 3>hL]S/{f%EXmkRw
-      // p9 = k:nnr'5s!?[PBf!T
+    public function overzicht() {
+      if(isset($_GET['overzichtVenster'])) {
+        header('Location: '.URL.'overzicht.php', TRUE, 302);
+      }
+    }
 
-      public function connect() {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "toolsforever";
-        $charset = "utf8";
+    public function verzend() {
+      if(isset($_GET['verzend'])) {
+        $GLOBALS['locatieSelected'] = $_GET['locatie'];
+        $GLOBALS['addressSelected'] = $_GET['address'];
+        $GLOBALS['productSelected'] = $_GET['product'];
+        $this->getTableData();
+      }
+    }
+
+    public function getTableData() {
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "toolsforever";
+      $charset = "utf8mb4";
 
       try {
         $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
         $pdo = new PDO($dsn, $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        foreach ($pdo->query("SELECT * FROM medewerkers") as $row) {
-          if($row[2] == "") {
-            if($row[1].' '.$row[3] == $_POST['naam'] && password_verify($_POST['wwoord'], $row[4])) {
-              session_start();
-              $_SESSION["rol"] = $row[5];
-              $_SESSION["naam"] = substr($row[1], 0, 1).' '.$row[3];
-              header('Location: '.URL.'overzicht.php', TRUE, 302);
-            }
-          } else {
-            if($row[1].' '.$row[2].' '.$row[3] == $_POST['naam'] && password_verify($_POST['wwoord'], $row[4])) {
-              session_start();
-              $_SESSION["rol"] = $row[5];
-              $_SESSION["naam"] = substr($row[1], 0, 1).'. '.$row[2].'. '.$row[3];
-              header('Location: '.URL.'overzicht.php', TRUE, 302);
-            }
-          }
+
+        // get other values of products
+        $GLOBALS['productInfo'] = array("");
+        foreach ($pdo->query("SELECT products.type, products.fabriek, products.voorraad, products.verkoopprijs \n
+          FROM products \n
+          INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
+          INNER JOIN locatie ON locatie_has_products.idlocatie = locatie.idlocatie \n
+          WHERE locatie.naam = \"".$_GET['locatie']."\" AND locatie.address = \"".$_GET['address']."\" AND products.product = \"".$_GET['product']."\";") as $row) {
+          array_push($GLOBALS['productInfo'], $row[0]);
+          array_push($GLOBALS['productInfo'], $row[1]);
+          array_push($GLOBALS['productInfo'], $row[2]);
+          array_push($GLOBALS['productInfo'], $row[3]);
         }
+        array_shift($GLOBALS['productInfo']);
+
         $pdo = null;
       } catch (PDOException $e) {
         echo "Connection failed: ".$e->getMessage();
         die();
       }
     }
-  }
-?>
 
-<?php
-  define('URL', 'http://localhost/toolsforever/');
-  session_start();
-  $object = new Dbh;
+    public function connect() {
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "toolsforever";
+      $charset = "utf8";
+
+    try {
+      $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
+      $pdo = new PDO($dsn, $username, $password);
+      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+      // get locatie values
+      $GLOBALS['locatie'] = array("");
+      foreach ($pdo->query("SELECT naam FROM locatie") as $row) {
+        array_push($GLOBALS['locatie'], $row[0]);
+      }
+      array_shift($GLOBALS['locatie']);
+
+      // get address values
+      $GLOBALS['address'] = array("");
+      foreach ($pdo->query("SELECT address FROM locatie") as $row) {
+        array_push($GLOBALS['address'], $row[0]);
+      }
+      array_shift($GLOBALS['address']);
+
+      // get product values
+      $GLOBALS['product'] = array("");
+      foreach ($pdo->query("SELECT product FROM products") as $row) {
+        array_push($GLOBALS['product'], $row[0]);
+      }
+      array_shift($GLOBALS['product']);
+
+      $pdo = null;
+    } catch (PDOException $e) {
+      echo "Connection failed: ".$e->getMessage();
+      die();
+    }
+  }
+}
 ?>
 
 <!DOCTYPE html>
