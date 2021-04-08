@@ -573,6 +573,75 @@ body {
   grid-row-end: 5;
 }
 
+#productInfo4 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+#changeProductForm3 {
+  display: grid;
+  grid-template-columns: 200px 20px 300px auto 120px auto;
+  grid-template-rows: repeat(3, 24px 35px);
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 7;
+  grid-row-end: 8;
+}
+
+#changeProductsNaamSelect3 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#changeProductsTypeSelect3 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#changeProductsFabriekSelect3 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+#changeProductsVoorraad {
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#changeProductsMinimumVoorraad {
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#changeProductsVerkoopprijs {
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 6;
+  grid-row-end: 7;
+  margin-right: 20px;
+}
+
+#changeProductSubmit3 {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
 #productRemoveDiv {
   grid-column-start: 1;
   grid-column-end: 2;

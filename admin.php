@@ -216,7 +216,7 @@
                 <input type="submit" name="changeProductSubmit2" value="Opslaan" id="changeProductSubmit2">
               </form>
               <span id="productInfo4">- artiekel voorraad, minimumvoorraad en verkoopprijs wijzigen.</span>
-              <form method="GET" id="changeProductorm3">
+              <form method="GET" id="changeProductForm3">
                 <select name="changeProductsNaamSelect3" id="changeProductsNaamSelect3">
                   <option value="Accu Boorhamer">Accu Boorhamer</option>
                   <option value="Accu Boorhamer">Accu Boorhamer</option>
