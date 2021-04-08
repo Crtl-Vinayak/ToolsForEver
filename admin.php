@@ -238,7 +238,27 @@
                 <input type="submit" name="changeProductSubmit3" value="Opslaan" id="changeProductSubmit3">
               </form>
             </div>
-            <div id="productRemoveDiv"></div>
+            <div id="productRemoveDiv">
+              <span id="productInfo5">- artiekel verwijderen van een bepaalde type en fabriek.</span>
+              <form method="GET" id="removeProductForm">
+                <select name="removeProductsNaamSelect" id="removeProductsNaamSelect">
+                  <option value="Accu Boorhamer">Accu Boorhamer</option>
+                  <option value="Accu Boorhamer">Accu Boorhamer</option>
+                  <option value="Accu Boorhamer">Accu Boorhamer</option>
+                </select>
+                <select name="removeProductsTypeSelect" id="removeProductsTypeSelect">
+                  <option value="WX 382">WX 382</option>
+                  <option value="WX 382">WX 382</option>
+                  <option value="WX 382">WX 382</option>
+                </select>
+                <select name="removeProductsFabriekSelect" id="removeProductsFabriekSelect">
+                  <option value="Worx">Worx</option>
+                  <option value="Worx">Worx</option>
+                  <option value="Worx">Worx</option>
+                </select>
+                <input type="submit" name="removeProductSubmit" value="Opslaan" id="removeProductSubmit">
+              </form>
+            </div>
           </div>
           <div id="medewerkerDiv"></div>
           <div id="lastDiv_overzichtVenster"></div>
