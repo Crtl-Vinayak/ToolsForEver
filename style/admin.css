@@ -875,13 +875,102 @@ body {
 }
 
 #medewerkerChangeDiv2 {
+  display: grid;
+  grid-template-columns: 50px auto;
+  grid-template-rows: 24px 24px 250px;
+
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 5;
   grid-row-end: 6;
 }
 
+#medewerkerInfo3 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#changeMedewerkerForm2 {
+  display: grid;
+  grid-template-columns: 200px 20px 300px auto 120px auto;
+  grid-template-rows: repeat(4, 24px 35px);
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#readVoornaam1 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#readTussenvoegsel1 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#readAchternaam1 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+#readRol {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 8;
+  grid-row-end: 9;
+}
+
+#changeMedewerkerVoornaamSelect2 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#changeMedewerkerTussenvoegselSelect2 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#changeMedewerkerAchternaamSelect2 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+#changeMedewerkerRolSelect {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 8;
+  grid-row-end: 9;
+}
+
+#changeMedewerkerSubmit2 {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 8;
+  grid-row-end: 9;
+}
+
 #medewerkerChangeDiv3 {
+  display: grid;
+  grid-template-columns: 50px auto;
+  grid-template-rows: 24px 24px 220px;
+
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 6;

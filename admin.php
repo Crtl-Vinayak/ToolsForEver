@@ -297,14 +297,60 @@
                 <input type="text" name="changeMedewerkersVoornaam" value="" placeholder="type hier de nieuwe gewijzigde voornaam" id="changeMedewerkersVoornaam">
                 <input type="text" name="changeMedewerkersTussenvoegsel" value="" placeholder="type hier de nieuwe gewijzigde tussenvoegsel" id="changeMedewerkersTussenvoegsel">
                 <input type="text" name="changeMedewerkersAchternaam" value="" placeholder="type hier de nieuwe gewijzigde achternaam" id="changeMedewerkersAchternaam">
-                <input type="submit" name="changeMedewerkerSubmit1" value="Toevoegen" id="changeMedewerkerSubmit1">
+                <input type="submit" name="changeMedewerkerSubmit1" value="Opslaan" id="changeMedewerkerSubmit1">
               </form>
             </div>
             <div id="medewerkerChangeDiv2">
-
+              <span id="medewerkerInfo3">- medewerker rol wijzigen.</span>
+              <form method="POST" id="changeMedewerkerForm2">
+                <input type="text" readonly name="readVoornaam1" value="" placeholder="Voornaam:" id="readVoornaam1">
+                <input type="text" readonly name="readTussenvoegsel1" value="" placeholder="Tussenvoegsel:" id="readTussenvoegsel1">
+                <input type="text" readonly name="readAchternaam1" value="" placeholder="Achternaam:" id="readAchternaam1">
+                <input type="text" readonly name="readRol" value="" placeholder="Rol:" id="readRol">
+                <select name="changeMedewerkerVoornaamSelect2" id="changeMedewerkerVoornaamSelect2">
+                  <option value="Lesley">Lesley</option>
+                  <option value="Lesley">Lesley</option>
+                  <option value="Lesley">Lesley</option>
+                </select>
+                <select name="changeMedewerkerTussenvoegselSelect2" id="changeMedewerkerTussenvoegselSelect2">
+                  <option value="de">de</option>
+                  <option value="de">de</option>
+                  <option value="de">de</option>
+                </select>
+                <select name="changeMedewerkerAchternaamSelect2" id="changeMedewerkerAchternaamSelect2">
+                  <option value="Jooren">Jooren</option>
+                  <option value="Jooren">Jooren</option>
+                  <option value="Jooren">Jooren</option>
+                </select>
+                <select name="changeMedewerkerRolSelect" id="changeMedewerkerRolSelect">
+                  <option value="0">Medewerker</option>
+                  <option value="0">Medewerker</option>
+                </select>
+                <input type="submit" name="changeMedewerkerSubmit2" value="Opslaan" id="changeMedewerkerSubmit2">
+              </form>
             </div>
             <div id="medewerkerChangeDiv3">
-
+              <form method="POST" id="changeMedewerkerForm3">
+                <input type="text" readonly name="readVoornaam2" value="" placeholder="Voornaam:" id="readVoornaam2">
+                <input type="text" readonly name="readTussenvoegsel2" value="" placeholder="Tussenvoegsel:" id="readTussenvoegsel2">
+                <input type="text" readonly name="readAchternaam2" value="" placeholder="Achternaam:" id="readAchternaam2">
+                <select name="changeMedewerkerVoornaamSelect3" id="changeMedewerkerVoornaamSelect3">
+                  <option value="Lesley">Lesley</option>
+                  <option value="Lesley">Lesley</option>
+                  <option value="Lesley">Lesley</option>
+                </select>
+                <select name="changeMedewerkerTussenvoegselSelect3" id="changeMedewerkerTussenvoegselSelect3">
+                  <option value="de">de</option>
+                  <option value="de">de</option>
+                  <option value="de">de</option>
+                </select>
+                <select name="changeMedewerkerAchternaamSelect3" id="changeMedewerkerAchternaamSelect3">
+                  <option value="Jooren">Jooren</option>
+                  <option value="Jooren">Jooren</option>
+                  <option value="Jooren">Jooren</option>
+                </select>
+                <input type="submit" name="changeMedewerkerSubmit3" value="Opslaan" id="changeMedewerkerSubmit3">
+              </form>
             </div>
             <div id="medewerkerRemoveDiv">
 
