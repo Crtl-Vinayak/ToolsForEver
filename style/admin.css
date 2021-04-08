@@ -16,6 +16,7 @@ body {
   border-radius: 20px;
   box-shadow: 10px 10px 20px 1px #00000066;
   min-width: 1000px;
+  max-width: 1200px;
 }
 
 #grid {
@@ -808,6 +809,7 @@ body {
 }
 
 #medewerkerInfo2 {
+  font-family: "Segoe UI";
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 2;
@@ -886,6 +888,7 @@ body {
 }
 
 #medewerkerInfo3 {
+  font-family: "Segoe UI";
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 2;
@@ -977,11 +980,158 @@ body {
   grid-row-end: 7;
 }
 
+#medewerkerInfo4 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#changeMedewerkerForm3 {
+  display: grid;
+  grid-template-columns: 200px 20px 300px auto 120px auto;
+  grid-template-rows: repeat(4, 24px 35px);
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#readVoornaam2 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#readTussenvoegsel2 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#readAchternaam2 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+#changeMedewerkerVoornaamSelect3 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#changeMedewerkerTussenvoegselSelect3 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#changeMedewerkerAchternaamSelect3 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+#changePassword {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 8;
+  grid-row-end: 9;
+}
+
+#changeMedewerkerSubmit3 {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 8;
+  grid-row-end: 9;
+}
+
 #medewerkerRemoveDiv {
+  display: grid;
+  grid-template-columns: 50px auto;
+  grid-template-rows: 24px 24px 220px;
+
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 7;
   grid-row-end: 8;
+}
+
+#medewerkerInfo5 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#removeMedewerkerForm {
+  display: grid;
+  grid-template-columns: 200px 20px 300px auto 120px auto;
+  grid-template-rows: repeat(3, 24px 35px);
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#readVoornaam3 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#readTussenvoegsel3 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#readAchternaam3 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+#removeMedewerkerVoornaamSelect {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#removeMedewerkerTussenvoegselSelect {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#removeMedewerkerAchternaamSelect {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+#removeMedewerkerSubmit {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 6;
+  grid-row-end: 7;
 }
 
 #lastDiv_overzichtVenster {
@@ -989,4 +1139,17 @@ body {
   grid-column-end: 2;
   grid-row-start: 8;
   grid-row-end: 9;
+}
+
+#overzichtForm {
+  display: grid;
+  grid-template-columns: auto 250px auto;
+  grid-template-rows: 50px auto 50px;
+}
+
+#overzichtVenster {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
 }

@@ -330,6 +330,7 @@
               </form>
             </div>
             <div id="medewerkerChangeDiv3">
+              <span id="medewerkerInfo4">- medewerker wachtwoord wijzigen.</span>
               <form method="POST" id="changeMedewerkerForm3">
                 <input type="text" readonly name="readVoornaam2" value="" placeholder="Voornaam:" id="readVoornaam2">
                 <input type="text" readonly name="readTussenvoegsel2" value="" placeholder="Tussenvoegsel:" id="readTussenvoegsel2">
@@ -349,15 +350,39 @@
                   <option value="Jooren">Jooren</option>
                   <option value="Jooren">Jooren</option>
                 </select>
+                <input type="password" name="changePassW" value="" placeholder="type hier een nieuwe gewijzigde sterke wachtwoord voor deze medewerker" id="changePassword">
                 <input type="submit" name="changeMedewerkerSubmit3" value="Opslaan" id="changeMedewerkerSubmit3">
               </form>
             </div>
             <div id="medewerkerRemoveDiv">
-
+              <span id="medewerkerInfo5">- medewerker verwijderen.</span>
+              <form method="POST" id="removeMedewerkerForm">
+                <input type="text" readonly name="readVoornaam3" value="" placeholder="Voornaam:" id="readVoornaam3">
+                <input type="text" readonly name="readTussenvoegsel3" value="" placeholder="Tussenvoegsel:" id="readTussenvoegsel3">
+                <input type="text" readonly name="readAchternaam3" value="" placeholder="Achternaam:" id="readAchternaam3">
+                <select name="removeMedewerkerVoornaamSelect" id="removeMedewerkerVoornaamSelect">
+                  <option value="Lesley">Lesley</option>
+                  <option value="Lesley">Lesley</option>
+                  <option value="Lesley">Lesley</option>
+                </select>
+                <select name="removeMedewerkerTussenvoegselSelect" id="removeMedewerkerTussenvoegselSelect">
+                  <option value="de">de</option>
+                  <option value="de">de</option>
+                  <option value="de">de</option>
+                </select>
+                <select name="removeMedewerkerAchternaamSelect" id="removeMedewerkerAchternaamSelect">
+                  <option value="Jooren">Jooren</option>
+                  <option value="Jooren">Jooren</option>
+                  <option value="Jooren">Jooren</option>
+                </select>
+                <input type="submit" name="removeMedewerkerSubmit" value="Verwijder" id="removeMedewerkerSubmit">
+              </form>
             </div>
           </div>
           <div id="lastDiv_overzichtVenster">
-
+            <form method="GET" id="overzichtForm">
+              <input type="submit" name="overzichtVenster" value="Naar overzicht venster gaan" id="overzichtVenster">
+            </form>
           </div>
         </div>
       </div>
