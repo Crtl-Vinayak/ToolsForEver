@@ -260,8 +260,59 @@
               </form>
             </div>
           </div>
-          <div id="medewerkerDiv"></div>
-          <div id="lastDiv_overzichtVenster"></div>
+          <div id="medewerkerDiv">
+            <span id="medewerkerInfo">Hier kan je medewerkers informatie wijzigen, toevoegen of verwijderen.</span>
+            <div id="medewerkerAddDiv">
+              <span id="medewerkerInfo1">- medewerker naam, wachtwoord en rol toevoegen.</span>
+              <form method="POST" id="addMedewerkerForm">
+                <input type="text" name="addMedewerkersVoornaam" value="" placeholder="type hier de voornaam van de nieuwe medewerker" required id="addMedewerkersVoornaam">
+                <input type="text" name="addMedewerkersTussenvoegsel" value="" placeholder="type hier de tussenvoegsel van de nieuwe medewerker" id="addMedewerkersTussenvoegsel">
+                <input type="text" name="addMedewerkersAchternaam" value="" placeholder="type hier de achternaam van de nieuwe medewerker" required id="addMedewerkersAchternaam">
+                <input type="password" name="addMedewerkersWachtwoord" value="" placeholder="type hier een wachtwoord van de nieuwe medewerker" required id="addMedewerkersWachtwoord">
+                <select name="addMedewerkersRolSelect" id="addMedewerkersRolSelect">
+                  <option value="0">Medewerker</option>
+                  <option value="0">Medewerker</option>
+                </select>
+                <input type="submit" name="addMedewerkerSubmit" value="Toevoegen" id="addMedewerkerSubmit">
+              </form>
+            </div>
+            <div id="medewerkerChangeDiv1">
+              <span id="medewerkerInfo2">- medewerker naam wijzigen.</span>
+              <form method="POST" id="changeMedewerkerForm1">
+                <select name="changeMedewerkerVoornaamSelect" id="changeMedewerkerVoornaamSelect">
+                  <option value="Lesley">Lesley</option>
+                  <option value="Lesley">Lesley</option>
+                  <option value="Lesley">Lesley</option>
+                </select>
+                <select name="changeMedewerkerTussenvoegselSelect" id="changeMedewerkerTussenvoegselSelect">
+                  <option value="de">de</option>
+                  <option value="de">de</option>
+                  <option value="de">de</option>
+                </select>
+                <select name="changeMedewerkerAchternaamSelect" id="changeMedewerkerAchternaamSelect">
+                  <option value="Jooren">Jooren</option>
+                  <option value="Jooren">Jooren</option>
+                  <option value="Jooren">Jooren</option>
+                </select>
+                <input type="text" name="changeMedewerkersVoornaam" value="" placeholder="type hier de nieuwe gewijzigde voornaam" id="changeMedewerkersVoornaam">
+                <input type="text" name="changeMedewerkersTussenvoegsel" value="" placeholder="type hier de nieuwe gewijzigde tussenvoegsel" id="changeMedewerkersTussenvoegsel">
+                <input type="text" name="changeMedewerkersAchternaam" value="" placeholder="type hier de nieuwe gewijzigde achternaam" id="changeMedewerkersAchternaam">
+                <input type="submit" name="changeMedewerkerSubmit1" value="Toevoegen" id="changeMedewerkerSubmit1">
+              </form>
+            </div>
+            <div id="medewerkerChangeDiv2">
+
+            </div>
+            <div id="medewerkerChangeDiv3">
+
+            </div>
+            <div id="medewerkerRemoveDiv">
+
+            </div>
+          </div>
+          <div id="lastDiv_overzichtVenster">
+
+          </div>
         </div>
       </div>
     </div>
