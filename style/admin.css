@@ -157,7 +157,7 @@ body {
 
 #addPlaceForm {
   display: grid;
-  grid-template-columns: 250px 20px 200px auto 80px auto;
+  grid-template-columns: 250px 20px 250px auto 120px auto;
   grid-template-rows: auto;
 
   grid-column-start: 2;
@@ -183,6 +183,126 @@ body {
 #addPlaceSubmit {
   grid-column-start: 5;
   grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#locatieChangeDiv {
+  display: grid;
+  grid-template-columns: 50px auto;
+  grid-template-rows: 24px 24px 24px 35px 24px 35px 24px;
+
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#locatieInfo2 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#changePlaceForm {
+  display: grid;
+  grid-template-columns: 250px 20px 250px auto 120px auto;
+  grid-template-rows: 35px 24px 35px;
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#changeLocatieSelect {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#changeAddressSelect {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#changePlaceLocatieInput {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#changePlaceAddressInput {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#changePlaceSubmit {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#locatieRemoveDiv {
+  display: grid;
+  grid-template-columns: 50px auto;
+  grid-template-rows: 24px 24px 24px 35px 24px 35px 24px;
+
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+#locatieInfo3 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#removeLocatiePlaceForm {
+  display: grid;
+  grid-template-columns: 250px 270px auto 120px auto;
+  grid-template-rows: 1fr;
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#removeLocatiePlaceSubmit {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#removeAddressPlaceForm {
+  display: grid;
+  grid-template-columns: 250px 270px auto 120px auto;
+  grid-template-rows: 1fr;
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+#removeAddressPlaceSubmit {
+  grid-column-start: 4;
+  grid-column-end: 5;
   grid-row-start: 1;
   grid-row-end: 2;
 }

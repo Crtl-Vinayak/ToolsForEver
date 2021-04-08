@@ -101,6 +101,41 @@
             </div>
             <div id="locatieChangeDiv">
               <!-- selects option needs to variable (backend) -->
+              <span id="locatieInfo2">- locatie of address wijzigen (laat je het tekst vakje leeg, dan wijzig je voor dat categorie niet.)</span>
+              <form method="GET" id="changePlaceForm">
+                <select name="changeLocatieSelect" id="changeLocatieSelect">
+                  <option value="Rotterdam">Rotterdam</option>
+                  <option value="Rotterdam">Rotterdam</option>
+                  <option value="Rotterdam">Rotterdam</option>
+                </select>
+                <select name="changeAddressSelect" id="changeAddressSelect">
+                  <option value="1234AB">1234AB</option>
+                  <option value="1234AB">1234AB</option>
+                  <option value="1234AB">1234AB</option>
+                </select>
+                <input type="text" name="changeLocatie" value="" placeholder="type hier de nieuwe gewijzigde locatie" id="changePlaceLocatieInput">
+                <input type="text" name="changeAddress" value="" placeholder="type hier de nieuwe gewijzigde address" id="changePlaceAddressInput">
+                <input type="submit" name="changePlaceSubmit" value="Wijziging opslaan" id="changePlaceSubmit">
+              </form>
+            </div>
+            <div id="locatieRemoveDiv">
+              <span id="locatieInfo3">- locatie of address verwijderen</span>
+              <form method="GET" id="removeLocatiePlaceForm">
+                <select name="removeLocatieSelect" id="removeLocatieSelect">
+                  <option value="Rotterdam">Rotterdam</option>
+                  <option value="Rotterdam">Rotterdam</option>
+                  <option value="Rotterdam">Rotterdam</option>
+                </select>
+                <input type="submit" name="removeLocatiePlaceSubmit" value="Verwijder" id="removeLocatiePlaceSubmit">
+              </form>
+              <form method="GET" id="removeAddressPlaceForm">
+                <select name="removeAddressSelect" id="removeAddressSelect">
+                  <option value="1234AB">1234AB</option>
+                  <option value="1234AB">1234AB</option>
+                  <option value="1234AB">1234AB</option>
+                </select>
+                <input type="submit" name="removeAddressPlaceSubmit" value="Verwijder" id="removeAddressPlaceSubmit">
+              </form>
             </div>
           </div>
           <div id="productDiv"></div>
