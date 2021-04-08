@@ -7,20 +7,33 @@
     header('Location: '.URL.'index.php', TRUE, 302);
   }
 
-  $object->verzend();
-  $object->connect();
+  // $object->verzend();
+  // $object->connect();
+
   $object->uitlog();
   $object->overzicht();
+  $object->getData();
+
+  $object->addLocatie();
+  $object->changeLocatie();
+  $object->removeLocatie1();
+  $object->removeLocatie2();
+
+  $object->addProduct();
+  $object->changeProduct1();
+  $object->changeProduct2();
+  $object->changeProduct3();
+  $object->removeProduct();
+
+  $object->addMedewerker();
+  $object->changeMedewerker1();
+  $object->changeMedewerker2();
+  $object->changeMedewerker3();
+  $object->removeMedewerker();
 ?>
 
 <?php
 class Dbh {
-
-    private $servername;
-    private $username;
-    private $password;
-    private $dbname;
-    private $charset;
 
     public function uitlog() {
       if(isset($_GET['uitlog'])) {
@@ -36,16 +49,7 @@ class Dbh {
       }
     }
 
-    public function verzend() {
-      if(isset($_GET['verzend'])) {
-        $GLOBALS['locatieSelected'] = $_GET['locatie'];
-        $GLOBALS['addressSelected'] = $_GET['address'];
-        $GLOBALS['productSelected'] = $_GET['product'];
-        $this->getTableData();
-      }
-    }
-
-    public function getTableData() {
+    public function getData() {
       $servername = "localhost";
       $username = "root";
       $password = "";
@@ -57,19 +61,9 @@ class Dbh {
         $pdo = new PDO($dsn, $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // get other values of products
-        $GLOBALS['productInfo'] = array("");
-        foreach ($pdo->query("SELECT products.type, products.fabriek, products.voorraad, products.verkoopprijs \n
-          FROM products \n
-          INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
-          INNER JOIN locatie ON locatie_has_products.idlocatie = locatie.idlocatie \n
-          WHERE locatie.naam = \"".$_GET['locatie']."\" AND locatie.address = \"".$_GET['address']."\" AND products.product = \"".$_GET['product']."\";") as $row) {
-          array_push($GLOBALS['productInfo'], $row[0]);
-          array_push($GLOBALS['productInfo'], $row[1]);
-          array_push($GLOBALS['productInfo'], $row[2]);
-          array_push($GLOBALS['productInfo'], $row[3]);
+        foreach ($pdo->query("SELECT naam FROM locatie") as $row) {
+          
         }
-        array_shift($GLOBALS['productInfo']);
 
         $pdo = null;
       } catch (PDOException $e) {
@@ -78,45 +72,145 @@ class Dbh {
       }
     }
 
-    public function connect() {
-      $servername = "localhost";
-      $username = "root";
-      $password = "";
-      $dbname = "toolsforever";
-      $charset = "utf8";
+    public function addLocatie() {
 
-    try {
-      $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
-      $pdo = new PDO($dsn, $username, $password);
-      $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-      // get locatie values
-      $GLOBALS['locatie'] = array("");
-      foreach ($pdo->query("SELECT naam FROM locatie") as $row) {
-        array_push($GLOBALS['locatie'], $row[0]);
-      }
-      array_shift($GLOBALS['locatie']);
-
-      // get address values
-      $GLOBALS['address'] = array("");
-      foreach ($pdo->query("SELECT address FROM locatie") as $row) {
-        array_push($GLOBALS['address'], $row[0]);
-      }
-      array_shift($GLOBALS['address']);
-
-      // get product values
-      $GLOBALS['product'] = array("");
-      foreach ($pdo->query("SELECT product FROM products") as $row) {
-        array_push($GLOBALS['product'], $row[0]);
-      }
-      array_shift($GLOBALS['product']);
-
-      $pdo = null;
-    } catch (PDOException $e) {
-      echo "Connection failed: ".$e->getMessage();
-      die();
     }
-  }
+
+    public function changeLocatie() {
+
+    }
+
+    public function removeLocatie1() {
+
+    }
+
+    public function removeLocatie2() {
+
+    }
+
+    public function addProduct() {
+
+    }
+
+    public function changeProduct1() {
+
+    }
+
+    public function changeProduct2() {
+
+    }
+
+    public function changeProduct3() {
+
+    }
+
+    public function removeProduct() {
+
+    }
+
+    public function addMedewerker() {
+
+    }
+
+    public function changeMedewerker1() {
+
+    }
+
+    public function changeMedewerker2() {
+
+    }
+
+    public function changeMedewerker3() {
+
+    }
+
+    public function removeMedewerker() {
+
+    }
+
+    // public function verzend() {
+    //   if(isset($_GET['verzend'])) {
+    //     $GLOBALS['locatieSelected'] = $_GET['locatie'];
+    //     $GLOBALS['addressSelected'] = $_GET['address'];
+    //     $GLOBALS['productSelected'] = $_GET['product'];
+    //     $this->getTableData();
+    //   }
+    // }
+
+    // public function getTableData() {
+    //   $servername = "localhost";
+    //   $username = "root";
+    //   $password = "";
+    //   $dbname = "toolsforever";
+    //   $charset = "utf8mb4";
+    //
+    //   try {
+    //     $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
+    //     $pdo = new PDO($dsn, $username, $password);
+    //     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //
+    //     // get other values of products
+    //     $GLOBALS['productInfo'] = array("");
+    //     foreach ($pdo->query("SELECT products.type, products.fabriek, products.voorraad, products.verkoopprijs \n
+    //       FROM products \n
+    //       INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
+    //       INNER JOIN locatie ON locatie_has_products.idlocatie = locatie.idlocatie \n
+    //       WHERE locatie.naam = \"".$_GET['locatie']."\" AND locatie.address = \"".$_GET['address']."\" AND products.product = \"".$_GET['product']."\";") as $row) {
+    //       array_push($GLOBALS['productInfo'], $row[0]);
+    //       array_push($GLOBALS['productInfo'], $row[1]);
+    //       array_push($GLOBALS['productInfo'], $row[2]);
+    //       array_push($GLOBALS['productInfo'], $row[3]);
+    //     }
+    //     array_shift($GLOBALS['productInfo']);
+    //
+    //     $pdo = null;
+    //   } catch (PDOException $e) {
+    //     echo "Connection failed: ".$e->getMessage();
+    //     die();
+    //   }
+    // }
+
+  //   public function connect() {
+  //     $servername = "localhost";
+  //     $username = "root";
+  //     $password = "";
+  //     $dbname = "toolsforever";
+  //     $charset = "utf8";
+  //
+  //   try {
+  //     $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
+  //     $pdo = new PDO($dsn, $username, $password);
+  //     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  //
+  //     // get locatie values
+  //     $GLOBALS['locatie'] = array("");
+  //     foreach ($pdo->query("SELECT naam FROM locatie") as $row) {
+  //       array_push($GLOBALS['locatie'], $row[0]);
+  //     }
+  //     array_shift($GLOBALS['locatie']);
+  //
+  //     // get address values
+  //     $GLOBALS['address'] = array("");
+  //     foreach ($pdo->query("SELECT address FROM locatie") as $row) {
+  //       array_push($GLOBALS['address'], $row[0]);
+  //     }
+  //     array_shift($GLOBALS['address']);
+  //
+  //     // get product values
+  //     $GLOBALS['product'] = array("");
+  //     foreach ($pdo->query("SELECT product FROM products") as $row) {
+  //       array_push($GLOBALS['product'], $row[0]);
+  //     }
+  //     array_shift($GLOBALS['product']);
+  //
+  //     $pdo = null;
+  //   } catch (PDOException $e) {
+  //     echo "Connection failed: ".$e->getMessage();
+  //     die();
+  //   }
+  // }
+
+
 }
 ?>
 
@@ -310,7 +404,7 @@ class Dbh {
                   <option value="Worx">Worx</option>
                   <option value="Worx">Worx</option>
                 </select>
-                <input type="submit" name="removeProductSubmit" value="Opslaan" id="removeProductSubmit">
+                <input type="submit" name="removeProductSubmit" value="Verwijder" id="removeProductSubmit">
               </form>
             </div>
           </div>
