@@ -115,6 +115,10 @@ body {
 }
 
 #locatieDiv {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: 24px auto 80px 200px 200px;
+
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 2;
@@ -125,6 +129,62 @@ body {
   display: flex;
   text-align: center;
   justify-content: center;
+
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#locatieAddDiv {
+  display: grid;
+  grid-template-columns: 50px auto;
+  grid-template-rows: auto 24px 1fr;
+
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#locatieInfo1 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#addPlaceForm {
+  display: grid;
+  grid-template-columns: 250px 20px 200px auto 80px auto;
+  grid-template-rows: auto;
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#addPlaceLocatieInput {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#addPlaceAddressInput {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#addPlaceSubmit {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 
 #productDiv {

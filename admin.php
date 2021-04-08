@@ -91,6 +91,17 @@
           <div id="line4"></div>
           <div id="locatieDiv">
             <span id="locatieInfo">Hier kan je de locatie EN ADDRESS wijzigen, toevoegen of verwijderen.</span>
+            <div id="locatieAddDiv">
+              <span id="locatieInfo1">- locatie en address toevoegen</span>
+              <form method="GET" id="addPlaceForm">
+                <input type="text" name="addLocatie" value="" placeholder="type hier de nieuwe locatie" required id="addPlaceLocatieInput">
+                <input type="text" name="addAddress" value="" placeholder="type hier de nieuwe address" required id="addPlaceAddressInput">
+                <input type="submit" name="addPlaceSubmit" value="Toevoegen" id="addPlaceSubmit">
+              </form>
+            </div>
+            <div id="locatieChangeDiv">
+              <!-- selects option needs to variable (backend) -->
+            </div>
           </div>
           <div id="productDiv"></div>
           <div id="medewerkerDiv"></div>
