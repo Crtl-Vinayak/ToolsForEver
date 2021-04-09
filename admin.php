@@ -77,21 +77,21 @@ class Dbh {
 
         // get name of product
         $GLOBALS['productName'] = array("");
-        foreach ($pdo->query("SELECT product FROM product") as $row) {
+        foreach ($pdo->query("SELECT product FROM products") as $row) {
           array_push($GLOBALS['productName'], $row[0]);
         }
         array_shift($GLOBALS['productName']);
 
         // get type of product
         $GLOBALS['productType'] = array("");
-        foreach ($pdo->query("SELECT type FROM product") as $row) {
+        foreach ($pdo->query("SELECT type FROM products") as $row) {
           array_push($GLOBALS['productType'], $row[0]);
         }
         array_shift($GLOBALS['productType']);
 
         // get fabriek of product
         $GLOBALS['productFabriek'] = array("");
-        foreach ($pdo->query("SELECT fabriek FROM product") as $row) {
+        foreach ($pdo->query("SELECT fabriek FROM products") as $row) {
           array_push($GLOBALS['productFabriek'], $row[0]);
         }
         array_shift($GLOBALS['productFabriek']);
@@ -368,14 +368,18 @@ class Dbh {
               <span id="locatieInfo2">- locatie of address wijzigen (laat je het tekst vakje leeg, dan wijzig je voor dat categorie niet).</span>
               <form method="GET" id="changePlaceForm">
                 <select name="changeLocatieSelect" id="changeLocatieSelect">
-                  <option value="Rotterdam">Rotterdam</option>
-                  <option value="Rotterdam">Rotterdam</option>
-                  <option value="Rotterdam">Rotterdam</option>
+                  <?php
+                    foreach ($GLOBALS['locatieNaam'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="changeAddressSelect" id="changeAddressSelect">
-                  <option value="1234AB">1234AB</option>
-                  <option value="1234AB">1234AB</option>
-                  <option value="1234AB">1234AB</option>
+                  <?php
+                    foreach ($GLOBALS['locatieAddress'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <input type="text" name="changeLocatie" value="" placeholder="type hier de nieuwe gewijzigde locatie" id="changePlaceLocatieInput">
                 <input type="text" name="changeAddress" value="" placeholder="type hier de nieuwe gewijzigde address" id="changePlaceAddressInput">
@@ -386,17 +390,21 @@ class Dbh {
               <span id="locatieInfo3">- locatie of address verwijderen</span>
               <form method="GET" id="removeLocatiePlaceForm">
                 <select name="removeLocatieSelect" id="removeLocatieSelect">
-                  <option value="Rotterdam">Rotterdam</option>
-                  <option value="Rotterdam">Rotterdam</option>
-                  <option value="Rotterdam">Rotterdam</option>
+                  <?php
+                    foreach ($GLOBALS['locatieNaam'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <input type="submit" name="removeLocatiePlaceSubmit" value="Verwijder" id="removeLocatiePlaceSubmit">
               </form>
               <form method="GET" id="removeAddressPlaceForm">
                 <select name="removeAddressSelect" id="removeAddressSelect">
-                  <option value="1234AB">1234AB</option>
-                  <option value="1234AB">1234AB</option>
-                  <option value="1234AB">1234AB</option>
+                  <?php
+                    foreach ($GLOBALS['locatieAddress'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <input type="submit" name="removeAddressPlaceSubmit" value="Verwijder" id="removeAddressPlaceSubmit">
               </form>
@@ -413,14 +421,18 @@ class Dbh {
                 <input type="number" name="addProductsVoorraad" value="" min="0" placeholder="type hier het getal van hoeveel van dit product in het voorraad zit" id="addProductsVoorraad" required>
                 <input type="text" value="Selecteer hier beneden de nieuwe locatie en address, van waar het voorraad ligt van het product." id="addProductsInfoSelect" readonly>
                 <select name="addProductsLocatieSelect" id="addProductsLocatieSelect">
-                  <option value="Rotterdam">Rotterdam</option>
-                  <option value="Rotterdam">Rotterdam</option>
-                  <option value="Rotterdam">Rotterdam</option>
+                  <?php
+                    foreach ($GLOBALS['locatieNaam'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="addProductsAddressSelect" id="addProductsAddressSelect">
-                  <option value="1234AB">1234AB</option>
-                  <option value="1234AB">1234AB</option>
-                  <option value="1234AB">1234AB</option>
+                  <?php
+                    foreach ($GLOBALS['locatieAddress'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <input type="number" name="addProductsMinimumVoorraad" value="" min="0" placeholder="type hier het getal van het minimum voorraad van dit product" id="addProductsMinimumVoorraad" required>
                 <input type="number" name="addProductsVerkoopprijs" value="" min="0" step=".01" placeholder="type hier wat de nieuwe verkoopprijs is van dit product" id="addProductsVerkoopprijs" required>
@@ -431,19 +443,25 @@ class Dbh {
               <span id="productInfo2">- artiekel, type, fabriek wijzigen.</span>
               <form method="GET" id="changeProductForm1">
                 <select name="changeProductsNaamSelect" id="changeProductsNaamSelect">
-                  <option value="Accu Boorhamer">Accu Boorhamer</option>
-                  <option value="Accu Boorhamer">Accu Boorhamer</option>
-                  <option value="Accu Boorhamer">Accu Boorhamer</option>
+                  <?php
+                    foreach ($GLOBALS['productName'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="changeProductsTypeSelect" id="changeProductsTypeSelect">
-                  <option value="WX 382">WX 382</option>
-                  <option value="WX 382">WX 382</option>
-                  <option value="WX 382">WX 382</option>
+                  <?php
+                    foreach ($GLOBALS['productType'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="changeProductsFabriekSelect" id="changeProductsFabriekSelect">
-                  <option value="Worx">Worx</option>
-                  <option value="Worx">Worx</option>
-                  <option value="Worx">Worx</option>
+                  <?php
+                    foreach ($GLOBALS['productFabriek'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <input type="text" name="changeProductsNaam" value="" placeholder="type hier de gewijzigde product naam" id="changeProductsNaam">
                 <input type="text" name="changeProductsType" value="" placeholder="type hier de gewijzigde product naam" id="changeProductsType">
@@ -453,48 +471,64 @@ class Dbh {
               <span id="productInfo3">- artiekel locatie voorraad wijzigen</span>
               <form method="GET" id="changeProductForm2">
                 <select name="changeProductsNaamSelect2" id="changeProductsNaamSelect2">
-                  <option value="Accu Boorhamer">Accu Boorhamer</option>
-                  <option value="Accu Boorhamer">Accu Boorhamer</option>
-                  <option value="Accu Boorhamer">Accu Boorhamer</option>
+                  <?php
+                    foreach ($GLOBALS['productName'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="changeProductsTypeSelect2" id="changeProductsTypeSelect2">
-                  <option value="WX 382">WX 382</option>
-                  <option value="WX 382">WX 382</option>
-                  <option value="WX 382">WX 382</option>
+                  <?php
+                    foreach ($GLOBALS['productType'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="changeProductsFabriekSelect2" id="changeProductsFabriekSelect2">
-                  <option value="Worx">Worx</option>
-                  <option value="Worx">Worx</option>
-                  <option value="Worx">Worx</option>
+                  <?php
+                    foreach ($GLOBALS['productFabriek'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="changeProductsLocatieSelect" id="changeProductsLocatieSelect">
-                  <option value="Rotterdam">Rotterdam</option>
-                  <option value="Rotterdam">Rotterdam</option>
-                  <option value="Rotterdam">Rotterdam</option>
+                  <?php
+                    foreach ($GLOBALS['locatieNaam'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="changeProductsAddressSelect" id="changeProductsAddressSelect">
-                  <option value="1234AB">1234AB</option>
-                  <option value="1234AB">1234AB</option>
-                  <option value="1234AB">1234AB</option>
+                  <?php
+                    foreach ($GLOBALS['locatieAddress'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <input type="submit" name="changeProductSubmit2" value="Opslaan" id="changeProductSubmit2">
               </form>
               <span id="productInfo4">- artiekel voorraad, minimumvoorraad en verkoopprijs wijzigen.</span>
               <form method="GET" id="changeProductForm3">
                 <select name="changeProductsNaamSelect3" id="changeProductsNaamSelect3">
-                  <option value="Accu Boorhamer">Accu Boorhamer</option>
-                  <option value="Accu Boorhamer">Accu Boorhamer</option>
-                  <option value="Accu Boorhamer">Accu Boorhamer</option>
+                  <?php
+                    foreach ($GLOBALS['productName'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="changeProductsTypeSelect3" id="changeProductsTypeSelect3">
-                  <option value="WX 382">WX 382</option>
-                  <option value="WX 382">WX 382</option>
-                  <option value="WX 382">WX 382</option>
+                  <?php
+                    foreach ($GLOBALS['productType'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="changeProductsFabriekSelect3" id="changeProductsFabriekSelect3">
-                  <option value="Worx">Worx</option>
-                  <option value="Worx">Worx</option>
-                  <option value="Worx">Worx</option>
+                  <?php
+                    foreach ($GLOBALS['productFabriek'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <input type="number" name="changeProductsVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van hoeveel van dit product in het voorraad zit" id="changeProductsVoorraad">
                 <input type="number" name="changeProductsMinimumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van het minimum voorraad van dit product" id="changeProductsMinimumVoorraad">
@@ -506,19 +540,25 @@ class Dbh {
               <span id="productInfo5">- artiekel verwijderen van een bepaalde type en fabriek.</span>
               <form method="GET" id="removeProductForm">
                 <select name="removeProductsNaamSelect" id="removeProductsNaamSelect">
-                  <option value="Accu Boorhamer">Accu Boorhamer</option>
-                  <option value="Accu Boorhamer">Accu Boorhamer</option>
-                  <option value="Accu Boorhamer">Accu Boorhamer</option>
+                  <?php
+                    foreach ($GLOBALS['productName'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="removeProductsTypeSelect" id="removeProductsTypeSelect">
-                  <option value="WX 382">WX 382</option>
-                  <option value="WX 382">WX 382</option>
-                  <option value="WX 382">WX 382</option>
+                  <?php
+                    foreach ($GLOBALS['productType'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="removeProductsFabriekSelect" id="removeProductsFabriekSelect">
-                  <option value="Worx">Worx</option>
-                  <option value="Worx">Worx</option>
-                  <option value="Worx">Worx</option>
+                  <?php
+                    foreach ($GLOBALS['productFabriek'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <input type="submit" name="removeProductSubmit" value="Verwijder" id="removeProductSubmit">
               </form>
@@ -535,7 +575,7 @@ class Dbh {
                 <input type="password" name="addMedewerkersWachtwoord" value="" placeholder="type hier een wachtwoord van de nieuwe medewerker" required id="addMedewerkersWachtwoord">
                 <select name="addMedewerkersRolSelect" id="addMedewerkersRolSelect">
                   <option value="0">Medewerker</option>
-                  <option value="0">Medewerker</option>
+                  <option value="1">Manager</option>
                 </select>
                 <input type="submit" name="addMedewerkerSubmit" value="Toevoegen" id="addMedewerkerSubmit">
               </form>
@@ -544,19 +584,25 @@ class Dbh {
               <span id="medewerkerInfo2">- medewerker naam wijzigen.</span>
               <form method="POST" id="changeMedewerkerForm1">
                 <select name="changeMedewerkerVoornaamSelect" id="changeMedewerkerVoornaamSelect">
-                  <option value="Lesley">Lesley</option>
-                  <option value="Lesley">Lesley</option>
-                  <option value="Lesley">Lesley</option>
+                  <?php
+                    foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="changeMedewerkerTussenvoegselSelect" id="changeMedewerkerTussenvoegselSelect">
-                  <option value="de">de</option>
-                  <option value="de">de</option>
-                  <option value="de">de</option>
+                  <?php
+                    foreach ($GLOBALS['medewerkerTussenvoegsel'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="changeMedewerkerAchternaamSelect" id="changeMedewerkerAchternaamSelect">
-                  <option value="Jooren">Jooren</option>
-                  <option value="Jooren">Jooren</option>
-                  <option value="Jooren">Jooren</option>
+                  <?php
+                    foreach ($GLOBALS['medewerkerAchternaam'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <input type="text" name="changeMedewerkersVoornaam" value="" placeholder="type hier de nieuwe gewijzigde voornaam" id="changeMedewerkersVoornaam">
                 <input type="text" name="changeMedewerkersTussenvoegsel" value="" placeholder="type hier de nieuwe gewijzigde tussenvoegsel" id="changeMedewerkersTussenvoegsel">
@@ -572,23 +618,29 @@ class Dbh {
                 <input type="text" readonly name="readAchternaam1" value="" placeholder="Achternaam:" id="readAchternaam1">
                 <input type="text" readonly name="readRol" value="" placeholder="Rol:" id="readRol">
                 <select name="changeMedewerkerVoornaamSelect2" id="changeMedewerkerVoornaamSelect2">
-                  <option value="Lesley">Lesley</option>
-                  <option value="Lesley">Lesley</option>
-                  <option value="Lesley">Lesley</option>
+                  <?php
+                    foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="changeMedewerkerTussenvoegselSelect2" id="changeMedewerkerTussenvoegselSelect2">
-                  <option value="de">de</option>
-                  <option value="de">de</option>
-                  <option value="de">de</option>
+                  <?php
+                    foreach ($GLOBALS['medewerkerTussenvoegsel'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="changeMedewerkerAchternaamSelect2" id="changeMedewerkerAchternaamSelect2">
-                  <option value="Jooren">Jooren</option>
-                  <option value="Jooren">Jooren</option>
-                  <option value="Jooren">Jooren</option>
+                  <?php
+                    foreach ($GLOBALS['medewerkerAchternaam'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="changeMedewerkerRolSelect" id="changeMedewerkerRolSelect">
                   <option value="0">Medewerker</option>
-                  <option value="0">Medewerker</option>
+                  <option value="1">Manager</option>
                 </select>
                 <input type="submit" name="changeMedewerkerSubmit2" value="Opslaan" id="changeMedewerkerSubmit2">
               </form>
@@ -600,19 +652,25 @@ class Dbh {
                 <input type="text" readonly name="readTussenvoegsel2" value="" placeholder="Tussenvoegsel:" id="readTussenvoegsel2">
                 <input type="text" readonly name="readAchternaam2" value="" placeholder="Achternaam:" id="readAchternaam2">
                 <select name="changeMedewerkerVoornaamSelect3" id="changeMedewerkerVoornaamSelect3">
-                  <option value="Lesley">Lesley</option>
-                  <option value="Lesley">Lesley</option>
-                  <option value="Lesley">Lesley</option>
+                  <?php
+                    foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="changeMedewerkerTussenvoegselSelect3" id="changeMedewerkerTussenvoegselSelect3">
-                  <option value="de">de</option>
-                  <option value="de">de</option>
-                  <option value="de">de</option>
+                  <?php
+                    foreach ($GLOBALS['medewerkerTussenvoegsel'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="changeMedewerkerAchternaamSelect3" id="changeMedewerkerAchternaamSelect3">
-                  <option value="Jooren">Jooren</option>
-                  <option value="Jooren">Jooren</option>
-                  <option value="Jooren">Jooren</option>
+                  <?php
+                    foreach ($GLOBALS['medewerkerAchternaam'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <input type="password" name="changePassW" value="" placeholder="type hier een nieuwe gewijzigde sterke wachtwoord voor deze medewerker" id="changePassword">
                 <input type="submit" name="changeMedewerkerSubmit3" value="Opslaan" id="changeMedewerkerSubmit3">
@@ -625,19 +683,25 @@ class Dbh {
                 <input type="text" readonly name="readTussenvoegsel3" value="" placeholder="Tussenvoegsel:" id="readTussenvoegsel3">
                 <input type="text" readonly name="readAchternaam3" value="" placeholder="Achternaam:" id="readAchternaam3">
                 <select name="removeMedewerkerVoornaamSelect" id="removeMedewerkerVoornaamSelect">
-                  <option value="Lesley">Lesley</option>
-                  <option value="Lesley">Lesley</option>
-                  <option value="Lesley">Lesley</option>
+                  <?php
+                    foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="removeMedewerkerTussenvoegselSelect" id="removeMedewerkerTussenvoegselSelect">
-                  <option value="de">de</option>
-                  <option value="de">de</option>
-                  <option value="de">de</option>
+                  <?php
+                    foreach ($GLOBALS['medewerkerTussenvoegsel'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <select name="removeMedewerkerAchternaamSelect" id="removeMedewerkerAchternaamSelect">
-                  <option value="Jooren">Jooren</option>
-                  <option value="Jooren">Jooren</option>
-                  <option value="Jooren">Jooren</option>
+                  <?php
+                    foreach ($GLOBALS['medewerkerAchternaam'] as $val) {
+                      echo "<option value=\"".$val."\">".$val."</option>";
+                    }
+                  ?>
                 </select>
                 <input type="submit" name="removeMedewerkerSubmit" value="Verwijder" id="removeMedewerkerSubmit">
               </form>
