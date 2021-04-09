@@ -249,7 +249,99 @@ class Dbh {
     }
 
     public function addProduct() {
+      if (isset($_GET['addProductSubmit'])) {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "toolsforever";
+        $charset = "utf8mb4";
 
+        $productName = $_GET['addProductsNaam'];
+        $productType = $_GET['addProductsType'];
+        $productFabriek = $_GET['addProductsFabriek'];
+        $productVoorraad = $_GET['addProductsVoorraad'];
+        $productLocatie = $_GET['addProductsLocatieSelect'];
+        $productAddress = $_GET['addProductsAddressSelect'];
+        $productMVoorraad = $_GET['addProductsMinimumVoorraad'];
+        $productVerkoopprijs = $_GET['addProductsVerkoopprijs'];
+
+        $idlocatie;
+        $idproduct;
+
+        try {
+          $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $sql = "SET FOREIGN_KEY_CHECKS=0;";
+          $conn->exec($sql);
+          $sql = "INSERT INTO products (product, type, fabriek, voorraad, minimumvoorraad, verkoopprijs) \n
+                  VALUES ('$productName', '$productType', '$productFabriek', '$productVoorraad', '$productMVoorraad', $productVerkoopprijs)";
+          $conn->exec($sql);
+
+          $sql = "INSERT INTO locatie_has_products (idproduct) \n
+                  SELECT idproduct FROM products WHERE \n
+                  product = '$productName' AND type = '$productType' AND fabriek = '$productFabriek'\n
+                  AND voorraad = '$productVoorraad' AND minimumvoorraad = '$productMVoorraad'\n
+                  AND verkoopprijs = '$productVerkoopprijs'";
+          $conn->exec($sql);
+
+          $this->addProductPart2();
+
+          $idlocatie = $GLOBALS['idlocatie'];
+          $idproduct = $GLOBALS['idproduct'];
+
+          $sql = "UPDATE locatie_has_products SET idlocatie = $idlocatie WHERE idproduct = $idproduct";
+          $conn->exec($sql);
+
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+        $conn = null;
+        // header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+    }
+
+    public function addProductPart2() {
+      $servername = "localhost";
+      $username = "root";
+      $password = "";
+      $dbname = "toolsforever";
+      $charset = "utf8mb4";
+
+      try {
+        $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
+        $pdo = new PDO($dsn, $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $productName = $_GET['addProductsNaam'];
+        $productType = $_GET['addProductsType'];
+        $productFabriek = $_GET['addProductsFabriek'];
+        $productVoorraad = $_GET['addProductsVoorraad'];
+        $productLocatie = $_GET['addProductsLocatieSelect'];
+        $productAddress = $_GET['addProductsAddressSelect'];
+        $productMVoorraad = $_GET['addProductsMinimumVoorraad'];
+        $productVerkoopprijs = $_GET['addProductsVerkoopprijs'];
+
+        $idlocatie = 0;
+        $idproduct = 0;
+
+        foreach ($pdo->query("SELECT idlocatie FROM locatie WHERE naam = '$productLocatie' AND address = '$productAddress'") as $row) {
+          $idlocatie = $row[0];
+        }
+
+        foreach ($pdo->query("SELECT idproduct FROM products WHERE product = '$productName' AND \n
+                  type = '$productType' AND fabriek = '$productFabriek' AND voorraad = '$productVoorraad' AND \n
+                  minimumvoorraad = '$productMVoorraad' AND verkoopprijs = '$productVerkoopprijs'") as $row) {
+          $idproduct = $row[0];
+        }
+
+        $GLOBALS['idlocatie'] = $idlocatie;
+        $GLOBALS['idproduct'] = $idproduct;
+
+        $pdo = null;
+      } catch (PDOException $e) {
+        echo "Connection failed: ".$e->getMessage();
+        die();
+      }
     }
 
     public function changeProduct1() {
@@ -376,7 +468,7 @@ class Dbh {
               <span id="productInfo1">- artiekel, type, fabriek, voorraad, (locatie van artiekel), minimumvoorraad, verkoopprijs toevoegen.</span>
               <form method="GET" id="addProductForm">
                 <input type="text" name="addProductsNaam" value="" placeholder="type hier de nieuwe product naam" id="addProductsNaam" required>
-                <input type="text" name="addProductsType" value="" placeholder="type hier de type van het product" id="addProductsType" required>
+                <input type="text" name="addProductsType" value="" placeholder="type hier de type van het product" id="addProductsType">
                 <input type="text" name="addProductsFabriek" value="" placeholder="type hier van welke fabriek het product komt" id="addProductsFabriek" required>
                 <input type="number" name="addProductsVoorraad" value="" min="0" placeholder="type hier het getal van hoeveel van dit product in het voorraad zit" id="addProductsVoorraad" required>
                 <input type="text" value="Selecteer hier beneden de nieuwe locatie en address, van waar het voorraad ligt van het product." id="addProductsInfoSelect" readonly>
