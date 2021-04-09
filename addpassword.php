@@ -30,16 +30,46 @@
         $password = "";
         $dbname = "toolsforever";
 
-        $passwordUser = "k:nnr'5s!?[PBf!T";
-        $hashedPwd = password_hash($passwordUser, PASSWORD_DEFAULT);
-
         try {
           $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $passwordUser = "k:nnr'5s!?[PBf!T";
+          $hashedPwd = password_hash($passwordUser, PASSWORD_DEFAULT);
+          echo password_verify($passwordUser, $hashedPwd);
+
+          // TODO AAAAAAAAAAA
+          // TODO WACHTWOORD EN HEADERS OORZAAK!!!
+          // header('Location: '.URL.'overzicht.php', TRUE, 302);               <--- goed!!!
+
+          $sql = "UPDATE medewerkers SET wachtwoord = '$hashedPwd' WHERE idmedewerker = 1;";
+          $conn->exec($sql);
+
+          $sql = "UPDATE medewerkers SET wachtwoord = '$hashedPwd' WHERE idmedewerker = 2;";
+          $conn->exec($sql);
+
+          $sql = "UPDATE medewerkers SET wachtwoord = '$hashedPwd' WHERE idmedewerker = 3;";
+          $conn->exec($sql);
+
+          $sql = "UPDATE medewerkers SET wachtwoord = '$hashedPwd' WHERE idmedewerker = 4;";
+          $conn->exec($sql);
+
+          $sql = "UPDATE medewerkers SET wachtwoord = '$hashedPwd' WHERE idmedewerker = 5;";
+          $conn->exec($sql);
+
+          $sql = "UPDATE medewerkers SET wachtwoord = '$hashedPwd' WHERE idmedewerker = 6;";
+          $conn->exec($sql);
+
+          $sql = "UPDATE medewerkers SET wachtwoord = '$hashedPwd' WHERE idmedewerker = 7;";
+          $conn->exec($sql);
+
+          $sql = "UPDATE medewerkers SET wachtwoord = '$hashedPwd' WHERE idmedewerker = 8;";
+          $conn->exec($sql);
+
           $sql = "UPDATE medewerkers SET wachtwoord = '$hashedPwd' WHERE idmedewerker = 9;";
           $conn->exec($sql);
-          echo "New record created successfully<br>";
-          echo password_verify($passwordUser, $hashedPwd);
+
+
         } catch(PDOException $e) {
           echo $sql . "<br>" . $e->getMessage();
         }

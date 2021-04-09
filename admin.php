@@ -21,7 +21,7 @@
 
   $object->addProduct();
   $object->changeProduct1();
-  $object->changeProduct2();
+  // $object->changeProduct2();
   $object->changeProduct3();
   $object->removeProduct();
 
@@ -345,15 +345,185 @@ class Dbh {
     }
 
     public function changeProduct1() {
+      //TODO type and fabriek wont change ):
+      if (!empty($_GET['changeProductsNaam']) && isset($_GET['changeProductSubmit1'])) {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "toolsforever";
+        $charset = "utf8mb4";
 
+        $nieuweProductNaam = $_GET['changeProductsNaam'];
+        $selectProductNaam = $_GET['changeProductsNaamSelect'];
+
+        try {
+          $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $sql = "SET SQL_SAFE_UPDATES = 0;";
+          $conn->exec($sql);
+          $sql = "UPDATE products SET product = '$nieuweProductNaam' WHERE product = '$selectProductNaam'";
+
+          echo $nieuweProductNaam."<br>";
+          echo $selectProductNaam;
+
+          $conn->exec($sql);
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+        $conn = null;
+        // header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+      if (isset($_GET['changePlaceSubmit1'])) {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "toolsforever";
+        $charset = "utf8mb4";
+
+        $nieuweProductType = $_GET['changeProductsType'];
+        $selectProductType = $_GET['changeProductsTypeSelect'];
+
+        echo $nieuweProductType."<br>";
+        echo $selectProductType;
+
+        try {
+          $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $sql = "SET SQL_SAFE_UPDATES = 0;";
+          $conn->exec($sql);
+          $sql = "UPDATE products SET type = '$nieuweProductType' WHERE type = '$selectProductType'";
+          $conn->exec($sql);
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+        $conn = null;
+        // header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+      if (!empty($_GET['changeProductsFabriek']) && isset($_GET['changePlaceSubmit1'])) {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "toolsforever";
+        $charset = "utf8mb4";
+
+        $nieuweProductFabriek = $_GET['changeProductsFabriek'];
+        $selectProductFabriek = $_GET['changeProductsFabriekSelect'];
+
+        try {
+          $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $sql = "SET SQL_SAFE_UPDATES = 0;";
+          $conn->exec($sql);
+          $sql = "UPDATE products SET fabriek = '$nieuweProductFabriek' WHERE fabriek = '$selectProductFabriek'";
+          $conn->exec($sql);
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+        $conn = null;
+        header('Location: '.URL.'admin.php', TRUE, 302);
+      }
     }
 
-    public function changeProduct2() {
-
-    }
+    // public function changeProduct2() {
+    //   if (!empty($_GET['changeProductsFabriek']) && isset($_GET['changePlaceSubmit'])) {
+    //     $servername = "localhost";
+    //     $username = "root";
+    //     $password = "";
+    //     $dbname = "toolsforever";
+    //     $charset = "utf8mb4";
+    //
+    //     $nieuweProductFabriek = $_GET['changeProductsFabriek'];
+    //     $selectProductFabriek = $_GET['changeProductsFabriekSelect'];
+    //
+    //     try {
+    //       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    //       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //       $sql = "SET SQL_SAFE_UPDATES = 0;";
+    //       $conn->exec($sql);
+    //       $sql = "SET FOREIGN_KEY_CHECKS=0;";
+    //       $conn->exec($sql);
+    //
+    //       $idlocatie = 0;
+    //       $idproduct = 0;
+    //
+    //       $this->changeProduct2Part2();
+    //
+    //       $idlocatie  = $GLOBALS['idlocatie'];
+    //       $idproduct = $GLOBALS['idproduct'];
+    //
+    //       $sql = "UPDATE locatie_has_products SET idlocatie = '$idlocatie', idproduct = '$idproduct' WHERE idproduct = '$idproduct' AND idlocatie = '$idlocatie'";
+    //       $conn->exec($sql);
+    //     } catch(PDOException $e) {
+    //       echo $sql . "<br>" . $e->getMessage();
+    //     }
+    //     $conn = null;
+    //     // header('Location: '.URL.'admin.php', TRUE, 302);
+    //   }
+    // }
+    //
+    // public function changeProduct2Part2() {
+    //   $servername = "localhost";
+    //   $username = "root";
+    //   $password = "";
+    //   $dbname = "toolsforever";
+    //   $charset = "utf8mb4";
+    //
+    //   try {
+    //     $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
+    //     $pdo = new PDO($dsn, $username, $password);
+    //     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    //
+    //     $productName = $_GET['changeProductsNaamSelect2'];
+    //     $productType = $_GET['changeProductsTypeSelect2'];
+    //     $productFabriek = $_GET['changeProductsFabriekSelect2'];
+    //     $productLocatie = $_GET['changeProductsLocatieSelect'];
+    //     $productAddress = $_GET['changeProductsAddressSelect'];
+    //
+    //     $idlocatie = 0;
+    //     $idproduct = 0;
+    //
+    //     foreach ($pdo->query("SELECT idlocatie FROM locatie WHERE naam = '$productLocatie' AND address = '$productAddress'") as $row) {
+    //       $idlocatie = $row[0];
+    //     }
+    //
+    //     foreach ($pdo->query("SELECT idproduct FROM products WHERE product = '$productName' AND \n
+    //               type = '$productType' AND fabriek = '$productFabriek'") as $row) {
+    //       $idproduct = $row[0];
+    //     }
+    //
+    //     $GLOBALS['idlocatie'] = $idlocatie;
+    //     $GLOBALS['idproduct'] = $idproduct;
+    //
+    //     $pdo = null;
+    //   } catch (PDOException $e) {
+    //     echo "Connection failed: ".$e->getMessage();
+    //     die();
+    //   }
+    // }
 
     public function changeProduct3() {
+      if (isset($_GET['removeAddressPlaceSubmit'])) {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "toolsforever";
+        $charset = "utf8mb4";
 
+        $removedLocatieAddress = $_GET['removeAddressSelect'];
+
+        try {
+          $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $sql = "SET SQL_SAFE_UPDATES = 0;";
+          $conn->exec($sql);
+          $sql = "DELETE FROM locatie WHERE address = '$removedLocatieAddress'";
+          $conn->exec($sql);
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+        $conn = null;
+        header('Location: '.URL.'admin.php', TRUE, 302);
+      }
     }
 
     public function removeProduct() {
@@ -516,49 +686,11 @@ class Dbh {
                   ?>
                 </select>
                 <input type="text" name="changeProductsNaam" value="" placeholder="type hier de gewijzigde product naam" id="changeProductsNaam">
-                <input type="text" name="changeProductsType" value="" placeholder="type hier de gewijzigde product naam" id="changeProductsType">
-                <input type="text" name="changeProductsFabriek" value="" placeholder="type hier de gewijzigde product naam" id="changeProductsFabriek">
+                <input type="text" name="changeProductsType" value="" placeholder="type hier de gewijzigde product type" id="changeProductsType">
+                <input type="text" name="changeProductsFabriek" value="" placeholder="type hier de gewijzigde product fabriek" id="changeProductsFabriek">
                 <input type="submit" name="changeProductSubmit1" value="Opslaan" id="changeProductSubmit1">
               </form>
-              <span id="productInfo3">- artiekel locatie voorraad wijzigen</span>
-              <form method="GET" id="changeProductForm2">
-                <select name="changeProductsNaamSelect2" id="changeProductsNaamSelect2">
-                  <?php
-                    foreach ($GLOBALS['productName'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeProductsTypeSelect2" id="changeProductsTypeSelect2">
-                  <?php
-                    foreach ($GLOBALS['productType'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeProductsFabriekSelect2" id="changeProductsFabriekSelect2">
-                  <?php
-                    foreach ($GLOBALS['productFabriek'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeProductsLocatieSelect" id="changeProductsLocatieSelect">
-                  <?php
-                    foreach ($GLOBALS['locatieNaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeProductsAddressSelect" id="changeProductsAddressSelect">
-                  <?php
-                    foreach ($GLOBALS['locatieAddress'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <input type="submit" name="changeProductSubmit2" value="Opslaan" id="changeProductSubmit2">
-              </form>
+
               <span id="productInfo4">- artiekel voorraad, minimumvoorraad en verkoopprijs wijzigen.</span>
               <form method="GET" id="changeProductForm3">
                 <select name="changeProductsNaamSelect3" id="changeProductsNaamSelect3">

@@ -11,13 +11,13 @@
         if(isset($_GET['uitlog'])) {
           session_unset();
           session_destroy();
-          header('Location: '.URL.'index.php', TRUE, 302);
+          header('Location: http://localhost/toolsforever/', TRUE, 302);
         }
       }
 
       public function admin() {
         if(isset($_GET['admin'])) {
-          header('Location: '.URL.'admin.php', TRUE, 302);
+          header('Location: http://localhost/toolsforever/admin.php', TRUE, 302);
         }
       }
 
@@ -106,11 +106,11 @@
 ?>
 
 <?php
-  define('URL', 'http://localhost/toolsforever/');
+  // define('URL', 'http://localhost/toolsforever/overzicht.php');
   $object = new Dbh;
   session_start();
   if (empty($_SESSION['naam'])) {
-    header('Location: '.URL.'index.php', TRUE, 302);
+    header('Location: http://localhost/toolsforever/', TRUE, 302);
   }
 
   $object->verzend();

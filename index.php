@@ -1,12 +1,6 @@
 <?php
     class Dbh {
 
-      private $servername;
-      private $username;
-      private $password;
-      private $dbname;
-      private $charset;
-
       public function inloggen() {
         if(isset($_POST['inloggen'])) {
           $this->connect();
@@ -77,7 +71,7 @@
     <div id="yellow_bg">
       <div id="grid">
         <div id="logoDiv"><img src="Tools_For_Ever_Logo.png" alt="ToolsForEver_logo" id="logo"></div>
-        <div id="tfeDiv"><span id="tfeText">ToolsForEver Vooraad</span></div>
+        <div id="tfeDiv"><span id="tfeText">ToolsForEver Voorraad</span></div>
         <form method="POST">
           <label for="naam" id="naamLabel">naam</label>
           <input type="text" name="naam" value="" id="naamInput" required>
