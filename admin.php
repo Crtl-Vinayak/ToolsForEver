@@ -145,6 +145,7 @@ class Dbh {
           echo $sql . "<br>" . $e->getMessage();
         }
         $conn = null;
+        header('Location: '.URL.'admin.php', TRUE, 302);
       }
     }
 
@@ -172,7 +173,7 @@ class Dbh {
           echo $sql . "<br>" . $e->getMessage();
         }
         $conn = null;
-
+        header('Location: '.URL.'admin.php', TRUE, 302);
       }
       if (!empty($_GET['changeAddress']) && isset($_GET['changePlaceSubmit'])) {
         $servername = "localhost";
@@ -187,21 +188,64 @@ class Dbh {
         try {
           $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-          $sql = "UPDATE locatie SET naam = '$nieuweAddress' WHERE naam = '$selectAddress'";
+          $sql = "UPDATE locatie SET address = '$nieuweAddress' WHERE address = '$selectAddress'";
           $conn->exec($sql);
         } catch(PDOException $e) {
           echo $sql . "<br>" . $e->getMessage();
         }
         $conn = null;
+        header('Location: '.URL.'admin.php', TRUE, 302);
       }
     }
 
     public function removeLocatie1() {
+      if (isset($_GET['removeLocatiePlaceSubmit'])) {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "toolsforever";
+        $charset = "utf8mb4";
 
+        $removedLocatieNaam = $_GET['removeLocatieSelect'];
+
+        try {
+          $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $sql = "SET SQL_SAFE_UPDATES = 0;";
+          $conn->exec($sql);
+          $sql = "DELETE FROM locatie WHERE naam = '$removedLocatieNaam'";
+          $conn->exec($sql);
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+        $conn = null;
+        header('Location: '.URL.'admin.php', TRUE, 302);
+      }
     }
 
     public function removeLocatie2() {
+      if (isset($_GET['removeAddressPlaceSubmit'])) {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "toolsforever";
+        $charset = "utf8mb4";
 
+        $removedLocatieAddress = $_GET['removeAddressSelect'];
+
+        try {
+          $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          $sql = "SET SQL_SAFE_UPDATES = 0;";
+          $conn->exec($sql);
+          $sql = "DELETE FROM locatie WHERE address = '$removedLocatieAddress'";
+          $conn->exec($sql);
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+        $conn = null;
+        header('Location: '.URL.'admin.php', TRUE, 302);
+      }
     }
 
     public function addProduct() {
@@ -243,90 +287,6 @@ class Dbh {
     public function removeMedewerker() {
 
     }
-
-    // public function verzend() {
-    //   if(isset($_GET['verzend'])) {
-    //     $GLOBALS['locatieSelected'] = $_GET['locatie'];
-    //     $GLOBALS['addressSelected'] = $_GET['address'];
-    //     $GLOBALS['productSelected'] = $_GET['product'];
-    //     $this->getTableData();
-    //   }
-    // }
-
-    // public function getTableData() {
-    //   $servername = "localhost";
-    //   $username = "root";
-    //   $password = "";
-    //   $dbname = "toolsforever";
-    //   $charset = "utf8mb4";
-    //
-    //   try {
-    //     $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
-    //     $pdo = new PDO($dsn, $username, $password);
-    //     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //
-    //     // get other values of products
-    //     $GLOBALS['productInfo'] = array("");
-    //     foreach ($pdo->query("SELECT products.type, products.fabriek, products.voorraad, products.verkoopprijs \n
-    //       FROM products \n
-    //       INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
-    //       INNER JOIN locatie ON locatie_has_products.idlocatie = locatie.idlocatie \n
-    //       WHERE locatie.naam = \"".$_GET['locatie']."\" AND locatie.address = \"".$_GET['address']."\" AND products.product = \"".$_GET['product']."\";") as $row) {
-    //       array_push($GLOBALS['productInfo'], $row[0]);
-    //       array_push($GLOBALS['productInfo'], $row[1]);
-    //       array_push($GLOBALS['productInfo'], $row[2]);
-    //       array_push($GLOBALS['productInfo'], $row[3]);
-    //     }
-    //     array_shift($GLOBALS['productInfo']);
-    //
-    //     $pdo = null;
-    //   } catch (PDOException $e) {
-    //     echo "Connection failed: ".$e->getMessage();
-    //     die();
-    //   }
-    // }
-
-  //   public function connect() {
-  //     $servername = "localhost";
-  //     $username = "root";
-  //     $password = "";
-  //     $dbname = "toolsforever";
-  //     $charset = "utf8";
-  //
-  //   try {
-  //     $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
-  //     $pdo = new PDO($dsn, $username, $password);
-  //     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  //
-  //     // get locatie values
-  //     $GLOBALS['locatie'] = array("");
-  //     foreach ($pdo->query("SELECT naam FROM locatie") as $row) {
-  //       array_push($GLOBALS['locatie'], $row[0]);
-  //     }
-  //     array_shift($GLOBALS['locatie']);
-  //
-  //     // get address values
-  //     $GLOBALS['address'] = array("");
-  //     foreach ($pdo->query("SELECT address FROM locatie") as $row) {
-  //       array_push($GLOBALS['address'], $row[0]);
-  //     }
-  //     array_shift($GLOBALS['address']);
-  //
-  //     // get product values
-  //     $GLOBALS['product'] = array("");
-  //     foreach ($pdo->query("SELECT product FROM products") as $row) {
-  //       array_push($GLOBALS['product'], $row[0]);
-  //     }
-  //     array_shift($GLOBALS['product']);
-  //
-  //     $pdo = null;
-  //   } catch (PDOException $e) {
-  //     echo "Connection failed: ".$e->getMessage();
-  //     die();
-  //   }
-  // }
-
-
 }
 ?>
 
