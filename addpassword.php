@@ -1,12 +1,6 @@
 <?php
     class Dbh {
 
-      private $servername;
-      private $username;
-      private $password;
-      private $dbname;
-      private $charset;
-
       public function test() {
         if(isset($_POST['connect'])) {
           echo "string<br>";
@@ -34,7 +28,7 @@
           $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-          $passwordUser = "k:nnr'5s!?[PBf!T";
+          $passwordUser = "w8";
           $hashedPwd = password_hash($passwordUser, PASSWORD_DEFAULT);
           echo password_verify($passwordUser, $hashedPwd);
 

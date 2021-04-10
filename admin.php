@@ -690,7 +690,45 @@ class Dbh {
                 <input type="text" name="changeProductsFabriek" value="" placeholder="type hier de gewijzigde product fabriek" id="changeProductsFabriek">
                 <input type="submit" name="changeProductSubmit1" value="Opslaan" id="changeProductSubmit1">
               </form>
-
+              <span id="productInfo3">- artiekel locatie voorraad wijzigen</span>
+              <form method="GET" id="changeProductForm2">
+                <select name="changeProductsNaamSelect2" id="changeProductsNaamSelect2">
+                  <?php
+                    foreach ($GLOBALS['productName'] as $val) {
+                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    }
+                  ?>
+                </select>
+                <select name="changeProductsTypeSelect2" id="changeProductsTypeSelect2">
+                  <?php
+                    foreach ($GLOBALS['productType'] as $val) {
+                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    }
+                  ?>
+                </select>
+                <select name="changeProductsFabriekSelect2" id="changeProductsFabriekSelect2">
+                  <?php
+                    foreach ($GLOBALS['productFabriek'] as $val) {
+                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    }
+                  ?>
+                </select>
+                <select name="changeProductsLocatieSelect" id="changeProductsLocatieSelect">
+                  <?php
+                    foreach ($GLOBALS['locatieNaam'] as $val) {
+                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    }
+                  ?>
+                </select>
+                <select name="changeProductsAddressSelect" id="changeProductsAddressSelect">
+                  <?php
+                    foreach ($GLOBALS['locatieAddress'] as $val) {
+                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    }
+                  ?>
+                </select>
+                <input type="submit" name="changeProductSubmit2" value="Opslaan" id="changeProductSubmit2">
+              </form>
               <span id="productInfo4">- artiekel voorraad, minimumvoorraad en verkoopprijs wijzigen.</span>
               <form method="GET" id="changeProductForm3">
                 <select name="changeProductsNaamSelect3" id="changeProductsNaamSelect3">

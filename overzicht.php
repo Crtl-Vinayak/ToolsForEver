@@ -1,12 +1,6 @@
 <?php
     class Dbh {
 
-      private $servername;
-      private $username;
-      private $password;
-      private $dbname;
-      private $charset;
-
       public function uitlog() {
         if(isset($_GET['uitlog'])) {
           session_unset();
