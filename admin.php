@@ -14,7 +14,7 @@
 
   if(isset($_GET['addLocatie']) && isset($_GET['addAddress']) && isset($_GET['addPlaceSubmit'])) {
     $object->addLocatie();
-  } else if ((isset($_GET['changeLocatie']) || isset($_GET['changeAddress']) && isset($_GET['changePlaceSubmit']))) {
+  } else if ((!empty($_GET['changeLocatie']) || !empty($_GET['changeAddress']) && !empty($_GET['changePlaceSubmit']))) {
     $object->changeLocatie();
   }
 
@@ -153,6 +153,8 @@
             $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+            $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+            $stmt->execute();
             $stmt = $conn->prepare("SET FOREIGN_KEY_CHECKS=0");
             $stmt->execute();
 
@@ -171,23 +173,32 @@
       }
 
       public function changeLocatie() {
+        echo "change Locatie!<br>";
         // if empty then output 1
         // echo "locatie change = " . empty($_GET['changeLocatie']);
         // echo "address change = " . empty($_GET['changeAddress']);
 
         // if (!empty($_GET['changeLocatie']) && isset($_GET['changePlaceSubmit'])) {
-        //   $servername = "localhost";
-        //   $username = "root";
-        //   $password = "";
-        //   $dbname = "toolsforever";
-        //   $charset = "utf8mb4";
         //
         //   $nieuweLocatie = $_GET['changeLocatie'];
         //   $selectLocatie = $_GET['changeLocatieSelect'];
         //
         //   try {
-        //     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        //
+        //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
         //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //
+        //     $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+        //     $stmt->execute();
+        //
+        //     $stmt = $conn->prepare("UPDATE locatie SET naam = :nieuwLocatie WHERE address = :");
+        //     $stmt->bindParam(':idlocatie', $idlocatie);
+        //     $stmt->bindParam(':idproduct', $idproduct);
+        //
+        //
+        //
+        //
+        //
         //     $sql = "UPDATE locatie SET naam = '$nieuweLocatie' WHERE naam = '$selectLocatie'";
         //     $conn->exec($sql);
         //   } catch(PDOException $e) {
@@ -197,11 +208,6 @@
         //   header('Location: '.URL.'admin.php', TRUE, 302);
         // }
         // if (!empty($_GET['changeAddress']) && isset($_GET['changePlaceSubmit'])) {
-        //   $servername = "localhost";
-        //   $username = "root";
-        //   $password = "";
-        //   $dbname = "toolsforever";
-        //   $charset = "utf8mb4";
         //
         //   $nieuweAddress = $_GET['changeAddress'];
         //   $selectAddress = $_GET['changeAddressSelect'];
@@ -611,9 +617,8 @@
               </form>
             </div>
             <div id="locatieChangeDiv">
-              <!-- selects option needs to variable (backend) -->
-              <span id="locatieInfo2">- locatie of address wijzigen (laat je het tekst vakje leeg, dan wijzig je voor dat categorie niet).</span>
-              <form method="GET" id="changePlaceForm">
+              <span id="locatieInfo2">- locatie wijzigen.</span>
+              <form method="GET" id="changeLocatieForm">
                 <select name="changeLocatieSelect" id="changeLocatieSelect">
                   <?php
                     foreach ($GLOBALS['locatieNaam'] as $val) {
@@ -621,6 +626,11 @@
                     }
                   ?>
                 </select>
+                <input type="text" name="changePlaceLocatieInput" value="" placeholder="type hier de nieuwe gewijzigde locatie" id="changePlaceLocatieInput">
+                <input type="submit" name="changeLocatieSubmit" value="Wijziging opslaan" id="changeLocatieSubmit">
+              </form>
+              <span id="locatieInfo3">- address wijzigen.</span>
+              <form method="GET" id="changeAddressForm">
                 <select name="changeAddressSelect" id="changeAddressSelect">
                   <?php
                     foreach ($GLOBALS['locatieAddress'] as $val) {
@@ -628,13 +638,12 @@
                     }
                   ?>
                 </select>
-                <input type="text" name="changeLocatie" value="" placeholder="type hier de nieuwe gewijzigde locatie" id="changePlaceLocatieInput">
-                <input type="text" name="changeAddress" value="" placeholder="type hier de nieuwe gewijzigde address" id="changePlaceAddressInput">
-                <input type="submit" name="changePlaceSubmit" value="Wijziging opslaan" id="changePlaceSubmit">
+                <input type="text" name="changePlaceAddressInput" value="" placeholder="type hier de nieuwe gewijzigde address" id="changePlaceAddressInput">
+                <input type="submit" name="changeAddressSubmit" value="Wijziging opslaan" id="changeAddressSubmit">
               </form>
             </div>
             <div id="locatieRemoveDiv">
-              <span id="locatieInfo3">- locatie of address verwijderen</span>
+              <span id="locatieInfo4">- locatie of address verwijderen</span>
               <form method="GET" id="removeLocatiePlaceForm">
                 <select name="removeLocatieSelect" id="removeLocatieSelect">
                   <?php
@@ -713,7 +722,7 @@
                 <input type="text" name="changeProductsNaam" value="" placeholder="type hier de gewijzigde product naam" id="changeProductsNaam">
                 <input type="text" name="changeProductsType" value="" placeholder="type hier de gewijzigde product type" id="changeProductsType">
                 <input type="text" name="changeProductsFabriek" value="" placeholder="type hier de gewijzigde product fabriek" id="changeProductsFabriek">
-                <input type="submit" name="changeProductSubmit1" value="Opslaan" id="changeProductSubmit1">
+                <input type="submit" name="changeProductSubmit1" value="Wijziging opslaan" id="changeProductSubmit1">
               </form>
               <span id="productInfo3">- artiekel locatie voorraad wijzigen</span>
               <form method="GET" id="changeProductForm2">
@@ -752,7 +761,7 @@
                     }
                   ?>
                 </select>
-                <input type="submit" name="changeProductSubmit2" value="Opslaan" id="changeProductSubmit2">
+                <input type="submit" name="changeProductSubmit2" value="Wijziging opslaan" id="changeProductSubmit2">
               </form>
               <span id="productInfo4">- artiekel voorraad, minimumvoorraad en verkoopprijs wijzigen.</span>
               <form method="GET" id="changeProductForm3">
@@ -780,7 +789,7 @@
                 <input type="number" name="changeProductsVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van hoeveel van dit product in het voorraad zit" id="changeProductsVoorraad">
                 <input type="number" name="changeProductsMinimumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van het minimum voorraad van dit product" id="changeProductsMinimumVoorraad">
                 <input type="number" name="changeProductsVerkoopprijs" value="" min="0" step=".01" placeholder="type hier wat de nieuwe verkoopprijs is van dit product" id="changeProductsVerkoopprijs">
-                <input type="submit" name="changeProductSubmit3" value="Opslaan" id="changeProductSubmit3">
+                <input type="submit" name="changeProductSubmit3" value="Wijziging opslaan" id="changeProductSubmit3">
               </form>
             </div>
             <div id="productRemoveDiv">
@@ -854,7 +863,7 @@
                 <input type="text" name="changeMedewerkersVoornaam" value="" placeholder="type hier de nieuwe gewijzigde voornaam" id="changeMedewerkersVoornaam">
                 <input type="text" name="changeMedewerkersTussenvoegsel" value="" placeholder="type hier de nieuwe gewijzigde tussenvoegsel" id="changeMedewerkersTussenvoegsel">
                 <input type="text" name="changeMedewerkersAchternaam" value="" placeholder="type hier de nieuwe gewijzigde achternaam" id="changeMedewerkersAchternaam">
-                <input type="submit" name="changeMedewerkerSubmit1" value="Opslaan" id="changeMedewerkerSubmit1">
+                <input type="submit" name="changeMedewerkerSubmit1" value="Wijziging opslaan" id="changeMedewerkerSubmit1">
               </form>
             </div>
             <div id="medewerkerChangeDiv2">
@@ -889,7 +898,7 @@
                   <option value="0">Medewerker</option>
                   <option value="1">Manager</option>
                 </select>
-                <input type="submit" name="changeMedewerkerSubmit2" value="Opslaan" id="changeMedewerkerSubmit2">
+                <input type="submit" name="changeMedewerkerSubmit2" value="Wijziging opslaan" id="changeMedewerkerSubmit2">
               </form>
             </div>
             <div id="medewerkerChangeDiv3">
@@ -920,7 +929,7 @@
                   ?>
                 </select>
                 <input type="password" name="changePassW" value="" placeholder="type hier een nieuwe gewijzigde sterke wachtwoord voor deze medewerker" id="changePassword">
-                <input type="submit" name="changeMedewerkerSubmit3" value="Opslaan" id="changeMedewerkerSubmit3">
+                <input type="submit" name="changeMedewerkerSubmit3" value="Wijziging opslaan" id="changeMedewerkerSubmit3">
               </form>
             </div>
             <div id="medewerkerRemoveDiv">

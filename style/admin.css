@@ -118,7 +118,7 @@ body {
 #locatieDiv {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 24px auto 120px 180px 200px;
+  grid-template-rows: 24px auto 120px 230px 200px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -193,7 +193,7 @@ body {
 #locatieChangeDiv {
   display: grid;
   grid-template-columns: 50px auto;
-  grid-template-rows: 24px 24px 24px 35px 24px 35px;
+  grid-template-rows: 24px 24px 24px 35px 24px 24px 24px 35px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -209,15 +209,34 @@ body {
   grid-row-end: 3;
 }
 
-#changePlaceForm {
+#changeLocatieForm {
   display: grid;
   grid-template-columns: 250px 20px 250px auto 120px auto;
-  grid-template-rows: 35px 24px 35px;
+  grid-template-rows: 35px;
 
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 4;
   grid-row-end: 5;
+}
+
+#locatieInfo3 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+#changeAddressForm {
+  display: grid;
+  grid-template-columns: 250px 20px 250px auto 120px auto;
+  grid-template-rows: 35px;
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 8;
+  grid-row-end: 9;
 }
 
 #changeLocatieSelect {
@@ -230,8 +249,8 @@ body {
 #changeAddressSelect {
   grid-column-start: 1;
   grid-column-end: 2;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 
 #changePlaceLocatieInput {
@@ -244,15 +263,22 @@ body {
 #changePlaceAddressInput {
   grid-column-start: 3;
   grid-column-end: 4;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 
-#changePlaceSubmit {
+#changeLocatieSubmit {
   grid-column-start: 5;
   grid-column-end: 6;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#changeAddressSubmit {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 
 #locatieRemoveDiv {
@@ -266,7 +292,7 @@ body {
   grid-row-end: 6;
 }
 
-#locatieInfo3 {
+#locatieInfo4 {
   font-family: "Segoe UI";
   grid-column-start: 2;
   grid-column-end: 3;
@@ -1144,7 +1170,7 @@ body {
 #overzichtForm {
   display: grid;
   grid-template-columns: auto 250px auto;
-  grid-template-rows: 50px auto 50px;
+  grid-template-rows: 50px 35px 50px;
 }
 
 #overzichtVenster {
