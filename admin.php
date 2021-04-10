@@ -149,14 +149,20 @@
       }
 
       public function addLocatie() {
-          $locatie = $_GET['addLocatie'];
-          $address = $_GET['addAddress'];
-
           try {
             $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO locatie (naam, address) VALUES ('$locatie', '$address')";
-            $conn->exec($sql);
+
+            $stmt = $conn->prepare("SET FOREIGN_KEY_CHECKS=0");
+            $stmt->execute();
+
+            $stmt = $conn->prepare("INSERT INTO locatie (naam, address) VALUES (:naam, :address)");
+            $stmt->bindParam(':naam', $naam);
+            $stmt->bindParam(':address', $address);
+
+            $naam = $_GET['addLocatie'];
+            $address = $_GET['addAddress'];
+            $stmt->execute();
           } catch(PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
           }
