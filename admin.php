@@ -12,8 +12,12 @@
   $object->overzicht();
   $object->setFormSelectOptionData();
 
-  // $object->addLocatie();
-  // $object->changeLocatie();
+  if(isset($_GET['addLocatie']) && isset($_GET['addAddress']) && isset($_GET['addPlaceSubmit'])) {
+    $object->addLocatie();
+  } else if ((isset($_GET['changeLocatie']) || isset($_GET['changeAddress']) && isset($_GET['changePlaceSubmit']))) {
+    $object->changeLocatie();
+  }
+
   // $object->removeLocatie1();
   // $object->removeLocatie2();
   //
@@ -144,170 +148,74 @@
         $conn = null;
       }
 
+      public function addLocatie() {
+          $locatie = $_GET['addLocatie'];
+          $address = $_GET['addAddress'];
 
+          try {
+            $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = "INSERT INTO locatie (naam, address) VALUES ('$locatie', '$address')";
+            $conn->exec($sql);
+          } catch(PDOException $e) {
+            echo $sql . "<br>" . $e->getMessage();
+          }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
 
-      // public function getData() {
-      //   $servername = "localhost";
-      //   $username = "root";
-      //   $password = "";
-      //   $dbname = "toolsforever";
-      //   $charset = "utf8mb4";
-      //
-      //   try {
-      //     $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
-      //     $pdo = new PDO($dsn, $username, $password);
-      //     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //
-      //     // get name of location
-      //     $GLOBALS['locatieNaam'] = array("");
-      //     foreach ($pdo->query("SELECT naam FROM locatie") as $row) {
-      //       array_push($GLOBALS['locatieNaam'], $row[0]);
-      //     }
-      //     array_shift($GLOBALS['locatieNaam']);
-      //
-      //     // get address of location
-      //     $GLOBALS['locatieAddress'] = array("");
-      //     foreach ($pdo->query("SELECT address FROM locatie") as $row) {
-      //       array_push($GLOBALS['locatieAddress'], $row[0]);
-      //     }
-      //     array_shift($GLOBALS['locatieAddress']);
-      //
-      //     // get name of product
-      //     $GLOBALS['productNaam'] = array("");
-      //     foreach ($pdo->query("SELECT product FROM products") as $row) {
-      //       array_push($GLOBALS['productNaam'], $row[0]);
-      //     }
-      //     array_shift($GLOBALS['productNaam']);
-      //
-      //     // get type of product
-      //     $GLOBALS['productType'] = array("");
-      //     foreach ($pdo->query("SELECT type FROM products") as $row) {
-      //       array_push($GLOBALS['productType'], $row[0]);
-      //     }
-      //     array_shift($GLOBALS['productType']);
-      //
-      //     // get fabriek of product
-      //     $GLOBALS['productFabriek'] = array("");
-      //     foreach ($pdo->query("SELECT fabriek FROM products") as $row) {
-      //       array_push($GLOBALS['productFabriek'], $row[0]);
-      //     }
-      //     array_shift($GLOBALS['productFabriek']);
-      //
-      //     // get voornaam of medewerker
-      //     $GLOBALS['medewerkerVoornaam'] = array("");
-      //     foreach ($pdo->query("SELECT voornaam FROM medewerkers") as $row) {
-      //       array_push($GLOBALS['medewerkerVoornaam'], $row[0]);
-      //     }
-      //     array_shift($GLOBALS['medewerkerVoornaam']);
-      //
-      //     // get tussenvoegsel of medewerker
-      //     $GLOBALS['medewerkerTussenvoegsel'] = array("");
-      //     foreach ($pdo->query("SELECT tussenvoegsel FROM medewerkers") as $row) {
-      //       array_push($GLOBALS['medewerkerTussenvoegsel'], $row[0]);
-      //     }
-      //     array_shift($GLOBALS['medewerkerTussenvoegsel']);
-      //
-      //     // get achternaam of medewerker
-      //     $GLOBALS['medewerkerAchternaam'] = array("");
-      //     foreach ($pdo->query("SELECT achternaam FROM medewerkers") as $row) {
-      //       array_push($GLOBALS['medewerkerAchternaam'], $row[0]);
-      //     }
-      //     array_shift($GLOBALS['medewerkerAchternaam']);
-      //
-      //     $pdo = null;
-      //   } catch (PDOException $e) {
-      //     echo "Connection failed: ".$e->getMessage();
-      //     die();
-      //   }
-      // }
+      public function changeLocatie() {
+        // if empty then output 1
+        // echo "locatie change = " . empty($_GET['changeLocatie']);
+        // echo "address change = " . empty($_GET['changeAddress']);
+
+        // if (!empty($_GET['changeLocatie']) && isset($_GET['changePlaceSubmit'])) {
+        //   $servername = "localhost";
+        //   $username = "root";
+        //   $password = "";
+        //   $dbname = "toolsforever";
+        //   $charset = "utf8mb4";
+        //
+        //   $nieuweLocatie = $_GET['changeLocatie'];
+        //   $selectLocatie = $_GET['changeLocatieSelect'];
+        //
+        //   try {
+        //     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //     $sql = "UPDATE locatie SET naam = '$nieuweLocatie' WHERE naam = '$selectLocatie'";
+        //     $conn->exec($sql);
+        //   } catch(PDOException $e) {
+        //     echo $sql . "<br>" . $e->getMessage();
+        //   }
+        //   $conn = null;
+        //   header('Location: '.URL.'admin.php', TRUE, 302);
+        // }
+        // if (!empty($_GET['changeAddress']) && isset($_GET['changePlaceSubmit'])) {
+        //   $servername = "localhost";
+        //   $username = "root";
+        //   $password = "";
+        //   $dbname = "toolsforever";
+        //   $charset = "utf8mb4";
+        //
+        //   $nieuweAddress = $_GET['changeAddress'];
+        //   $selectAddress = $_GET['changeAddressSelect'];
+        //
+        //   try {
+        //     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //     $sql = "UPDATE locatie SET address = '$nieuweAddress' WHERE address = '$selectAddress'";
+        //     $conn->exec($sql);
+        //   } catch(PDOException $e) {
+        //     echo $sql . "<br>" . $e->getMessage();
+        //   }
+        //   $conn = null;
+        //   header('Location: '.URL.'admin.php', TRUE, 302);
+        // }
+      }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-      // public function addLocatie() {
-      //   if(isset($_GET['addLocatie']) && isset($_GET['addAddress']) && isset($_GET['addPlaceSubmit'])) {
-      //
-      //     $servername = "localhost";
-      //     $username = "root";
-      //     $password = "";
-      //     $dbname = "toolsforever";
-      //     $charset = "utf8mb4";
-      //
-      //     $locatie = $_GET['addLocatie'];
-      //     $address = $_GET['addAddress'];
-      //
-      //     try {
-      //       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-      //       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //       $sql = "INSERT INTO locatie (naam, address) VALUES ('$locatie', '$address')";
-      //       $conn->exec($sql);
-      //     } catch(PDOException $e) {
-      //       echo $sql . "<br>" . $e->getMessage();
-      //     }
-      //     $conn = null;
-      //     header('Location: '.URL.'admin.php', TRUE, 302);
-      //   }
-      // }
-      //
-      // public function changeLocatie() {
-      //   // if empty then output 1
-      //   // echo "locatie change = " . empty($_GET['changeLocatie']);
-      //   // echo "address change = " . empty($_GET['changeAddress']);
-      //
-      //   if (!empty($_GET['changeLocatie']) && isset($_GET['changePlaceSubmit'])) {
-      //     $servername = "localhost";
-      //     $username = "root";
-      //     $password = "";
-      //     $dbname = "toolsforever";
-      //     $charset = "utf8mb4";
-      //
-      //     $nieuweLocatie = $_GET['changeLocatie'];
-      //     $selectLocatie = $_GET['changeLocatieSelect'];
-      //
-      //     try {
-      //       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-      //       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //       $sql = "UPDATE locatie SET naam = '$nieuweLocatie' WHERE naam = '$selectLocatie'";
-      //       $conn->exec($sql);
-      //     } catch(PDOException $e) {
-      //       echo $sql . "<br>" . $e->getMessage();
-      //     }
-      //     $conn = null;
-      //     header('Location: '.URL.'admin.php', TRUE, 302);
-      //   }
-      //   if (!empty($_GET['changeAddress']) && isset($_GET['changePlaceSubmit'])) {
-      //     $servername = "localhost";
-      //     $username = "root";
-      //     $password = "";
-      //     $dbname = "toolsforever";
-      //     $charset = "utf8mb4";
-      //
-      //     $nieuweAddress = $_GET['changeAddress'];
-      //     $selectAddress = $_GET['changeAddressSelect'];
-      //
-      //     try {
-      //       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-      //       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //       $sql = "UPDATE locatie SET address = '$nieuweAddress' WHERE address = '$selectAddress'";
-      //       $conn->exec($sql);
-      //     } catch(PDOException $e) {
-      //       echo $sql . "<br>" . $e->getMessage();
-      //     }
-      //     $conn = null;
-      //     header('Location: '.URL.'admin.php', TRUE, 302);
-      //   }
-      // }
       //
       // public function removeLocatie1() {
       //   if (isset($_GET['removeLocatiePlaceSubmit'])) {
