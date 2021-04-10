@@ -39,15 +39,25 @@
           // $idproduct = 309;
           // $stmt->execute();
 
+          // echo "New records created successfully";
+
           // now select data and print out on web.
-          // $stmt = $conn->prepare("SELECT idlocatie FROM locatie_has_products WHERE idproduct = 309");
-          // $stmt->execute();
+          $stmt = $conn->prepare("SELECT * FROM locatie_has_products");
+          $stmt->execute();
 
           print("Fetch all of the remaining rows in the result set:\n");
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           print_r($result);
 
-          echo "New records created successfully";
+          foreach ($result as $key => $row) {
+            echo $key." = ".$row['idlocatie'].", ".$row['idproduct']."<br>";
+          }
+
+          // $GLOBALS['productName'] = array("");
+          // foreach ($pdo->query("SELECT product FROM products") as $row) {
+          //   array_push($GLOBALS['productName'], $row[0]);
+          // }
+          // array_shift($GLOBALS['productName']);
 
         } catch(PDOException $e) {
           echo "Error: " . $e->getMessage();
