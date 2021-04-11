@@ -339,7 +339,7 @@ body {
 #productDiv {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 24px auto 572px 720px 150px;
+  grid-template-rows: 24px auto 530px 940px 150px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -463,7 +463,7 @@ body {
 #productChangeDiv {
   display: grid;
   grid-template-columns: 50px auto;
-  grid-template-rows: 24px 24px 220px 24px 200px 24px 200px;
+  grid-template-rows: repeat(3, 24px 24px 24px 35px) 24px repeat(3, 24px) 24px 200px repeat(3, 24px) 200px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -479,15 +479,63 @@ body {
   grid-row-end: 3;
 }
 
-#changeProductForm1 {
+#productInfo3 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+#productInfo4 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 10;
+  grid-row-end: 11;
+}
+
+#productInfo5 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 14;
+  grid-row-end: 15;
+}
+
+#productInfo6 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 15;
+  grid-row-end: 16;
+}
+
+#productInfo7 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 16;
+  grid-row-end: 17;
+}
+
+#productInfo8 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 20;
+  grid-row-end: 21;
+}
+
+#changeProductNaamForm {
   display: grid;
   grid-template-columns: 200px 20px 300px auto 120px auto;
-  grid-template-rows: repeat(3, 24px 35px);
+  grid-template-rows: auto;
 
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
+  grid-row-start: 4;
+  grid-row-end: 5;
 }
 
 #changeProductsNaamSelect {
@@ -511,43 +559,57 @@ body {
   grid-row-end: 7;
 }
 
-#changeProductsNaam {
+#changeProductNaam {
   grid-column-start: 3;
   grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 
-#changeProductsType {
+#changeProductType {
   grid-column-start: 3;
   grid-column-end: 4;
-  grid-row-start: 4;
-  grid-row-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 
-#changeProductsFabriek {
+#changeProductFabriek {
   grid-column-start: 3;
   grid-column-end: 4;
-  grid-row-start: 6;
-  grid-row-end: 7;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 
-#changeProductSubmit1 {
+#changeProductNaamSubmit {
   grid-column-start: 5;
   grid-column-end: 6;
-  grid-row-start: 6;
-  grid-row-end: 7;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 
-#changeProductForm2 {
+#changeProductTypeSubmit {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#changeProductFabriekSubmit {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#changeProductTypeForm {
   display: grid;
   grid-template-columns: 200px 20px 300px auto 120px auto;
-  grid-template-rows: repeat(3, 24px 35px);
+  grid-template-rows: auto;
 
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 5;
-  grid-row-end: 6;
+  grid-row-start: 8;
+  grid-row-end: 9;
 }
 
 #changeProductsNaamSelect2 {
@@ -585,38 +647,58 @@ body {
   grid-row-end: 7;
 }
 
-#changeProductSubmit2 {
+#changeProductsLocatieSelect2 {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+#changeProductsAddressSelect2 {
   grid-column-start: 5;
   grid-column-end: 6;
   grid-row-start: 6;
   grid-row-end: 7;
 }
 
-#productInfo3 {
-  font-family: "Segoe UI";
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 4;
-  grid-row-end: 5;
-}
-
-#productInfo4 {
-  font-family: "Segoe UI";
-  grid-column-start: 2;
-  grid-column-end: 3;
+#changeProductSubmit2 {
+  grid-column-start: 7;
+  grid-column-end: 8;
   grid-row-start: 6;
   grid-row-end: 7;
+}
+
+#changeProductFabriekForm {
+  display: grid;
+  grid-template-columns: 200px 20px 300px auto 120px auto;
+  grid-template-rows: auto;
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 12;
+  grid-row-end: 13;
+}
+
+#changeProductForm2 {
+  display: grid;
+  grid-template-columns: 200px 20px 140px 20px 140px auto 120px auto;
+  grid-template-rows: auto;
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 18;
+  grid-row-end: 19;
 }
 
 #changeProductForm3 {
   display: grid;
   grid-template-columns: 200px 20px 300px auto 120px auto;
-  grid-template-rows: repeat(3, 24px 35px);
+  grid-template-rows: auto;
 
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 7;
-  grid-row-end: 8;
+  grid-row-start: 22;
+  grid-row-end: 23;
 }
 
 #changeProductsNaamSelect3 {
@@ -662,13 +744,6 @@ body {
   margin-right: 20px;
 }
 
-#changeProductSubmit3 {
-  grid-column-start: 5;
-  grid-column-end: 6;
-  grid-row-start: 6;
-  grid-row-end: 7;
-}
-
 #productRemoveDiv {
   display: grid;
   grid-template-columns: 50px auto;
@@ -680,7 +755,7 @@ body {
   grid-row-end: 6;
 }
 
-#productInfo5 {
+#productInfo11 {
   font-family: "Segoe UI";
   grid-column-start: 2;
   grid-column-end: 3;

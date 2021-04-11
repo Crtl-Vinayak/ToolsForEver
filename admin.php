@@ -700,35 +700,46 @@
 
 
 
-              <!-- make this form into 3 forms each and remove changeProduct1 -->
 
-              <span id="productInfo2">- artiekel, type, fabriek wijzigen.</span>
-              <form method="GET" id="changeProductForm1">
-                <select name="changeProductsNaamSelect" id="changeProductsNaamSelect">
+
+
+              <span id="productInfo2">- artiekel naam wijzigen.</span>
+              <form method="GET" id="changeProductNaamForm">
+                <select name="changeProductNaamSelect" id="changeProductNaamSelect">
                   <?php
                     foreach ($GLOBALS['productNaam'] as $val) {
                       echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
                     }
                   ?>
                 </select>
-                <select name="changeProductsTypeSelect" id="changeProductsTypeSelect">
+                <input type="text" name="changeProductNaam" value="" placeholder="type hier de gewijzigde product naam" id="changeProductNaam">
+                <input type="submit" name="changeProductNaamSubmit" value="Wijziging opslaan" id="changeProductNaamSubmit">
+              </form>
+
+              <span id="productInfo3">- artiekel type wijzigen.</span>
+              <form method="GET" id="changeProductTypeForm">
+                <select name="changeProductTypeSelect" id="changeProductTypeSelect">
                   <?php
                     foreach ($GLOBALS['productType'] as $val) {
                       echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
                     }
                   ?>
                 </select>
-                <select name="changeProductsFabriekSelect" id="changeProductsFabriekSelect">
+                <input type="text" name="changeProductType" value="" placeholder="type hier de gewijzigde product type" id="changeProductType">
+                <input type="submit" name="changeProductTypeSubmit" value="Wijziging opslaan" id="changeProductTypeSubmit">
+              </form>
+
+              <span id="productInfo4">- artiekel fabriek wijzigen.</span>
+              <form method="GET" id="changeProductFabriekForm">
+                <select name="changeProductFabriekSelect" id="changeProductFabriekSelect">
                   <?php
                     foreach ($GLOBALS['productFabriek'] as $val) {
                       echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
                     }
                   ?>
                 </select>
-                <input type="text" name="changeProductsNaam" value="" placeholder="type hier de gewijzigde product naam" id="changeProductsNaam">
-                <input type="text" name="changeProductsType" value="" placeholder="type hier de gewijzigde product type" id="changeProductsType">
-                <input type="text" name="changeProductsFabriek" value="" placeholder="type hier de gewijzigde product fabriek" id="changeProductsFabriek">
-                <input type="submit" name="changeProductSubmit1" value="Wijziging opslaan" id="changeProductSubmit1">
+                <input type="text" name="changeProductFabriek" value="" placeholder="type hier de gewijzigde product fabriek" id="changeProductFabriek">
+                <input type="submit" name="changeProductFabriekSubmit" value="Wijziging opslaan" id="changeProductFabriekSubmit">
               </form>
 
 
@@ -738,8 +749,9 @@
 
 
 
-
-              <span id="productInfo3">- artiekel locatie voorraad wijzigen</span>
+              <span id="productInfo5">- Artiekel locatie voorraad wijzigen.</span>
+              <span id="productInfo6">- Middelste rij is de oude locatie die u wilt wijzigen.</span>
+              <span id="productInfo7">- Kies je bij de rechter rij de nieuwe locatie voor het artiekel.</span>
               <form method="GET" id="changeProductForm2">
                 <select name="changeProductsNaamSelect2" id="changeProductsNaamSelect2">
                   <?php
@@ -776,10 +788,28 @@
                     }
                   ?>
                 </select>
+                <select name="changeProductsLocatieSelect2" id="changeProductsLocatieSelect2">
+                  <?php
+                    foreach ($GLOBALS['locatieNaam'] as $val) {
+                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    }
+                  ?>
+                </select>
+                <select name="changeProductsAddressSelect2" id="changeProductsAddressSelect2">
+                  <?php
+                    foreach ($GLOBALS['locatieAddress'] as $val) {
+                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    }
+                  ?>
+                </select>
                 <input type="submit" name="changeProductSubmit2" value="Wijziging opslaan" id="changeProductSubmit2">
               </form>
-              <span id="productInfo4">- artiekel voorraad, minimumvoorraad en verkoopprijs wijzigen.</span>
-              <form method="GET" id="changeProductForm3">
+
+
+
+
+              <span id="productInfo8">- artiekel voorraad wijzigen.</span>
+              <form method="GET" id="changeProductVoorraadForm">
                 <select name="changeProductsNaamSelect3" id="changeProductsNaamSelect3">
                   <?php
                     foreach ($GLOBALS['productNaam'] as $val) {
@@ -802,188 +832,264 @@
                   ?>
                 </select>
                 <input type="number" name="changeProductsVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van hoeveel van dit product in het voorraad zit" id="changeProductsVoorraad">
-                <input type="number" name="changeProductsMinimumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van het minimum voorraad van dit product" id="changeProductsMinimumVoorraad">
-                <input type="number" name="changeProductsVerkoopprijs" value="" min="0" step=".01" placeholder="type hier wat de nieuwe verkoopprijs is van dit product" id="changeProductsVerkoopprijs">
-                <input type="submit" name="changeProductSubmit3" value="Wijziging opslaan" id="changeProductSubmit3">
+                <input type="submit" name="changeProductVoorraadSubmit" value="Wijziging opslaan" id="changeProductVoorraadSubmit">
               </form>
-            </div>
-            <div id="productRemoveDiv">
-              <span id="productInfo5">- artiekel verwijderen van een bepaalde type en fabriek.</span>
-              <form method="GET" id="removeProductForm">
-                <select name="removeProductsNaamSelect" id="removeProductsNaamSelect">
+
+              <span id="productInfo9">- artiekel minimum voorraad wijzigen.</span>
+              <form method="GET" id="changeProductsMinimumVoorraadForm">
+                <select name="changeProductsNaamSelect4" id="changeProductsNaamSelect4">
                   <?php
                     foreach ($GLOBALS['productNaam'] as $val) {
                       echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
                     }
                   ?>
                 </select>
-                <select name="removeProductsTypeSelect" id="removeProductsTypeSelect">
+                <select name="changeProductsTypeSelect4" id="changeProductsTypeSelect4">
                   <?php
                     foreach ($GLOBALS['productType'] as $val) {
                       echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
                     }
                   ?>
                 </select>
-                <select name="removeProductsFabriekSelect" id="removeProductsFabriekSelect">
+                <select name="changeProductsFabriekSelect4" id="changeProductsFabriekSelect4">
                   <?php
                     foreach ($GLOBALS['productFabriek'] as $val) {
                       echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
                     }
                   ?>
                 </select>
-                <input type="submit" name="removeProductSubmit" value="Verwijder" id="removeProductSubmit">
+                <input type="number" name="changeProductsMinimumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van het minimum voorraad van dit product" id="changeProductsMinimumVoorraad">
+                <input type="submit" name="changeProductMinimumSubmit" value="Wijziging opslaan" id="changeProductMinimumSubmit">
               </form>
-            </div>
+
+              <span id="productInfo10">- artiekel verkoopprijs wijzigen.</span>
+              <form method="GET" id="changeProductsVerkoopprijsForm">
+                <select name="changeProductsNaamSelect5" id="changeProductsNaamSelect5">
+                  <?php
+                    foreach ($GLOBALS['productNaam'] as $val) {
+                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    }
+                  ?>
+                </select>
+                <select name="changeProductsTypeSelect5" id="changeProductsTypeSelect5">
+                  <?php
+                    foreach ($GLOBALS['productType'] as $val) {
+                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    }
+                  ?>
+                </select>
+                <select name="changeProductsFabriekSelect5" id="changeProductsFabriekSelect5">
+                  <?php
+                    foreach ($GLOBALS['productFabriek'] as $val) {
+                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    }
+                  ?>
+                </select>
+                <input type="number" name="changeProductsVerkoopprijs" value="" min="0" step=".01" placeholder="type hier wat de nieuwe verkoopprijs is van dit product" id="changeProductsVerkoopprijs">
+                <input type="submit" name="changeProductVerkoopprijsSubmit" value="Wijziging opslaan" id="changeProductVerkoopprijsSubmit">
+              </form>
           </div>
-          <div id="medewerkerDiv">
-            <span id="medewerkerInfo">Hier kan je medewerkers informatie wijzigen, toevoegen of verwijderen.</span>
-            <div id="medewerkerAddDiv">
-              <span id="medewerkerInfo1">- medewerker naam, wachtwoord en rol toevoegen.</span>
-              <form method="POST" id="addMedewerkerForm">
-                <input type="text" name="addMedewerkersVoornaam" value="" placeholder="type hier de voornaam van de nieuwe medewerker" required id="addMedewerkersVoornaam">
-                <input type="text" name="addMedewerkersTussenvoegsel" value="" placeholder="type hier de tussenvoegsel van de nieuwe medewerker" id="addMedewerkersTussenvoegsel">
-                <input type="text" name="addMedewerkersAchternaam" value="" placeholder="type hier de achternaam van de nieuwe medewerker" required id="addMedewerkersAchternaam">
-                <input type="password" name="addMedewerkersWachtwoord" value="" placeholder="type hier een wachtwoord van de nieuwe medewerker" required id="addMedewerkersWachtwoord">
-                <select name="addMedewerkersRolSelect" id="addMedewerkersRolSelect">
-                  <option value="0">Medewerker</option>
-                  <option value="1">Manager</option>
-                </select>
-                <input type="submit" name="addMedewerkerSubmit" value="Toevoegen" id="addMedewerkerSubmit">
-              </form>
-            </div>
-            <div id="medewerkerChangeDiv1">
-              <span id="medewerkerInfo2">- medewerker naam wijzigen.</span>
-              <form method="POST" id="changeMedewerkerForm1">
-                <select name="changeMedewerkerVoornaamSelect" id="changeMedewerkerVoornaamSelect">
-                  <?php
-                    foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeMedewerkerTussenvoegselSelect" id="changeMedewerkerTussenvoegselSelect">
-                  <?php
-                    foreach ($GLOBALS['medewerkerTussenvoegsel'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeMedewerkerAchternaamSelect" id="changeMedewerkerAchternaamSelect">
-                  <?php
-                    foreach ($GLOBALS['medewerkerAchternaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <input type="text" name="changeMedewerkersVoornaam" value="" placeholder="type hier de nieuwe gewijzigde voornaam" id="changeMedewerkersVoornaam">
-                <input type="text" name="changeMedewerkersTussenvoegsel" value="" placeholder="type hier de nieuwe gewijzigde tussenvoegsel" id="changeMedewerkersTussenvoegsel">
-                <input type="text" name="changeMedewerkersAchternaam" value="" placeholder="type hier de nieuwe gewijzigde achternaam" id="changeMedewerkersAchternaam">
-                <input type="submit" name="changeMedewerkerSubmit1" value="Wijziging opslaan" id="changeMedewerkerSubmit1">
-              </form>
-            </div>
-            <div id="medewerkerChangeDiv2">
-              <span id="medewerkerInfo3">- medewerker rol wijzigen.</span>
-              <form method="POST" id="changeMedewerkerForm2">
-                <input type="text" readonly name="readVoornaam1" value="" placeholder="Voornaam:" id="readVoornaam1">
-                <input type="text" readonly name="readTussenvoegsel1" value="" placeholder="Tussenvoegsel:" id="readTussenvoegsel1">
-                <input type="text" readonly name="readAchternaam1" value="" placeholder="Achternaam:" id="readAchternaam1">
-                <input type="text" readonly name="readRol" value="" placeholder="Rol:" id="readRol">
-                <select name="changeMedewerkerVoornaamSelect2" id="changeMedewerkerVoornaamSelect2">
-                  <?php
-                    foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeMedewerkerTussenvoegselSelect2" id="changeMedewerkerTussenvoegselSelect2">
-                  <?php
-                    foreach ($GLOBALS['medewerkerTussenvoegsel'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeMedewerkerAchternaamSelect2" id="changeMedewerkerAchternaamSelect2">
-                  <?php
-                    foreach ($GLOBALS['medewerkerAchternaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeMedewerkerRolSelect" id="changeMedewerkerRolSelect">
-                  <option value="0">Medewerker</option>
-                  <option value="1">Manager</option>
-                </select>
-                <input type="submit" name="changeMedewerkerSubmit2" value="Wijziging opslaan" id="changeMedewerkerSubmit2">
-              </form>
-            </div>
-            <div id="medewerkerChangeDiv3">
-              <span id="medewerkerInfo4">- medewerker wachtwoord wijzigen.</span>
-              <form method="POST" id="changeMedewerkerForm3">
-                <input type="text" readonly name="readVoornaam2" value="" placeholder="Voornaam:" id="readVoornaam2">
-                <input type="text" readonly name="readTussenvoegsel2" value="" placeholder="Tussenvoegsel:" id="readTussenvoegsel2">
-                <input type="text" readonly name="readAchternaam2" value="" placeholder="Achternaam:" id="readAchternaam2">
-                <select name="changeMedewerkerVoornaamSelect3" id="changeMedewerkerVoornaamSelect3">
-                  <?php
-                    foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeMedewerkerTussenvoegselSelect3" id="changeMedewerkerTussenvoegselSelect3">
-                  <?php
-                    foreach ($GLOBALS['medewerkerTussenvoegsel'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeMedewerkerAchternaamSelect3" id="changeMedewerkerAchternaamSelect3">
-                  <?php
-                    foreach ($GLOBALS['medewerkerAchternaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <input type="password" name="changePassW" value="" placeholder="type hier een nieuwe gewijzigde sterke wachtwoord voor deze medewerker" id="changePassword">
-                <input type="submit" name="changeMedewerkerSubmit3" value="Wijziging opslaan" id="changeMedewerkerSubmit3">
-              </form>
-            </div>
-            <div id="medewerkerRemoveDiv">
-              <span id="medewerkerInfo5">- medewerker verwijderen.</span>
-              <form method="POST" id="removeMedewerkerForm">
-                <input type="text" readonly name="readVoornaam3" value="" placeholder="Voornaam:" id="readVoornaam3">
-                <input type="text" readonly name="readTussenvoegsel3" value="" placeholder="Tussenvoegsel:" id="readTussenvoegsel3">
-                <input type="text" readonly name="readAchternaam3" value="" placeholder="Achternaam:" id="readAchternaam3">
-                <select name="removeMedewerkerVoornaamSelect" id="removeMedewerkerVoornaamSelect">
-                  <?php
-                    foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="removeMedewerkerTussenvoegselSelect" id="removeMedewerkerTussenvoegselSelect">
-                  <?php
-                    foreach ($GLOBALS['medewerkerTussenvoegsel'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="removeMedewerkerAchternaamSelect" id="removeMedewerkerAchternaamSelect">
-                  <?php
-                    foreach ($GLOBALS['medewerkerAchternaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <input type="submit" name="removeMedewerkerSubmit" value="Verwijder" id="removeMedewerkerSubmit">
-              </form>
-            </div>
+
+
+
+
+
+
+
+          <div id="productRemoveDiv">
+            <span id="productInfo11">- artiekel verwijderen van een bepaalde type en fabriek.</span>
+            <form method="GET" id="removeProductForm">
+              <select name="removeProductsNaamSelect" id="removeProductsNaamSelect">
+                <?php
+                  foreach ($GLOBALS['productNaam'] as $val) {
+                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                  }
+                ?>
+              </select>
+              <select name="removeProductsTypeSelect" id="removeProductsTypeSelect">
+                <?php
+                  foreach ($GLOBALS['productType'] as $val) {
+                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                  }
+                ?>
+              </select>
+              <select name="removeProductsFabriekSelect" id="removeProductsFabriekSelect">
+                <?php
+                  foreach ($GLOBALS['productFabriek'] as $val) {
+                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                  }
+                ?>
+              </select>
+              <input type="submit" name="removeProductSubmit" value="Verwijder" id="removeProductSubmit">
+            </form>
           </div>
-          <div id="lastDiv_overzichtVenster">
-            <form method="GET" id="overzichtForm">
-              <input type="submit" name="overzichtVenster" value="Naar overzicht venster gaan" id="overzichtVenster">
+
+
+        </div>
+
+
+
+
+
+
+
+        <div id="medewerkerDiv">
+          <span id="medewerkerInfo">Hier kan je medewerkers informatie wijzigen, toevoegen of verwijderen.</span>
+          <div id="medewerkerAddDiv">
+            <span id="medewerkerInfo1">- medewerker naam, wachtwoord en rol toevoegen.</span>
+            <form method="POST" id="addMedewerkerForm">
+              <input type="text" name="addMedewerkersVoornaam" value="" placeholder="type hier de voornaam van de nieuwe medewerker" required id="addMedewerkersVoornaam">
+              <input type="text" name="addMedewerkersTussenvoegsel" value="" placeholder="type hier de tussenvoegsel van de nieuwe medewerker" id="addMedewerkersTussenvoegsel">
+              <input type="text" name="addMedewerkersAchternaam" value="" placeholder="type hier de achternaam van de nieuwe medewerker" required id="addMedewerkersAchternaam">
+              <input type="password" name="addMedewerkersWachtwoord" value="" placeholder="type hier een wachtwoord van de nieuwe medewerker" required id="addMedewerkersWachtwoord">
+              <select name="addMedewerkersRolSelect" id="addMedewerkersRolSelect">
+                <option value="0">Medewerker</option>
+                <option value="1">Manager</option>
+              </select>
+              <input type="submit" name="addMedewerkerSubmit" value="Toevoegen" id="addMedewerkerSubmit">
+            </form>
+          </div>
+          <div id="medewerkerChangeDiv1">
+            <span id="medewerkerInfo2">- medewerker naam wijzigen.</span>
+            <form method="POST" id="changeMedewerkerForm1">
+              <select name="changeMedewerkerVoornaamSelect" id="changeMedewerkerVoornaamSelect">
+                <?php
+                  foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
+                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                  }
+                ?>
+              </select>
+              <select name="changeMedewerkerTussenvoegselSelect" id="changeMedewerkerTussenvoegselSelect">
+                <?php
+                  foreach ($GLOBALS['medewerkerTussenvoegsel'] as $val) {
+                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                  }
+                ?>
+              </select>
+              <select name="changeMedewerkerAchternaamSelect" id="changeMedewerkerAchternaamSelect">
+                <?php
+                  foreach ($GLOBALS['medewerkerAchternaam'] as $val) {
+                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                  }
+                ?>
+              </select>
+              <input type="text" name="changeMedewerkersVoornaam" value="" placeholder="type hier de nieuwe gewijzigde voornaam" id="changeMedewerkersVoornaam">
+              <input type="text" name="changeMedewerkersTussenvoegsel" value="" placeholder="type hier de nieuwe gewijzigde tussenvoegsel" id="changeMedewerkersTussenvoegsel">
+              <input type="text" name="changeMedewerkersAchternaam" value="" placeholder="type hier de nieuwe gewijzigde achternaam" id="changeMedewerkersAchternaam">
+              <input type="submit" name="changeMedewerkerSubmit1" value="Wijziging opslaan" id="changeMedewerkerSubmit1">
+            </form>
+          </div>
+          <div id="medewerkerChangeDiv2">
+            <span id="medewerkerInfo3">- medewerker rol wijzigen.</span>
+            <form method="POST" id="changeMedewerkerForm2">
+              <input type="text" readonly name="readVoornaam1" value="" placeholder="Voornaam:" id="readVoornaam1">
+              <input type="text" readonly name="readTussenvoegsel1" value="" placeholder="Tussenvoegsel:" id="readTussenvoegsel1">
+              <input type="text" readonly name="readAchternaam1" value="" placeholder="Achternaam:" id="readAchternaam1">
+              <input type="text" readonly name="readRol" value="" placeholder="Rol:" id="readRol">
+              <select name="changeMedewerkerVoornaamSelect2" id="changeMedewerkerVoornaamSelect2">
+                <?php
+                  foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
+                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                  }
+                ?>
+              </select>
+              <select name="changeMedewerkerTussenvoegselSelect2" id="changeMedewerkerTussenvoegselSelect2">
+                <?php
+                  foreach ($GLOBALS['medewerkerTussenvoegsel'] as $val) {
+                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                  }
+                ?>
+              </select>
+              <select name="changeMedewerkerAchternaamSelect2" id="changeMedewerkerAchternaamSelect2">
+                <?php
+                  foreach ($GLOBALS['medewerkerAchternaam'] as $val) {
+                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                  }
+                ?>
+              </select>
+              <select name="changeMedewerkerRolSelect" id="changeMedewerkerRolSelect">
+                <option value="0">Medewerker</option>
+                <option value="1">Manager</option>
+              </select>
+              <input type="submit" name="changeMedewerkerSubmit2" value="Wijziging opslaan" id="changeMedewerkerSubmit2">
+            </form>
+          </div>
+          <div id="medewerkerChangeDiv3">
+            <span id="medewerkerInfo4">- medewerker wachtwoord wijzigen.</span>
+            <form method="POST" id="changeMedewerkerForm3">
+              <input type="text" readonly name="readVoornaam2" value="" placeholder="Voornaam:" id="readVoornaam2">
+              <input type="text" readonly name="readTussenvoegsel2" value="" placeholder="Tussenvoegsel:" id="readTussenvoegsel2">
+              <input type="text" readonly name="readAchternaam2" value="" placeholder="Achternaam:" id="readAchternaam2">
+              <select name="changeMedewerkerVoornaamSelect3" id="changeMedewerkerVoornaamSelect3">
+                <?php
+                  foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
+                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                  }
+                ?>
+              </select>
+              <select name="changeMedewerkerTussenvoegselSelect3" id="changeMedewerkerTussenvoegselSelect3">
+                <?php
+                  foreach ($GLOBALS['medewerkerTussenvoegsel'] as $val) {
+                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                  }
+                ?>
+              </select>
+              <select name="changeMedewerkerAchternaamSelect3" id="changeMedewerkerAchternaamSelect3">
+                <?php
+                  foreach ($GLOBALS['medewerkerAchternaam'] as $val) {
+                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                  }
+                ?>
+              </select>
+              <input type="password" name="changePassW" value="" placeholder="type hier een nieuwe gewijzigde sterke wachtwoord voor deze medewerker" id="changePassword">
+              <input type="submit" name="changeMedewerkerSubmit3" value="Wijziging opslaan" id="changeMedewerkerSubmit3">
+            </form>
+          </div>
+          <div id="medewerkerRemoveDiv">
+            <span id="medewerkerInfo5">- medewerker verwijderen.</span>
+            <form method="POST" id="removeMedewerkerForm">
+              <input type="text" readonly name="readVoornaam3" value="" placeholder="Voornaam:" id="readVoornaam3">
+              <input type="text" readonly name="readTussenvoegsel3" value="" placeholder="Tussenvoegsel:" id="readTussenvoegsel3">
+              <input type="text" readonly name="readAchternaam3" value="" placeholder="Achternaam:" id="readAchternaam3">
+              <select name="removeMedewerkerVoornaamSelect" id="removeMedewerkerVoornaamSelect">
+                <?php
+                  foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
+                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                  }
+                ?>
+              </select>
+              <select name="removeMedewerkerTussenvoegselSelect" id="removeMedewerkerTussenvoegselSelect">
+                <?php
+                  foreach ($GLOBALS['medewerkerTussenvoegsel'] as $val) {
+                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                  }
+                ?>
+              </select>
+              <select name="removeMedewerkerAchternaamSelect" id="removeMedewerkerAchternaamSelect">
+                <?php
+                  foreach ($GLOBALS['medewerkerAchternaam'] as $val) {
+                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                  }
+                ?>
+              </select>
+              <input type="submit" name="removeMedewerkerSubmit" value="Verwijder" id="removeMedewerkerSubmit">
             </form>
           </div>
         </div>
+        <div id="lastDiv_overzichtVenster">
+          <form method="GET" id="overzichtForm">
+            <input type="submit" name="overzichtVenster" value="Naar overzicht venster gaan" id="overzichtVenster">
+          </form>
+        </div>
+
+
+
+
+
+
+
+
+
       </div>
     </div>
   </body>
