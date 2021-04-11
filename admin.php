@@ -696,6 +696,12 @@
               </form>
             </div>
             <div id="productChangeDiv">
+
+
+
+
+              <!-- make this form into 3 forms each and remove changeProduct1 -->
+
               <span id="productInfo2">- artiekel, type, fabriek wijzigen.</span>
               <form method="GET" id="changeProductForm1">
                 <select name="changeProductsNaamSelect" id="changeProductsNaamSelect">
@@ -724,6 +730,15 @@
                 <input type="text" name="changeProductsFabriek" value="" placeholder="type hier de gewijzigde product fabriek" id="changeProductsFabriek">
                 <input type="submit" name="changeProductSubmit1" value="Wijziging opslaan" id="changeProductSubmit1">
               </form>
+
+
+
+
+
+
+
+
+
               <span id="productInfo3">- artiekel locatie voorraad wijzigen</span>
               <form method="GET" id="changeProductForm2">
                 <select name="changeProductsNaamSelect2" id="changeProductsNaamSelect2">
