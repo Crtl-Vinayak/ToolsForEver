@@ -21,7 +21,7 @@ body {
 #grid {
   display: grid;
   grid-template-columns: 10px 2fr 9fr 3fr 10px;
-  grid-template-rows: 10px 100px 30px 160px 50px 130px 50px;
+  grid-template-rows: 10px 100px 30px 160px 50px 150px 50px;
 }
 
 #logoDiv {
@@ -172,7 +172,7 @@ form {
 #overzicht {
   display: grid;
   grid-template-columns: auto 800px auto;
-  grid-template-rows: 20px 20px 20px auto;
+  grid-template-rows: 20px 20px 20px 90px;
 
   grid-column-start: 2;
   grid-column-end: 5;
@@ -200,8 +200,8 @@ form {
 
 #table {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 50px 45px;
 
   grid-column-start: 2;
   grid-column-end: 3;

@@ -38,7 +38,7 @@
 
           // get other values of products
           $GLOBALS['productInfo'] = array("");
-          foreach ($pdo->query("SELECT products.type, products.fabriek, products.voorraad, products.verkoopprijs \n
+          foreach ($pdo->query("SELECT products.type, products.fabriek, products.voorraad, products.minimumVoorraad, products.verkoopprijs \n
             FROM products \n
             INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
             INNER JOIN locatie ON locatie_has_products.idlocatie = locatie.idlocatie \n
@@ -47,6 +47,7 @@
             array_push($GLOBALS['productInfo'], $row[1]);
             array_push($GLOBALS['productInfo'], $row[2]);
             array_push($GLOBALS['productInfo'], $row[3]);
+            array_push($GLOBALS['productInfo'], $row[4]);
           }
           array_shift($GLOBALS['productInfo']);
 
@@ -231,6 +232,7 @@
             <span id="typeCol" class="textStyleBold">Type</span>
             <span id="fabriekCol" class="textStyleBold">Fabriek</span>
             <span id="inVoorraadCol" class="textStyleBold">In voorraad</span>
+            <span id="inMinimumCol" class="textStyleBold">Minimum voorraad</span>
             <span id="verkoopprijsCol" class="textStyleBold">Verkoopprijs</span>
             <!-- Val means Value -->
             <span id="productVal" class="textStyle">
@@ -269,12 +271,21 @@
               }
               ?>
             </span>
+            <span id="inMinimumVal" class="textStyle">
+              <?php
+              if (empty($GLOBALS['productInfo'])) {
+                echo "---";
+              } else {
+                echo $GLOBALS['productInfo'][3];
+              }
+              ?>
+            </span>
             <span id="verkoopprijsVal" class="textStyle">
               <?php
               if (empty($GLOBALS['productInfo'])) {
                 echo "---";
               } else {
-                echo "€".$GLOBALS['productInfo'][3];
+                echo "€".$GLOBALS['productInfo'][4];
               }
               ?>
             </span>
