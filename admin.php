@@ -194,12 +194,30 @@
         } catch(PDOException $e) {
           echo $sql . "<br>" . $e->getMessage();
         }
-        $conn = null;
-        header('Location: '.URL.'admin.php', TRUE, 302);
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
       }
 
       public function changeAdres() {
-        echo "string456<br>";
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("UPDATE toolsforever.locatie SET address = :nieuwAdres WHERE address = :oudAdres");
+          $stmt->bindParam(':nieuwAdres', $nieuwAdres);
+          $stmt->bindParam(':oudAdres', $oudAdres);
+
+          $nieuwAdres = $_GET['changePlaceAdresInput'];
+          $oudAdres = $_GET['changeAdresSelect'];
+          $stmt->execute();
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
       }
   }
 ?>
