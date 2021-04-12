@@ -808,6 +808,7 @@
 
 
 
+
               <span id="productInfo8">- artiekel voorraad wijzigen.</span>
               <form method="GET" id="changeProductVoorraadForm">
                 <select name="changeProductsNaamSelect3" id="changeProductsNaamSelect3">
@@ -836,7 +837,7 @@
               </form>
 
               <span id="productInfo9">- artiekel minimum voorraad wijzigen.</span>
-              <form method="GET" id="changeProductsMinimumVoorraadForm">
+              <form method="GET" id="changeProductMinimumVoorraadForm">
                 <select name="changeProductsNaamSelect4" id="changeProductsNaamSelect4">
                   <?php
                     foreach ($GLOBALS['productNaam'] as $val) {
@@ -863,7 +864,7 @@
               </form>
 
               <span id="productInfo10">- artiekel verkoopprijs wijzigen.</span>
-              <form method="GET" id="changeProductsVerkoopprijsForm">
+              <form method="GET" id="changeProductVerkoopprijsForm">
                 <select name="changeProductsNaamSelect5" id="changeProductsNaamSelect5">
                   <?php
                     foreach ($GLOBALS['productNaam'] as $val) {
@@ -923,16 +924,7 @@
               <input type="submit" name="removeProductSubmit" value="Verwijder" id="removeProductSubmit">
             </form>
           </div>
-
-
         </div>
-
-
-
-
-
-
-
         <div id="medewerkerDiv">
           <span id="medewerkerInfo">Hier kan je medewerkers informatie wijzigen, toevoegen of verwijderen.</span>
           <div id="medewerkerAddDiv">
