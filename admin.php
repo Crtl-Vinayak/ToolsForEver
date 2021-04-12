@@ -16,15 +16,16 @@
 
   if(isset($_GET['addLocatie']) && isset($_GET['addAdres']) && isset($_GET['addPlaceSubmit'])) {
     $object->addLocatie();
-  } else if (!empty($_GET['changeLocatieSelect']) && !empty($_GET['changePlaceLocatieInput']) && !empty($_GET['changeLocatieSubmit'])) {
+  } else if (isset($_GET['changeLocatieSelect']) && isset($_GET['changePlaceLocatieInput']) && isset($_GET['changeLocatieSubmit'])) {
     $object->changeLocatie();
-  } else if (!empty($_GET['changeAdresSelect']) && !empty($_GET['changePlaceAdresInput']) && !empty($_GET['changeAdresSubmit'])) {
+  } else if (isset($_GET['changeAdresSelect']) && isset($_GET['changePlaceAdresInput']) && isset($_GET['changeAdresSubmit'])) {
     $object->changeAdres();
+  } else if (isset($_GET['removeLocatieSelect']) && isset($_GET['removeLocatiePlaceSubmit'])) {
+    $object->removeLocatie();
+  } else if (isset($_GET['removeAdresSelect']) && isset($_GET['removeAdresPlaceSubmit'])) {
+    $object->removeAdres();
   }
 
-  // $object->removeLocatie1();
-  // $object->removeLocatie2();
-  //
   // $object->addProduct();
   // $object->changeProduct1();
   // // $object->changeProduct2();
@@ -212,6 +213,46 @@
 
           $nieuwAdres = $_GET['changePlaceAdresInput'];
           $oudAdres = $_GET['changeAdresSelect'];
+          $stmt->execute();
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+
+      public function removeLocatie() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("DELETE FROM toolsforever.locatie WHERE naam = :locatieNaam");
+          $stmt->bindParam(':locatieNaam', $locatieNaam);
+
+          $locatieNaam = $_GET['removeLocatieSelect'];
+          $stmt->execute();
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+
+      public function removeAdres() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("DELETE FROM toolsforever.locatie WHERE address = :adres");
+          $stmt->bindParam(':adres', $adres);
+
+          $adres = $_GET['removeAdresSelect'];
           $stmt->execute();
         } catch(PDOException $e) {
           echo $sql . "<br>" . $e->getMessage();
