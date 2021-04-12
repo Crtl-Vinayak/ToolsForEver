@@ -911,7 +911,7 @@ body {
 #medewerkerDiv {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 24px auto 350px 1600px 250px;
+  grid-template-rows: 24px auto 350px 1540px 250px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -1055,67 +1055,7 @@ body {
   grid-row-end: 5;
 }
 
-#changeMedewerkerForm1 {
-  display: grid;
-  grid-template-columns: 200px 20px 300px auto 120px auto;
-  grid-template-rows: repeat(3, 24px 35px);
-
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
-}
-
-#changeMedewerkerVoornaamSelect {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-
-#changeMedewerkerTussenvoegselSelect {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 4;
-  grid-row-end: 5;
-}
-
-#changeMedewerkerAchternaamSelect {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 6;
-  grid-row-end: 7;
-}
-
-#changeMedewerkersVoornaam {
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-
-#changeMedewerkersTussenvoegsel {
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 4;
-  grid-row-end: 5;
-}
-
-#changeMedewerkersAchternaam {
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 6;
-  grid-row-end: 7;
-}
-
-#changeMedewerkerSubmit1 {
-  grid-column-start: 5;
-  grid-column-end: 6;
-  grid-row-start: 6;
-  grid-row-end: 7;
-}
-
-#changeMedewerkerForm2 {
+#changeMedewerkerVoornaamForm {
   display: grid;
   grid-template-columns: 200px 20px 300px auto 120px auto;
   grid-template-rows: repeat(4, 24px 35px);
@@ -1126,25 +1066,97 @@ body {
   grid-row-end: 4;
 }
 
-#readVoornaam1 {
-  grid-column-start: 1;
-  grid-column-end: 2;
+#changeMedewerkerTussenvoegselForm {
+  display: grid;
+  grid-template-columns: 200px 20px 300px auto 120px auto;
+  grid-template-rows: repeat(4, 24px 35px);
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 8;
+  grid-row-end: 9;
+}
+
+#changeMedewerkerAchternaamForm {
+  display: grid;
+  grid-template-columns: 200px 20px 300px auto 120px auto;
+  grid-template-rows: repeat(4, 24px 35px);
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 12;
+  grid-row-end: 13;
+}
+
+#changeMedewerkerRolForm {
+  display: grid;
+  grid-template-columns: 200px 20px 300px auto 120px auto;
+  grid-template-rows: repeat(4, 24px 35px);
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 16;
+  grid-row-end: 17;
+}
+
+#changeMedewerkerWachtwoordForm {
+  display: grid;
+  grid-template-columns: 200px 20px 300px auto 120px auto;
+  grid-template-rows: repeat(4, 24px 35px);
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 20;
+  grid-row-end: 21;
+}
+
+.changeMedewerkerVoornaamSelect {
+  grid-column-start: 3;
+  grid-column-end: 4;
   grid-row-start: 2;
   grid-row-end: 3;
 }
 
-#readTussenvoegsel1 {
-  grid-column-start: 1;
-  grid-column-end: 2;
+.changeMedewerkerTussenvoegselSelect {
+  grid-column-start: 3;
+  grid-column-end: 4;
   grid-row-start: 4;
   grid-row-end: 5;
 }
 
-#readAchternaam1 {
-  grid-column-start: 1;
-  grid-column-end: 2;
+.changeMedewerkerAchternaamSelect {
+  grid-column-start: 3;
+  grid-column-end: 4;
   grid-row-start: 6;
   grid-row-end: 7;
+}
+
+#changeMedewerkersVoornaam {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 8;
+  grid-row-end: 9;
+}
+
+#changeMedewerkersTussenvoegsel {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 8;
+  grid-row-end: 9;
+}
+
+#changeMedewerkersAchternaam {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 8;
+  grid-row-end: 9;
+}
+
+#changeMedewerkerVoornaamSubmit {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 8;
+  grid-row-end: 9;
 }
 
 #readRol {
@@ -1154,27 +1166,6 @@ body {
   grid-row-end: 9;
 }
 
-#changeMedewerkerVoornaamSelect2 {
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-
-#changeMedewerkerTussenvoegselSelect2 {
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 4;
-  grid-row-end: 5;
-}
-
-#changeMedewerkerAchternaamSelect2 {
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 6;
-  grid-row-end: 7;
-}
-
 #changeMedewerkerRolSelect {
   grid-column-start: 3;
   grid-column-end: 4;
@@ -1182,62 +1173,37 @@ body {
   grid-row-end: 9;
 }
 
-#changeMedewerkerSubmit2 {
+#changeMedewerkerTussenvoegselSubmit {
   grid-column-start: 5;
   grid-column-end: 6;
   grid-row-start: 8;
   grid-row-end: 9;
 }
 
-#changeMedewerkerForm3 {
-  display: grid;
-  grid-template-columns: 200px 20px 300px auto 120px auto;
-  grid-template-rows: repeat(4, 24px 35px);
-
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 3;
-  grid-row-end: 4;
+#changeMedewerkerAchternaamSubmit {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 8;
+  grid-row-end: 9;
 }
 
-#readVoornaam2 {
+.readVoornaam {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 2;
   grid-row-end: 3;
 }
 
-#readTussenvoegsel2 {
+.readTussenvoegsel {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 4;
   grid-row-end: 5;
 }
 
-#readAchternaam2 {
+.readAchternaam {
   grid-column-start: 1;
   grid-column-end: 2;
-  grid-row-start: 6;
-  grid-row-end: 7;
-}
-
-#changeMedewerkerVoornaamSelect3 {
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-
-#changeMedewerkerTussenvoegselSelect3 {
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 4;
-  grid-row-end: 5;
-}
-
-#changeMedewerkerAchternaamSelect3 {
-  grid-column-start: 3;
-  grid-column-end: 4;
   grid-row-start: 6;
   grid-row-end: 7;
 }
@@ -1275,6 +1241,13 @@ body {
   grid-row-end: 3;
 }
 
+.medewerkerSubmit {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 8;
+  grid-row-end: 9;
+}
+
 #removeMedewerkerForm {
   display: grid;
   grid-template-columns: 200px 20px 300px auto 120px auto;
@@ -1284,27 +1257,6 @@ body {
   grid-column-end: 3;
   grid-row-start: 3;
   grid-row-end: 4;
-}
-
-#readVoornaam7 {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-
-#readTussenvoegsel7 {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 4;
-  grid-row-end: 5;
-}
-
-#readAchternaam7 {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 6;
-  grid-row-end: 7;
 }
 
 #removeMedewerkerVoornaamSelect {
