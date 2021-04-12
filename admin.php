@@ -30,6 +30,8 @@
     $object->addProduct();
   } else if (isset($_GET['changeProductNaamSelect']) && isset($_GET['changeProductNaam']) && isset($_GET['changeProductNaamSubmit'])) {
     $object->changeProductNaam();
+  } else if (isset($_GET['changeProductTypeSelect']) && isset($_GET['changeProductType']) && isset($_GET['changeProductTypeSubmit'])) {
+    $object->changeProductType();
   }
 
   // $object->changeProduct1();
@@ -107,7 +109,10 @@
           $stmt = $conn->prepare("SELECT type FROM products");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          $acceptOneNullType = 0;
           foreach ($result as $key => $row) {
+            if ($row['type'] == null && $acceptOneNullType == 1) {continue;}
+            if ($row['type'] == null) {$acceptOneNullType = 1;}
             array_push($GLOBALS['productType'], $row['type']);
           }
           array_shift($GLOBALS['productType']);
@@ -137,7 +142,10 @@
           $stmt = $conn->prepare("SELECT tussenvoegsel FROM medewerkers");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          $acceptOneNullTussenvoegsel = 0;
           foreach ($result as $key => $row) {
+            if ($row['tussenvoegsel'] == null && $acceptOneNullTussenvoegsel == 1) {continue;}
+            if ($row['tussenvoegsel'] == null) {$acceptOneNullTussenvoegsel = 1;}
             array_push($GLOBALS['medewerkerTussenvoegsel'], $row['tussenvoegsel']);
           }
           array_shift($GLOBALS['medewerkerTussenvoegsel']);
@@ -367,6 +375,28 @@
           $conn = null;
           header('Location: '.URL.'admin.php', TRUE, 302);
       }
+
+      public function changeProductType() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("UPDATE products SET type = :nieuwType WHERE type = :oudType");
+          $stmt->bindParam(':nieuwType', $nieuwType);
+          $stmt->bindParam(':oudType', $oudType);
+
+          $nieuwType = $_GET['changeProductType'];
+          $oudType = $_GET['changeProductTypeSelect'];
+          $stmt->execute();
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
   }
 ?>
 
@@ -466,7 +496,7 @@
                 <input type="text" value="Kies hierbeneden de voorraad locatie en adres voor de product" id="addProductsInfoSelect" readonly>
                 <select name="addProductsLocatieSelect" id="addProductsLocatieSelect">
                   <?php
-                    foreach ($GLOBALS['locatieNaam'] as $val) {
+                    foreach ($GLOBALS ['locatieNaam'] as $val) {
                       echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
                     }
                   ?>
