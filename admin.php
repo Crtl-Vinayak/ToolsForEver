@@ -158,7 +158,7 @@
             $stmt = $conn->prepare("SET FOREIGN_KEY_CHECKS=0");
             $stmt->execute();
 
-            $stmt = $conn->prepare("INSERT INTO locatie (naam, adres) VALUES (:naam, :adres)");
+            $stmt = $conn->prepare("INSERT INTO locatie (naam, address) VALUES (:naam, :adres)");
             $stmt->bindParam(':naam', $naam);
             $stmt->bindParam(':adres', $adres);
 
