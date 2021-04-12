@@ -841,7 +841,6 @@ body {
   grid-column-end: 4;
   grid-row-start: 7;
   grid-row-end: 8;
-  margin-right: 20px;
 }
 
 #changeProductVerkoopprijsSubmit {
@@ -912,7 +911,7 @@ body {
 #medewerkerDiv {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 24px auto 350px 260px 300px 300px 250px;
+  grid-template-rows: 24px auto 350px 1600px 250px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -950,6 +949,46 @@ body {
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 3;
+}
+
+#medewerkerInfo2 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#medewerkerInfo3 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+#medewerkerInfo4 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 10;
+  grid-row-end: 11;
+}
+
+#medewerkerInfo5 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 14;
+  grid-row-end: 15;
+}
+
+#medewerkerInfo6 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 18;
+  grid-row-end: 19;
 }
 
 #addMedewerkerForm {
@@ -1005,23 +1044,15 @@ body {
   grid-row-end: 10;
 }
 
-#medewerkerChangeDiv1 {
+#medewerkerChangeDiv {
   display: grid;
   grid-template-columns: 50px auto;
-  grid-template-rows: 24px 24px 220px;
+  grid-template-rows: repeat(5, 24px 24px 24px 236px);
 
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 4;
   grid-row-end: 5;
-}
-
-#medewerkerInfo2 {
-  font-family: "Segoe UI";
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
 }
 
 #changeMedewerkerForm1 {
@@ -1082,25 +1113,6 @@ body {
   grid-column-end: 6;
   grid-row-start: 6;
   grid-row-end: 7;
-}
-
-#medewerkerChangeDiv2 {
-  display: grid;
-  grid-template-columns: 50px auto;
-  grid-template-rows: 24px 24px 250px;
-
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 5;
-  grid-row-end: 6;
-}
-
-#medewerkerInfo3 {
-  font-family: "Segoe UI";
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
 }
 
 #changeMedewerkerForm2 {
@@ -1177,25 +1189,6 @@ body {
   grid-row-end: 9;
 }
 
-#medewerkerChangeDiv3 {
-  display: grid;
-  grid-template-columns: 50px auto;
-  grid-template-rows: 24px 24px 220px;
-
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 6;
-  grid-row-end: 7;
-}
-
-#medewerkerInfo4 {
-  font-family: "Segoe UI";
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-
 #changeMedewerkerForm3 {
   display: grid;
   grid-template-columns: 200px 20px 300px auto 120px auto;
@@ -1270,11 +1263,11 @@ body {
 
   grid-column-start: 1;
   grid-column-end: 2;
-  grid-row-start: 7;
-  grid-row-end: 8;
+  grid-row-start: 5;
+  grid-row-end: 6;
 }
 
-#medewerkerInfo5 {
+#medewerkerInfo7 {
   font-family: "Segoe UI";
   grid-column-start: 2;
   grid-column-end: 3;
@@ -1293,21 +1286,21 @@ body {
   grid-row-end: 4;
 }
 
-#readVoornaam3 {
+#readVoornaam7 {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 2;
   grid-row-end: 3;
 }
 
-#readTussenvoegsel3 {
+#readTussenvoegsel7 {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 4;
   grid-row-end: 5;
 }
 
-#readAchternaam3 {
+#readAchternaam7 {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 6;
