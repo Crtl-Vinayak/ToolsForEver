@@ -12,6 +12,8 @@
   $object->overzicht();
   $object->setFormSelectOptionData();
 
+  // TODO set the other func ready. addLocatie() is done.
+
   if(isset($_GET['addLocatie']) && isset($_GET['addAdres']) && isset($_GET['addPlaceSubmit'])) {
     $object->addLocatie();
   } else if ((!empty($_GET['changeLocatie']) || !empty($_GET['changeAdres']) && !empty($_GET['changePlaceSubmit']))) {
