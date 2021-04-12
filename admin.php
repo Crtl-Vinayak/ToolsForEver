@@ -28,9 +28,10 @@
               isset($_GET['addProductsVoorraad']) && isset($_GET['addProductsLocatieSelect']) && isset($_GET['addProductsAdresSelect']) &&
               isset($_GET['addProductsMinimumVoorraad']) && isset($_GET['addProductsVerkoopprijs']) && isset($_GET['addProductSubmit'])) {
     $object->addProduct();
+  } else if (isset($_GET['changeProductNaamSelect']) && isset($_GET['changeProductNaam']) && isset($_GET['changeProductNaamSubmit'])) {
+    $object->changeProductNaam();
   }
 
-  // $object->addProduct();
   // $object->changeProduct1();
   // // $object->changeProduct2();
   // $object->changeProduct3();
@@ -265,10 +266,6 @@
           header('Location: '.URL.'admin.php', TRUE, 302);
       }
 
-      // (isset($_GET['addProductsNaam']) && isset($_GET['addProductsType']) && isset($_GET['addProductsFabriek']) &&
-      // isset($_GET['addProductsVoorraad']) && isset($_GET['addProductsLocatieSelect']) && isset($_GET['addProductsAdresSelect']) &&
-      // isset($_GET['addProductsMinimumVoorraad']) && isset($_GET['addProductsVerkoopprijs']) && isset($_GET['addProductSubmit']))
-
       public function addProduct() {
         try {
           $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
@@ -342,6 +339,28 @@
           $idProduct = $getProductId;
           $stmt->execute();
 
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+
+      public function changeProductNaam() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("UPDATE products SET product = :nieuwProduct WHERE product = :oudProduct");
+          $stmt->bindParam(':nieuwProduct', $nieuwProduct);
+          $stmt->bindParam(':oudProduct', $oudProduct);
+
+          $nieuwProduct = $_GET['changeProductNaam'];
+          $oudProduct = $_GET['changeProductNaamSelect'];
+          $stmt->execute();
         } catch(PDOException $e) {
           echo $sql . "<br>" . $e->getMessage();
         }
