@@ -669,13 +669,13 @@
           <div id="productDiv">
             <span id="productInfo">Hier kan je de product informatie wijzigen, toevoegen of verwijderen.</span>
             <div id="productAddDiv">
-              <span id="productInfo1">- artiekel, type, fabriek, voorraad, (locatie van artiekel), minimumvoorraad, verkoopprijs toevoegen.</span>
+              <span id="productInfo1">- artikel, type, fabriek, voorraad, (locatie van artikel), minimumvoorraad, verkoopprijs toevoegen.</span>
               <form method="GET" id="addProductForm">
                 <input type="text" name="addProductsNaam" value="" placeholder="type hier de nieuwe product naam" id="addProductsNaam" required>
                 <input type="text" name="addProductsType" value="" placeholder="type hier de type van het product" id="addProductsType">
                 <input type="text" name="addProductsFabriek" value="" placeholder="type hier van welke fabriek het product komt" id="addProductsFabriek" required>
                 <input type="number" name="addProductsVoorraad" value="" min="0" placeholder="type hier het getal van hoeveel van dit product in het voorraad zit" id="addProductsVoorraad" required>
-                <input type="text" value="Selecteer hier beneden de nieuwe locatie en address, van waar het voorraad ligt van het product." id="addProductsInfoSelect" readonly>
+                <input type="text" value="Kies hierbeneden de voorraad locatie en adres voor de product" id="addProductsInfoSelect" readonly>
                 <select name="addProductsLocatieSelect" id="addProductsLocatieSelect">
                   <?php
                     foreach ($GLOBALS['locatieNaam'] as $val) {
@@ -696,7 +696,7 @@
               </form>
             </div>
             <div id="productChangeDiv">
-              <span id="productInfo2">- artiekel naam wijzigen.</span>
+              <span id="productInfo2">- artikel naam wijzigen.</span>
               <form method="GET" id="changeProductNaamForm">
                 <select name="changeProductNaamSelect" id="changeProductNaamSelect">
                   <?php
@@ -709,7 +709,7 @@
                 <input type="submit" name="changeProductNaamSubmit" value="Wijziging opslaan" id="changeProductNaamSubmit">
               </form>
 
-              <span id="productInfo3">- artiekel type wijzigen.</span>
+              <span id="productInfo3">- artikel type wijzigen.</span>
               <form method="GET" id="changeProductTypeForm">
                 <select name="changeProductTypeSelect" id="changeProductTypeSelect">
                   <?php
@@ -722,7 +722,7 @@
                 <input type="submit" name="changeProductTypeSubmit" value="Wijziging opslaan" id="changeProductTypeSubmit">
               </form>
 
-              <span id="productInfo4">- artiekel fabriek wijzigen.</span>
+              <span id="productInfo4">- artikel fabriek wijzigen.</span>
               <form method="GET" id="changeProductFabriekForm">
                 <select name="changeProductFabriekSelect" id="changeProductFabriekSelect">
                   <?php
@@ -734,9 +734,9 @@
                 <input type="text" name="changeProductFabriek" value="" placeholder="type hier de gewijzigde product fabriek" id="changeProductFabriek">
                 <input type="submit" name="changeProductFabriekSubmit" value="Wijziging opslaan" id="changeProductFabriekSubmit">
               </form>
-              <span id="productInfo5">- Artiekel locatie voorraad wijzigen.</span>
+              <span id="productInfo5">- Artikel locatie voorraad wijzigen.</span>
               <span id="productInfo6">- Middelste rij is de oude locatie die u wilt wijzigen.</span>
-              <span id="productInfo7">- Kies je bij de rechter rij de nieuwe locatie voor het artiekel.</span>
+              <span id="productInfo7">- Kies je bij de rechter rij de nieuwe locatie voor het artikel.</span>
               <form method="GET" id="changeProductForm2">
                 <select name="changeProductsNaamSelect2" id="changeProductsNaamSelect2">
                   <?php
@@ -789,7 +789,7 @@
                 </select>
                 <input type="submit" name="changeProductSubmit2" value="Wijziging opslaan" id="changeProductSubmit2">
               </form>
-              <span id="productInfo8">- artiekel voorraad wijzigen.</span>
+              <span id="productInfo8">- artikel voorraad wijzigen.</span>
               <form method="GET" id="changeProductVoorraadForm">
                 <select name="changeProductsNaamSelect3" id="changeProductsNaamSelect3">
                   <?php
@@ -816,7 +816,7 @@
                 <input type="submit" name="changeProductVoorraadSubmit" value="Wijziging opslaan" id="changeProductVoorraadSubmit">
               </form>
 
-              <span id="productInfo9">- artiekel minimum voorraad wijzigen.</span>
+              <span id="productInfo9">- artikel minimum voorraad wijzigen.</span>
               <form method="GET" id="changeProductMinimumVoorraadForm">
                 <select name="changeProductsNaamSelect4" id="changeProductsNaamSelect4">
                   <?php
@@ -843,7 +843,7 @@
                 <input type="submit" name="changeProductMinimumSubmit" value="Wijziging opslaan" id="changeProductMinimumSubmit">
               </form>
 
-              <span id="productInfo10">- artiekel verkoopprijs wijzigen.</span>
+              <span id="productInfo10">- artikel verkoopprijs wijzigen.</span>
               <form method="GET" id="changeProductVerkoopprijsForm">
                 <select name="changeProductsNaamSelect5" id="changeProductsNaamSelect5">
                   <?php
@@ -871,7 +871,7 @@
               </form>
           </div>
           <div id="productRemoveDiv">
-            <span id="productInfo11">- artiekel verwijderen van een bepaalde type en fabriek.</span>
+            <span id="productInfo11">- artikel verwijderen van een bepaalde type en fabriek.</span>
             <form method="GET" id="removeProductForm">
               <select name="removeProductsNaamSelect" id="removeProductsNaamSelect">
                 <?php
@@ -922,9 +922,9 @@
           <div id="medewerkerChangeDiv">
             <span id="medewerkerInfo2">- medewerker voornaam wijzigen.</span>
             <form method="POST" id="changeMedewerkerVoornaamForm">
-              <input type="text" readonly name="readVoornaam" value="" placeholder="Voornaam:" class="readVoornaam">
-              <input type="text" readonly name="readTussenvoegsel" value="" placeholder="Tussenvoegsel:" class="readTussenvoegsel">
-              <input type="text" readonly name="readAchternaam" value="" placeholder="Achternaam:" class="readAchternaam">
+              <input type="text" readonly name="readVoornaam" value="Voornaam:" class="readVoornaam">
+              <input type="text" readonly name="readTussenvoegsel" value="Tussenvoegsel:" class="readTussenvoegsel">
+              <input type="text" readonly name="readAchternaam" value="Achternaam:" class="readAchternaam">
               <select name="changeMedewerkerVoornaamSelect1" class="changeMedewerkerVoornaamSelect">
                 <?php
                   foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
@@ -952,9 +952,9 @@
 
             <span id="medewerkerInfo3">- medewerker tussenvoegsel wijzigen.</span>
             <form method="POST" id="changeMedewerkerTussenvoegselForm">
-              <input type="text" readonly name="readVoornaam" value="" placeholder="Voornaam:" class="readVoornaam">
-              <input type="text" readonly name="readTussenvoegsel" value="" placeholder="Tussenvoegsel:" class="readTussenvoegsel">
-              <input type="text" readonly name="readAchternaam" value="" placeholder="Achternaam:" class="readAchternaam">
+              <input type="text" readonly name="readVoornaam" value="Voornaam:" class="readVoornaam">
+              <input type="text" readonly name="readTussenvoegsel" value="Tussenvoegsel:" class="readTussenvoegsel">
+              <input type="text" readonly name="readAchternaam" value="Achternaam:" class="readAchternaam">
               <select name="changeMedewerkerVoornaamSelect2" class="changeMedewerkerVoornaamSelect">
                 <?php
                   foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
@@ -982,9 +982,9 @@
 
             <span id="medewerkerInfo4">- medewerker achternaam wijzigen.</span>
             <form method="POST" id="changeMedewerkerAchternaamForm">
-              <input type="text" readonly name="readVoornaam" value="" placeholder="Voornaam:" class="readVoornaam">
-              <input type="text" readonly name="readTussenvoegsel" value="" placeholder="Tussenvoegsel:" class="readTussenvoegsel">
-              <input type="text" readonly name="readAchternaam" value="" placeholder="Achternaam:" class="readAchternaam">
+              <input type="text" readonly name="readVoornaam" value="Voornaam:" class="readVoornaam">
+              <input type="text" readonly name="readTussenvoegsel" value="Tussenvoegsel:" class="readTussenvoegsel">
+              <input type="text" readonly name="readAchternaam" value="Achternaam:" class="readAchternaam">
               <select name="changeMedewerkerVoornaamSelect3" class="changeMedewerkerVoornaamSelect">
                 <?php
                   foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
@@ -1013,10 +1013,10 @@
 
             <span id="medewerkerInfo5">- medewerker rol wijzigen.</span>
             <form method="POST" id="changeMedewerkerRolForm">
-              <input type="text" readonly name="readVoornaam" value="" placeholder="Voornaam:" class="readVoornaam">
-              <input type="text" readonly name="readTussenvoegsel" value="" placeholder="Tussenvoegsel:" class="readTussenvoegsel">
-              <input type="text" readonly name="readAchternaam" value="" placeholder="Achternaam:" class="readAchternaam">
-              <input type="text" readonly name="readRol" value="" placeholder="Rol:" id="readRol">
+              <input type="text" readonly name="readVoornaam" value="Voornaam:" class="readVoornaam">
+              <input type="text" readonly name="readTussenvoegsel" value="Tussenvoegsel:" class="readTussenvoegsel">
+              <input type="text" readonly name="readAchternaam" value="Achternaam:" class="readAchternaam">
+              <input type="text" readonly name="readRol" value="Rol:" id="readRol">
               <select name="changeMedewerkerVoornaamSelect4" class="changeMedewerkerVoornaamSelect">
                 <?php
                   foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
@@ -1049,9 +1049,9 @@
 
             <span id="medewerkerInfo6">- medewerker wachtwoord wijzigen.</span>
             <form method="POST" id="changeMedewerkerWachtwoordForm">
-              <input type="text" readonly name="readVoornaam" value="" placeholder="Voornaam:" class="readVoornaam">
-              <input type="text" readonly name="readTussenvoegsel" value="" placeholder="Tussenvoegsel:" class="readTussenvoegsel">
-              <input type="text" readonly name="readAchternaam" value="" placeholder="Achternaam:" class="readAchternaam">
+              <input type="text" readonly name="readVoornaam" value="Voornaam:" class="readVoornaam">
+              <input type="text" readonly name="readTussenvoegsel" value="Tussenvoegsel:" class="readTussenvoegsel">
+              <input type="text" readonly name="readAchternaam" value="Achternaam:" class="readAchternaam">
               <select name="changeMedewerkerVoornaamSelect5" class="changeMedewerkerVoornaamSelect">
                 <?php
                   foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
@@ -1086,9 +1086,9 @@
           <div id="medewerkerRemoveDiv">
             <span id="medewerkerInfo7">- medewerker verwijderen.</span>
             <form method="POST" id="removeMedewerkerForm">
-              <input type="text" readonly name="readVoornaam" value="" placeholder="Voornaam:" class="readVoornaam">
-              <input type="text" readonly name="readTussenvoegsel" value="" placeholder="Tussenvoegsel:" class="readTussenvoegsel">
-              <input type="text" readonly name="readAchternaam" value="" placeholder="Achternaam:" class="readAchternaam">
+              <input type="text" readonly name="readVoornaam" value="Voornaam:" class="readVoornaam">
+              <input type="text" readonly name="readTussenvoegsel" value="Tussenvoegsel:" class="readTussenvoegsel">
+              <input type="text" readonly name="readAchternaam" value="Achternaam:" class="readAchternaam">
               <select name="removeMedewerkerVoornaamSelect" id="removeMedewerkerVoornaamSelect">
                 <?php
                   foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
