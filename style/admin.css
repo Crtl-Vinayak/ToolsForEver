@@ -118,7 +118,7 @@ body {
 #locatieDiv {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 24px auto 105px 215px 190px;
+  grid-template-rows: 24px auto 105px 215px 240px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -131,12 +131,13 @@ body {
   text-align: center;
   justify-content: center;
 
-  text-transform: lowercase;
-
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 2;
   grid-row-end: 3;
+
+  font-family: "Segoe UI";
+  font-size: 18px;
 }
 
 #locatieAddDiv {
@@ -176,7 +177,7 @@ body {
   grid-row-end: 2;
 }
 
-#addPlaceAddressInput {
+#addPlaceAdresInput {
   grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 1;
@@ -228,7 +229,7 @@ body {
   grid-row-end: 7;
 }
 
-#changeAddressForm {
+#changeAdresForm {
   display: grid;
   grid-template-columns: 250px 20px 250px auto 120px auto;
   grid-template-rows: 35px;
@@ -246,7 +247,7 @@ body {
   grid-row-end: 2;
 }
 
-#changeAddressSelect {
+#changeAdresSelect {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
@@ -260,7 +261,7 @@ body {
   grid-row-end: 2;
 }
 
-#changePlaceAddressInput {
+#changePlaceAdresInput {
   grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 1;
@@ -274,7 +275,7 @@ body {
   grid-row-end: 2;
 }
 
-#changeAddressSubmit {
+#changeAdresSubmit {
   grid-column-start: 5;
   grid-column-end: 6;
   grid-row-start: 1;
@@ -284,7 +285,7 @@ body {
 #locatieRemoveDiv {
   display: grid;
   grid-template-columns: 50px auto;
-  grid-template-rows: 24px 24px 24px 35px 24px 35px 24px;
+  grid-template-rows: repeat(2, 24px 24px 24px 35px);
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -298,6 +299,14 @@ body {
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 3;
+}
+
+#locatieInfo5 {
+  font-family: "Segoe UI";
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 6;
+  grid-row-end: 7;
 }
 
 #removeLocatiePlaceForm {
@@ -325,25 +334,25 @@ body {
   grid-row-end: 2;
 }
 
-#removeAddressPlaceForm {
+#removeAdresPlaceForm {
   display: grid;
   grid-template-columns: 250px 270px auto 120px auto;
   grid-template-rows: 1fr;
 
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 6;
-  grid-row-end: 7;
+  grid-row-start: 8;
+  grid-row-end: 9;
 }
 
-#removeAddressSelect {
+#removeAdresSelect {
   grid-column-start: 1;
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
 }
 
-#removeAddressPlaceSubmit {
+#removeAdresPlaceSubmit {
   grid-column-start: 4;
   grid-column-end: 5;
   grid-row-start: 1;
@@ -353,7 +362,7 @@ body {
 #productDiv {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 24px auto 530px 1508px 150px;
+  grid-template-rows: 24px auto 530px 1472px 150px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -366,12 +375,13 @@ body {
   text-align: center;
   justify-content: center;
 
-  text-transform: lowercase;
-
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 2;
   grid-row-end: 3;
+
+  font-family: "Segoe UI";
+  font-size: 18px;
 }
 
 #productAddDiv {
@@ -445,7 +455,7 @@ body {
   grid-row-end: 13;
 }
 
-#addProductsAddressSelect {
+#addProductsAdresSelect {
   grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 12;
@@ -707,7 +717,7 @@ body {
   grid-row-end: 5;
 }
 
-#changeProductsAddressSelect {
+#changeProductsAdresSelect {
   grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 6;
@@ -721,7 +731,7 @@ body {
   grid-row-end: 5;
 }
 
-#changeProductsAddressSelect2 {
+#changeProductsAdresSelect2 {
   grid-column-start: 5;
   grid-column-end: 6;
   grid-row-start: 6;
@@ -759,21 +769,21 @@ body {
 
 #changeProductsNaamSelect3 {
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
 }
 
 #changeProductsTypeSelect3 {
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 4;
   grid-row-start: 3;
   grid-row-end: 4;
 }
 
 #changeProductsFabriekSelect3 {
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 4;
   grid-row-start: 5;
   grid-row-end: 6;
 }
@@ -794,21 +804,21 @@ body {
 
 #changeProductsNaamSelect4 {
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
 }
 
 #changeProductsTypeSelect4 {
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 4;
   grid-row-start: 3;
   grid-row-end: 4;
 }
 
 #changeProductsFabriekSelect4 {
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 4;
   grid-row-start: 5;
   grid-row-end: 6;
 }
@@ -829,21 +839,21 @@ body {
 
 #changeProductsNaamSelect5 {
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
 }
 
 #changeProductsTypeSelect5 {
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 4;
   grid-row-start: 3;
   grid-row-end: 4;
 }
 
 #changeProductsFabriekSelect5 {
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 4;
   grid-row-start: 5;
   grid-row-end: 6;
 }
@@ -936,12 +946,13 @@ body {
   text-align: center;
   justify-content: center;
 
-  text-transform: lowercase;
-
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 2;
   grid-row-end: 3;
+
+  font-family: "Segoe UI";
+  font-size: 18px;
 }
 
 #medewerkerAddDiv {
@@ -1016,21 +1027,21 @@ body {
 
 #addMedewerkersVoornaam {
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
 }
 
 #addMedewerkersTussenvoegsel {
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 3;
   grid-row-start: 3;
   grid-row-end: 4;
 }
 
 #addMedewerkersAchternaam {
   grid-column-start: 1;
-  grid-column-end: 2;
+  grid-column-end: 3;
   grid-row-start: 5;
   grid-row-end: 6;
 }

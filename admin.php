@@ -12,9 +12,9 @@
   $object->overzicht();
   $object->setFormSelectOptionData();
 
-  if(isset($_GET['addLocatie']) && isset($_GET['addAddress']) && isset($_GET['addPlaceSubmit'])) {
+  if(isset($_GET['addLocatie']) && isset($_GET['addAdres']) && isset($_GET['addPlaceSubmit'])) {
     $object->addLocatie();
-  } else if ((!empty($_GET['changeLocatie']) || !empty($_GET['changeAddress']) && !empty($_GET['changePlaceSubmit']))) {
+  } else if ((!empty($_GET['changeLocatie']) || !empty($_GET['changeAdres']) && !empty($_GET['changePlaceSubmit']))) {
     $object->changeLocatie();
   }
 
@@ -72,15 +72,15 @@
           }
           array_shift($GLOBALS['locatieNaam']);
 
-          // set "locatie address" for the forms.
-          $GLOBALS['locatieAddress'] = array("");
+          // set "locatie adres" for the forms.
+          $GLOBALS['locatieAdres'] = array("");
           $stmt = $conn->prepare("SELECT address FROM locatie");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
-            array_push($GLOBALS['locatieAddress'], $row['address']);
+            array_push($GLOBALS['locatieAdres'], $row['address']);
           }
-          array_shift($GLOBALS['locatieAddress']);
+          array_shift($GLOBALS['locatieAdres']);
 
           // set "product naam" for the forms.
           $GLOBALS['productNaam'] = array("");
@@ -158,12 +158,12 @@
             $stmt = $conn->prepare("SET FOREIGN_KEY_CHECKS=0");
             $stmt->execute();
 
-            $stmt = $conn->prepare("INSERT INTO locatie (naam, address) VALUES (:naam, :address)");
+            $stmt = $conn->prepare("INSERT INTO locatie (naam, adres) VALUES (:naam, :adres)");
             $stmt->bindParam(':naam', $naam);
-            $stmt->bindParam(':address', $address);
+            $stmt->bindParam(':adres', $adres);
 
             $naam = $_GET['addLocatie'];
-            $address = $_GET['addAddress'];
+            $adres = $_GET['addAdres'];
             $stmt->execute();
           } catch(PDOException $e) {
             echo $sql . "<br>" . $e->getMessage();
@@ -176,7 +176,7 @@
         echo "change Locatie!<br>";
         // if empty then output 1
         // echo "locatie change = " . empty($_GET['changeLocatie']);
-        // echo "address change = " . empty($_GET['changeAddress']);
+        // echo "adres change = " . empty($_GET['changeAdres']);
 
         // if (!empty($_GET['changeLocatie']) && isset($_GET['changePlaceSubmit'])) {
         //
@@ -191,7 +191,7 @@
         //     $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
         //     $stmt->execute();
         //
-        //     $stmt = $conn->prepare("UPDATE locatie SET naam = :nieuwLocatie WHERE address = :");
+        //     $stmt = $conn->prepare("UPDATE locatie SET naam = :nieuwLocatie WHERE adres = :");
         //     $stmt->bindParam(':idlocatie', $idlocatie);
         //     $stmt->bindParam(':idproduct', $idproduct);
         //
@@ -207,15 +207,15 @@
         //   $conn = null;
         //   header('Location: '.URL.'admin.php', TRUE, 302);
         // }
-        // if (!empty($_GET['changeAddress']) && isset($_GET['changePlaceSubmit'])) {
+        // if (!empty($_GET['changeAdres']) && isset($_GET['changePlaceSubmit'])) {
         //
-        //   $nieuweAddress = $_GET['changeAddress'];
-        //   $selectAddress = $_GET['changeAddressSelect'];
+        //   $nieuweAdres = $_GET['changeAdres'];
+        //   $selectAdres = $_GET['changeAdresSelect'];
         //
         //   try {
         //     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //     $sql = "UPDATE locatie SET address = '$nieuweAddress' WHERE address = '$selectAddress'";
+        //     $sql = "UPDATE locatie SET adres = '$nieuweAdres' WHERE adres = '$selectAdres'";
         //     $conn->exec($sql);
         //   } catch(PDOException $e) {
         //     echo $sql . "<br>" . $e->getMessage();
@@ -255,21 +255,21 @@
       // }
       //
       // public function removeLocatie2() {
-      //   if (isset($_GET['removeAddressPlaceSubmit'])) {
+      //   if (isset($_GET['removeAdresPlaceSubmit'])) {
       //     $servername = "localhost";
       //     $username = "root";
       //     $password = "";
       //     $dbname = "toolsforever";
       //     $charset = "utf8mb4";
       //
-      //     $removedLocatieAddress = $_GET['removeAddressSelect'];
+      //     $removedLocatieAdres = $_GET['removeAdresSelect'];
       //
       //     try {
       //       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       //       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       //       $sql = "SET SQL_SAFE_UPDATES = 0;";
       //       $conn->exec($sql);
-      //       $sql = "DELETE FROM locatie WHERE address = '$removedLocatieAddress'";
+      //       $sql = "DELETE FROM locatie WHERE adres = '$removedLocatieAdres'";
       //       $conn->exec($sql);
       //     } catch(PDOException $e) {
       //       echo $sql . "<br>" . $e->getMessage();
@@ -292,7 +292,7 @@
       //     $productFabriek = $_GET['addProductsFabriek'];
       //     $productVoorraad = $_GET['addProductsVoorraad'];
       //     $productLocatie = $_GET['addProductsLocatieSelect'];
-      //     $productAddress = $_GET['addProductsAddressSelect'];
+      //     $productAdres = $_GET['addProductsAdresSelect'];
       //     $productMVoorraad = $_GET['addProductsMinimumVoorraad'];
       //     $productVerkoopprijs = $_GET['addProductsVerkoopprijs'];
       //
@@ -348,14 +348,14 @@
       //     $productFabriek = $_GET['addProductsFabriek'];
       //     $productVoorraad = $_GET['addProductsVoorraad'];
       //     $productLocatie = $_GET['addProductsLocatieSelect'];
-      //     $productAddress = $_GET['addProductsAddressSelect'];
+      //     $productAdres = $_GET['addProductsAdresSelect'];
       //     $productMVoorraad = $_GET['addProductsMinimumVoorraad'];
       //     $productVerkoopprijs = $_GET['addProductsVerkoopprijs'];
       //
       //     $idlocatie = 0;
       //     $idproduct = 0;
       //
-      //     foreach ($pdo->query("SELECT idlocatie FROM locatie WHERE naam = '$productLocatie' AND address = '$productAddress'") as $row) {
+      //     foreach ($pdo->query("SELECT idlocatie FROM locatie WHERE naam = '$productLocatie' AND adres = '$productAdres'") as $row) {
       //       $idlocatie = $row[0];
       //     }
       //
@@ -508,12 +508,12 @@
       // //     $productType = $_GET['changeProductsTypeSelect2'];
       // //     $productFabriek = $_GET['changeProductsFabriekSelect2'];
       // //     $productLocatie = $_GET['changeProductsLocatieSelect'];
-      // //     $productAddress = $_GET['changeProductsAddressSelect'];
+      // //     $productAdres = $_GET['changeProductsAdresSelect'];
       // //
       // //     $idlocatie = 0;
       // //     $idproduct = 0;
       // //
-      // //     foreach ($pdo->query("SELECT idlocatie FROM locatie WHERE naam = '$productLocatie' AND address = '$productAddress'") as $row) {
+      // //     foreach ($pdo->query("SELECT idlocatie FROM locatie WHERE naam = '$productLocatie' AND adres = '$productAdres'") as $row) {
       // //       $idlocatie = $row[0];
       // //     }
       // //
@@ -533,21 +533,21 @@
       // // }
       //
       // public function changeProduct3() {
-      //   if (isset($_GET['removeAddressPlaceSubmit'])) {
+      //   if (isset($_GET['removeAdresPlaceSubmit'])) {
       //     $servername = "localhost";
       //     $username = "root";
       //     $password = "";
       //     $dbname = "toolsforever";
       //     $charset = "utf8mb4";
       //
-      //     $removedLocatieAddress = $_GET['removeAddressSelect'];
+      //     $removedLocatieAdres = $_GET['removeAdresSelect'];
       //
       //     try {
       //       $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
       //       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       //       $sql = "SET SQL_SAFE_UPDATES = 0;";
       //       $conn->exec($sql);
-      //       $sql = "DELETE FROM locatie WHERE address = '$removedLocatieAddress'";
+      //       $sql = "DELETE FROM locatie WHERE adres = '$removedLocatieAdres'";
       //       $conn->exec($sql);
       //     } catch(PDOException $e) {
       //       echo $sql . "<br>" . $e->getMessage();
@@ -607,12 +607,12 @@
           <div id="line3"></div>
           <div id="line4"></div>
           <div id="locatieDiv">
-            <span id="locatieInfo">Hier kan je de locatie EN ADDRESS wijzigen, toevoegen of verwijderen.</span>
+            <span id="locatieInfo">Hier kan je de locatie en adres toevoegen, wijzigen of verwijderen</span>
             <div id="locatieAddDiv">
-              <span id="locatieInfo1">- locatie en address toevoegen</span>
+              <span id="locatieInfo1">- locatie en adres toevoegen</span>
               <form method="GET" id="addPlaceForm">
                 <input type="text" name="addLocatie" value="" placeholder="type hier de nieuwe locatie" required id="addPlaceLocatieInput">
-                <input type="text" name="addAddress" value="" placeholder="type hier de nieuwe address" required id="addPlaceAddressInput">
+                <input type="text" name="addAdres" value="" placeholder="type hier de nieuwe adres" required id="addPlaceAdresInput">
                 <input type="submit" name="addPlaceSubmit" value="Toevoegen" id="addPlaceSubmit">
               </form>
             </div>
@@ -629,21 +629,21 @@
                 <input type="text" name="changePlaceLocatieInput" value="" placeholder="type hier de nieuwe gewijzigde locatie" id="changePlaceLocatieInput">
                 <input type="submit" name="changeLocatieSubmit" value="Wijziging opslaan" id="changeLocatieSubmit">
               </form>
-              <span id="locatieInfo3">- address wijzigen.</span>
-              <form method="GET" id="changeAddressForm">
-                <select name="changeAddressSelect" id="changeAddressSelect">
+              <span id="locatieInfo3">- adres wijzigen.</span>
+              <form method="GET" id="changeAdresForm">
+                <select name="changeAdresSelect" id="changeAdresSelect">
                   <?php
-                    foreach ($GLOBALS['locatieAddress'] as $val) {
+                    foreach ($GLOBALS['locatieAdres'] as $val) {
                       echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
                     }
                   ?>
                 </select>
-                <input type="text" name="changePlaceAddressInput" value="" placeholder="type hier de nieuwe gewijzigde address" id="changePlaceAddressInput">
-                <input type="submit" name="changeAddressSubmit" value="Wijziging opslaan" id="changeAddressSubmit">
+                <input type="text" name="changePlaceAdresInput" value="" placeholder="type hier de nieuwe gewijzigde adres" id="changePlaceAdresInput">
+                <input type="submit" name="changeAdresSubmit" value="Wijziging opslaan" id="changeAdresSubmit">
               </form>
             </div>
             <div id="locatieRemoveDiv">
-              <span id="locatieInfo4">- locatie of address verwijderen</span>
+              <span id="locatieInfo4">- locatie verwijderen</span>
               <form method="GET" id="removeLocatiePlaceForm">
                 <select name="removeLocatieSelect" id="removeLocatieSelect">
                   <?php
@@ -654,20 +654,21 @@
                 </select>
                 <input type="submit" name="removeLocatiePlaceSubmit" value="Verwijder" id="removeLocatiePlaceSubmit">
               </form>
-              <form method="GET" id="removeAddressPlaceForm">
-                <select name="removeAddressSelect" id="removeAddressSelect">
+              <span id="locatieInfo5">- adres verwijderen</span>
+              <form method="GET" id="removeAdresPlaceForm">
+                <select name="removeAdresSelect" id="removeAdresSelect">
                   <?php
-                    foreach ($GLOBALS['locatieAddress'] as $val) {
+                    foreach ($GLOBALS['locatieAdres'] as $val) {
                       echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
                     }
                   ?>
                 </select>
-                <input type="submit" name="removeAddressPlaceSubmit" value="Verwijder" id="removeAddressPlaceSubmit">
+                <input type="submit" name="removeAdresPlaceSubmit" value="Verwijder" id="removeAdresPlaceSubmit">
               </form>
             </div>
           </div>
           <div id="productDiv">
-            <span id="productInfo">Hier kan je de product informatie wijzigen, toevoegen of verwijderen.</span>
+            <span id="productInfo">Hier kan je de product informatie toevoegen, wijzigen of verwijderen</span>
             <div id="productAddDiv">
               <span id="productInfo1">- artikel, type, fabriek, voorraad, (locatie van artikel), minimumvoorraad, verkoopprijs toevoegen.</span>
               <form method="GET" id="addProductForm">
@@ -683,9 +684,9 @@
                     }
                   ?>
                 </select>
-                <select name="addProductsAddressSelect" id="addProductsAddressSelect">
+                <select name="addProductsAdresSelect" id="addProductsAdresSelect">
                   <?php
-                    foreach ($GLOBALS['locatieAddress'] as $val) {
+                    foreach ($GLOBALS['locatieAdres'] as $val) {
                       echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
                     }
                   ?>
@@ -708,7 +709,6 @@
                 <input type="text" name="changeProductNaam" value="" placeholder="type hier de gewijzigde product naam" id="changeProductNaam">
                 <input type="submit" name="changeProductNaamSubmit" value="Wijziging opslaan" id="changeProductNaamSubmit">
               </form>
-
               <span id="productInfo3">- artikel type wijzigen.</span>
               <form method="GET" id="changeProductTypeForm">
                 <select name="changeProductTypeSelect" id="changeProductTypeSelect">
@@ -721,7 +721,6 @@
                 <input type="text" name="changeProductType" value="" placeholder="type hier de gewijzigde product type" id="changeProductType">
                 <input type="submit" name="changeProductTypeSubmit" value="Wijziging opslaan" id="changeProductTypeSubmit">
               </form>
-
               <span id="productInfo4">- artikel fabriek wijzigen.</span>
               <form method="GET" id="changeProductFabriekForm">
                 <select name="changeProductFabriekSelect" id="changeProductFabriekSelect">
@@ -766,9 +765,9 @@
                     }
                   ?>
                 </select>
-                <select name="changeProductsAddressSelect" id="changeProductsAddressSelect">
+                <select name="changeProductsAdresSelect" id="changeProductsAdresSelect">
                   <?php
-                    foreach ($GLOBALS['locatieAddress'] as $val) {
+                    foreach ($GLOBALS['locatieAdres'] as $val) {
                       echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
                     }
                   ?>
@@ -780,9 +779,9 @@
                     }
                   ?>
                 </select>
-                <select name="changeProductsAddressSelect2" id="changeProductsAddressSelect2">
+                <select name="changeProductsAdresSelect2" id="changeProductsAdresSelect2">
                   <?php
-                    foreach ($GLOBALS['locatieAddress'] as $val) {
+                    foreach ($GLOBALS['locatieAdres'] as $val) {
                       echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
                     }
                   ?>
@@ -815,7 +814,6 @@
                 <input type="number" name="changeProductsVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van hoeveel van dit product in het voorraad zit" id="changeProductsVoorraad">
                 <input type="submit" name="changeProductVoorraadSubmit" value="Wijziging opslaan" id="changeProductVoorraadSubmit">
               </form>
-
               <span id="productInfo9">- artikel minimum voorraad wijzigen.</span>
               <form method="GET" id="changeProductMinimumVoorraadForm">
                 <select name="changeProductsNaamSelect4" id="changeProductsNaamSelect4">
@@ -899,7 +897,7 @@
           </div>
         </div>
         <div id="medewerkerDiv">
-          <span id="medewerkerInfo">Hier kan je medewerkers informatie wijzigen, toevoegen of verwijderen.</span>
+          <span id="medewerkerInfo">Hier kan je medewerkers informatie toevoegen, wijzigen of verwijderen</span>
           <div id="medewerkerAddDiv">
             <span id="medewerkerInfo1">- medewerker naam, wachtwoord en rol toevoegen.</span>
             <form method="POST" id="addMedewerkerForm">
@@ -914,11 +912,6 @@
               <input type="submit" name="addMedewerkerSubmit" value="Toevoegen" id="addMedewerkerSubmit">
             </form>
           </div>
-
-
-
-
-
           <div id="medewerkerChangeDiv">
             <span id="medewerkerInfo2">- medewerker voornaam wijzigen.</span>
             <form method="POST" id="changeMedewerkerVoornaamForm">
@@ -949,7 +942,6 @@
               <input type="text" name="changeMedewerkersVoornaam" value="" placeholder="type hier de nieuwe gewijzigde voornaam" id="changeMedewerkersVoornaam">
               <input type="submit" name="changeMedewerkerVoornaamSubmit" value="Wijziging opslaan" class="medewerkerSubmit">
             </form>
-
             <span id="medewerkerInfo3">- medewerker tussenvoegsel wijzigen.</span>
             <form method="POST" id="changeMedewerkerTussenvoegselForm">
               <input type="text" readonly name="readVoornaam" value="Voornaam:" class="readVoornaam">
@@ -979,7 +971,6 @@
               <input type="text" name="changeMedewerkersTussenvoegsel" value="" placeholder="type hier de nieuwe gewijzigde tussenvoegsel" id="changeMedewerkersTussenvoegsel">
               <input type="submit" name="changeMedewerkerTussenvoegselSubmit" value="Wijziging opslaan" class="medewerkerSubmit">
             </form>
-
             <span id="medewerkerInfo4">- medewerker achternaam wijzigen.</span>
             <form method="POST" id="changeMedewerkerAchternaamForm">
               <input type="text" readonly name="readVoornaam" value="Voornaam:" class="readVoornaam">
@@ -1009,8 +1000,6 @@
               <input type="text" name="changeMedewerkersAchternaam" value="" placeholder="type hier de nieuwe gewijzigde achternaam" id="changeMedewerkersAchternaam">
               <input type="submit" name="changeMedewerkerAchternaamSubmit" value="Wijziging opslaan" class="medewerkerSubmit">
             </form>
-
-
             <span id="medewerkerInfo5">- medewerker rol wijzigen.</span>
             <form method="POST" id="changeMedewerkerRolForm">
               <input type="text" readonly name="readVoornaam" value="Voornaam:" class="readVoornaam">
@@ -1044,9 +1033,6 @@
               </select>
               <input type="submit" name="changeMedewerkerRolSubmit" value="Wijziging opslaan" class="medewerkerSubmit">
             </form>
-
-
-
             <span id="medewerkerInfo6">- medewerker wachtwoord wijzigen.</span>
             <form method="POST" id="changeMedewerkerWachtwoordForm">
               <input type="text" readonly name="readVoornaam" value="Voornaam:" class="readVoornaam">
@@ -1077,12 +1063,6 @@
               <input type="submit" name="changeMedewerkerWachtwoordSubmit" value="Wijziging opslaan" class="medewerkerSubmit">
             </form>
           </div>
-
-
-
-
-
-
           <div id="medewerkerRemoveDiv">
             <span id="medewerkerInfo7">- medewerker verwijderen.</span>
             <form method="POST" id="removeMedewerkerForm">
@@ -1114,11 +1094,6 @@
             </form>
           </div>
         </div>
-
-
-
-
-
         <div id="lastDiv_overzichtVenster">
           <form method="GET" id="overzichtForm">
             <input type="submit" name="overzichtVenster" value="Naar overzicht venster gaan" id="overzichtVenster">
