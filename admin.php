@@ -32,6 +32,8 @@
     $object->changeProductNaam();
   } else if (isset($_GET['changeProductTypeSelect']) && isset($_GET['changeProductType']) && isset($_GET['changeProductTypeSubmit'])) {
     $object->changeProductType();
+  } else if (isset($_GET['changeProductFabriekSelect']) && isset($_GET['changeProductFabriek']) && isset($_GET['changeProductFabriekSubmit'])) {
+    $object->changeProductFabriek();
   }
 
   // $object->changeProduct1();
@@ -390,6 +392,28 @@
 
           $nieuwType = $_GET['changeProductType'];
           $oudType = $_GET['changeProductTypeSelect'];
+          $stmt->execute();
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+
+      public function changeProductFabriek() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("UPDATE products SET fabriek = :nieuwFabriek WHERE fabriek = :oudFabriek");
+          $stmt->bindParam(':nieuwFabriek', $nieuwFabriek);
+          $stmt->bindParam(':oudFabriek', $oudFabriek);
+
+          $nieuwFabriek = $_GET['changeProductFabriek'];
+          $oudFabriek = $_GET['changeProductFabriekSelect'];
           $stmt->execute();
         } catch(PDOException $e) {
           echo $sql . "<br>" . $e->getMessage();
