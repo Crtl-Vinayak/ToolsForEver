@@ -67,7 +67,7 @@
   } else if (isset($_POST['changeMedewerkerVoornaamSelect2']) && isset($_POST['changeMedewerkerTussenvoegselSelect2']) &&
               isset($_POST['changeMedewerkerAchternaamSelect2']) && isset($_POST['changeMedewerkersTussenvoegsel']) &&
               isset($_POST['changeMedewerkerTussenvoegselSubmit'])) {
-    // $object->changeMedewerkerTussenvoegsel();
+    $object->changeMedewerkerTussenvoegsel();
   } else if (isset($_POST['changeMedewerkerVoornaamSelect3']) && isset($_POST['changeMedewerkerTussenvoegselSelect3']) &&
               isset($_POST['changeMedewerkerAchternaamSelect3']) && isset($_POST['changeMedewerkersAchternaam']) &&
               isset($_POST['changeMedewerkerAchternaamSubmit'])) {
@@ -697,6 +697,37 @@
           $oudVoornaam = $_POST['changeMedewerkerVoornaamSelect1'];
           $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect1'];
           $achternaam = $_POST['changeMedewerkerAchternaamSelect1'];
+          $stmt->execute();
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+
+      public function changeMedewerkerTussenvoegsel() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("UPDATE medewerkers SET tussenvoegsel = :nieuwTussenvoegsel WHERE voornaam = :voornaam AND tussenvoegsel = :oudTussenvoegsel AND achternaam = :achternaam");
+          $stmt->bindParam(':voornaam', $voornaam);
+          $stmt->bindParam(':nieuwTussenvoegsel', $nieuwTussenvoegsel);
+          $stmt->bindParam(':oudTussenvoegsel', $oudTussenvoegsel);
+          $stmt->bindParam(':achternaam', $achternaam);
+
+          if ($_POST['changeMedewerkersTussenvoegsel'] == '') {
+            $nieuwTussenvoegsel = ' ';
+          } else {
+            $nieuwTussenvoegsel = $_POST['changeMedewerkersTussenvoegsel'];
+          }
+
+          $voornaam = $_POST['changeMedewerkerVoornaamSelect2'];
+          $oudTussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect2'];
+          $achternaam = $_POST['changeMedewerkerAchternaamSelect2'];
           $stmt->execute();
         } catch(PDOException $e) {
           echo $sql . "<br>" . $e->getMessage();
