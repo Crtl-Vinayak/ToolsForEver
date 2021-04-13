@@ -17,9 +17,6 @@
       // p8 = 3>hL]S/{f%EXmkRw
       // p9 = k:nnr'5s!?[PBf!T
 
-      // new1 = 123
-      // new2 = 098U
-
       public function connect() {
         $servername = "localhost";
         $username = "root";
