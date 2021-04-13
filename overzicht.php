@@ -72,7 +72,7 @@
 
         // get locatie values
         $GLOBALS['locatie'] = array("");
-        foreach ($pdo->query("SELECT naam FROM locatie") as $row) {
+        foreach ($pdo->query("SELECT DISTINCT naam FROM locatie") as $row) {
           array_push($GLOBALS['locatie'], $row[0]);
         }
         array_shift($GLOBALS['locatie']);
@@ -86,7 +86,7 @@
 
         // get product values
         $GLOBALS['product'] = array("");
-        foreach ($pdo->query("SELECT product FROM products") as $row) {
+        foreach ($pdo->query("SELECT DISTINCT product FROM products") as $row) {
           array_push($GLOBALS['product'], $row[0]);
         }
         array_shift($GLOBALS['product']);

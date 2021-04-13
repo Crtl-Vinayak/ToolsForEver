@@ -12,7 +12,8 @@
   $object->overzicht();
   $object->setFormSelectOptionData();
 
-  // TODO set the other func ready. addLocatie() is done.
+  // TODO set the other func ready. addLocatie() is done
+  // TODO set artikel voorraad locatie !!!
 
   if(isset($_GET['addLocatie']) && isset($_GET['addAdres']) && isset($_GET['addPlaceSubmit'])) {
     $object->addLocatie();
@@ -34,6 +35,15 @@
     $object->changeProductType();
   } else if (isset($_GET['changeProductFabriekSelect']) && isset($_GET['changeProductFabriek']) && isset($_GET['changeProductFabriekSubmit'])) {
     $object->changeProductFabriek();
+  } else if (isset($_GET['changeProductsNaamSelect2']) &&
+              isset($_GET['changeProductsTypeSelect2']) &&
+              isset($_GET['changeProductsFabriekSelect2']) &&
+              isset($_GET['changeProductsLocatieSelect']) &&
+              isset($_GET['changeProductsAdresSelect']) &&
+              isset($_GET['changeProductsLocatieSelect2']) &&
+              isset($_GET['changeProductsAdresSelect2']) &&
+              isset($_GET['changeProductSubmit2'])) {
+    $object->changeProductLocatieAndAdres();
   }
 
   // $object->changeProduct1();
@@ -78,7 +88,7 @@
 
           // set "locatie naam" for the forms.
           $GLOBALS['locatieNaam'] = array("");
-          $stmt = $conn->prepare("SELECT naam FROM locatie");
+          $stmt = $conn->prepare("SELECT DISTINCT naam FROM locatie");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
@@ -88,7 +98,7 @@
 
           // set "locatie adres" for the forms.
           $GLOBALS['locatieAdres'] = array("");
-          $stmt = $conn->prepare("SELECT address FROM locatie");
+          $stmt = $conn->prepare("SELECT DISTINCT address FROM locatie");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
@@ -98,7 +108,7 @@
 
           // set "product naam" for the forms.
           $GLOBALS['productNaam'] = array("");
-          $stmt = $conn->prepare("SELECT product FROM products");
+          $stmt = $conn->prepare("SELECT DISTINCT product FROM products");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
@@ -108,20 +118,17 @@
 
           // set "product type" for the forms.
           $GLOBALS['productType'] = array("");
-          $stmt = $conn->prepare("SELECT type FROM products");
+          $stmt = $conn->prepare("SELECT DISTINCT type FROM products");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-          $acceptOneNullType = 0;
           foreach ($result as $key => $row) {
-            if ($row['type'] == null && $acceptOneNullType == 1) {continue;}
-            if ($row['type'] == null) {$acceptOneNullType = 1;}
             array_push($GLOBALS['productType'], $row['type']);
           }
           array_shift($GLOBALS['productType']);
 
           // set "product fabriek" for the forms.
           $GLOBALS['productFabriek'] = array("");
-          $stmt = $conn->prepare("SELECT fabriek FROM products");
+          $stmt = $conn->prepare("SELECT DISTINCT fabriek FROM products");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
@@ -131,7 +138,7 @@
 
           // set "medewerker voornaam" for the forms.
           $GLOBALS['medewerkerVoornaam'] = array("");
-          $stmt = $conn->prepare("SELECT voornaam FROM medewerkers");
+          $stmt = $conn->prepare("SELECT DISTINCT voornaam FROM medewerkers");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
@@ -141,20 +148,17 @@
 
           // set "medewerker tussenvoegsel" for the forms.
           $GLOBALS['medewerkerTussenvoegsel'] = array("");
-          $stmt = $conn->prepare("SELECT tussenvoegsel FROM medewerkers");
+          $stmt = $conn->prepare("SELECT DISTINCT tussenvoegsel FROM medewerkers");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-          $acceptOneNullTussenvoegsel = 0;
           foreach ($result as $key => $row) {
-            if ($row['tussenvoegsel'] == null && $acceptOneNullTussenvoegsel == 1) {continue;}
-            if ($row['tussenvoegsel'] == null) {$acceptOneNullTussenvoegsel = 1;}
             array_push($GLOBALS['medewerkerTussenvoegsel'], $row['tussenvoegsel']);
           }
           array_shift($GLOBALS['medewerkerTussenvoegsel']);
 
           // set "medewerker achternaam" for the forms.
           $GLOBALS['medewerkerAchternaam'] = array("");
-          $stmt = $conn->prepare("SELECT achternaam FROM medewerkers");
+          $stmt = $conn->prepare("SELECT DISTINCT achternaam FROM medewerkers");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
@@ -200,7 +204,7 @@
           $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
           $stmt->execute();
 
-          $stmt = $conn->prepare("UPDATE toolsforever.locatie SET naam = :nieuwLocatie WHERE naam = :oudLocatie");
+          $stmt = $conn->prepare("UPDATE locatie SET naam = :nieuwLocatie WHERE naam = :oudLocatie");
           $stmt->bindParam(':nieuwLocatie', $nieuwLocatie);
           $stmt->bindParam(':oudLocatie', $oudLocatie);
 
@@ -222,7 +226,7 @@
           $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
           $stmt->execute();
 
-          $stmt = $conn->prepare("UPDATE toolsforever.locatie SET address = :nieuwAdres WHERE address = :oudAdres");
+          $stmt = $conn->prepare("UPDATE locatie SET address = :nieuwAdres WHERE address = :oudAdres");
           $stmt->bindParam(':nieuwAdres', $nieuwAdres);
           $stmt->bindParam(':oudAdres', $oudAdres);
 
@@ -244,7 +248,7 @@
           $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
           $stmt->execute();
 
-          $stmt = $conn->prepare("DELETE FROM toolsforever.locatie WHERE naam = :locatieNaam");
+          $stmt = $conn->prepare("DELETE FROM locatie WHERE naam = :locatieNaam");
           $stmt->bindParam(':locatieNaam', $locatieNaam);
 
           $locatieNaam = $_GET['removeLocatieSelect'];
@@ -264,7 +268,7 @@
           $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
           $stmt->execute();
 
-          $stmt = $conn->prepare("DELETE FROM toolsforever.locatie WHERE address = :adres");
+          $stmt = $conn->prepare("DELETE FROM locatie WHERE address = :adres");
           $stmt->bindParam(':adres', $adres);
 
           $adres = $_GET['removeAdresSelect'];
@@ -302,7 +306,7 @@
           $verkoopprijs = $_GET['addProductsVerkoopprijs'];
           $stmt->execute();
 
-          $stmt = $conn->prepare("INSERT INTO toolsforever.locatie_has_products (idproduct) SELECT idproduct FROM toolsforever.products WHERE product = :product AND type = :type AND fabriek = :fabriek");
+          $stmt = $conn->prepare("INSERT INTO locatie_has_products (idproduct) SELECT idproduct FROM products WHERE product = :product AND type = :type AND fabriek = :fabriek");
           $stmt->bindParam(':product', $product);
           $stmt->bindParam(':type', $type);
           $stmt->bindParam(':fabriek', $fabriek);
@@ -415,6 +419,75 @@
           $nieuwFabriek = $_GET['changeProductFabriek'];
           $oudFabriek = $_GET['changeProductFabriekSelect'];
           $stmt->execute();
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+
+      public function changeProductLocatieAndAdres() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+          $stmt = $conn->prepare("SET FOREIGN_KEY_CHECKS=0");
+          $stmt->execute();
+
+          $getOudeLocatieId;
+          $getNieuweLocatieId;
+          $getProductId;
+
+          $stmt = $conn->prepare("SELECT idlocatie FROM locatie WHERE naam = :naam AND address = :address");
+          $stmt->bindParam(':naam', $locatie);
+          $stmt->bindParam(':address', $adres);
+
+          $locatie = $_GET['changeProductsLocatieSelect'];
+          $adres = $_GET['changeProductsAdresSelect'];
+          $stmt->execute();
+          $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          foreach ($result as $key => $row) {
+            $getOudeLocatieId = $row['idlocatie'];
+          }
+
+          $stmt = $conn->prepare("SELECT idlocatie FROM locatie WHERE naam = :locatie AND address = :adres");
+          $stmt->bindParam(':locatie', $locatie);
+          $stmt->bindParam(':adres', $adres);
+
+          $locatie = $_GET['changeProductsLocatieSelect2'];
+          $adres = $_GET['changeProductsAdresSelect2'];
+          $stmt->execute();
+          $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          foreach ($result as $key => $row) {
+            $getNieuweLocatieId = $row['idlocatie'];
+          }
+
+          $stmt = $conn->prepare("SELECT idproduct FROM products WHERE product = :product AND type = :type AND fabriek = :fabriek");
+          $stmt->bindParam(':product', $product);
+          $stmt->bindParam(':type', $type);
+          $stmt->bindParam(':fabriek', $fabriek);
+
+          $product = $_GET['changeProductsNaamSelect2'];
+          $type = $_GET['changeProductsTypeSelect2'];
+          $fabriek = $_GET['changeProductsFabriekSelect2'];
+          $stmt->execute();
+          $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          foreach ($result as $key => $row) {
+            $getProductId = $row['idproduct'];
+          }
+
+          $stmt = $conn->prepare("UPDATE locatie_has_products SET idlocatie = :nieuwIdLocatie, idproduct = :idproduct WHERE idlocatie = :oudIdLocatie AND idproduct = :idproduct");
+          $stmt->bindParam(':nieuwIdLocatie', $nieuwIdLocatie);
+          $stmt->bindParam(':oudIdLocatie', $oudIdLocatie);
+          $stmt->bindParam(':idproduct', $idProduct);
+
+          $oudIdLocatie = $getOudeLocatieId;
+          $nieuwIdLocatie = $getNieuweLocatieId;
+          $idProduct = $getProductId;
+          $stmt->execute();
+
         } catch(PDOException $e) {
           echo $sql . "<br>" . $e->getMessage();
         }
