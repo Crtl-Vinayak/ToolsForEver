@@ -44,13 +44,23 @@
               isset($_GET['changeProductsAdresSelect2']) &&
               isset($_GET['changeProductSubmit2'])) {
     $object->changeProductLocatieAndAdres();
+  } else if (isset($_GET['changeProductsNaamSelect3']) && isset($_GET['changeProductsTypeSelect3']) &&
+              isset($_GET['changeProductsFabriekSelect3']) && isset($_GET['changeProductsVoorraad']) &&
+              isset($_GET['changeProductVoorraadSubmit'])) {
+    $object->changeProductVoorraad();
+  } else if (isset($_GET['changeProductsNaamSelect4']) && isset($_GET['changeProductsTypeSelect4']) &&
+              isset($_GET['changeProductsFabriekSelect4']) && isset($_GET['changeProductsMinimumVoorraad']) &&
+              isset($_GET['changeProductMinimumSubmit'])) {
+    //$object->changeProductMinimumVoorraad();
+  } else if (isset($_GET['changeProductsNaamSelect5']) && isset($_GET['changeProductsTypeSelect5']) &&
+              isset($_GET['changeProductsFabriekSelect5']) && isset($_GET['changeProductsVerkoopprijs']) &&
+              isset($_GET['changeProductVerkoopprijsSubmit'])) {
+    //$object->changeProductVerkoopprijs();
+  } else if (isset($_GET['removeProductsNaamSelect']) && isset($_GET['removeProductsTypeSelect']) &&
+              isset($_GET['removeProductsFabriekSelect']) && isset($_GET['removeProductSubmit'])) {
+    //$object->removeProduct();
   }
 
-  // $object->changeProduct1();
-  // // $object->changeProduct2();
-  // $object->changeProduct3();
-  // $object->removeProduct();
-  //
   // $object->addMedewerker();
   // $object->changeMedewerker1();
   // $object->changeMedewerker2();
@@ -488,6 +498,32 @@
           $idProduct = $getProductId;
           $stmt->execute();
 
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+
+      public function changeProductVoorraad() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("UPDATE products SET voorraad = :voorraad WHERE product = :product AND type = :type AND fabriek = :fabriek");
+          $stmt->bindParam(':voorraad', $voorraad);
+          $stmt->bindParam(':product', $product);
+          $stmt->bindParam(':type', $type);
+          $stmt->bindParam(':fabriek', $fabriek);
+
+          $voorraad = $_GET['changeProductsVoorraad'];
+          $product = $_GET['changeProductsNaamSelect3'];
+          $type = $_GET['changeProductsTypeSelect3'];
+          $fabriek = $_GET['changeProductsFabriekSelect3'];
+          $stmt->execute();
         } catch(PDOException $e) {
           echo $sql . "<br>" . $e->getMessage();
         }
