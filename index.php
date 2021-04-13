@@ -29,7 +29,7 @@
         $pdo = new PDO($dsn, $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         foreach ($pdo->query("SELECT * FROM medewerkers") as $row) {
-          if($row[2] == "") {
+          if($row[2] == " ") {
             if($row[1].' '.$row[3] == $_POST['naam'] && password_verify($_POST['wwoord'], $row[4])) {
               session_start();
               $_SESSION["rol"] = $row[5];

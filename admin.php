@@ -12,9 +12,6 @@
   $object->overzicht();
   $object->setFormSelectOptionData();
 
-  // TODO set the other func ready. addLocatie() is done
-  // TODO set artikel voorraad locatie !!!
-
   if(isset($_GET['addLocatie']) && isset($_GET['addAdres']) && isset($_GET['addPlaceSubmit'])) {
     $object->addLocatie();
   } else if (isset($_GET['changeLocatieSelect']) && isset($_GET['changePlaceLocatieInput']) && isset($_GET['changeLocatieSubmit'])) {
@@ -58,7 +55,7 @@
     $object->changeProductVerkoopprijs();
   } else if (isset($_GET['removeProductsNaamSelect']) && isset($_GET['removeProductsTypeSelect']) &&
               isset($_GET['removeProductsFabriekSelect']) && isset($_GET['removeProductSubmit'])) {
-    //$object->removeProduct();
+    $object->removeProduct();
   }
 
   // $object->addMedewerker();
@@ -583,6 +580,45 @@
           header('Location: '.URL.'admin.php', TRUE, 302);
       }
 
+      public function removeProduct() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $getProductId;
+
+          $stmt = $conn->prepare("SELECT idproduct FROM products WHERE product = :product AND type = :type AND fabriek = :fabriek");
+          $stmt->bindParam(':product', $product);
+          $stmt->bindParam(':type', $type);
+          $stmt->bindParam(':fabriek', $fabriek);
+
+          $product = $_GET['removeProductsNaamSelect'];
+          $type = $_GET['removeProductsTypeSelect'];
+          $fabriek = $_GET['removeProductsFabriekSelect'];
+          $stmt->execute();
+          $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          foreach ($result as $key => $row) {
+            $getProductId = $row['idproduct'];
+          }
+
+          $stmt = $conn->prepare("DELETE FROM products WHERE idproduct = :idproduct");
+          $stmt->bindParam(':idproduct', $idProduct);
+
+          $idProduct = $getProductId;
+          $stmt->execute();
+
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+
+
+      
   }
 ?>
 
