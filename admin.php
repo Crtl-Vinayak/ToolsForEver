@@ -75,11 +75,11 @@
   } else if (isset($_POST['changeMedewerkerVoornaamSelect4']) && isset($_POST['changeMedewerkerTussenvoegselSelect4']) &&
               isset($_POST['changeMedewerkerAchternaamSelect4']) && isset($_POST['changeMedewerkerRolSelect']) &&
               isset($_POST['changeMedewerkerRolSubmit'])) {
-    // $object->changeMedewerkerRol();
+    $object->changeMedewerkerRol();
   } else if (isset($_POST['changeMedewerkerVoornaamSelect5']) && isset($_POST['changeMedewerkerTussenvoegselSelect5']) &&
               isset($_POST['changeMedewerkerAchternaamSelect5']) && isset($_POST['changePassW']) &&
               isset($_POST['changeMedewerkerWachtwoordSubmit'])) {
-    // $object->changeMedewerkerW8();
+    $object->changeMedewerkerW8();
   } else if (isset($_POST['removeMedewerkerVoornaamSelect']) && isset($_POST['removeMedewerkerTussenvoegselSelect']) &&
               isset($_POST['removeMedewerkerAchternaamSelect']) && isset($_POST['removeMedewerkerSubmit'])) {
     // $object->removeMedewerker();
@@ -754,6 +754,61 @@
           $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect3'];
           $oudAchternaam = $_POST['changeMedewerkerAchternaamSelect3'];
           $nieuwAchternaam = $_POST['changeMedewerkersAchternaam'];
+          $stmt->execute();
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+
+      public function changeMedewerkerRol() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("UPDATE medewerkers SET rol = :rol WHERE voornaam = :voornaam AND tussenvoegsel = :tussenvoegsel AND achternaam = :achternaam");
+          $stmt->bindParam(':rol', $rol);
+          $stmt->bindParam(':voornaam', $voornaam);
+          $stmt->bindParam(':tussenvoegsel', $tussenvoegsel);
+          $stmt->bindParam(':achternaam', $achternaam);
+
+          $rol = $_POST['changeMedewerkerRolSelect'];
+          $voornaam = $_POST['changeMedewerkerVoornaamSelect4'];
+          $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect4'];
+          $achternaam = $_POST['changeMedewerkerAchternaamSelect4'];
+          $stmt->execute();
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+
+      public function changeMedewerkerW8() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("UPDATE medewerkers SET wachtwoord = :wachtwoord WHERE voornaam = :voornaam AND tussenvoegsel = :tussenvoegsel AND achternaam = :achternaam");
+          $stmt->bindParam(':wachtwoord', $wachtwoord);
+          $stmt->bindParam(':voornaam', $voornaam);
+          $stmt->bindParam(':tussenvoegsel', $tussenvoegsel);
+          $stmt->bindParam(':achternaam', $achternaam);
+
+          $passwordUser = $_POST['changePassW'];
+          $hashedPwd = password_hash($passwordUser, PASSWORD_DEFAULT);
+
+          $wachtwoord = $hashedPwd;
+          $voornaam = $_POST['changeMedewerkerVoornaamSelect5'];
+          $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect5'];
+          $achternaam = $_POST['changeMedewerkerAchternaamSelect5'];
           $stmt->execute();
         } catch(PDOException $e) {
           echo $sql . "<br>" . $e->getMessage();
