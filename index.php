@@ -37,6 +37,7 @@
               session_start();
               $_SESSION["rol"] = $row[5];
               $_SESSION["naam"] = substr($row[1], 0, 1).' '.$row[3];
+              $_SESSION["login_time_stamp"] = time();
               header('Location: '.URL.'overzicht.php', TRUE, 302);
             }
           } else {
@@ -44,6 +45,7 @@
               session_start();
               $_SESSION["rol"] = $row[5];
               $_SESSION["naam"] = substr($row[1], 0, 1).'. '.$row[2].'. '.$row[3];
+              $_SESSION["login_time_stamp"] = time();
               header('Location: '.URL.'overzicht.php', TRUE, 302);
             }
           }
