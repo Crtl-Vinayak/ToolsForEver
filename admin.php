@@ -808,7 +808,7 @@
                     }
                   ?>
                 </select>
-                <input type="text" name="changePlaceLocatieInput" value="" placeholder="type hier de nieuwe gewijzigde locatie" id="changePlaceLocatieInput">
+                <input type="text" name="changePlaceLocatieInput" value="" placeholder="type hier de nieuwe gewijzigde locatie" required id="changePlaceLocatieInput">
                 <input type="submit" name="changeLocatieSubmit" value="Wijziging opslaan" id="changeLocatieSubmit">
               </form>
               <span id="locatieInfo3">- adres wijzigen.</span>
@@ -820,7 +820,7 @@
                     }
                   ?>
                 </select>
-                <input type="text" name="changePlaceAdresInput" value="" placeholder="type hier de nieuwe gewijzigde adres" id="changePlaceAdresInput">
+                <input type="text" name="changePlaceAdresInput" value="" placeholder="type hier de nieuwe gewijzigde adres" required id="changePlaceAdresInput">
                 <input type="submit" name="changeAdresSubmit" value="Wijziging opslaan" id="changeAdresSubmit">
               </form>
             </div>
@@ -888,7 +888,7 @@
                     }
                   ?>
                 </select>
-                <input type="text" name="changeProductNaam" value="" placeholder="type hier de gewijzigde product naam" id="changeProductNaam">
+                <input type="text" name="changeProductNaam" value="" placeholder="type hier de gewijzigde product naam" required id="changeProductNaam">
                 <input type="submit" name="changeProductNaamSubmit" value="Wijziging opslaan" id="changeProductNaamSubmit">
               </form>
               <span id="productInfo3">- artikel type wijzigen.</span>
@@ -912,7 +912,7 @@
                     }
                   ?>
                 </select>
-                <input type="text" name="changeProductFabriek" value="" placeholder="type hier de gewijzigde product fabriek" id="changeProductFabriek">
+                <input type="text" name="changeProductFabriek" value="" placeholder="type hier de gewijzigde product fabriek" required id="changeProductFabriek">
                 <input type="submit" name="changeProductFabriekSubmit" value="Wijziging opslaan" id="changeProductFabriekSubmit">
               </form>
               <span id="productInfo5">- Artikel locatie voorraad wijzigen.</span>
@@ -993,7 +993,7 @@
                     }
                   ?>
                 </select>
-                <input type="number" name="changeProductsVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van hoeveel van dit product in het voorraad zit" id="changeProductsVoorraad">
+                <input type="number" name="changeProductsVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van hoeveel van dit product in het voorraad zit" required id="changeProductsVoorraad">
                 <input type="submit" name="changeProductVoorraadSubmit" value="Wijziging opslaan" id="changeProductVoorraadSubmit">
               </form>
               <span id="productInfo9">- artikel minimum voorraad wijzigen.</span>
@@ -1019,7 +1019,7 @@
                     }
                   ?>
                 </select>
-                <input type="number" name="changeProductsMinimumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van het minimum voorraad van dit product" id="changeProductsMinimumVoorraad">
+                <input type="number" name="changeProductsMinimumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van het minimum voorraad van dit product" required id="changeProductsMinimumVoorraad">
                 <input type="submit" name="changeProductMinimumSubmit" value="Wijziging opslaan" id="changeProductMinimumSubmit">
               </form>
 
@@ -1046,7 +1046,7 @@
                     }
                   ?>
                 </select>
-                <input type="number" name="changeProductsVerkoopprijs" value="" min="0" step=".01" placeholder="type hier wat de nieuwe verkoopprijs is van dit product" id="changeProductsVerkoopprijs">
+                <input type="number" name="changeProductsVerkoopprijs" value="" min="0" step=".01" placeholder="type hier wat de nieuwe verkoopprijs is van dit product" required id="changeProductsVerkoopprijs">
                 <input type="submit" name="changeProductVerkoopprijsSubmit" value="Wijziging opslaan" id="changeProductVerkoopprijsSubmit">
               </form>
           </div>
@@ -1121,7 +1121,7 @@
                   }
                 ?>
               </select>
-              <input type="text" name="changeMedewerkersVoornaam" value="" placeholder="type hier de nieuwe gewijzigde voornaam" id="changeMedewerkersVoornaam">
+              <input type="text" name="changeMedewerkersVoornaam" value="" placeholder="type hier de nieuwe gewijzigde voornaam" required id="changeMedewerkersVoornaam">
               <input type="submit" name="changeMedewerkerVoornaamSubmit" value="Wijziging opslaan" class="medewerkerSubmit">
             </form>
             <span id="medewerkerInfo3">- medewerker tussenvoegsel wijzigen.</span>
@@ -1179,7 +1179,7 @@
                   }
                 ?>
               </select>
-              <input type="text" name="changeMedewerkersAchternaam" value="" placeholder="type hier de nieuwe gewijzigde achternaam" id="changeMedewerkersAchternaam">
+              <input type="text" name="changeMedewerkersAchternaam" value="" placeholder="type hier de nieuwe gewijzigde achternaam" required id="changeMedewerkersAchternaam">
               <input type="submit" name="changeMedewerkerAchternaamSubmit" value="Wijziging opslaan" class="medewerkerSubmit">
             </form>
             <span id="medewerkerInfo5">- medewerker rol wijzigen.</span>
@@ -1241,7 +1241,7 @@
                   }
                 ?>
               </select>
-              <input type="password" name="changePassW" value="" placeholder="type hier een nieuwe gewijzigde sterke wachtwoord voor deze medewerker" id="changePassword">
+              <input type="password" name="changePassW" value="" placeholder="type hier een nieuwe gewijzigde sterke wachtwoord voor deze medewerker" required id="changePassword">
               <input type="submit" name="changeMedewerkerWachtwoordSubmit" value="Wijziging opslaan" class="medewerkerSubmit">
             </form>
           </div>
