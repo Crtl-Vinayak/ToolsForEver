@@ -118,7 +118,7 @@ body {
 #locatieDiv {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 24px auto 105px 215px 240px;
+  grid-template-rows: 24px auto 105px 215px 140px;
 
   grid-column-start: 1;
   grid-column-end: 2;
