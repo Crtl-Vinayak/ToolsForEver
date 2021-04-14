@@ -25,10 +25,8 @@
     $object->changeLocatie();
   } else if (isset($_GET['changeAdresSelect']) && isset($_GET['changePlaceAdresInput']) && isset($_GET['changeAdresSubmit'])) {
     $object->changeAdres();
-  } else if (isset($_GET['removeLocatieSelect']) && isset($_GET['removeLocatiePlaceSubmit'])) {
+  } else if (isset($_GET['removeLocatieSelect']) && isset($_GET['removeAdresSelect']) && isset($_GET['removePlaceSubmit'])) {
     $object->removeLocatie();
-  } else if (isset($_GET['removeAdresSelect']) && isset($_GET['removeAdresPlaceSubmit'])) {
-    $object->removeAdres();
   } else if (isset($_GET['addProductsNaam']) && isset($_GET['addProductsType']) && isset($_GET['addProductsFabriek']) &&
               isset($_GET['addProductsVoorraad']) && isset($_GET['addProductsLocatieSelect']) && isset($_GET['addProductsAdresSelect']) &&
               isset($_GET['addProductsMinimumVoorraad']) && isset($_GET['addProductsVerkoopprijs']) && isset($_GET['addProductSubmit'])) {
@@ -283,29 +281,11 @@
           $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
           $stmt->execute();
 
-          $stmt = $conn->prepare("DELETE FROM locatie WHERE naam = :locatieNaam");
+          $stmt = $conn->prepare("DELETE FROM locatie WHERE naam = :locatieNaam AND address = :adres");
           $stmt->bindParam(':locatieNaam', $locatieNaam);
-
-          $locatieNaam = $_GET['removeLocatieSelect'];
-          $stmt->execute();
-        } catch(PDOException $e) {
-          echo $sql . "<br>" . $e->getMessage();
-        }
-          $conn = null;
-          header('Location: '.URL.'admin.php', TRUE, 302);
-      }
-
-      public function removeAdres() {
-        try {
-          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
-          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
-          $stmt->execute();
-
-          $stmt = $conn->prepare("DELETE FROM locatie WHERE address = :adres");
           $stmt->bindParam(':adres', $adres);
 
+          $locatieNaam = $_GET['removeLocatieSelect'];
           $adres = $_GET['removeAdresSelect'];
           $stmt->execute();
         } catch(PDOException $e) {
@@ -910,27 +890,23 @@
               </form>
             </div>
             <div id="locatieRemoveDiv">
-              <span id="locatieInfo4">- locatie verwijderen</span>
-              <form method="GET" id="removeLocatiePlaceForm">
+              <span id="locatieInfo4">- locatie en adres verwijderen</span>
+              <form method="GET" id="removePlaceForm">
                 <select name="removeLocatieSelect" id="removeLocatieSelect">
                   <?php
                     foreach ($GLOBALS['locatieNaam'] as $val) {
-                      echo "<option value=\"".$val."\">".$val."</option>";
+                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
                     }
                   ?>
                 </select>
-                <input type="submit" name="removeLocatiePlaceSubmit" value="Verwijder" id="removeLocatiePlaceSubmit">
-              </form>
-              <span id="locatieInfo5">- adres verwijderen</span>
-              <form method="GET" id="removeAdresPlaceForm">
                 <select name="removeAdresSelect" id="removeAdresSelect">
                   <?php
                     foreach ($GLOBALS['locatieAdres'] as $val) {
-                      echo "<option value=\"".$val."\">".$val."</option>";
+                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
                     }
                   ?>
                 </select>
-                <input type="submit" name="removeAdresPlaceSubmit" value="Verwijder" id="removeAdresPlaceSubmit">
+                <input type="submit" name="removePlaceSubmit" value="Verwijder" id="removePlaceSubmit">
               </form>
             </div>
           </div>
