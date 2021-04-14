@@ -1,21 +1,45 @@
 <?php
     class Dbh {
 
+    /**
+      This function just checks if you hit the button "inloggen", and if you press the button, then it calls the next function.
+      The next function is "connect" function.
+    */
+
       public function inloggen() {
         if(isset($_POST['inloggen'])) {
           $this->connect();
         }
       }
 
-      // p1 = 7\52AMZ83{,s_{XZ
-      // p2 = tY\cjLE^s=D7w{%)
-      // p3 = JXd}}H)e+7Za6q^q
-      // p4 = RQ/w`zG{yk%5[yv%
-      // p5 = hJm-'GPn=3DLC_HF
-      // p6 = gT88]e.)XCmdTv!'
-      // p7 = swC%M,zv8Z,(/;!6
-      // p8 = 3>hL]S/{f%EXmkRw
-      // p9 = k:nnr'5s!?[PBf!T
+      /**
+        This function will connect with the database, in this case, it will connect with the database "toolsforever".
+        This php code uses PDO (PHP data objects). For more info about PDO, check this w3school link: https://www.w3schools.com/php/php_mysql_connect.asp
+        As you can see in the try catch code inside connect function, it starts with the variables $dsn and $pdo.
+        Then there is a foreach code that gives the code inside the information about the "medewerkers".
+        $row[1] gives "voornaam", $row[2] gives "tussenvoegsel", $row[3] gives "achternaam",
+        $row[4] gives "wachtwoord" and $row[5] gives "rol".
+
+        $row[2] has a chance of an getting an empty string, not fully empty, but just a space in the string.
+        This is, because tussenvoegsel can be nothing. Not everyone has a tussenvoegsel.
+        All tussenvoegsel that are not set, are just like this: " ".
+        If the tussenvoegsel are set, then the else statement will run the code.
+
+
+
+// TODO change comment below, to a better structural documented comment.
+
+        If the
+        $row[1].' '.$row[2].' '.$row[3] == $_POST['naam
+        does not match, or
+        $row[1].' '.$row[3] == $_POST['naam']
+        , then you won't login to the overzicht page.
+        And, if the
+        password_verify($_POST['wwoord'], $row[4])
+        does not verify, then you won't login to the overzicht page.
+        And at last,
+        If "naam" and "wachtwoord" does not match with each other, you won't login too.
+      */
 
       public function connect() {
         $servername = "localhost";
@@ -57,7 +81,25 @@
 ?>
 
 <?php
+
+  /**
+    Here is the begin code of this website.
+    This php code is the begin php code.
+    It will first define the root link of this website.
+    http://localhost/toolsforever/ or http://localhost/toolsforever/index.php is the login page.
+    It is defined as http://localhost/toolsforever/, because later I can concate this string with other strings,
+    like http://localhost/toolsforever/ + overzicht.php or http://localhost/toolsforever/ + admin.php.
+    That is why, I don't add the index.php with this link: http://localhost/toolsforever/
+  */
+
   define('URL', 'http://localhost/toolsforever/');
+
+  /**
+    I also made an object variable for the class Dbh.
+    Dbh means database handle.
+    Below the code where I made the new instance, I called the function "inloggen".
+  */
+
   $object = new Dbh;
   $object->inloggen();
 ?>
