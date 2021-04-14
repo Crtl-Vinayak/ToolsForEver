@@ -910,8 +910,8 @@
               </form>
             </div>
             <div id="locatieRemoveDiv">
-              <span id="locatieInfo4">- locatie verwijderen</span>
-              <form method="GET" id="removeLocatiePlaceForm">
+              <span id="locatieInfo4">- locatie en adres verwijderen</span>
+              <form method="GET" id="removePlaceForm">
                 <select name="removeLocatieSelect" id="removeLocatieSelect">
                   <?php
                     foreach ($GLOBALS['locatieNaam'] as $val) {
@@ -919,10 +919,6 @@
                     }
                   ?>
                 </select>
-                <input type="submit" name="removeLocatiePlaceSubmit" value="Verwijder" id="removeLocatiePlaceSubmit">
-              </form>
-              <span id="locatieInfo5">- adres verwijderen</span>
-              <form method="GET" id="removeAdresPlaceForm">
                 <select name="removeAdresSelect" id="removeAdresSelect">
                   <?php
                     foreach ($GLOBALS['locatieAdres'] as $val) {
@@ -930,7 +926,7 @@
                     }
                   ?>
                 </select>
-                <input type="submit" name="removeAdresPlaceSubmit" value="Verwijder" id="removeAdresPlaceSubmit">
+                <input type="submit" name="removePlaceSubmit" value="Verwijder" id="removePlaceSubmit">
               </form>
             </div>
           </div>

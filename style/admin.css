@@ -285,7 +285,7 @@ body {
 #locatieRemoveDiv {
   display: grid;
   grid-template-columns: 50px auto;
-  grid-template-rows: repeat(2, 24px 24px 24px 35px);
+  grid-template-rows: 24px 24px 24px 35px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -301,17 +301,9 @@ body {
   grid-row-end: 3;
 }
 
-#locatieInfo5 {
-  font-family: "Segoe UI";
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 6;
-  grid-row-end: 7;
-}
-
-#removeLocatiePlaceForm {
+#removePlaceForm {
   display: grid;
-  grid-template-columns: 250px 270px auto 120px auto;
+  grid-template-columns: 250px 20px 250px auto 120px auto;
   grid-template-rows: 1fr;
 
   grid-column-start: 2;
@@ -322,32 +314,21 @@ body {
 
 #removeLocatieSelect {
   grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
-}
-
-#removeLocatiePlaceSubmit {
-  grid-column-start: 4;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#removeAdresPlaceForm {
-  display: grid;
-  grid-template-columns: 250px 270px auto 120px auto;
-  grid-template-rows: 1fr;
-
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 8;
-  grid-row-end: 9;
 }
 
 #removeAdresSelect {
-  grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#removePlaceSubmit {
+  grid-column-start: 5;
+  grid-column-end: 6;
   grid-row-start: 1;
   grid-row-end: 2;
 }
