@@ -281,10 +281,12 @@
           $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
           $stmt->execute();
 
-          $stmt = $conn->prepare("DELETE FROM locatie WHERE naam = :locatieNaam");
+          $stmt = $conn->prepare("DELETE FROM locatie WHERE naam = :locatieNaam AND address = :adres");
           $stmt->bindParam(':locatieNaam', $locatieNaam);
+          $stmt->bindParam(':adres', $adres);
 
           $locatieNaam = $_GET['removeLocatieSelect'];
+          $adres = $_GET['removeAdresSelect'];
           $stmt->execute();
         } catch(PDOException $e) {
           echo $sql . "<br>" . $e->getMessage();
@@ -292,26 +294,6 @@
           $conn = null;
           header('Location: '.URL.'admin.php', TRUE, 302);
       }
-
-      // public function removeAdres() {
-      //   try {
-      //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
-      //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //
-      //     $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
-      //     $stmt->execute();
-      //
-      //     $stmt = $conn->prepare("DELETE FROM locatie WHERE address = :adres");
-      //     $stmt->bindParam(':adres', $adres);
-      //
-      //     $adres = $_GET['removeAdresSelect'];
-      //     $stmt->execute();
-      //   } catch(PDOException $e) {
-      //     echo $sql . "<br>" . $e->getMessage();
-      //   }
-      //     $conn = null;
-      //     header('Location: '.URL.'admin.php', TRUE, 302);
-      // }
 
       public function addProduct() {
         try {
