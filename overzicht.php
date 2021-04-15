@@ -248,6 +248,12 @@
             ?>
           </select>
 
+          <!--
+            This script is used, so the selected option won't get reset.
+            Usually, when you submit a form. The Select option are going to reset to the First
+            value of the options.
+          -->
+
           <script type="text/javascript">
             if (<?php if (!empty($_GET['locatie'])) { echo "true"; } ?>) {
               document.getElementById('locatieSelect').value = "<?php

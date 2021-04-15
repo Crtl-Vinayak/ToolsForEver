@@ -1,4 +1,12 @@
 <?php
+
+  /**
+    Same code as overzicht.php
+    define the URL, start session, make object variable and initialize it.
+    Check if you logged in normally.
+    Check if you are in the website in a hour, if not, then go back to login page.
+  */
+
   define('URL', 'http://localhost/toolsforever/');
   session_start();
   $object = new Dbh;
@@ -15,9 +23,20 @@
   }
   header("refresh: 3600");
 
+  /**
+    Call 3 functions.
+    - uitlog function.
+    - overzicht function.
+    - setFormSelectOptionData function.
+  */
+
   $object->uitlog();
   $object->overzicht();
   $object->setFormSelectOptionData();
+
+  /**
+    This big IF STATEMENT is for checking if you filled in some data and checks if you pressed some buttons.
+  */
 
   if(isset($_GET['addLocatie']) && isset($_GET['addAdres']) && isset($_GET['addPlaceSubmit'])) {
     $object->addLocatie();
@@ -113,6 +132,22 @@
           header('Location: '.URL.'overzicht.php', TRUE, 302);
         }
       }
+
+      /**
+        setFormSelectOptionData function.
+        The name says it all.
+        It sets the data in the select option form.
+        
+        types of data:
+          - locatie
+          - adres
+          - product
+          - type
+          - fabriek
+          - voornaam
+          - tussenvoegsel
+          - achternaam
+      */
 
       public function setFormSelectOptionData() {
         try {
