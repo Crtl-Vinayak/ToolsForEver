@@ -25,20 +25,23 @@
         All tussenvoegsel that are not set, are just like this: " ".
         If the tussenvoegsel are set, then the else statement will run the code.
 
+        This -> ($row[1].' '.$row[2].' '.$row[3] == $_POST['naam']), means, Voornaam + Tussenvoegsel + Achternaam equals to the full name that the user filled in the ("input text //naam") form.
+        This -> ($row[1].' '.$row[3] == $_POST['naam']), means, Voornaam + Achternaam equals to the full name that the user filled in the ("input text //naam") form.
+        This -> (password_verify($_POST['wwoord'], $row[4])), means Password equals to the password that the user filled in the ("input password //password") form.
 
+        Also note: $row[4], also known as password value(s), the passwords are hashed.
 
-// TODO change comment below, to a better structural documented comment.
+        If you met with the conditions, then you will login.
+        First thing what will happen is, a session will start.
+        This makes it so, that these variables will be accessed to other php files and classes.
+        session rol is made, it gives a value of 0 or 1, 0 = medewerker and 1 = manager.
+        session naam is your full name, but first name (voornaam) is just your first character of your first name.
+        session login_time_stamp is setting the time for now. It will be used for users inactivity. If you stay too long on the website, you will be logged out.
+        header('Location: '.URL.'overzicht.php', TRUE, 302); is just, that you will be send to the overzicht.php page.
 
-        If the
-        $row[1].' '.$row[2].' '.$row[3] == $_POST['naam
-        does not match, or
-        $row[1].' '.$row[3] == $_POST['naam']
-        , then you won't login to the overzicht page.
-        And, if the
-        password_verify($_POST['wwoord'], $row[4])
-        does not verify, then you won't login to the overzicht page.
-        And at last,
-        If "naam" and "wachtwoord" does not match with each other, you won't login too.
+        If your sql does not work, you will get an PDOException message.
+        Like: Connection failed: .... PDOException message .....
+        die() is just quits php script. see more info at: https://www.w3schools.com/php/func_misc_die.asp
       */
 
       public function connect() {
@@ -116,6 +119,12 @@
       <div id="grid">
         <div id="logoDiv"><img src="Tools_For_Ever_Logo.png" alt="ToolsForEver_logo" id="logo"></div>
         <div id="tfeDiv"><span id="tfeText">ToolsForEver Voorraad</span></div>
+
+        <!--
+          When you fill the form in, you won't get immediatly go to the overzicht page, but it
+          call the function inloggen in the php code in this php index file.
+        -->
+
         <form method="POST">
           <label for="naam" id="naamLabel">naam</label>
           <input type="text" name="naam" value="" id="naamInput" required>

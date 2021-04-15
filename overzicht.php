@@ -104,9 +104,24 @@
   define('URL', 'http://localhost/toolsforever/');
   $object = new Dbh;
   session_start();
+
+  /**
+    if you try to enter overzicht page without login in, you will get send back
+    to the login page. As you can see, by using if statement and using the function empty,
+    to check if the SESSION variable of "naam" is empty or not. If SESSION "naam" is empty,
+    you get back to the login page.
+  */
+
   if (empty($_SESSION['naam'])) {
     header('Location: http://localhost/toolsforever/', TRUE, 302);
   }
+
+  /**
+    If the time of now minus the SESSION login_time_stamp is greater than 3600 seconds,
+    the session will be unset and destroyed and you get back to the login page.
+    The header "refresh 3600" means, that you enter this page overzicht, that the counter will start.
+    After the 3600 seconds, the page will refresh and checks the time and login_time_stamp again, to go back to the login page.
+  */
 
   if (time() - $_SESSION["login_time_stamp"] > 3600) {
     session_unset();
@@ -114,6 +129,14 @@
     header('Location: '.URL.'index.php', TRUE, 302);
   }
   header("refresh: 3600");
+
+  /**
+    Below, it calls 4 php functions.
+    verzend func.
+    connect func.
+    uitlog func.
+    admin func.
+  */
 
   $object->verzend();
   $object->connect();
