@@ -42,6 +42,8 @@
         If your sql does not work, you will get an PDOException message.
         Like: Connection failed: .... PDOException message .....
         die() is just quits php script. see more info at: https://www.w3schools.com/php/func_misc_die.asp
+
+        Also note: $row[0] is not needed in this code, because I do not use the idMedewerker column.
       */
 
       public function connect() {

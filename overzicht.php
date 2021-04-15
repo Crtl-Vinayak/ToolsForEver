@@ -1,6 +1,13 @@
 <?php
     class Dbh {
 
+      /**
+        uitlog function.
+        When you press on the uitlog button, you will meet up with the condition
+        inside the uitlog function.
+        The SESSIONS will get unset and destroyed and you will go back to the login page.
+      */
+
       public function uitlog() {
         if(isset($_GET['uitlog'])) {
           session_unset();
@@ -9,11 +16,36 @@
         }
       }
 
+      /**
+        admin function.
+        If you press the button "Naar admin venster", then you go to the admin venster.
+        If you are a "medewerker" and not an "admin", then this function still calls the function admin,
+        but it won't meet up with the condition inside the admin function,
+        because the user that is "medewerker", does not have the button "Naar admin venster".
+        Thus it won't go to the admin page.
+      */
+
       public function admin() {
         if(isset($_GET['admin'])) {
           header('Location: '.URL.'admin.php', TRUE, 302);
         }
       }
+
+      /**
+        verzend function.
+        If the user press the button "verzenden", then the selected options becomes GLOBAL variables.
+        These GLOBAL variables is used for the html code, to print out the "locatie", "adres" and "product".
+        "locatie" and "adres" are printed above the table.
+        "product" is printed in the table under the column Product.
+
+        These 3 values are also "saved" when you press on the "verzenden" button.
+        The usage of script, inside the html code of this overzicht.php file,
+        it can change the selected value for you.
+        This is because it makes it easier for the user to select what he/she had selected in the form.
+
+        If the user press the button "verzenden", it also calls the next function.
+        function "getTableData".
+      */
 
       public function verzend() {
         if(isset($_GET['verzend'])) {
@@ -23,6 +55,15 @@
           $this->getTableData();
         }
       }
+
+      /**
+        getTableData function.
+        This has a basic pdo setup code.
+        The query selects the "type", "fabriek", "voorraad", "minimumVoorraad" and "verkoopprijs".
+        $row[0] = type. $row[1] = fabriek. $row[2] = voorraad. $row[3] = minimumVoorraad. $row[4] = verkoopprijs.
+        array_push function is just that the element will be added in an array.
+        array_shift function is just that the first element gets removed.
+      */
 
       public function getTableData() {
         $servername = "localhost";
@@ -57,6 +98,16 @@
           die();
         }
       }
+
+      /**
+        connect function.
+        "locatie", "adres" and "product" GLOBAL variables are used for
+        to print these values inside the (select, option) form.
+
+        Note: DISTINCT is added in locatie query and also in product query.
+        This is because, the same locatie can have more adresses and
+        the same product can have more types of it. Adres is just unique.
+      */
 
       public function connect() {
         $servername = "localhost";
@@ -224,6 +275,14 @@
           </script>
           <div id="submitDiv">
             <?php
+
+            /**
+              if rol equals 1, that means that you are a manager.
+              Managers get an extra button for "Naar admin venster".
+              And if rol equals to 0, that means you are a medewerker.
+              Medewerkers do not get an extra button for "Naar admin venster".
+            */
+
               if($_SESSION['rol'] == 1) {
                 echo "<input type=\"submit\" name=\"verzend\" value=\"verzenden\" id=\"verzendSubmita\" style=\"grid-column-start: 2; grid-column-end: 4; grid-row-start: 1; grid-row-end: 2;\">";
                 echo "<input type=\"submit\" name=\"admin\" value=\"Naar admin venster\" id=\"adminSubmit\" style=\"grid-column-start: 5; grid-column-end: 8; grid-row-start: 1; grid-row-end: 2;\">";
