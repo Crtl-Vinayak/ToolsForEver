@@ -232,22 +232,6 @@
                 }
               ?>";
             }
-
-            if (<?php if (!empty($_GET['address'])) { echo "true"; } ?>) {
-              document.getElementById('addressSelect').value = "<?php
-                if(isset($_GET['verzend'])) {
-                  echo $GLOBALS['addressSelected'];
-                }
-              ?>";
-            }
-
-            if (<?php if (!empty($_GET['product'])) { echo "true"; } ?>) {
-              document.getElementById('productSelect').value = "<?php
-                if(isset($_GET['verzend'])) {
-                  echo $GLOBALS['productSelected'];
-                }
-              ?>";
-            }
           </script>
           <div id="submitDiv">
             <?php
