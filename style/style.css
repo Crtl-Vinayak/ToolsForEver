@@ -44,7 +44,7 @@ body {
   text-align: center;
 }
 
-#tfeText {
+#title {
   color: blue;
   font-size: 60px;
   font-family: "Segoe UI";
@@ -54,19 +54,10 @@ body {
   width: 98%;
 }
 
-/*
-#medewerkerNaamDiv {
-  grid-column-start: 4;
-  grid-column-end: 5;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-*/
-
 form {
   display: grid;
-  grid-template-columns: 10px 2fr 9fr 3fr 10px;
-  grid-template-rows: 50px 50px;
+  grid-template-columns: 10px 2fr 10px 9fr 10px 3fr 10px;
+  grid-template-rows: 30px 50px 50px;
 
   grid-column-start: 2;
   grid-column-end: 5;
@@ -81,20 +72,22 @@ form {
   font-family: "Segoe UI";
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  font-size: 25px;
 }
 
-#naamInput {
-  margin-top: 15px;
+#naam {
+  margin-top: 5px;
   margin-bottom: 5px;
   width: 580px;
   margin-left: auto;
   margin-right: auto;
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  font-size: 25px;
 }
 
 #wachtwoordLabel {
@@ -104,32 +97,35 @@ form {
   font-family: "Segoe UI";
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  font-size: 25px;
 }
 
-#wachtwoordInput {
-  margin-top: 15px;
+#wachtwoord {
+  margin-top: 5px;
   margin-bottom: 5px;
   width: 580px;
   margin-left: auto;
   margin-right: auto;
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  font-size: 25px;
 }
 
 #inlogSubmit {
   display: flex;
   justify-content: center;
-  margin-top: 40px;
+  margin-top: 30px;
   margin-bottom: 30px;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
-  grid-column-start: 4;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 3;
+  width: 60%;
+  grid-column-start: 6;
+  grid-column-end: 7;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  font-size: 25px;
 }

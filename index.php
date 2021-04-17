@@ -120,7 +120,7 @@
     <div id="yellow_bg">
       <div id="grid">
         <div id="logoDiv"><img src="Tools_For_Ever_Logo.png" alt="ToolsForEver_logo" id="logo"></div>
-        <div id="tfeDiv"><span id="tfeText">ToolsForEver Voorraad</span></div>
+        <div id="tfeDiv"><span id="title">ToolsForEver Voorraad</span></div>
 
         <!--
           When you fill the form in, you won't get immediatly go to the overzicht page, but it
@@ -129,9 +129,9 @@
 
         <form method="POST">
           <label for="naam" id="naamLabel">naam</label>
-          <input type="text" name="naam" value="" id="naamInput" required>
+          <input type="text" name="naam" value="" id="naam" required autofocus>
           <label for="wachtwoord" id="wachtwoordLabel">wachtwoord</label>
-          <input type="password" name="wwoord" value="" id="wachtwoordInput" required>
+          <input type="password" name="wwoord" value="" id="wachtwoord" required>
           <input type="submit" name="inloggen" value="inloggen" id="inlogSubmit">
         </form>
       </div>
