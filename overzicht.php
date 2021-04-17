@@ -1,6 +1,12 @@
 <?php
     class Dbh {
 
+      private $servername = "localhost";
+      private $username = "root";
+      private $password = "";
+      private $dbname = "toolsforever";
+      private $charset = "utf8mb4";
+
       /**
         uitlog function.
         When you press on the uitlog button, you will meet up with the condition
@@ -50,8 +56,6 @@
       public function verzend() {
         if(isset($_GET['verzend'])) {
           $GLOBALS['locatieSelected'] = $_GET['locatie'];
-          $GLOBALS['addressSelected'] = $_GET['address'];
-          $GLOBALS['productSelected'] = $_GET['product'];
           $this->getTableData();
         }
       }
@@ -66,37 +70,31 @@
       */
 
       public function getTableData() {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "toolsforever";
-        $charset = "utf8mb4";
-
-        try {
-          $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
-          $pdo = new PDO($dsn, $username, $password);
-          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-          // get other values of products
-          $GLOBALS['productInfo'] = array("");
-          foreach ($pdo->query("SELECT products.type, products.fabriek, products.voorraad, products.minimumVoorraad, products.verkoopprijs \n
-            FROM products \n
-            INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
-            INNER JOIN locatie ON locatie_has_products.idlocatie = locatie.idlocatie \n
-            WHERE locatie.naam = \"".$_GET['locatie']."\" AND locatie.address = \"".$_GET['address']."\" AND products.product = \"".$_GET['product']."\";") as $row) {
-            array_push($GLOBALS['productInfo'], $row[0]);
-            array_push($GLOBALS['productInfo'], $row[1]);
-            array_push($GLOBALS['productInfo'], $row[2]);
-            array_push($GLOBALS['productInfo'], $row[3]);
-            array_push($GLOBALS['productInfo'], $row[4]);
-          }
-          array_shift($GLOBALS['productInfo']);
-
-          $pdo = null;
-        } catch (PDOException $e) {
-          echo "Connection failed: ".$e->getMessage();
-          die();
-        }
+        // try {
+        //   $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
+        //   $pdo = new PDO($dsn, $username, $password);
+        //   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //
+        //   // get other values of products
+        //   $GLOBALS['productInfo'] = array("");
+        //   foreach ($pdo->query("SELECT products.type, products.fabriek, products.voorraad, products.minimumVoorraad, products.verkoopprijs \n
+        //     FROM products \n
+        //     INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
+        //     INNER JOIN vestiging_locatie ON locatie_has_products.idlocatie = locatie.idlocatie \n
+        //     WHERE locatie.naam = \"".$_GET['locatie']."\" AND locatie.address = \"".$_GET['address']."\" AND products.product = \"".$_GET['product']."\";") as $row) {
+        //     array_push($GLOBALS['productInfo'], $row[0]);
+        //     array_push($GLOBALS['productInfo'], $row[1]);
+        //     array_push($GLOBALS['productInfo'], $row[2]);
+        //     array_push($GLOBALS['productInfo'], $row[3]);
+        //     array_push($GLOBALS['productInfo'], $row[4]);
+        //   }
+        //   array_shift($GLOBALS['productInfo']);
+        //
+        //   $pdo = null;
+        // } catch (PDOException $e) {
+        //   echo "Connection failed: ".$e->getMessage();
+        //   die();
+        // }
       }
 
       /**
@@ -121,26 +119,12 @@
         $pdo = new PDO($dsn, $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // get locatie values
+        // get product values
         $GLOBALS['locatie'] = array("");
-        foreach ($pdo->query("SELECT DISTINCT naam FROM locatie") as $row) {
+        foreach ($pdo->query("SELECT DISTINCT naam FROM vestiging_locatie") as $row) {
           array_push($GLOBALS['locatie'], $row[0]);
         }
         array_shift($GLOBALS['locatie']);
-
-        // get address values
-        $GLOBALS['address'] = array("");
-        foreach ($pdo->query("SELECT address FROM locatie") as $row) {
-          array_push($GLOBALS['address'], $row[0]);
-        }
-        array_shift($GLOBALS['address']);
-
-        // get product values
-        $GLOBALS['product'] = array("");
-        foreach ($pdo->query("SELECT DISTINCT product FROM products") as $row) {
-          array_push($GLOBALS['product'], $row[0]);
-        }
-        array_shift($GLOBALS['product']);
 
         $pdo = null;
       } catch (PDOException $e) {
@@ -174,12 +158,12 @@
     After the 3600 seconds, the page will refresh and checks the time and login_time_stamp again, to go back to the login page.
   */
 
-  if (time() - $_SESSION["login_time_stamp"] > 3600) {
-    session_unset();
-    session_destroy();
-    header('Location: '.URL.'index.php', TRUE, 302);
-  }
-  header("refresh: 3600");
+  // if (time() - $_SESSION["login_time_stamp"] > 3600) {
+  //   session_unset();
+  //   session_destroy();
+  //   header('Location: '.URL.'index.php', TRUE, 302);
+  // }
+  // header("refresh: 3600");
 
   /**
     Below, it calls 4 php functions.
@@ -229,20 +213,6 @@
           <select name="locatie" id="locatieSelect">
             <?php
               foreach ($GLOBALS['locatie'] as $val) {
-                echo "<option value=\"".$val."\">".$val."</option>";
-              }
-            ?>
-          </select>
-          <select name="address" id="addressSelect">
-            <?php
-              foreach ($GLOBALS['address'] as $val) {
-                echo "<option value=\"".$val."\">".$val."</option>";
-              }
-            ?>
-          </select>
-          <select name="product" id="productSelect">
-            <?php
-              foreach ($GLOBALS['product'] as $val) {
                 echo "<option value=\"".$val."\">".$val."</option>";
               }
             ?>
@@ -311,16 +281,6 @@
               }
             ?>
           </span>
-          <span id="addressTxt">
-            Address:
-            <?php
-              if (empty($GLOBALS['addressSelected'])) {
-                echo "---";
-              } else {
-                echo $GLOBALS['addressSelected'];
-              }
-            ?>
-          </span>
           <div id="table">
             <!-- Col means column -->
             <span id="productCol" class="textStyleBold">Product</span>
@@ -328,6 +288,7 @@
             <span id="fabriekCol" class="textStyleBold">Fabriek</span>
             <span id="inVoorraadCol" class="textStyleBold">In voorraad</span>
             <span id="inMinimumCol" class="textStyleBold">Minimum voorraad</span>
+            <span id="inMaximumCol" class="textStyleBold">Maximum voorraad</span>
             <span id="verkoopprijsCol" class="textStyleBold">Verkoopprijs</span>
             <!-- Val means Value -->
             <span id="productVal" class="textStyle">
@@ -375,12 +336,21 @@
               }
               ?>
             </span>
+            <span id="inMaximumVal" class="textStyle">
+              <?php
+              if (empty($GLOBALS['productInfo'])) {
+                echo "---";
+              } else {
+                echo $GLOBALS['productInfo'][4];
+              }
+              ?>
+            </span>
             <span id="verkoopprijsVal" class="textStyle">
               <?php
               if (empty($GLOBALS['productInfo'])) {
                 echo "---";
               } else {
-                echo "€".$GLOBALS['productInfo'][4];
+                echo "€".$GLOBALS['productInfo'][5];
               }
               ?>
             </span>
