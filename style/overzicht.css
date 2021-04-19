@@ -15,7 +15,7 @@ body {
   background-color: #EEE8AA;
   border-radius: 20px;
   box-shadow: 10px 10px 20px 1px #00000066;
-  min-width: 1000px;
+  min-width: 1090px;
 }
 
 #grid {
@@ -86,7 +86,7 @@ form {
   height: 0px;
   border: 1px solid #707070;
 
-  grid-column-start: 6;
+  grid-column-start: 7;
   grid-column-end: 14;
   grid-row-start: 2;
   grid-row-end: 3;
@@ -124,11 +124,12 @@ form {
 
 #kiesTxt {
   font-family: "Segoe UI";
+  font-size: 25px;
   margin-left: auto;
   margin-right: auto;
 
   grid-column-start: 4;
-  grid-column-end: 6;
+  grid-column-end: 7;
   grid-row-start: 1;
   grid-row-end: 2;
 }
@@ -154,7 +155,7 @@ form {
 
 #overzicht {
   display: grid;
-  grid-template-columns: auto 800px auto;
+  grid-template-columns: auto 1050px auto;
   grid-template-rows: 20px 20px 20px 90px;
 
   grid-column-start: 2;
@@ -174,7 +175,7 @@ form {
 
 #table {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   grid-template-rows: 50px 45px;
 
   grid-column-start: 2;
@@ -190,24 +191,6 @@ form {
 
   border-left: 1px solid black;
   border-top: 1px solid black;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background-color: #D3D3D3;
-}
-
-#verkoopprijsCol {
-  border-right: 1px solid black;
-}
-
-.textStyle {
-  font-family: "Segoe UI";
-  text-align: center;
-
-  border-left: 1px solid black;
-  border-top: 1px solid black;
   border-bottom: 1px solid black;
 
   display: flex;
@@ -217,6 +200,18 @@ form {
   background-color: #D3D3D3;
 }
 
-#verkoopprijsVal {
+/* .rightEndTableBorder {
+  font-family: "Segoe UI";
+  text-align: center;
+
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
   border-right: 1px solid black;
-}
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #D3D3D3;
+} */

@@ -95,6 +95,52 @@
         //   echo "Connection failed: ".$e->getMessage();
         //   die();
         // }
+
+
+
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          // set "locatie naam" for the forms.
+          // $GLOBALS['locatieNaam'] = array("");
+
+          $GLOBALS['totalRows'] = 0;
+
+          $stmt = $conn->prepare("SELECT products.product, products.type, products.fabriek, \n
+            locatie_has_products.voorraad, locatie_has_products.minimumVoorraad, locatie_has_products.maximumVoorraad, products.verkoopprijs, \n
+            vestiging_locatie.naam \n
+            FROM products \n
+            INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
+            INNER JOIN vestiging_locatie ON locatie_has_products.idlocatie = vestiging_locatie.idlocatie \n
+            WHERE vestiging_locatie.naam = :naam ORDER BY products.product");
+
+          $stmt->bindParam(':naam', $vestiging_locatie);
+          $vestiging_locatie = $_GET['locatie'];
+
+          $stmt->execute();
+          $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          foreach ($result as $key => $row) {
+            // array_push($GLOBALS['locatieNaam'], $row['naam']);
+            $GLOBALS['totalRows']++;
+            echo $row['product']."<br>";
+            echo $row['type']."<br>";
+            echo $row['fabriek']."<br>";
+            echo $row['voorraad']."<br>";
+            echo $row['minimumVoorraad']."<br>";
+            echo $row['maximumVoorraad']."<br>";
+            echo ($row['maximumVoorraad'] - $row['voorraad'])."<br>";
+            echo $row['verkoopprijs']."<br>";
+            echo $row['naam']."<br>";
+            echo "<br><br>";
+          }
+          // array_shift($GLOBALS['locatieNaam']);
+          echo $GLOBALS['totalRows'];
+
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+        $conn = null;
       }
 
       /**
@@ -209,7 +255,7 @@
           <div id="line3"></div>
           <div id="line4"></div>
           <div id="line5"></div>
-          <span id="kiesTxt">Kies een locatie en een product</span>
+          <span id="kiesTxt">Kies een vestiging locatie</span>
           <select name="locatie" id="locatieSelect">
             <?php
               foreach ($GLOBALS['locatie'] as $val) {
@@ -273,71 +319,77 @@
             <span id="inVoorraadCol" class="textStyleBold">In voorraad</span>
             <span id="inMinimumCol" class="textStyleBold">Minimum voorraad</span>
             <span id="inMaximumCol" class="textStyleBold">Maximum voorraad</span>
-            <span id="verkoopprijsCol" class="textStyleBold">Verkoopprijs</span>
+            <span id="inBestelCol" class="textStyleBold">Aantal te bestellen</span>
+            <span id="verkoopprijsCol" class="textStyleBold" style="border-right: 1px solid black;">Verkoopprijs</span>
+
+
+
             <!-- Val means Value -->
-            <span id="productVal" class="textStyle">
+            <!-- <span id="productVal" class="textStyle">
               <?php
-                if (empty($GLOBALS['productSelected'])) {
-                  echo "---";
-                } else {
-                  echo $GLOBALS['productSelected'];
-                }
+                // if (empty($GLOBALS['productSelected'])) {
+                //   echo "---";
+                // } else {
+                //   echo $GLOBALS['productSelected'];
+                // }
               ?>
             </span>
             <span id="typeVal" class="textStyle">
               <?php
-                if (empty($GLOBALS['productInfo'])) {
-                  echo "---";
-                } else {
-                  echo utf8_encode($GLOBALS['productInfo'][0]);
-                }
+                // if (empty($GLOBALS['productInfo'])) {
+                //   echo "---";
+                // } else {
+                //   echo utf8_encode($GLOBALS['productInfo'][0]);
+                // }
               ?>
             </span>
             <span id="fabriekVal" class="textStyle">
               <?php
-              if (empty($GLOBALS['productInfo'])) {
-                echo "---";
-              } else {
-                echo utf8_encode($GLOBALS['productInfo'][1]);
-              }
+              // if (empty($GLOBALS['productInfo'])) {
+              //   echo "---";
+              // } else {
+              //   echo utf8_encode($GLOBALS['productInfo'][1]);
+              // }
               ?>
             </span>
             <span id="inVoorraadVal" class="textStyle">
               <?php
-              if (empty($GLOBALS['productInfo'])) {
-                echo "---";
-              } else {
-                echo $GLOBALS['productInfo'][2];
-              }
+              // if (empty($GLOBALS['productInfo'])) {
+              //   echo "---";
+              // } else {
+              //   echo $GLOBALS['productInfo'][2];
+              // }
               ?>
             </span>
             <span id="inMinimumVal" class="textStyle">
               <?php
-              if (empty($GLOBALS['productInfo'])) {
-                echo "---";
-              } else {
-                echo $GLOBALS['productInfo'][3];
-              }
+              // if (empty($GLOBALS['productInfo'])) {
+              //   echo "---";
+              // } else {
+              //   echo $GLOBALS['productInfo'][3];
+              // }
               ?>
             </span>
             <span id="inMaximumVal" class="textStyle">
               <?php
-              if (empty($GLOBALS['productInfo'])) {
-                echo "---";
-              } else {
-                echo $GLOBALS['productInfo'][4];
-              }
+              // if (empty($GLOBALS['productInfo'])) {
+              //   echo "---";
+              // } else {
+              //   echo $GLOBALS['productInfo'][4];
+              // }
               ?>
             </span>
-            <span id="verkoopprijsVal" class="textStyle">
+            <span id="verkoopprijsVal" class="rightEndTableBorder">
               <?php
-              if (empty($GLOBALS['productInfo'])) {
-                echo "---";
-              } else {
-                echo "€".$GLOBALS['productInfo'][5];
-              }
+              // if (empty($GLOBALS['productInfo'])) {
+              //   echo "---";
+              // } else {
+              //   echo "€".$GLOBALS['productInfo'][5];
+              // }
               ?>
-            </span>
+            </span> -->
+
+
           </div>
         </div>
       </div>
