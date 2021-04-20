@@ -70,7 +70,7 @@
             if($row[1].' '.$row[2].' '.$row[3] == $_POST['naam'] && password_verify($_POST['wwoord'], $row[4])) {
               session_start();
               $_SESSION["rol"] = $row[5];
-              $_SESSION["naam"] = substr($row[1], 0, 1).'. '.$row[2].'. '.$row[3];
+              $_SESSION["naam"] = substr($row[1], 0, 1).'. '.$row[2].' '.$row[3];
               $_SESSION["login_time_stamp"] = time();
               header('Location: '.URL.'overzicht.php', TRUE, 302);
             }

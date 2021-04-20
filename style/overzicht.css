@@ -15,12 +15,12 @@ body {
   background-color: #EEE8AA;
   border-radius: 20px;
   box-shadow: 10px 10px 20px 1px #00000066;
-  min-width: 1090px;
+  min-width: 1400px;
 }
 
 #grid {
   display: grid;
-  grid-template-columns: 10px 2fr 9fr 3fr 10px;
+  grid-template-columns: 10px 4fr 9fr 4fr 10px;
   grid-template-rows: 10px 100px 30px 160px 50px 150px 50px;
 }
 
@@ -157,7 +157,7 @@ form {
 
 #overzicht {
   display: grid;
-  grid-template-columns: auto 1050px auto;
+  grid-template-columns: auto 1350px auto;
   grid-template-rows: 20px 20px 20px 90px;
 
   grid-column-start: 2;
@@ -168,7 +168,9 @@ form {
 
 #locatieTxt {
     font-family: "Segoe UI";
+    font-size: 25px;
     text-align: center;
+
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
@@ -178,7 +180,7 @@ form {
 #table {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: 50px 45px;
+  grid-template-rows: 70px 65px;
 
   grid-column-start: 2;
   grid-column-end: 3;
@@ -190,6 +192,7 @@ form {
   font-family: "Segoe UI";
   text-align: center;
   font-weight: bold;
+  font-size: 25px;
 
   border-left: 1px solid black;
   border-top: 1px solid black;

@@ -246,7 +246,7 @@
           $rol = "Medewerker";
         }
 
-        echo "<p>".$rol.". ".$_SESSION['naam']."</p>";
+        echo "<p style=\"font-size: 25px;\">".$rol.". ".$_SESSION['naam']."</p>";
 
           ?></div>
         <form action="overzicht.php" method="GET">
@@ -290,12 +290,12 @@
             */
 
               if($_SESSION['rol'] == 1) {
-                echo "<input type=\"submit\" name=\"verzend\" value=\"verzenden\" id=\"verzendSubmita\" style=\"grid-column-start: 2; grid-column-end: 4; grid-row-start: 1; grid-row-end: 2;\">";
-                echo "<input type=\"submit\" name=\"admin\" value=\"Naar admin venster\" id=\"adminSubmit\" style=\"grid-column-start: 5; grid-column-end: 8; grid-row-start: 1; grid-row-end: 2;\">";
-                echo "<input type=\"submit\" name=\"uitlog\" value=\"uitloggen\" id=\"uitlogSubmita\" style=\"grid-column-start: 9; grid-column-end: 11; grid-row-start: 1; grid-row-end: 2;\">";
+                echo "<input type=\"submit\" name=\"verzend\" value=\"verzenden\" id=\"verzendSubmita\" style=\"font-size: 25px; grid-column-start: 2; grid-column-end: 4; grid-row-start: 1; grid-row-end: 2;\">";
+                echo "<input type=\"submit\" name=\"admin\" value=\"Naar admin venster\" id=\"adminSubmit\" style=\"font-size: 25px; grid-column-start: 5; grid-column-end: 8; grid-row-start: 1; grid-row-end: 2;\">";
+                echo "<input type=\"submit\" name=\"uitlog\" value=\"uitloggen\" id=\"uitlogSubmita\" style=\"font-size: 25px; grid-column-start: 9; grid-column-end: 11; grid-row-start: 1; grid-row-end: 2;\">";
               } else {
-                echo "<input type=\"submit\" name=\"verzend\" value=\"verzenden\" id=\"verzendSubmitb\" style=\"grid-column-start: 3; grid-column-end: 6; grid-row-start: 1; grid-row-end: 2;\">";
-                echo "<input type=\"submit\" name=\"uitlog\" value=\"uitloggen\" id=\"uitlogSubmitb\" style=\"grid-column-start: 7; grid-column-end: 10; grid-row-start: 1; grid-row-end: 2;\">";
+                echo "<input type=\"submit\" name=\"verzend\" value=\"verzenden\" id=\"verzendSubmitb\" style=\"font-size: 25px; grid-column-start: 3; grid-column-end: 6; grid-row-start: 1; grid-row-end: 2;\">";
+                echo "<input type=\"submit\" name=\"uitlog\" value=\"uitloggen\" id=\"uitlogSubmitb\" style=\"font-size: 25px; grid-column-start: 7; grid-column-end: 10; grid-row-start: 1; grid-row-end: 2;\">";
               }
             ?>
         </div>
