@@ -63,8 +63,8 @@ body {
 
 form {
   display: grid;
-  grid-template-columns: 10px 100px 287px 10px;
-  grid-template-rows: 15px 1px 20px 30px 20px 1px 20px 30px;
+  grid-template-columns: 10px 100px 287px auto 10px;
+  grid-template-rows: 15px 2px 25px 40px 20px 2px 20px 40px;
 
   grid-column-start: 2;
   grid-column-end: 5;
@@ -106,8 +106,8 @@ form {
   width: 0px;
   border: 1px solid #707070;
 
-  grid-column-start: 4;
-  grid-column-end: 5;
+  grid-column-start: 5;
+  grid-column-end: 6;
   grid-row-start: 3;
   grid-row-end: 7;
 }
@@ -135,11 +135,13 @@ form {
 }
 
 #locatieSelect {
-  grid-column-start: 4;
-  grid-column-end: 5;
+  font-family: "Segoe UI";
+  font-size: 25px;
+
+  grid-column-start: 3;
+  grid-column-end: 4;
   grid-row-start: 4;
   grid-row-end: 5;
-  margin-left: 50px;
 }
 
 #submitDiv {
@@ -148,7 +150,7 @@ form {
   grid-template-rows: auto;
 
   grid-column-start: 1;
-  grid-column-end: 5;
+  grid-column-end: 6;
   grid-row-start: 8;
   grid-row-end: 9;
 }
