@@ -236,7 +236,7 @@
     <div id="yellow_bg">
       <div id="grid">
         <div id="logoDiv"><img src="Tools_For_Ever_Logo.png" alt="ToolsForEver_logo" id="logo"></div>
-        <div id="tfeDiv"><span id="tfeText">ToolsForEver Vooraad</span></div>
+        <div id="tfeDiv"><span id="tfeText">ToolsForEver Voorraad</span></div>
         <div id="naamDiv"><?php
 
         $rol;
