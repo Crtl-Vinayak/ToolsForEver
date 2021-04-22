@@ -889,17 +889,16 @@
           <div id="line3"></div>
           <div id="line4"></div>
           <div id="locatieDiv">
-            <span id="locatieInfo">Hier kan je de locatie en adres toevoegen, wijzigen of verwijderen</span>
+            <span id="locatieInfo">Hier kan je de vestiging locatie toevoegen, wijzigen of verwijderen</span>
             <div id="locatieAddDiv">
-              <span id="locatieInfo1">- locatie en adres toevoegen</span>
+              <span id="locatieInfo1">- vestiging locatie toevoegen</span>
               <form method="GET" id="addPlaceForm">
                 <input type="text" name="addLocatie" value="" placeholder="type hier de nieuwe locatie" required id="addPlaceLocatieInput">
-                <input type="text" name="addAdres" value="" placeholder="type hier de nieuwe adres" required id="addPlaceAdresInput">
                 <input type="submit" name="addPlaceSubmit" value="Toevoegen" id="addPlaceSubmit">
               </form>
             </div>
             <div id="locatieChangeDiv">
-              <span id="locatieInfo2">- locatie wijzigen.</span>
+              <span id="locatieInfo2">- vestiging locatie wijzigen.</span>
               <form method="GET" id="changeLocatieForm">
                 <select name="changeLocatieSelect" id="changeLocatieSelect">
                   <?php
@@ -911,32 +910,13 @@
                 <input type="text" name="changePlaceLocatieInput" value="" placeholder="type hier de nieuwe gewijzigde locatie" required id="changePlaceLocatieInput">
                 <input type="submit" name="changeLocatieSubmit" value="Wijziging opslaan" id="changeLocatieSubmit">
               </form>
-              <span id="locatieInfo3">- adres wijzigen.</span>
-              <form method="GET" id="changeAdresForm">
-                <select name="changeAdresSelect" id="changeAdresSelect">
-                  <?php
-                    foreach ($GLOBALS['locatieAdres'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <input type="text" name="changePlaceAdresInput" value="" placeholder="type hier de nieuwe gewijzigde adres" required id="changePlaceAdresInput">
-                <input type="submit" name="changeAdresSubmit" value="Wijziging opslaan" id="changeAdresSubmit">
-              </form>
             </div>
             <div id="locatieRemoveDiv">
-              <span id="locatieInfo4">- locatie en adres verwijderen</span>
+              <span id="locatieInfo4">- vestiging locatie verwijderen</span>
               <form method="GET" id="removePlaceForm">
                 <select name="removeLocatieSelect" id="removeLocatieSelect">
                   <?php
                     foreach ($GLOBALS['locatieNaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="removeAdresSelect" id="removeAdresSelect">
-                  <?php
-                    foreach ($GLOBALS['locatieAdres'] as $val) {
                       echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
                     }
                   ?>
@@ -954,21 +934,6 @@
                 <input type="text" name="addProductsType" value="" placeholder="type hier de type van het product" id="addProductsType">
                 <input type="text" name="addProductsFabriek" value="" placeholder="type hier van welke fabriek het product komt" id="addProductsFabriek" required>
                 <input type="number" name="addProductsVoorraad" value="" min="0" placeholder="type hier het getal van hoeveel van dit product in het voorraad zit" id="addProductsVoorraad" required>
-                <input type="text" value="Kies hierbeneden de voorraad locatie en adres voor de product" id="addProductsInfoSelect" readonly>
-                <select name="addProductsLocatieSelect" id="addProductsLocatieSelect">
-                  <?php
-                    foreach ($GLOBALS ['locatieNaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="addProductsAdresSelect" id="addProductsAdresSelect">
-                  <?php
-                    foreach ($GLOBALS['locatieAdres'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
                 <input type="number" name="addProductsMinimumVoorraad" value="" min="0" placeholder="type hier het getal van het minimum voorraad van dit product" id="addProductsMinimumVoorraad" required>
                 <input type="number" name="addProductsVerkoopprijs" value="" min="0" step=".01" placeholder="type hier wat de nieuwe verkoopprijs is van dit product" id="addProductsVerkoopprijs" required>
                 <input type="submit" name="addProductSubmit" value="Toevoegen" id="addProductSubmit">
@@ -1010,61 +975,6 @@
                 </select>
                 <input type="text" name="changeProductFabriek" value="" placeholder="type hier de gewijzigde product fabriek" required id="changeProductFabriek">
                 <input type="submit" name="changeProductFabriekSubmit" value="Wijziging opslaan" id="changeProductFabriekSubmit">
-              </form>
-              <span id="productInfo5">- Artikel locatie voorraad wijzigen.</span>
-              <span id="productInfo6">- Middelste rij is de oude locatie die u wilt wijzigen.</span>
-              <span id="productInfo7">- Kies je bij de rechter rij de nieuwe locatie voor het artikel.</span>
-              <form method="GET" id="changeProductForm2">
-                <select name="changeProductsNaamSelect2" id="changeProductsNaamSelect2">
-                  <?php
-                    foreach ($GLOBALS['productNaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeProductsTypeSelect2" id="changeProductsTypeSelect2">
-                  <?php
-                    foreach ($GLOBALS['productType'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeProductsFabriekSelect2" id="changeProductsFabriekSelect2">
-                  <?php
-                    foreach ($GLOBALS['productFabriek'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeProductsLocatieSelect" id="changeProductsLocatieSelect">
-                  <?php
-                    foreach ($GLOBALS['locatieNaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeProductsAdresSelect" id="changeProductsAdresSelect">
-                  <?php
-                    foreach ($GLOBALS['locatieAdres'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeProductsLocatieSelect2" id="changeProductsLocatieSelect2">
-                  <?php
-                    foreach ($GLOBALS['locatieNaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeProductsAdresSelect2" id="changeProductsAdresSelect2">
-                  <?php
-                    foreach ($GLOBALS['locatieAdres'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <input type="submit" name="changeProductSubmit2" value="Wijziging opslaan" id="changeProductSubmit2">
               </form>
               <span id="productInfo8">- artikel voorraad wijzigen.</span>
               <form method="GET" id="changeProductVoorraadForm">
