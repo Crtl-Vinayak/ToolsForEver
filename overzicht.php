@@ -187,12 +187,12 @@
     After the 3600 seconds, the page will refresh and checks the time and login_time_stamp again, to go back to the login page.
   */
 
-  // if (time() - $_SESSION["login_time_stamp"] > 3600) {
-  //   session_unset();
-  //   session_destroy();
-  //   header('Location: '.URL.'index.php', TRUE, 302);
-  // }
-  // header("refresh: 3600");
+  if (time() - $_SESSION["login_time_stamp"] > 3600) {
+    session_unset();
+    session_destroy();
+    header('Location: '.URL.'index.php', TRUE, 302);
+  }
+  header("refresh: 3600");
 
   /**
     Below, it calls 4 php functions.
