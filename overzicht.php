@@ -331,7 +331,7 @@
                   echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['minimumVoorraad'][$i] ."</span>";
                   echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['maximumVoorraad'][$i] ."</span>";
                   echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['aantalTeBestellen'][$i] ."</span>";
-                  echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black; border-right: 1px solid black;\">". $GLOBALS['verkoopprijs'][$i] ."</span>";
+                  echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black; border-right: 1px solid black;\">". number_format((float) $GLOBALS['verkoopprijs'][$i], 2, '.', '') ."</span>";
                 }
               }
             ?>
