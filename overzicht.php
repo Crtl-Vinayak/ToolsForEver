@@ -99,6 +99,9 @@
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
+            if (($row['maximumVoorraad'] - $row['voorraad']) == 0) {
+              continue;
+            }
             $GLOBALS['totalRows']++;
             array_push($GLOBALS['product'], $row['product']);
             array_push($GLOBALS['type'], $row['type']);
