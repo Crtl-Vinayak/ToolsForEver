@@ -70,41 +70,19 @@
       */
 
       public function getTableData() {
-        // try {
-        //   $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
-        //   $pdo = new PDO($dsn, $username, $password);
-        //   $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //
-        //   // get other values of products
-        //   $GLOBALS['productInfo'] = array("");
-        //   foreach ($pdo->query("SELECT products.type, products.fabriek, products.voorraad, products.minimumVoorraad, products.verkoopprijs \n
-        //     FROM products \n
-        //     INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
-        //     INNER JOIN vestiging_locatie ON locatie_has_products.idlocatie = locatie.idlocatie \n
-        //     WHERE locatie.naam = \"".$_GET['locatie']."\" AND locatie.address = \"".$_GET['address']."\" AND products.product = \"".$_GET['product']."\";") as $row) {
-        //     array_push($GLOBALS['productInfo'], $row[0]);
-        //     array_push($GLOBALS['productInfo'], $row[1]);
-        //     array_push($GLOBALS['productInfo'], $row[2]);
-        //     array_push($GLOBALS['productInfo'], $row[3]);
-        //     array_push($GLOBALS['productInfo'], $row[4]);
-        //   }
-        //   array_shift($GLOBALS['productInfo']);
-        //
-        //   $pdo = null;
-        // } catch (PDOException $e) {
-        //   echo "Connection failed: ".$e->getMessage();
-        //   die();
-        // }
-
-
-
         try {
           $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-          // set "locatie naam" for the forms.
-          // $GLOBALS['locatieNaam'] = array("");
-
+          $GLOBALS['product'] = array("");
+          $GLOBALS['type'] = array("");
+          $GLOBALS['fabriek'] = array("");
+          $GLOBALS['voorraad'] = array("");
+          $GLOBALS['minimumVoorraad'] = array("");
+          $GLOBALS['maximumVoorraad'] = array("");
+          $GLOBALS['aantalTeBestellen'] = array("");
+          $GLOBALS['verkoopprijs'] = array("");
+          $GLOBALS['naam'] = array("");
           $GLOBALS['totalRows'] = 0;
 
           $stmt = $conn->prepare("SELECT products.product, products.type, products.fabriek, \n
@@ -121,22 +99,24 @@
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
-            // array_push($GLOBALS['locatieNaam'], $row['naam']);
             $GLOBALS['totalRows']++;
-            echo $row['product']."<br>";
-            echo $row['type']."<br>";
-            echo $row['fabriek']."<br>";
-            echo $row['voorraad']."<br>";
-            echo $row['minimumVoorraad']."<br>";
-            echo $row['maximumVoorraad']."<br>";
-            echo ($row['maximumVoorraad'] - $row['voorraad'])."<br>";
-            echo $row['verkoopprijs']."<br>";
-            echo $row['naam']."<br>";
-            echo "<br><br>";
+            array_push($GLOBALS['product'], $row['product']);
+            array_push($GLOBALS['type'], $row['type']);
+            array_push($GLOBALS['fabriek'], $row['fabriek']);
+            array_push($GLOBALS['voorraad'], $row['voorraad']);
+            array_push($GLOBALS['minimumVoorraad'], $row['minimumVoorraad']);
+            array_push($GLOBALS['maximumVoorraad'], $row['maximumVoorraad']);
+            array_push($GLOBALS['aantalTeBestellen'], ($row['maximumVoorraad'] - $row['voorraad']));
+            array_push($GLOBALS['verkoopprijs'], $row['verkoopprijs']);
           }
-          // array_shift($GLOBALS['locatieNaam']);
-          echo $GLOBALS['totalRows'];
-
+          array_shift($GLOBALS['product']);
+          array_shift($GLOBALS['type']);
+          array_shift($GLOBALS['fabriek']);
+          array_shift($GLOBALS['voorraad']);
+          array_shift($GLOBALS['minimumVoorraad']);
+          array_shift($GLOBALS['maximumVoorraad']);
+          array_shift($GLOBALS['aantalTeBestellen']);
+          array_shift($GLOBALS['verkoopprijs']);
         } catch(PDOException $e) {
           echo $sql . "<br>" . $e->getMessage();
         }
@@ -234,7 +214,15 @@
   </head>
   <body>
     <div id="yellow_bg">
-      <div id="grid">
+        <div
+        <?php
+          if (isset($GLOBALS['totalRows'])) {
+            echo "style=\"display:grid; grid-template-columns: 10px 4fr 9fr 4fr 10px; grid-template-rows: 10px 100px 30px 160px 50px 150px repeat(".$GLOBALS['totalRows'].", 65px) 50px\"";
+          } else {
+            echo "style=\"display:grid; grid-template-columns: 10px 4fr 9fr 4fr 10px; grid-template-rows: 10px 100px 30px 160px 50px 150px 50px\"";
+          }
+        ?>
+        >
         <div id="logoDiv"><img src="Tools_For_Ever_Logo.png" alt="ToolsForEver_logo" id="logo"></div>
         <div id="tfeDiv"><span id="tfeText">ToolsForEver Voorraad</span></div>
         <div id="naamDiv"><?php
@@ -311,7 +299,15 @@
               }
             ?>
           </span>
-          <div id="table">
+
+          <div id="table"
+          <?php
+            if (isset($GLOBALS['totalRows'])) {
+              echo "style=\"display:grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: 70px repeat(".$GLOBALS['totalRows'].", 65px)\"";
+            } else {
+              echo "style=\"display:grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: 70px\"";
+            }
+          ?>>
             <!-- Col means column -->
             <span id="productCol" class="textStyleBold">Product</span>
             <span id="typeCol" class="textStyleBold">Type</span>
@@ -322,74 +318,20 @@
             <span id="inBestelCol" class="textStyleBold">Aantal te bestellen</span>
             <span id="verkoopprijsCol" class="textStyleBold" style="border-right: 1px solid black;">Verkoopprijs</span>
 
-
-
-            <!-- Val means Value -->
-            <!-- <span id="productVal" class="textStyle">
-              <?php
-                // if (empty($GLOBALS['productSelected'])) {
-                //   echo "---";
-                // } else {
-                //   echo $GLOBALS['productSelected'];
-                // }
-              ?>
-            </span>
-            <span id="typeVal" class="textStyle">
-              <?php
-                // if (empty($GLOBALS['productInfo'])) {
-                //   echo "---";
-                // } else {
-                //   echo utf8_encode($GLOBALS['productInfo'][0]);
-                // }
-              ?>
-            </span>
-            <span id="fabriekVal" class="textStyle">
-              <?php
-              // if (empty($GLOBALS['productInfo'])) {
-              //   echo "---";
-              // } else {
-              //   echo utf8_encode($GLOBALS['productInfo'][1]);
-              // }
-              ?>
-            </span>
-            <span id="inVoorraadVal" class="textStyle">
-              <?php
-              // if (empty($GLOBALS['productInfo'])) {
-              //   echo "---";
-              // } else {
-              //   echo $GLOBALS['productInfo'][2];
-              // }
-              ?>
-            </span>
-            <span id="inMinimumVal" class="textStyle">
-              <?php
-              // if (empty($GLOBALS['productInfo'])) {
-              //   echo "---";
-              // } else {
-              //   echo $GLOBALS['productInfo'][3];
-              // }
-              ?>
-            </span>
-            <span id="inMaximumVal" class="textStyle">
-              <?php
-              // if (empty($GLOBALS['productInfo'])) {
-              //   echo "---";
-              // } else {
-              //   echo $GLOBALS['productInfo'][4];
-              // }
-              ?>
-            </span>
-            <span id="verkoopprijsVal" class="rightEndTableBorder">
-              <?php
-              // if (empty($GLOBALS['productInfo'])) {
-              //   echo "---";
-              // } else {
-              //   echo "€".$GLOBALS['productInfo'][5];
-              // }
-              ?>
-            </span> -->
-
-
+            <?php
+              if (isset($_GET['verzend'])) {
+                for ($i = 0; $i < $GLOBALS['totalRows']; $i++) {
+                  echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['product'][$i] ."</span>";
+                  echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['type'][$i] ."</span>";
+                  echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['fabriek'][$i] ."</span>";
+                  echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['voorraad'][$i] ."</span>";
+                  echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['minimumVoorraad'][$i] ."</span>";
+                  echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['maximumVoorraad'][$i] ."</span>";
+                  echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['aantalTeBestellen'][$i] ."</span>";
+                  echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black; border-right: 1px solid black;\">". $GLOBALS['verkoopprijs'][$i] ."</span>";
+                }
+              }
+            ?>
           </div>
         </div>
       </div>
