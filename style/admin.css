@@ -118,7 +118,7 @@ body {
 #locatieDiv {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 24px auto 105px 215px 140px;
+  grid-template-rows: 24px auto 105px 105px 140px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -172,13 +172,6 @@ body {
 
 #addPlaceLocatieInput {
   grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#addPlaceAdresInput {
-  grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
@@ -194,7 +187,7 @@ body {
 #locatieChangeDiv {
   display: grid;
   grid-template-columns: 50px auto;
-  grid-template-rows: 24px 24px 24px 35px 24px 24px 24px 35px;
+  grid-template-rows: 24px 24px 24px 35px 24px 35px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -229,25 +222,7 @@ body {
   grid-row-end: 7;
 }
 
-#changeAdresForm {
-  display: grid;
-  grid-template-columns: 250px 20px 250px auto 120px auto;
-  grid-template-rows: 35px;
-
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 8;
-  grid-row-end: 9;
-}
-
 #changeLocatieSelect {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#changeAdresSelect {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
@@ -261,21 +236,7 @@ body {
   grid-row-end: 2;
 }
 
-#changePlaceAdresInput {
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
 #changeLocatieSubmit {
-  grid-column-start: 5;
-  grid-column-end: 6;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#changeAdresSubmit {
   grid-column-start: 5;
   grid-column-end: 6;
   grid-row-start: 1;
@@ -314,13 +275,6 @@ body {
 
 #removeLocatieSelect {
   grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#removeAdresSelect {
-  grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;
@@ -333,17 +287,10 @@ body {
   grid-row-end: 2;
 }
 
-#removeAdresPlaceSubmit {
-  grid-column-start: 4;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
 #productDiv {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 24px auto 530px 1472px 150px;
+  grid-template-rows: 24px auto 470px 1472px 150px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -368,7 +315,7 @@ body {
 #productAddDiv {
   display: grid;
   grid-template-columns: 50px auto;
-  grid-template-rows: 24px 24px 472px;
+  grid-template-rows: 24px 24px 425px;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 3;
@@ -386,7 +333,7 @@ body {
 #addProductForm {
   display: grid;
   grid-template-columns: 250px 20px 250px auto 120px auto;
-  grid-template-rows: repeat(8, 24px 35px);
+  grid-template-rows: repeat(7, 24px 35px);
 
   grid-column-start: 2;
   grid-column-end: 3;
@@ -436,32 +383,32 @@ body {
   grid-row-end: 13;
 }
 
-#addProductsAdresSelect {
-  grid-column-start: 3;
+#addProductsMinimumVoorraad {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 10;
+  grid-row-end: 11;
+}
+
+#addProductsMaximumVoorraad {
+  grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 12;
   grid-row-end: 13;
 }
 
-#addProductsMinimumVoorraad {
+#addProductsVerkoopprijs {
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 14;
   grid-row-end: 15;
 }
 
-#addProductsVerkoopprijs {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 16;
-  grid-row-end: 17;
-}
-
 #addProductSubmit {
   grid-column-start: 5;
   grid-column-end: 6;
-  grid-row-start: 16;
-  grid-row-end: 17;
+  grid-row-start: 14;
+  grid-row-end: 15;
 }
 
 #productChangeDiv {
@@ -698,25 +645,11 @@ body {
   grid-row-end: 5;
 }
 
-#changeProductsAdresSelect {
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 6;
-  grid-row-end: 7;
-}
-
 #changeProductsLocatieSelect2 {
   grid-column-start: 5;
   grid-column-end: 6;
   grid-row-start: 4;
   grid-row-end: 5;
-}
-
-#changeProductsAdresSelect2 {
-  grid-column-start: 5;
-  grid-column-end: 6;
-  grid-row-start: 6;
-  grid-row-end: 7;
 }
 
 #changeProductSubmit2 {

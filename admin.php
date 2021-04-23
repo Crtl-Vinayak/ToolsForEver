@@ -935,6 +935,7 @@
                 <input type="text" name="addProductsFabriek" value="" placeholder="type hier van welke fabriek het product komt" id="addProductsFabriek" required>
                 <input type="number" name="addProductsVoorraad" value="" min="0" placeholder="type hier het getal van hoeveel van dit product in het voorraad zit" id="addProductsVoorraad" required>
                 <input type="number" name="addProductsMinimumVoorraad" value="" min="0" placeholder="type hier het getal van het minimum voorraad van dit product" id="addProductsMinimumVoorraad" required>
+                <input type="number" name="addProductsMaximumVoorraad" value="" min="0" placeholder="type hier het getal van het maximum voorraad van dit product" id="addProductsMaximumVoorraad" required>
                 <input type="number" name="addProductsVerkoopprijs" value="" min="0" step=".01" placeholder="type hier wat de nieuwe verkoopprijs is van dit product" id="addProductsVerkoopprijs" required>
                 <input type="submit" name="addProductSubmit" value="Toevoegen" id="addProductSubmit">
               </form>
