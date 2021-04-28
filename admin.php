@@ -977,8 +977,12 @@
                 <input type="text" name="changeProductFabriek" value="" placeholder="type hier de gewijzigde product fabriek" required id="changeProductFabriek">
                 <input type="submit" name="changeProductFabriekSubmit" value="Wijziging opslaan" id="changeProductFabriekSubmit">
               </form>
-              <span id="productInfo8">- artikel voorraad of verkoopprijs gegeven(s) wijzigen van een bepaalde vestiging locatie.</span>
-              <form method="GET" id="changeProductVoorraadForm">
+              <span id="productInfo8">- artikel voorraad of verkoopprijs gegeven(s) wijzigen.</span>
+              <form method="GET" id="changeProductForm">
+                <input type="text" readonly value="Artikel naam:" class="productChangeReadInfo" id="pcri_1">
+                <input type="text" readonly value="Artikel type:" class="productChangeReadInfo" id="pcri_2">
+                <input type="text" readonly value="Artikel fabriek:" class="productChangeReadInfo" id="pcri_3">
+                <input type="text" readonly value="Vestiging locatie:" class="productChangeReadInfo" id="pcri_4">
                 <select name="changeProductsNaamSelect3" id="changeProductsNaamSelect3">
                   <?php
                     foreach ($GLOBALS['productNaam'] as $val) {
@@ -1000,70 +1004,19 @@
                     }
                   ?>
                 </select>
+                <select name="changeProductsVestigingLocatieSelect3" id="changeProductsVestigingLocatieSelect3">
+                  <?php
+                    foreach ($GLOBALS['productFabriek'] as $val) {
+                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    }
+                  ?>
+                </select>
                 <input type="number" name="changeProductsVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van hoeveel van dit product in het voorraad zit" required id="changeProductsVoorraad">
+                <input type="number" name="changeProductsMinimumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van hoeveel de nieuwe minimum is voor het voorraad." required id="changeProductsMinimumVoorraad">
+                <input type="number" name="changeProductsMaximumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van hoeveel de nieuwe maximum is voor het voorraad." required id="changeProductsMaximumVoorraad">
+                <input type="number" name="changeProductsVerkoopprijs" value="" min="0" step="0.1" placeholder="type hier het nieuwe getal van wat de nieuwe verkoopprijs is voor het product" required id="changeProductsVerkoopprijs">
                 <input type="submit" name="changeProductVoorraadSubmit" value="Wijziging opslaan" id="changeProductVoorraadSubmit">
               </form>
-
-
-
-
-              <!-- <span id="productInfo9">- artikel minimum voorraad wijzigen.</span>
-              <form method="GET" id="changeProductMinimumVoorraadForm">
-                <select name="changeProductsNaamSelect4" id="changeProductsNaamSelect4">
-                  <?php
-                    foreach ($GLOBALS['productNaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeProductsTypeSelect4" id="changeProductsTypeSelect4">
-                  <?php
-                    foreach ($GLOBALS['productType'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeProductsFabriekSelect4" id="changeProductsFabriekSelect4">
-                  <?php
-                    foreach ($GLOBALS['productFabriek'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <input type="number" name="changeProductsMinimumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van het minimum voorraad van dit product" required id="changeProductsMinimumVoorraad">
-                <input type="submit" name="changeProductMinimumSubmit" value="Wijziging opslaan" id="changeProductMinimumSubmit">
-              </form>
-
-              <span id="productInfo10">- artikel verkoopprijs wijzigen.</span>
-              <form method="GET" id="changeProductVerkoopprijsForm">
-                <select name="changeProductsNaamSelect5" id="changeProductsNaamSelect5">
-                  <?php
-                    foreach ($GLOBALS['productNaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeProductsTypeSelect5" id="changeProductsTypeSelect5">
-                  <?php
-                    foreach ($GLOBALS['productType'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <select name="changeProductsFabriekSelect5" id="changeProductsFabriekSelect5">
-                  <?php
-                    foreach ($GLOBALS['productFabriek'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
-                    }
-                  ?>
-                </select>
-                <input type="number" name="changeProductsVerkoopprijs" value="" min="0" step=".01" placeholder="type hier wat de nieuwe verkoopprijs is van dit product" required id="changeProductsVerkoopprijs">
-                <input type="submit" name="changeProductVerkoopprijsSubmit" value="Wijziging opslaan" id="changeProductVerkoopprijsSubmit">
-              </form> -->
-
-
-
-
           </div>
           <div id="productRemoveDiv">
             <span id="productInfo11">- artikel verwijderen van een bepaalde type en fabriek.</span>

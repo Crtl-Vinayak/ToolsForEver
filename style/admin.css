@@ -422,7 +422,7 @@ body {
   grid-row-end: 5;
 }
 
-#changeProductVoorraadForm {
+#changeProductForm {
   display: grid;
   grid-template-columns: 200px 20px 300px auto 120px auto;
   grid-template-rows: repeat(8, 35px 24px);
@@ -433,28 +433,92 @@ body {
   grid-row-end: 17;
 }
 
-#changeProductMinimumVoorraadForm {
-  display: grid;
-  grid-template-columns: 200px 20px 300px auto 120px auto;
-  grid-template-rows:
-  repeat(4, 35px 24px);
-
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 25;
-  grid-row-end: 26;
+.productChangeReadInfo {
+  grid-column-start: 1;
+  grid-column-end: 2;
 }
 
-#changeProductVerkoopprijsForm {
-  display: grid;
-  grid-template-columns: 200px 20px 300px auto 120px auto;
-  grid-template-rows:
-  repeat(4, 35px 24px);
+#pcri_1 {
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
 
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 28;
-  grid-row-end: 29;
+#pcri_2 {
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#pcri_3 {
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+#pcri_4 {
+  grid-row-start: 7;
+  grid-row-end: 8;
+}
+
+#changeProductsNaamSelect3 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#changeProductsTypeSelect3 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+#changeProductsFabriekSelect3 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+#changeProductsVestigingLocatieSelect3 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 7;
+  grid-row-end: 8;
+}
+
+#changeProductsVoorraad {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 9;
+  grid-row-end: 10;
+}
+
+#changeProductsMinimumVoorraad {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 11;
+  grid-row-end: 12;
+}
+
+#changeProductsMaximumVoorraad {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 13;
+  grid-row-end: 14;
+}
+
+#changeProductsVerkoopprijs {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 15;
+  grid-row-end: 16;
+}
+
+#changeProductVoorraadSubmit {
+  grid-column-start: 5;
+  grid-column-end: 6;
+  grid-row-start: 15;
+  grid-row-end: 16;
 }
 
 #productInfo2 {
@@ -665,122 +729,6 @@ body {
   grid-column-end: 3;
   grid-row-start: 12;
   grid-row-end: 13;
-}
-
-#changeProductForm2 {
-  display: grid;
-  grid-template-columns: 200px 20px 140px 20px 140px auto 120px auto;
-  grid-template-rows: repeat(3, 24px 35px);
-
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 17;
-  grid-row-end: 18;
-}
-
-#changeProductsNaamSelect3 {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#changeProductsTypeSelect3 {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 3;
-  grid-row-end: 4;
-}
-
-#changeProductsFabriekSelect3 {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 5;
-  grid-row-end: 6;
-}
-
-#changeProductsVoorraad {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 7;
-  grid-row-end: 8;
-}
-
-#changeProductVoorraadSubmit {
-  grid-column-start: 5;
-  grid-column-end: 6;
-  grid-row-start: 7;
-  grid-row-end: 8;
-}
-
-#changeProductsNaamSelect4 {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#changeProductsTypeSelect4 {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 3;
-  grid-row-end: 4;
-}
-
-#changeProductsFabriekSelect4 {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 5;
-  grid-row-end: 6;
-}
-
-#changeProductsMinimumVoorraad {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 7;
-  grid-row-end: 8;
-}
-
-#changeProductMinimumSubmit {
-  grid-column-start: 5;
-  grid-column-end: 6;
-  grid-row-start: 7;
-  grid-row-end: 8;
-}
-
-#changeProductsNaamSelect5 {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#changeProductsTypeSelect5 {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 3;
-  grid-row-end: 4;
-}
-
-#changeProductsFabriekSelect5 {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 5;
-  grid-row-end: 6;
-}
-
-#changeProductsVerkoopprijs {
-  grid-column-start: 1;
-  grid-column-end: 4;
-  grid-row-start: 7;
-  grid-row-end: 8;
-}
-
-#changeProductVerkoopprijsSubmit {
-  grid-column-start: 5;
-  grid-column-end: 6;
-  grid-row-start: 7;
-  grid-row-end: 8;
 }
 
 #productRemoveDiv {
