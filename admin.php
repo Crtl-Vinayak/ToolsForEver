@@ -977,7 +977,7 @@
                 <input type="text" name="changeProductFabriek" value="" placeholder="type hier de gewijzigde product fabriek" required id="changeProductFabriek">
                 <input type="submit" name="changeProductFabriekSubmit" value="Wijziging opslaan" id="changeProductFabriekSubmit">
               </form>
-              <span id="productInfo8">- artikel voorraad wijzigen.</span>
+              <span id="productInfo8">- artikel voorraad of verkoopprijs gegeven(s) wijzigen van een bepaalde vestiging locatie.</span>
               <form method="GET" id="changeProductVoorraadForm">
                 <select name="changeProductsNaamSelect3" id="changeProductsNaamSelect3">
                   <?php
@@ -1003,7 +1003,11 @@
                 <input type="number" name="changeProductsVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van hoeveel van dit product in het voorraad zit" required id="changeProductsVoorraad">
                 <input type="submit" name="changeProductVoorraadSubmit" value="Wijziging opslaan" id="changeProductVoorraadSubmit">
               </form>
-              <span id="productInfo9">- artikel minimum voorraad wijzigen.</span>
+
+
+
+
+              <!-- <span id="productInfo9">- artikel minimum voorraad wijzigen.</span>
               <form method="GET" id="changeProductMinimumVoorraadForm">
                 <select name="changeProductsNaamSelect4" id="changeProductsNaamSelect4">
                   <?php
@@ -1055,7 +1059,11 @@
                 </select>
                 <input type="number" name="changeProductsVerkoopprijs" value="" min="0" step=".01" placeholder="type hier wat de nieuwe verkoopprijs is van dit product" required id="changeProductsVerkoopprijs">
                 <input type="submit" name="changeProductVerkoopprijsSubmit" value="Wijziging opslaan" id="changeProductVerkoopprijsSubmit">
-              </form>
+              </form> -->
+
+
+
+
           </div>
           <div id="productRemoveDiv">
             <span id="productInfo11">- artikel verwijderen van een bepaalde type en fabriek.</span>
