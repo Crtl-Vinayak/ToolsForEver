@@ -1063,11 +1063,6 @@
             </form>
           </div>
           <div id="medewerkerChangeDiv">
-
-
-
-
-
             <span id="medewerkerInfo2">- medewerker gegeven(s) wijzigen.</span>
             <form method="POST" id="changeMedewerkerForm">
               <input type="text" readonly name="readVoornaam" value="Voornaam:" class="readVoornaam">
@@ -1106,12 +1101,6 @@
               <input type="text" name="changeMedewerkersWachtwoord" value="" placeholder="type hier de nieuwe gewijzigde sterke wachtwoord voor deze medewerker" required id="changeMedewerkersWachtwoord">
               <input type="submit" name="changeMedewerkerSubmit" value="Wijziging opslaan" id="changeMedewerkerSubmit">
             </form>
-
-
-
-
-
-
           </div>
           <div id="medewerkerRemoveDiv">
             <span id="medewerkerInfo7">- medewerker verwijderen.</span>
