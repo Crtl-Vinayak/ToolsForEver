@@ -32,11 +32,18 @@
 
   $object->uitlog();
   $object->overzicht();
-  // $object->setFormSelectOptionData();
+  $object->setFormSelectOptionData();
 
   /**
     This big IF STATEMENT is for checking if you filled in some data and checks if you pressed some buttons.
   */
+
+  if (isset($_GET['addLocatie']) && isset($_GET['addPlaceSubmit'])) {
+
+  }
+  // else if (isset($_GET['changeLocatieSelect']) && isset($_GET['changePlaceLocatieInput']) && isset($_GET['changeLocatieSubmit'])) {
+  //
+  // }
 
   // if(isset($_GET['addLocatie']) && isset($_GET['addAdres']) && isset($_GET['addPlaceSubmit'])) {
   //   $object->addLocatie();
@@ -140,7 +147,6 @@
 
         types of data:
           - locatie
-          - adres
           - product
           - type
           - fabriek
@@ -149,96 +155,97 @@
           - achternaam
       */
 
-      // public function setFormSelectOptionData() {
-      //   try {
-      //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
-      //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //
-      //     // set "locatie naam" for the forms.
-      //     $GLOBALS['locatieNaam'] = array("");
-      //     $stmt = $conn->prepare("SELECT DISTINCT naam FROM locatie");
-      //     $stmt->execute();
-      //     $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-      //     foreach ($result as $key => $row) {
-      //       array_push($GLOBALS['locatieNaam'], $row['naam']);
-      //     }
-      //     array_shift($GLOBALS['locatieNaam']);
-      //
-      //     // set "locatie adres" for the forms.
-      //     $GLOBALS['locatieAdres'] = array("");
-      //     $stmt = $conn->prepare("SELECT DISTINCT address FROM locatie");
-      //     $stmt->execute();
-      //     $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-      //     foreach ($result as $key => $row) {
-      //       array_push($GLOBALS['locatieAdres'], $row['address']);
-      //     }
-      //     array_shift($GLOBALS['locatieAdres']);
-      //
-      //     // set "product naam" for the forms.
-      //     $GLOBALS['productNaam'] = array("");
-      //     $stmt = $conn->prepare("SELECT DISTINCT product FROM products");
-      //     $stmt->execute();
-      //     $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-      //     foreach ($result as $key => $row) {
-      //       array_push($GLOBALS['productNaam'], $row['product']);
-      //     }
-      //     array_shift($GLOBALS['productNaam']);
-      //
-      //     // set "product type" for the forms.
-      //     $GLOBALS['productType'] = array("");
-      //     $stmt = $conn->prepare("SELECT DISTINCT type FROM products");
-      //     $stmt->execute();
-      //     $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-      //     foreach ($result as $key => $row) {
-      //       array_push($GLOBALS['productType'], $row['type']);
-      //     }
-      //     array_shift($GLOBALS['productType']);
-      //
-      //     // set "product fabriek" for the forms.
-      //     $GLOBALS['productFabriek'] = array("");
-      //     $stmt = $conn->prepare("SELECT DISTINCT fabriek FROM products");
-      //     $stmt->execute();
-      //     $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-      //     foreach ($result as $key => $row) {
-      //       array_push($GLOBALS['productFabriek'], $row['fabriek']);
-      //     }
-      //     array_shift($GLOBALS['productFabriek']);
-      //
-      //     // set "medewerker voornaam" for the forms.
-      //     $GLOBALS['medewerkerVoornaam'] = array("");
-      //     $stmt = $conn->prepare("SELECT DISTINCT voornaam FROM medewerkers");
-      //     $stmt->execute();
-      //     $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-      //     foreach ($result as $key => $row) {
-      //       array_push($GLOBALS['medewerkerVoornaam'], $row['voornaam']);
-      //     }
-      //     array_shift($GLOBALS['medewerkerVoornaam']);
-      //
-      //     // set "medewerker tussenvoegsel" for the forms.
-      //     $GLOBALS['medewerkerTussenvoegsel'] = array("");
-      //     $stmt = $conn->prepare("SELECT DISTINCT tussenvoegsel FROM medewerkers");
-      //     $stmt->execute();
-      //     $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-      //     foreach ($result as $key => $row) {
-      //       array_push($GLOBALS['medewerkerTussenvoegsel'], $row['tussenvoegsel']);
-      //     }
-      //     array_shift($GLOBALS['medewerkerTussenvoegsel']);
-      //
-      //     // set "medewerker achternaam" for the forms.
-      //     $GLOBALS['medewerkerAchternaam'] = array("");
-      //     $stmt = $conn->prepare("SELECT DISTINCT achternaam FROM medewerkers");
-      //     $stmt->execute();
-      //     $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-      //     foreach ($result as $key => $row) {
-      //       array_push($GLOBALS['medewerkerAchternaam'], $row['achternaam']);
-      //     }
-      //     array_shift($GLOBALS['medewerkerAchternaam']);
-      //
-      //   } catch (PDOException $e) {
-      //     echo "Error: " . $e->getMessage();
-      //   }
-      //   $conn = null;
-      // }
+      public function setFormSelectOptionData() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          // set "locatie naam" for the forms.
+          $GLOBALS['locatieNaam'] = array("");
+          $stmt = $conn->prepare("SELECT DISTINCT naam FROM vestiging_locatie");
+          $stmt->execute();
+          $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          foreach ($result as $key => $row) {
+            array_push($GLOBALS['locatieNaam'], $row['naam']);
+          }
+          array_shift($GLOBALS['locatieNaam']);
+
+          // // set "locatie adres" for the forms.
+          // $GLOBALS['locatieAdres'] = array("");
+          // $stmt = $conn->prepare("SELECT DISTINCT address FROM locatie");
+          // $stmt->execute();
+          // $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          // foreach ($result as $key => $row) {
+          //   array_push($GLOBALS['locatieAdres'], $row['address']);
+          // }
+          // array_shift($GLOBALS['locatieAdres']);
+
+          // set "product naam" for the forms.
+          $GLOBALS['productNaam'] = array("");
+          $stmt = $conn->prepare("SELECT DISTINCT product FROM products");
+          $stmt->execute();
+          $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          foreach ($result as $key => $row) {
+            array_push($GLOBALS['productNaam'], $row['product']);
+          }
+          array_shift($GLOBALS['productNaam']);
+
+          // set "product type" for the forms.
+          $GLOBALS['productType'] = array("");
+          $stmt = $conn->prepare("SELECT DISTINCT type FROM products");
+          $stmt->execute();
+          $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          foreach ($result as $key => $row) {
+            array_push($GLOBALS['productType'], $row['type']);
+          }
+          array_shift($GLOBALS['productType']);
+
+          // set "product fabriek" for the forms.
+          $GLOBALS['productFabriek'] = array("");
+          $stmt = $conn->prepare("SELECT DISTINCT fabriek FROM products");
+          $stmt->execute();
+          $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          foreach ($result as $key => $row) {
+            array_push($GLOBALS['productFabriek'], $row['fabriek']);
+          }
+          array_shift($GLOBALS['productFabriek']);
+
+          // set "medewerker voornaam" for the forms.
+          $GLOBALS['medewerkerVoornaam'] = array("");
+          $stmt = $conn->prepare("SELECT DISTINCT voornaam FROM medewerkers");
+          $stmt->execute();
+          $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          foreach ($result as $key => $row) {
+            array_push($GLOBALS['medewerkerVoornaam'], $row['voornaam']);
+          }
+          array_shift($GLOBALS['medewerkerVoornaam']);
+
+          // set "medewerker tussenvoegsel" for the forms.
+          $GLOBALS['medewerkerTussenvoegsel'] = array("");
+          $stmt = $conn->prepare("SELECT DISTINCT tussenvoegsel FROM medewerkers");
+          $stmt->execute();
+          $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          foreach ($result as $key => $row) {
+            array_push($GLOBALS['medewerkerTussenvoegsel'], $row['tussenvoegsel']);
+          }
+          array_shift($GLOBALS['medewerkerTussenvoegsel']);
+
+          // set "medewerker achternaam" for the forms.
+          $GLOBALS['medewerkerAchternaam'] = array("");
+          $stmt = $conn->prepare("SELECT DISTINCT achternaam FROM medewerkers");
+          $stmt->execute();
+          $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          foreach ($result as $key => $row) {
+            array_push($GLOBALS['medewerkerAchternaam'], $row['achternaam']);
+          }
+          array_shift($GLOBALS['medewerkerAchternaam']);
+
+        } catch (PDOException $e) {
+          echo "Error: " . $e->getMessage();
+        }
+        $conn = null;
+      }
+
       //
       // public function addLocatie() {
       //     try {
@@ -891,7 +898,7 @@
           <div id="locatieDiv">
             <span id="locatieInfo">Hier kan je de vestiging locatie toevoegen, wijzigen of verwijderen</span>
             <div id="locatieAddDiv">
-              <span id="locatieInfo1">- vestiging locatie toevoegen</span>
+              <span id="locatieInfo1">- vestiging locatie toevoegen.</span>
               <form method="GET" id="addPlaceForm" class="formColumns">
                 <input type="text" name="addLocatie" value="" placeholder="type hier de nieuwe locatie" required id="addPlaceLocatieInput">
                 <input type="submit" name="addPlaceSubmit" value="Toevoegen" class="formSubmitColumns">
@@ -912,7 +919,7 @@
               </form>
             </div>
             <div id="locatieRemoveDiv">
-              <span id="locatieInfo4">- vestiging locatie verwijderen</span>
+              <span id="locatieInfo4">- vestiging locatie verwijderen.</span>
               <form method="GET" id="removePlaceForm" class="formColumns">
                 <select name="removeLocatieSelect" id="removeLocatieSelect">
                   <?php
@@ -1006,7 +1013,7 @@
                 </select>
                 <select name="changeProductsVestigingLocatieSelect3" id="changeProductsVestigingLocatieSelect3">
                   <?php
-                    foreach ($GLOBALS['productFabriek'] as $val) {
+                    foreach ($GLOBALS['locatieNaam'] as $val) {
                       echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
                     }
                   ?>
