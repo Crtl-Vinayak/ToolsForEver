@@ -937,7 +937,7 @@
                 <input type="number" name="addProductsMinimumVoorraad" value="" min="0" placeholder="type hier het getal van het minimum voorraad van dit product" id="addProductsMinimumVoorraad" required>
                 <input type="number" name="addProductsMaximumVoorraad" value="" min="0" placeholder="type hier het getal van het maximum voorraad van dit product" id="addProductsMaximumVoorraad" required>
                 <input type="number" name="addProductsVerkoopprijs" value="" min="0" step=".01" placeholder="type hier wat de nieuwe verkoopprijs is van dit product" id="addProductsVerkoopprijs" required>
-                <input type="submit" name="addProductSubmit" value="Toevoegen" id="addProductSubmit">
+                <input type="submit" name="addProductSubmit" value="Toevoegen" id="addProductSubmit" class="formSubmitColumns">
               </form>
             </div>
             <div id="productChangeDiv">
@@ -951,7 +951,7 @@
                   ?>
                 </select>
                 <input type="text" name="changeProductNaam" value="" placeholder="type hier de gewijzigde product naam" required id="changeProductNaam">
-                <input type="submit" name="changeProductNaamSubmit" value="Wijziging opslaan" id="changeProductNaamSubmit">
+                <input type="submit" name="changeProductNaamSubmit" value="Wijziging opslaan" class="formSubmitColumns">
               </form>
               <span id="productInfo3">- artikel type wijzigen.</span>
               <form method="GET" id="changeProductTypeForm" class="formColumns">
@@ -963,7 +963,7 @@
                   ?>
                 </select>
                 <input type="text" name="changeProductType" value="" placeholder="type hier de gewijzigde product type" id="changeProductType">
-                <input type="submit" name="changeProductTypeSubmit" value="Wijziging opslaan" id="changeProductTypeSubmit">
+                <input type="submit" name="changeProductTypeSubmit" value="Wijziging opslaan" class="formSubmitColumns">
               </form>
               <span id="productInfo4">- artikel fabriek wijzigen.</span>
               <form method="GET" id="changeProductFabriekForm" class="formColumns">
@@ -975,7 +975,7 @@
                   ?>
                 </select>
                 <input type="text" name="changeProductFabriek" value="" placeholder="type hier de gewijzigde product fabriek" required id="changeProductFabriek">
-                <input type="submit" name="changeProductFabriekSubmit" value="Wijziging opslaan" id="changeProductFabriekSubmit">
+                <input type="submit" name="changeProductFabriekSubmit" value="Wijziging opslaan" class="formSubmitColumns">
               </form>
               <span id="productInfo8">- artikel voorraad of verkoopprijs gegeven(s) wijzigen.</span>
               <form method="GET" id="changeProductForm" class="formColumns">
@@ -1015,7 +1015,7 @@
                 <input type="number" name="changeProductsMinimumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van hoeveel de nieuwe minimum is voor het voorraad." required id="changeProductsMinimumVoorraad">
                 <input type="number" name="changeProductsMaximumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van hoeveel de nieuwe maximum is voor het voorraad." required id="changeProductsMaximumVoorraad">
                 <input type="number" name="changeProductsVerkoopprijs" value="" min="0" step="0.1" placeholder="type hier het nieuwe getal van wat de nieuwe verkoopprijs is voor het product" required id="changeProductsVerkoopprijs">
-                <input type="submit" name="changeProductVoorraadSubmit" value="Wijziging opslaan" id="changeProductVoorraadSubmit">
+                <input type="submit" name="changeProductVoorraadSubmit" value="Wijziging opslaan" id="changeProductVoorraadSubmit" class="formSubmitColumns">
               </form>
           </div>
           <div id="productRemoveDiv">
@@ -1042,7 +1042,7 @@
                   }
                 ?>
               </select>
-              <input type="submit" name="removeProductSubmit" value="Verwijder" id="removeProductSubmit">
+              <input type="submit" name="removeProductSubmit" value="Verwijder" id="removeProductSubmit" class="formSubmitColumns">
             </form>
           </div>
         </div>

@@ -402,8 +402,6 @@ input {
 }
 
 #addProductSubmit {
-  grid-column-start: 5;
-  grid-column-end: 6;
   grid-row-start: 14;
   grid-row-end: 15;
 }
@@ -511,8 +509,6 @@ input {
 }
 
 #changeProductVoorraadSubmit {
-  grid-column-start: 5;
-  grid-column-end: 6;
   grid-row-start: 15;
   grid-row-end: 16;
 }
@@ -641,27 +637,6 @@ input {
   grid-row-end: 2;
 }
 
-#changeProductNaamSubmit {
-  grid-column-start: 5;
-  grid-column-end: 6;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#changeProductTypeSubmit {
-  grid-column-start: 5;
-  grid-column-end: 6;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#changeProductFabriekSubmit {
-  grid-column-start: 5;
-  grid-column-end: 6;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
 #changeProductTypeForm {
   display: grid;
   grid-template-rows: auto;
@@ -776,16 +751,14 @@ input {
 }
 
 #removeProductSubmit {
-  grid-column-start: 7;
-  grid-column-end: 8;
-  grid-row-start: 1;
-  grid-row-end: 2;
+  grid-column-start: 8;
+  grid-column-end: 9;
 }
 
 #medewerkerDiv {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 24px auto 350px 545px 250px;
+  grid-template-rows: 24px auto 459px 675px 315px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -807,7 +780,7 @@ input {
 #medewerkerAddDiv {
   display: grid;
   grid-template-columns: 50px auto;
-  grid-template-rows: 24px 24px 24px 300px;
+  grid-template-rows: 33px 33px 33px 360px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -865,7 +838,7 @@ input {
 
 #addMedewerkerForm {
   display: grid;
-  grid-template-rows: repeat(5, 35px 24px);
+  grid-template-rows: repeat(5, 39px 33px);
 
   grid-column-start: 2;
   grid-column-end: 3;
@@ -913,7 +886,7 @@ input {
 #medewerkerChangeDiv {
   display: grid;
   grid-template-columns: 50px auto;
-  grid-template-rows: 24px 24px 24px 472px;
+  grid-template-rows: 33px 33px 33px 576px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -923,7 +896,7 @@ input {
 
 #changeMedewerkerForm {
   display: grid;
-  grid-template-rows: repeat(8, 24px 35px);
+  grid-template-rows: repeat(8, 33px 39px);
 
   grid-column-start: 2;
   grid-column-end: 3;
@@ -1046,7 +1019,7 @@ input {
 #medewerkerRemoveDiv {
   display: grid;
   grid-template-columns: 50px auto;
-  grid-template-rows: 24px 24px 220px;
+  grid-template-rows: 33px 33px 220px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -1071,7 +1044,7 @@ input {
 
 #removeMedewerkerForm {
   display: grid;
-  grid-template-rows: repeat(3, 24px 35px);
+  grid-template-rows: repeat(3, 33px 39px);
 
   grid-column-start: 2;
   grid-column-end: 3;
