@@ -950,7 +950,7 @@
                     }
                   ?>
                 </select>
-                <input type="text" name="changeProductNaam" value="" placeholder="type hier de gewijzigde product naam" required id="changeProductNaam">
+                <input type="text" name="changeProductNaam" value="" placeholder="type hier de nieuwe product naam" required id="changeProductNaam">
                 <input type="submit" name="changeProductNaamSubmit" value="Wijziging opslaan" class="formSubmitColumns">
               </form>
               <span id="productInfo3">- artikel type wijzigen.</span>
@@ -962,7 +962,7 @@
                     }
                   ?>
                 </select>
-                <input type="text" name="changeProductType" value="" placeholder="type hier de gewijzigde product type" id="changeProductType">
+                <input type="text" name="changeProductType" value="" placeholder="type hier de nieuwe product type" id="changeProductType">
                 <input type="submit" name="changeProductTypeSubmit" value="Wijziging opslaan" class="formSubmitColumns">
               </form>
               <span id="productInfo4">- artikel fabriek wijzigen.</span>
@@ -974,7 +974,7 @@
                     }
                   ?>
                 </select>
-                <input type="text" name="changeProductFabriek" value="" placeholder="type hier de gewijzigde product fabriek" required id="changeProductFabriek">
+                <input type="text" name="changeProductFabriek" value="" placeholder="type hier de nieuwe product fabriek" required id="changeProductFabriek">
                 <input type="submit" name="changeProductFabriekSubmit" value="Wijziging opslaan" class="formSubmitColumns">
               </form>
               <span id="productInfo8">- artikel voorraad of verkoopprijs gegeven(s) wijzigen.</span>
