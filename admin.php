@@ -892,14 +892,14 @@
             <span id="locatieInfo">Hier kan je de vestiging locatie toevoegen, wijzigen of verwijderen</span>
             <div id="locatieAddDiv">
               <span id="locatieInfo1">- vestiging locatie toevoegen</span>
-              <form method="GET" id="addPlaceForm">
+              <form method="GET" id="addPlaceForm" class="formColumns">
                 <input type="text" name="addLocatie" value="" placeholder="type hier de nieuwe locatie" required id="addPlaceLocatieInput">
                 <input type="submit" name="addPlaceSubmit" value="Toevoegen" id="addPlaceSubmit">
               </form>
             </div>
             <div id="locatieChangeDiv">
               <span id="locatieInfo2">- vestiging locatie wijzigen.</span>
-              <form method="GET" id="changeLocatieForm">
+              <form method="GET" id="changeLocatieForm" class="formColumns">
                 <select name="changeLocatieSelect" id="changeLocatieSelect">
                   <?php
                     foreach ($GLOBALS['locatieNaam'] as $val) {
@@ -913,7 +913,7 @@
             </div>
             <div id="locatieRemoveDiv">
               <span id="locatieInfo4">- vestiging locatie verwijderen</span>
-              <form method="GET" id="removePlaceForm">
+              <form method="GET" id="removePlaceForm" class="formColumns">
                 <select name="removeLocatieSelect" id="removeLocatieSelect">
                   <?php
                     foreach ($GLOBALS['locatieNaam'] as $val) {
@@ -929,7 +929,7 @@
             <span id="productInfo">Hier kan je de product informatie toevoegen, wijzigen of verwijderen</span>
             <div id="productAddDiv">
               <span id="productInfo1">- artikel, type, fabriek, voorraad, (locatie van artikel), minimumvoorraad, verkoopprijs toevoegen.</span>
-              <form method="GET" id="addProductForm">
+              <form method="GET" id="addProductForm" class="formColumns">
                 <input type="text" name="addProductsNaam" value="" placeholder="type hier de nieuwe product naam" id="addProductsNaam" required>
                 <input type="text" name="addProductsType" value="" placeholder="type hier de type van het product" id="addProductsType">
                 <input type="text" name="addProductsFabriek" value="" placeholder="type hier van welke fabriek het product komt" id="addProductsFabriek" required>
@@ -942,7 +942,7 @@
             </div>
             <div id="productChangeDiv">
               <span id="productInfo2">- artikel naam wijzigen.</span>
-              <form method="GET" id="changeProductNaamForm">
+              <form method="GET" id="changeProductNaamForm" class="formColumns">
                 <select name="changeProductNaamSelect" id="changeProductNaamSelect">
                   <?php
                     foreach ($GLOBALS['productNaam'] as $val) {
@@ -954,7 +954,7 @@
                 <input type="submit" name="changeProductNaamSubmit" value="Wijziging opslaan" id="changeProductNaamSubmit">
               </form>
               <span id="productInfo3">- artikel type wijzigen.</span>
-              <form method="GET" id="changeProductTypeForm">
+              <form method="GET" id="changeProductTypeForm" class="formColumns">
                 <select name="changeProductTypeSelect" id="changeProductTypeSelect">
                   <?php
                     foreach ($GLOBALS['productType'] as $val) {
@@ -966,7 +966,7 @@
                 <input type="submit" name="changeProductTypeSubmit" value="Wijziging opslaan" id="changeProductTypeSubmit">
               </form>
               <span id="productInfo4">- artikel fabriek wijzigen.</span>
-              <form method="GET" id="changeProductFabriekForm">
+              <form method="GET" id="changeProductFabriekForm" class="formColumns">
                 <select name="changeProductFabriekSelect" id="changeProductFabriekSelect">
                   <?php
                     foreach ($GLOBALS['productFabriek'] as $val) {
@@ -978,7 +978,7 @@
                 <input type="submit" name="changeProductFabriekSubmit" value="Wijziging opslaan" id="changeProductFabriekSubmit">
               </form>
               <span id="productInfo8">- artikel voorraad of verkoopprijs gegeven(s) wijzigen.</span>
-              <form method="GET" id="changeProductForm">
+              <form method="GET" id="changeProductForm" class="formColumns">
                 <input type="text" readonly value="Artikel naam:" class="productChangeReadInfo" id="pcri_1">
                 <input type="text" readonly value="Artikel type:" class="productChangeReadInfo" id="pcri_2">
                 <input type="text" readonly value="Artikel fabriek:" class="productChangeReadInfo" id="pcri_3">
@@ -1020,7 +1020,7 @@
           </div>
           <div id="productRemoveDiv">
             <span id="productInfo11">- artikel verwijderen van een bepaalde type en fabriek.</span>
-            <form method="GET" id="removeProductForm">
+            <form method="GET" id="removeProductForm" class="formColumns">
               <select name="removeProductsNaamSelect" id="removeProductsNaamSelect">
                 <?php
                   foreach ($GLOBALS['productNaam'] as $val) {
@@ -1050,7 +1050,7 @@
           <span id="medewerkerInfo">Hier kan je medewerkers informatie toevoegen, wijzigen of verwijderen</span>
           <div id="medewerkerAddDiv">
             <span id="medewerkerInfo1">- medewerker naam, wachtwoord en rol toevoegen.</span>
-            <form method="POST" id="addMedewerkerForm">
+            <form method="POST" id="addMedewerkerForm" class="formColumns">
               <input type="text" name="addMedewerkersVoornaam" value="" placeholder="type hier de voornaam van de nieuwe medewerker" required id="addMedewerkersVoornaam">
               <input type="text" name="addMedewerkersTussenvoegsel" value="" placeholder="type hier de tussenvoegsel van de nieuwe medewerker" id="addMedewerkersTussenvoegsel">
               <input type="text" name="addMedewerkersAchternaam" value="" placeholder="type hier de achternaam van de nieuwe medewerker" required id="addMedewerkersAchternaam">
@@ -1064,7 +1064,7 @@
           </div>
           <div id="medewerkerChangeDiv">
             <span id="medewerkerInfo2">- medewerker gegeven(s) wijzigen.</span>
-            <form method="POST" id="changeMedewerkerForm">
+            <form method="POST" id="changeMedewerkerForm" class="formColumns">
               <input type="text" readonly name="readVoornaam" value="Voornaam:" class="readVoornaam">
               <input type="text" readonly name="readTussenvoegsel" value="Tussenvoegsel:" class="readTussenvoegsel">
               <input type="text" readonly name="readAchternaam" value="Achternaam:" class="readAchternaam">
@@ -1104,7 +1104,7 @@
           </div>
           <div id="medewerkerRemoveDiv">
             <span id="medewerkerInfo7">- medewerker verwijderen.</span>
-            <form method="POST" id="removeMedewerkerForm">
+            <form method="POST" id="removeMedewerkerForm" class="formColumns">
               <input type="text" readonly name="readVoornaam" value="Voornaam:" class="readVoornaam">
               <input type="text" readonly name="readTussenvoegsel" value="Tussenvoegsel:" class="readTussenvoegsel">
               <input type="text" readonly name="readAchternaam" value="Achternaam:" class="readAchternaam">
