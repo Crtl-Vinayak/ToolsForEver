@@ -44,12 +44,12 @@
     $object->changeLocatie();
   } else if (isset($_GET['removeLocatieSelect']) && isset($_GET['removePlaceSubmit'])) {
     $object->removeLocatie();
+  } else if (isset($_GET['addProductsNaam']) && isset($_GET['addProductsType']) && isset($_GET['addProductsFabriek']) &&
+              isset($_GET['addProductsVoorraad']) && isset($_GET['addProductsMinimumVoorraad']) && isset($_GET['addProductsMaximumVoorraad']) &&
+              isset($_GET['addProductsVerkoopprijs']) && isset($_GET['addProductSubmit'])) {
+    $object->addProduct();
   }
-  // else if (isset($_GET['addProductsNaam']) && isset($_GET['addProductsType']) && isset($_GET['addProductsFabriek']) &&
-  //             isset($_GET['addProductsVoorraad']) && isset($_GET['addProductsLocatieSelect']) && isset($_GET['addProductsAdresSelect']) &&
-  //             isset($_GET['addProductsMinimumVoorraad']) && isset($_GET['addProductsVerkoopprijs']) && isset($_GET['addProductSubmit'])) {
-  //   $object->addProduct();
-  // } else if (isset($_GET['changeProductNaamSelect']) && isset($_GET['changeProductNaam']) && isset($_GET['changeProductNaamSubmit'])) {
+  // else if (isset($_GET['changeProductNaamSelect']) && isset($_GET['changeProductNaam']) && isset($_GET['changeProductNaamSubmit'])) {
   //   $object->changeProductNaam();
   // } else if (isset($_GET['changeProductTypeSelect']) && isset($_GET['changeProductType']) && isset($_GET['changeProductTypeSubmit'])) {
   //   $object->changeProductType();
@@ -292,86 +292,76 @@
           header('Location: '.URL.'admin.php', TRUE, 302);
       }
 
-      // public function addProduct() {
-      //   try {
-      //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
-      //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //
-      //     $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
-      //     $stmt->execute();
-      //     $stmt = $conn->prepare("SET FOREIGN_KEY_CHECKS=0");
-      //     $stmt->execute();
-      //
-      //     $stmt = $conn->prepare("INSERT INTO products (product, type, fabriek, voorraad, minimumVoorraad, verkoopprijs) VALUES (:product, :type, :fabriek, :voorraad, :minimumVoorraad, :verkoopprijs)");
-      //     $stmt->bindParam(':product', $product);
-      //     $stmt->bindParam(':type', $type);
-      //     $stmt->bindParam(':fabriek', $fabriek);
-      //     $stmt->bindParam(':voorraad', $voorraad);
-      //     $stmt->bindParam(':minimumVoorraad', $minimumVoorraad);
-      //     $stmt->bindParam(':verkoopprijs', $verkoopprijs);
-      //
-      //     $product = $_GET['addProductsNaam'];
-      //     $type = $_GET['addProductsType'];
-      //     $fabriek = $_GET['addProductsFabriek'];
-      //     $voorraad = $_GET['addProductsVoorraad'];
-      //     $minimumVoorraad = $_GET['addProductsMinimumVoorraad'];
-      //     $verkoopprijs = $_GET['addProductsVerkoopprijs'];
-      //     $stmt->execute();
-      //
-      //     $stmt = $conn->prepare("INSERT INTO locatie_has_products (idproduct) SELECT idproduct FROM products WHERE product = :product AND type = :type AND fabriek = :fabriek");
-      //     $stmt->bindParam(':product', $product);
-      //     $stmt->bindParam(':type', $type);
-      //     $stmt->bindParam(':fabriek', $fabriek);
-      //
-      //     $product = $_GET['addProductsNaam'];
-      //     $type = $_GET['addProductsType'];
-      //     $fabriek = $_GET['addProductsFabriek'];
-      //     $stmt->execute();
-      //
-      //     $getLocatieId;
-      //     $getProductId;
-      //
-      //     $stmt = $conn->prepare("SELECT idlocatie FROM locatie WHERE locatie.naam = :locatie AND locatie.address = :adres");
-      //     $stmt->bindParam(':locatie', $locatie);
-      //     $stmt->bindParam(':adres', $adres);
-      //
-      //     $locatie = $_GET['addProductsLocatieSelect'];
-      //     $adres = $_GET['addProductsAdresSelect'];
-      //     $stmt->execute();
-      //     $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-      //     foreach ($result as $key => $row) {
-      //       $getLocatieId = $row['idlocatie'];
-      //     }
-      //
-      //     $stmt = $conn->prepare("SELECT idproduct FROM products WHERE product = :product AND type = :type AND fabriek = :fabriek");
-      //     $stmt->bindParam(':product', $product);
-      //     $stmt->bindParam(':type', $type);
-      //     $stmt->bindParam(':fabriek', $fabriek);
-      //
-      //     $product = $_GET['addProductsNaam'];
-      //     $type = $_GET['addProductsType'];
-      //     $fabriek = $_GET['addProductsFabriek'];
-      //     $stmt->execute();
-      //     $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-      //     foreach ($result as $key => $row) {
-      //       $getProductId = $row['idproduct'];
-      //     }
-      //
-      //     $stmt = $conn->prepare("UPDATE locatie_has_products SET idlocatie = :idlocatie WHERE idproduct = :idproduct");
-      //     $stmt->bindParam(':idlocatie', $idLocatie);
-      //     $stmt->bindParam(':idproduct', $idProduct);
-      //
-      //     $idLocatie = $getLocatieId;
-      //     $idProduct = $getProductId;
-      //     $stmt->execute();
-      //
-      //   } catch(PDOException $e) {
-      //     echo $sql . "<br>" . $e->getMessage();
-      //   }
-      //     $conn = null;
-      //     header('Location: '.URL.'admin.php', TRUE, 302);
-      // }
-      //
+      public function addProduct() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+          $stmt = $conn->prepare("SET FOREIGN_KEY_CHECKS=0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("INSERT INTO products (product, type, fabriek, verkoopprijs) VALUES (:product, :type, :fabriek, :verkoopprijs)");
+          $stmt->bindParam(':product', $product);
+          $stmt->bindParam(':type', $type);
+          $stmt->bindParam(':fabriek', $fabriek);
+          $stmt->bindParam(':verkoopprijs', $verkoopprijs);
+
+          $product = $_GET['addProductsNaam'];
+          $type = $_GET['addProductsType'];
+          $fabriek = $_GET['addProductsFabriek'];
+          $verkoopprijs = $_GET['addProductsVerkoopprijs'];
+          $stmt->execute();
+
+          $getLocatieId = array("");
+          $getProductId;
+
+          $stmt = $conn->prepare("SELECT idlocatie FROM vestiging_locatie");
+          $stmt->execute();
+          $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          foreach ($result as $key => $row) {
+            array_push($getLocatieId, $row['idlocatie']);
+          }
+          array_shift($getLocatieId);
+          $stmt = $conn->prepare("SELECT idproduct FROM products WHERE product = :product AND type = :type AND fabriek = :fabriek");
+          $stmt->bindParam(':product', $product);
+          $stmt->bindParam(':type', $type);
+          $stmt->bindParam(':fabriek', $fabriek);
+
+          $product = $_GET['addProductsNaam'];
+          $type = $_GET['addProductsType'];
+          $fabriek = $_GET['addProductsFabriek'];
+          $stmt->execute();
+          $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          foreach ($result as $key => $row) {
+            $getProductId = $row['idproduct'];
+            echo $getProductId;
+          }
+
+          foreach ($getLocatieId as $key => $value) {
+            $stmt = $conn->prepare("INSERT INTO locatie_has_products (idlocatie, idproduct, voorraad, minimumVoorraad, maximumVoorraad) VALUES (:idlocatie, :idproduct, :voorraad, :minimumVoorraad, :maximumVoorraad)");
+            $stmt->bindParam(':idlocatie', $idLocatie);
+            $stmt->bindParam(':idproduct', $idProduct);
+            $stmt->bindParam(':voorraad', $voorraad);
+            $stmt->bindParam(':minimumVoorraad', $minimumVoorraad);
+            $stmt->bindParam(':maximumVoorraad', $maximumVoorraad);
+
+            $idLocatie = $value;
+            $idProduct = $getProductId;
+            $voorraad = $_GET['addProductsVoorraad'];
+            $minimumVoorraad = $_GET['addProductsMinimumVoorraad'];
+            $maximumVoorraad = $_GET['addProductsMaximumVoorraad'];
+            $stmt->execute();
+          }
+
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+
       // public function changeProductNaam() {
       //   try {
       //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
