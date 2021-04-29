@@ -138,7 +138,7 @@ input {
 }
 
 .formColumns {
-  grid-template-columns: 250px 20px 450px 69px auto 250px auto;
+  grid-template-columns: 250px 20px 450px 69px auto 250px 50px;
 }
 
 .formSubmitColumns {
@@ -720,7 +720,7 @@ input {
 
 #removeProductForm {
   display: grid;
-  grid-template-columns: 230px 15px 230px 15px 230px 69px auto 250px auto;
+  grid-template-columns: 230px 15px 230px 15px 230px 69px auto 250px 50px;
   grid-template-rows: auto;
 
   grid-column-start: 2;
@@ -877,8 +877,6 @@ input {
 }
 
 #addMedewerkerSubmit {
-  grid-column-start: 4;
-  grid-column-end: 5;
   grid-row-start: 9;
   grid-row-end: 10;
 }
@@ -961,8 +959,6 @@ input {
 }
 
 #changeMedewerkerSubmit {
-  grid-column-start: 5;
-  grid-column-end: 6;
   grid-row-start: 16;
   grid-row-end: 17;
 }
@@ -1005,13 +1001,6 @@ input {
 #changePassword {
   grid-column-start: 1;
   grid-column-end: 4;
-  grid-row-start: 8;
-  grid-row-end: 9;
-}
-
-#changeMedewerkerSubmit3 {
-  grid-column-start: 5;
-  grid-column-end: 6;
   grid-row-start: 8;
   grid-row-end: 9;
 }
@@ -1074,8 +1063,6 @@ input {
 }
 
 #removeMedewerkerSubmit {
-  grid-column-start: 5;
-  grid-column-end: 6;
   grid-row-start: 6;
   grid-row-end: 7;
 }

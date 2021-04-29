@@ -1020,7 +1020,7 @@
           </div>
           <div id="productRemoveDiv">
             <span id="productInfo11">- artikel verwijderen van een bepaalde type en fabriek.</span>
-            <form method="GET" id="removeProductForm" class="formColumns">
+            <form method="GET" id="removeProductForm">
               <select name="removeProductsNaamSelect" id="removeProductsNaamSelect">
                 <?php
                   foreach ($GLOBALS['productNaam'] as $val) {
@@ -1059,7 +1059,7 @@
                 <option value="0">Medewerker</option>
                 <option value="1">Manager</option>
               </select>
-              <input type="submit" name="addMedewerkerSubmit" value="Toevoegen" id="addMedewerkerSubmit">
+              <input type="submit" name="addMedewerkerSubmit" value="Toevoegen" id="addMedewerkerSubmit" class="formSubmitColumns">
             </form>
           </div>
           <div id="medewerkerChangeDiv">
@@ -1099,7 +1099,7 @@
               <input type="text" name="changeMedewerkersTussenvoegsel" value="" placeholder="type hier de nieuwe gewijzigde tussenvoegsel" required id="changeMedewerkersTussenvoegsel">
               <input type="text" name="changeMedewerkersAchternaam" value="" placeholder="type hier de nieuwe gewijzigde achternaam" required id="changeMedewerkersAchternaam">
               <input type="text" name="changeMedewerkersWachtwoord" value="" placeholder="type hier de nieuwe gewijzigde sterke wachtwoord voor deze medewerker" required id="changeMedewerkersWachtwoord">
-              <input type="submit" name="changeMedewerkerSubmit" value="Wijziging opslaan" id="changeMedewerkerSubmit">
+              <input type="submit" name="changeMedewerkerSubmit" value="Wijziging opslaan" id="changeMedewerkerSubmit" class="formSubmitColumns">
             </form>
           </div>
           <div id="medewerkerRemoveDiv">
@@ -1129,7 +1129,7 @@
                   }
                 ?>
               </select>
-              <input type="submit" name="removeMedewerkerSubmit" value="Verwijder" id="removeMedewerkerSubmit">
+              <input type="submit" name="removeMedewerkerSubmit" value="Verwijder" id="removeMedewerkerSubmit" class="formSubmitColumns">
             </form>
           </div>
         </div>
