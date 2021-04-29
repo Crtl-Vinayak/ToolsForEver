@@ -928,12 +928,12 @@
           <div id="productDiv">
             <span id="productInfo">Hier kan je de product informatie toevoegen, wijzigen of verwijderen</span>
             <div id="productAddDiv">
-              <span id="productInfo1">- artikel, type, fabriek, voorraad, (locatie van artikel), minimumvoorraad, verkoopprijs toevoegen.</span>
+              <span id="productInfo1">- artikel gegevens toevoegen.</span>
               <form method="GET" id="addProductForm" class="formColumns">
                 <input type="text" name="addProductsNaam" value="" placeholder="type hier de nieuwe product naam" id="addProductsNaam" required>
                 <input type="text" name="addProductsType" value="" placeholder="type hier de nieuwe type van het product" id="addProductsType">
                 <input type="text" name="addProductsFabriek" value="" placeholder="type hier van welke fabriek het product komt" id="addProductsFabriek" required>
-                <input type="number" name="addProductsVoorraad" value="" min="0" placeholder="type hier het getal van hoeveel van dit product in het voorraad zit" id="addProductsVoorraad" required>
+                <input type="number" name="addProductsVoorraad" value="" min="0" placeholder="type hier het getal van het voorraad van dit product" id="addProductsVoorraad" required>
                 <input type="number" name="addProductsMinimumVoorraad" value="" min="0" placeholder="type hier het getal van het minimum voorraad van dit product" id="addProductsMinimumVoorraad" required>
                 <input type="number" name="addProductsMaximumVoorraad" value="" min="0" placeholder="type hier het getal van het maximum voorraad van dit product" id="addProductsMaximumVoorraad" required>
                 <input type="number" name="addProductsVerkoopprijs" value="" min="0" step=".01" placeholder="type hier wat de nieuwe verkoopprijs is van dit product" id="addProductsVerkoopprijs" required>
