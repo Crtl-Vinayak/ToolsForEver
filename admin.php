@@ -931,7 +931,7 @@
               <span id="productInfo1">- artikel, type, fabriek, voorraad, (locatie van artikel), minimumvoorraad, verkoopprijs toevoegen.</span>
               <form method="GET" id="addProductForm" class="formColumns">
                 <input type="text" name="addProductsNaam" value="" placeholder="type hier de nieuwe product naam" id="addProductsNaam" required>
-                <input type="text" name="addProductsType" value="" placeholder="type hier de type van het product" id="addProductsType">
+                <input type="text" name="addProductsType" value="" placeholder="type hier de nieuwe type van het product" id="addProductsType">
                 <input type="text" name="addProductsFabriek" value="" placeholder="type hier van welke fabriek het product komt" id="addProductsFabriek" required>
                 <input type="number" name="addProductsVoorraad" value="" min="0" placeholder="type hier het getal van hoeveel van dit product in het voorraad zit" id="addProductsVoorraad" required>
                 <input type="number" name="addProductsMinimumVoorraad" value="" min="0" placeholder="type hier het getal van het minimum voorraad van dit product" id="addProductsMinimumVoorraad" required>
@@ -1011,10 +1011,10 @@
                     }
                   ?>
                 </select>
-                <input type="number" name="changeProductsVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van hoeveel van dit product in het voorraad zit" required id="changeProductsVoorraad">
-                <input type="number" name="changeProductsMinimumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van hoeveel de nieuwe minimum is voor het voorraad." required id="changeProductsMinimumVoorraad">
-                <input type="number" name="changeProductsMaximumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal van hoeveel de nieuwe maximum is voor het voorraad." required id="changeProductsMaximumVoorraad">
-                <input type="number" name="changeProductsVerkoopprijs" value="" min="0" step="0.1" placeholder="type hier het nieuwe getal van wat de nieuwe verkoopprijs is voor het product" required id="changeProductsVerkoopprijs">
+                <input type="number" name="changeProductsVoorraad" value="" min="0" placeholder="type hier het nieuwe getal voor de voorraad" required id="changeProductsVoorraad">
+                <input type="number" name="changeProductsMinimumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal voor de minimum voorraad." required id="changeProductsMinimumVoorraad">
+                <input type="number" name="changeProductsMaximumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal voor de maximum voorraad." required id="changeProductsMaximumVoorraad">
+                <input type="number" name="changeProductsVerkoopprijs" value="" min="0" step="0.1" placeholder="type hier het nieuwe getal voor de verkoopprijs." required id="changeProductsVerkoopprijs">
                 <input type="submit" name="changeProductVoorraadSubmit" value="Wijziging opslaan" id="changeProductVoorraadSubmit" class="formSubmitColumns">
               </form>
           </div>
@@ -1098,7 +1098,7 @@
               <input type="text" name="changeMedewerkersVoornaam" value="" placeholder="type hier de nieuwe gewijzigde voornaam" required id="changeMedewerkersVoornaam">
               <input type="text" name="changeMedewerkersTussenvoegsel" value="" placeholder="type hier de nieuwe gewijzigde tussenvoegsel" required id="changeMedewerkersTussenvoegsel">
               <input type="text" name="changeMedewerkersAchternaam" value="" placeholder="type hier de nieuwe gewijzigde achternaam" required id="changeMedewerkersAchternaam">
-              <input type="text" name="changeMedewerkersWachtwoord" value="" placeholder="type hier de nieuwe gewijzigde sterke wachtwoord voor deze medewerker" required id="changeMedewerkersWachtwoord">
+              <input type="text" name="changeMedewerkersWachtwoord" value="" placeholder="type hier de nieuwe gewijzigde sterke wachtwoord" required id="changeMedewerkersWachtwoord">
               <input type="submit" name="changeMedewerkerSubmit" value="Wijziging opslaan" id="changeMedewerkerSubmit" class="formSubmitColumns">
             </form>
           </div>
