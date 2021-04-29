@@ -1051,11 +1051,11 @@
           <div id="medewerkerAddDiv">
             <span id="medewerkerInfo1">- medewerker naam, wachtwoord en rol toevoegen.</span>
             <form method="POST" id="addMedewerkerForm" class="formColumns">
-              <input type="text" name="addMedewerkersVoornaam" value="" placeholder="type hier de voornaam van de nieuwe medewerker" required id="addMedewerkersVoornaam">
-              <input type="text" name="addMedewerkersTussenvoegsel" value="" placeholder="type hier de tussenvoegsel van de nieuwe medewerker" id="addMedewerkersTussenvoegsel">
-              <input type="text" name="addMedewerkersAchternaam" value="" placeholder="type hier de achternaam van de nieuwe medewerker" required id="addMedewerkersAchternaam">
-              <input type="password" name="addMedewerkersWachtwoord" value="" placeholder="type hier een wachtwoord van de nieuwe medewerker" required id="addMedewerkersWachtwoord">
-              <select name="addMedewerkersRolSelect" id="addMedewerkersRolSelect">
+              <input type="text" name="addMedewerkersVoornaam" value="" placeholder="type hier de voornaam van de nieuwe medewerker" required id="addMedewerkersVoornaam" class="addMedewerker">
+              <input type="text" name="addMedewerkersTussenvoegsel" value="" placeholder="type hier de tussenvoegsel van de nieuwe medewerker" id="addMedewerkersTussenvoegsel" class="addMedewerker">
+              <input type="text" name="addMedewerkersAchternaam" value="" placeholder="type hier de achternaam van de nieuwe medewerker" required id="addMedewerkersAchternaam" class="addMedewerker">
+              <input type="password" name="addMedewerkersWachtwoord" value="" placeholder="type hier een wachtwoord van de nieuwe medewerker" required id="addMedewerkersWachtwoord" class="addMedewerker">
+              <select name="addMedewerkersRolSelect" id="addMedewerkersRolSelect" class="addMedewerker">
                 <option value="0">Medewerker</option>
                 <option value="1">Manager</option>
               </select>

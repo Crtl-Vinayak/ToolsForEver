@@ -21,8 +21,6 @@ input {
   font-size: 25px;
 }
 
-/** TODO prepping BIGGER TEXT! */
-
 #yellow_bg {
   display: block;
   margin-top: 100px;
@@ -293,7 +291,7 @@ input {
 #productDiv {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 24px auto 504px 865px 150px;
+  grid-template-rows: 24px auto 561px 1089px 138px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -315,7 +313,7 @@ input {
 #productAddDiv {
   display: grid;
   grid-template-columns: 50px auto;
-  grid-template-rows: 24px 24px 425px;
+  grid-template-rows: 24px 33px 504px;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 3;
@@ -413,7 +411,7 @@ input {
 #productChangeDiv {
   display: grid;
   grid-template-columns: 50px auto;
-  grid-template-rows: repeat(3, 24px 24px 24px 35px) repeat(3, 24px) 472px;
+  grid-template-rows: repeat(3, 33px 33px 33px 39px) repeat(3, 33px) 576px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -423,7 +421,7 @@ input {
 
 #changeProductForm {
   display: grid;
-  grid-template-rows: repeat(8, 35px 24px);
+  grid-template-rows: repeat(8, 39px 33px);
 
   grid-column-start: 2;
   grid-column-end: 3;
@@ -729,7 +727,7 @@ input {
 #productRemoveDiv {
   display: grid;
   grid-template-columns: 50px auto;
-  grid-template-rows: 24px 24px 24px 35px;
+  grid-template-rows: 33px 33px 39px;
 
   grid-column-start: 1;
   grid-column-end: 2;
@@ -741,8 +739,8 @@ input {
   font-family: "Segoe UI";
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
 }
 
 #removeProductForm {
@@ -752,8 +750,8 @@ input {
 
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 4;
-  grid-row-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
 }
 
 #removeProductsNaamSelect {
@@ -875,37 +873,32 @@ input {
   grid-row-end: 5;
 }
 
-#addMedewerkersVoornaam {
+.addMedewerker {
   grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column-end: 4;
+}
+
+#addMedewerkersVoornaam {
   grid-row-start: 1;
   grid-row-end: 2;
 }
 
 #addMedewerkersTussenvoegsel {
-  grid-column-start: 1;
-  grid-column-end: 3;
   grid-row-start: 3;
   grid-row-end: 4;
 }
 
 #addMedewerkersAchternaam {
-  grid-column-start: 1;
-  grid-column-end: 3;
   grid-row-start: 5;
   grid-row-end: 6;
 }
 
 #addMedewerkersWachtwoord {
-  grid-column-start: 1;
-  grid-column-end: 3;
   grid-row-start: 7;
   grid-row-end: 8;
 }
 
 #addMedewerkersRolSelect {
-  grid-column-start: 1;
-  grid-column-end: 3;
   grid-row-start: 9;
   grid-row-end: 10;
 }
