@@ -1076,8 +1076,8 @@ input {
 
 #overzichtForm {
   display: grid;
-  grid-template-columns: auto 250px auto;
-  grid-template-rows: 50px 35px 50px;
+  grid-template-columns: auto 400px auto;
+  grid-template-rows: 50px 39px 50px;
 }
 
 #overzichtVenster {
