@@ -894,7 +894,7 @@
               <span id="locatieInfo1">- vestiging locatie toevoegen</span>
               <form method="GET" id="addPlaceForm" class="formColumns">
                 <input type="text" name="addLocatie" value="" placeholder="type hier de nieuwe locatie" required id="addPlaceLocatieInput">
-                <input type="submit" name="addPlaceSubmit" value="Toevoegen" id="addPlaceSubmit">
+                <input type="submit" name="addPlaceSubmit" value="Toevoegen" class="formSubmitColumns">
               </form>
             </div>
             <div id="locatieChangeDiv">
@@ -908,7 +908,7 @@
                   ?>
                 </select>
                 <input type="text" name="changePlaceLocatieInput" value="" placeholder="type hier de nieuwe gewijzigde locatie" required id="changePlaceLocatieInput">
-                <input type="submit" name="changeLocatieSubmit" value="Wijziging opslaan" id="changeLocatieSubmit">
+                <input type="submit" name="changeLocatieSubmit" value="Wijziging opslaan" class="formSubmitColumns">
               </form>
             </div>
             <div id="locatieRemoveDiv">
@@ -921,7 +921,7 @@
                     }
                   ?>
                 </select>
-                <input type="submit" name="removePlaceSubmit" value="Verwijder" id="removePlaceSubmit">
+                <input type="submit" name="removePlaceSubmit" value="Verwijder" class="formSubmitColumns">
               </form>
             </div>
           </div>
