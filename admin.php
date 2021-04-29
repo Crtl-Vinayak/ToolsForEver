@@ -878,8 +878,8 @@
         <div id="logoDiv"><img src="Tools_For_Ever_Logo.png" alt="ToolsForEver_logo" id="logo"></div>
         <div id="tfeDiv"><span id="tfeText">ToolsForEver</span></div>
         <div id="naam_formDiv">
-          <p>Manager. <?php echo $_SESSION['naam']; ?></p>
-          <form method="GET">
+          <span id="medewerkerStatus">Manager. <?php echo $_SESSION['naam']; ?></span>
+          <form method="GET" id="uitlogForm">
             <input type="submit" name="uitlog" value="uitloggen" id="uitlogSubmit">
           </form>
         </div>
