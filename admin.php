@@ -154,7 +154,7 @@
 
           // set "locatie naam" for the forms.
           $GLOBALS['locatieNaam'] = array("");
-          $stmt = $conn->prepare("SELECT DISTINCT naam FROM vestiging_locatie");
+          $stmt = $conn->prepare("SELECT DISTINCT naam FROM vestiging_locatie ORDER BY naam");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
@@ -164,7 +164,7 @@
 
           // set "product naam" for the forms.
           $GLOBALS['productNaam'] = array("");
-          $stmt = $conn->prepare("SELECT DISTINCT product FROM products");
+          $stmt = $conn->prepare("SELECT DISTINCT product FROM products ORDER BY product");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
@@ -174,7 +174,7 @@
 
           // set "product type" for the forms.
           $GLOBALS['productType'] = array("");
-          $stmt = $conn->prepare("SELECT DISTINCT type FROM products");
+          $stmt = $conn->prepare("SELECT DISTINCT type FROM products ORDER BY type");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
@@ -184,7 +184,7 @@
 
           // set "product fabriek" for the forms.
           $GLOBALS['productFabriek'] = array("");
-          $stmt = $conn->prepare("SELECT DISTINCT fabriek FROM products");
+          $stmt = $conn->prepare("SELECT DISTINCT fabriek FROM products ORDER BY fabriek");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
@@ -194,7 +194,7 @@
 
           // set "medewerker voornaam" for the forms.
           $GLOBALS['medewerkerVoornaam'] = array("");
-          $stmt = $conn->prepare("SELECT DISTINCT voornaam FROM medewerkers");
+          $stmt = $conn->prepare("SELECT DISTINCT voornaam FROM medewerkers ORDER BY voornaam");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
@@ -204,7 +204,7 @@
 
           // set "medewerker tussenvoegsel" for the forms.
           $GLOBALS['medewerkerTussenvoegsel'] = array("");
-          $stmt = $conn->prepare("SELECT DISTINCT tussenvoegsel FROM medewerkers");
+          $stmt = $conn->prepare("SELECT DISTINCT tussenvoegsel FROM medewerkers ORDER BY tussenvoegsel");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
@@ -214,7 +214,7 @@
 
           // set "medewerker achternaam" for the forms.
           $GLOBALS['medewerkerAchternaam'] = array("");
-          $stmt = $conn->prepare("SELECT DISTINCT achternaam FROM medewerkers");
+          $stmt = $conn->prepare("SELECT DISTINCT achternaam FROM medewerkers ORDER BY achternaam");
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
