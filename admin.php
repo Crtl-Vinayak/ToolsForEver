@@ -39,21 +39,13 @@
   */
 
   if (isset($_GET['addLocatie']) && isset($_GET['addPlaceSubmit'])) {
-
+    $object->addLocatie();
+  } else if (isset($_GET['changeLocatieSelect']) && isset($_GET['changePlaceLocatieInput']) && isset($_GET['changeLocatieSubmit'])) {
+    $object->changeLocatie();
+  } else if (isset($_GET['removeLocatieSelect']) && isset($_GET['removePlaceSubmit'])) {
+    $object->removeLocatie();
   }
-  // else if (isset($_GET['changeLocatieSelect']) && isset($_GET['changePlaceLocatieInput']) && isset($_GET['changeLocatieSubmit'])) {
-  //
-  // }
-
-  // if(isset($_GET['addLocatie']) && isset($_GET['addAdres']) && isset($_GET['addPlaceSubmit'])) {
-  //   $object->addLocatie();
-  // } else if (isset($_GET['changeLocatieSelect']) && isset($_GET['changePlaceLocatieInput']) && isset($_GET['changeLocatieSubmit'])) {
-  //   $object->changeLocatie();
-  // } else if (isset($_GET['changeAdresSelect']) && isset($_GET['changePlaceAdresInput']) && isset($_GET['changeAdresSubmit'])) {
-  //   $object->changeAdres();
-  // } else if (isset($_GET['removeLocatieSelect']) && isset($_GET['removeAdresSelect']) && isset($_GET['removePlaceSubmit'])) {
-  //   $object->removeLocatie();
-  // } else if (isset($_GET['addProductsNaam']) && isset($_GET['addProductsType']) && isset($_GET['addProductsFabriek']) &&
+  // else if (isset($_GET['addProductsNaam']) && isset($_GET['addProductsType']) && isset($_GET['addProductsFabriek']) &&
   //             isset($_GET['addProductsVoorraad']) && isset($_GET['addProductsLocatieSelect']) && isset($_GET['addProductsAdresSelect']) &&
   //             isset($_GET['addProductsMinimumVoorraad']) && isset($_GET['addProductsVerkoopprijs']) && isset($_GET['addProductSubmit'])) {
   //   $object->addProduct();
@@ -170,16 +162,6 @@
           }
           array_shift($GLOBALS['locatieNaam']);
 
-          // // set "locatie adres" for the forms.
-          // $GLOBALS['locatieAdres'] = array("");
-          // $stmt = $conn->prepare("SELECT DISTINCT address FROM locatie");
-          // $stmt->execute();
-          // $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-          // foreach ($result as $key => $row) {
-          //   array_push($GLOBALS['locatieAdres'], $row['address']);
-          // }
-          // array_shift($GLOBALS['locatieAdres']);
-
           // set "product naam" for the forms.
           $GLOBALS['productNaam'] = array("");
           $stmt = $conn->prepare("SELECT DISTINCT product FROM products");
@@ -246,97 +228,70 @@
         $conn = null;
       }
 
-      //
-      // public function addLocatie() {
-      //     try {
-      //       $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
-      //       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //
-      //       $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
-      //       $stmt->execute();
-      //       $stmt = $conn->prepare("SET FOREIGN_KEY_CHECKS=0");
-      //       $stmt->execute();
-      //
-      //       $stmt = $conn->prepare("INSERT INTO locatie (naam, address) VALUES (:naam, :adres)");
-      //       $stmt->bindParam(':naam', $naam);
-      //       $stmt->bindParam(':adres', $adres);
-      //
-      //       $naam = $_GET['addLocatie'];
-      //       $adres = $_GET['addAdres'];
-      //       $stmt->execute();
-      //     } catch(PDOException $e) {
-      //       echo $sql . "<br>" . $e->getMessage();
-      //     }
-      //     $conn = null;
-      //     header('Location: '.URL.'admin.php', TRUE, 302);
-      // }
-      //
-      // public function changeLocatie() {
-      //   try {
-      //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
-      //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //
-      //     $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
-      //     $stmt->execute();
-      //
-      //     $stmt = $conn->prepare("UPDATE locatie SET naam = :nieuwLocatie WHERE naam = :oudLocatie");
-      //     $stmt->bindParam(':nieuwLocatie', $nieuwLocatie);
-      //     $stmt->bindParam(':oudLocatie', $oudLocatie);
-      //
-      //     $nieuwLocatie = $_GET['changePlaceLocatieInput'];
-      //     $oudLocatie = $_GET['changeLocatieSelect'];
-      //     $stmt->execute();
-      //   } catch(PDOException $e) {
-      //     echo $sql . "<br>" . $e->getMessage();
-      //   }
-      //     $conn = null;
-      //     header('Location: '.URL.'admin.php', TRUE, 302);
-      // }
-      //
-      // public function changeAdres() {
-      //   try {
-      //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
-      //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //
-      //     $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
-      //     $stmt->execute();
-      //
-      //     $stmt = $conn->prepare("UPDATE locatie SET address = :nieuwAdres WHERE address = :oudAdres");
-      //     $stmt->bindParam(':nieuwAdres', $nieuwAdres);
-      //     $stmt->bindParam(':oudAdres', $oudAdres);
-      //
-      //     $nieuwAdres = $_GET['changePlaceAdresInput'];
-      //     $oudAdres = $_GET['changeAdresSelect'];
-      //     $stmt->execute();
-      //   } catch(PDOException $e) {
-      //     echo $sql . "<br>" . $e->getMessage();
-      //   }
-      //     $conn = null;
-      //     header('Location: '.URL.'admin.php', TRUE, 302);
-      // }
-      //
-      // public function removeLocatie() {
-      //   try {
-      //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
-      //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //
-      //     $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
-      //     $stmt->execute();
-      //
-      //     $stmt = $conn->prepare("DELETE FROM locatie WHERE naam = :locatieNaam AND address = :adres");
-      //     $stmt->bindParam(':locatieNaam', $locatieNaam);
-      //     $stmt->bindParam(':adres', $adres);
-      //
-      //     $locatieNaam = $_GET['removeLocatieSelect'];
-      //     $adres = $_GET['removeAdresSelect'];
-      //     $stmt->execute();
-      //   } catch(PDOException $e) {
-      //     echo $sql . "<br>" . $e->getMessage();
-      //   }
-      //     $conn = null;
-      //     header('Location: '.URL.'admin.php', TRUE, 302);
-      // }
-      //
+      public function addLocatie() {
+          try {
+            $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+            $stmt->execute();
+            $stmt = $conn->prepare("SET FOREIGN_KEY_CHECKS=0");
+            $stmt->execute();
+
+            $stmt = $conn->prepare("INSERT INTO vestiging_locatie (naam) VALUES (:naam)");
+            $stmt->bindParam(':naam', $naam);
+
+            $naam = $_GET['addLocatie'];
+            $stmt->execute();
+          } catch(PDOException $e) {
+            echo $sql . "<br>" . $e->getMessage();
+          }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+
+      public function changeLocatie() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("UPDATE vestiging_locatie SET naam = :nieuwLocatie WHERE naam = :oudLocatie");
+          $stmt->bindParam(':nieuwLocatie', $nieuwLocatie);
+          $stmt->bindParam(':oudLocatie', $oudLocatie);
+
+          $nieuwLocatie = $_GET['changePlaceLocatieInput'];
+          $oudLocatie = $_GET['changeLocatieSelect'];
+          $stmt->execute();
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+
+      public function removeLocatie() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("DELETE FROM vestiging_locatie WHERE naam = :naam");
+          $stmt->bindParam(':naam', $naam);
+
+          $naam = $_GET['removeLocatieSelect'];
+          $stmt->execute();
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+
       // public function addProduct() {
       //   try {
       //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
