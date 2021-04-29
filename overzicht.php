@@ -293,7 +293,7 @@
         </form>
         <div id="overzicht">
           <span id="locatieTxt">
-            Locatie:
+            Vestigingslocatie:
             <?php
               if (empty($GLOBALS['locatieSelected'])) {
                 echo "---";
