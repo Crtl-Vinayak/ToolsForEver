@@ -68,19 +68,17 @@
   } else if (isset($_GET['removeProductsNaamSelect']) && isset($_GET['removeProductsTypeSelect']) &&
               isset($_GET['removeProductsFabriekSelect']) && isset($_GET['removeProductSubmit'])) {
     $object->removeProduct();
+  } else if (isset($_POST['addMedewerkersVoornaam']) && isset($_POST['addMedewerkersTussenvoegsel']) &&
+              isset($_POST['addMedewerkersAchternaam']) && isset($_POST['addMedewerkersWachtwoord']) &&
+              isset($_POST['addMedewerkersRolSelect']) && isset($_POST['addMedewerkerSubmit'])) {
+    $object->addMedewerker();
   }
-
-
-
-  // else if (isset($_POST['addMedewerkersVoornaam']) && isset($_POST['addMedewerkersTussenvoegsel']) &&
-  //             isset($_POST['addMedewerkersAchternaam']) && isset($_POST['addMedewerkersWachtwoord']) &&
-  //             isset($_POST['addMedewerkersRolSelect']) && isset($_POST['addMedewerkerSubmit'])) {
-  //   $object->addMedewerker();
-  // } else if (isset($_POST['changeMedewerkerVoornaamSelect1']) && isset($_POST['changeMedewerkerTussenvoegselSelect1']) &&
+  // else if (isset($_POST['changeMedewerkerVoornaamSelect1']) && isset($_POST['changeMedewerkerTussenvoegselSelect1']) &&
   //             isset($_POST['changeMedewerkerAchternaamSelect1']) && isset($_POST['changeMedewerkersVoornaam']) &&
   //             isset($_POST['changeMedewerkerVoornaamSubmit'])) {
   //   $object->changeMedewerkerVoornaam();
-  // } else if (isset($_POST['changeMedewerkerVoornaamSelect2']) && isset($_POST['changeMedewerkerTussenvoegselSelect2']) &&
+  // }
+  // else if (isset($_POST['changeMedewerkerVoornaamSelect2']) && isset($_POST['changeMedewerkerTussenvoegselSelect2']) &&
   //             isset($_POST['changeMedewerkerAchternaamSelect2']) && isset($_POST['changeMedewerkersTussenvoegsel']) &&
   //             isset($_POST['changeMedewerkerTussenvoegselSubmit'])) {
   //   $object->changeMedewerkerTussenvoegsel();
@@ -645,42 +643,42 @@
           header('Location: '.URL.'admin.php', TRUE, 302);
       }
 
-      // public function addMedewerker() {
-      //   try {
-      //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
-      //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //
-      //     $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
-      //     $stmt->execute();
-      //
-      //     $stmt = $conn->prepare("INSERT INTO medewerkers (voornaam, tussenvoegsel, achternaam, wachtwoord, rol) VALUES (:voornaam, :tussenvoegsel, :achternaam, :wachtwoord, :rol)");
-      //     $stmt->bindParam(':voornaam', $voornaam);
-      //     $stmt->bindParam(':tussenvoegsel', $tussenvoegsel);
-      //     $stmt->bindParam(':achternaam', $achternaam);
-      //     $stmt->bindParam(':wachtwoord', $wachtwoord);
-      //     $stmt->bindParam(':rol', $rol);
-      //
-      //     $passwordUser = $_POST['addMedewerkersWachtwoord'];
-      //     $hashedPwd = password_hash($passwordUser, PASSWORD_DEFAULT);
-      //
-      //     if ($_POST['addMedewerkersTussenvoegsel'] == '') {
-      //       $tussenvoegsel = ' ';
-      //     } else {
-      //       $tussenvoegsel = $_POST['addMedewerkersTussenvoegsel'];
-      //     }
-      //
-      //     $voornaam = $_POST['addMedewerkersVoornaam'];
-      //     $achternaam = $_POST['addMedewerkersAchternaam'];
-      //     $wachtwoord = $hashedPwd;
-      //     $rol = $_POST['addMedewerkersRolSelect'];
-      //     $stmt->execute();
-      //   } catch(PDOException $e) {
-      //     echo $sql . "<br>" . $e->getMessage();
-      //   }
-      //     $conn = null;
-      //     header('Location: '.URL.'admin.php', TRUE, 302);
-      // }
-      //
+      public function addMedewerker() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("INSERT INTO medewerkers (voornaam, tussenvoegsel, achternaam, wachtwoord, rol) VALUES (:voornaam, :tussenvoegsel, :achternaam, :wachtwoord, :rol)");
+          $stmt->bindParam(':voornaam', $voornaam);
+          $stmt->bindParam(':tussenvoegsel', $tussenvoegsel);
+          $stmt->bindParam(':achternaam', $achternaam);
+          $stmt->bindParam(':wachtwoord', $wachtwoord);
+          $stmt->bindParam(':rol', $rol);
+
+          $passwordUser = $_POST['addMedewerkersWachtwoord'];
+          $hashedPwd = password_hash($passwordUser, PASSWORD_DEFAULT);
+
+          if ($_POST['addMedewerkersTussenvoegsel'] == '') {
+            $tussenvoegsel = ' ';
+          } else {
+            $tussenvoegsel = $_POST['addMedewerkersTussenvoegsel'];
+          }
+
+          $voornaam = $_POST['addMedewerkersVoornaam'];
+          $achternaam = $_POST['addMedewerkersAchternaam'];
+          $wachtwoord = $hashedPwd;
+          $rol = $_POST['addMedewerkersRolSelect'];
+          $stmt->execute();
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+
       // public function changeMedewerkerVoornaam() {
       //   try {
       //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
