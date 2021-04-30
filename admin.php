@@ -85,11 +85,10 @@
     // $object->changeMedewerkerAchternaam();
     // $object->changeMedewerkerRol();
     // $object->changeMedewerkerW8();
+  } else if (isset($_POST['removeMedewerkerVoornaamSelect']) && isset($_POST['removeMedewerkerTussenvoegselSelect']) &&
+              isset($_POST['removeMedewerkerAchternaamSelect']) && isset($_POST['removeMedewerkerSubmit'])) {
+    $object->removeMedewerker();
   }
-  // else if (isset($_POST['removeMedewerkerVoornaamSelect']) && isset($_POST['removeMedewerkerTussenvoegselSelect']) &&
-  //             isset($_POST['removeMedewerkerAchternaamSelect']) && isset($_POST['removeMedewerkerSubmit'])) {
-  //   $object->removeMedewerker();
-  // }
 ?>
 
 <?php
@@ -758,9 +757,9 @@
       //     $stmt->bindParam(':nieuwAchternaam', $nieuwAchternaam);
       //     $stmt->bindParam(':oudAchternaam', $oudAchternaam);
       //
-      //     $voornaam = $_POST['changeMedewerkerVoornaamSelect3'];
-      //     $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect3'];
-      //     $oudAchternaam = $_POST['changeMedewerkerAchternaamSelect3'];
+      //     $voornaam = $_POST['changeMedewerkerVoornaamSelect1'];
+      //     $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect1'];
+      //     $oudAchternaam = $_POST['changeMedewerkerAchternaamSelect1'];
       //     $nieuwAchternaam = $_POST['changeMedewerkersAchternaam'];
       //     $stmt->execute();
       //   } catch(PDOException $e) {
@@ -785,15 +784,15 @@
       //     $stmt->bindParam(':achternaam', $achternaam);
       //
       //     $rol = $_POST['changeMedewerkerRolSelect'];
-      //     $voornaam = $_POST['changeMedewerkerVoornaamSelect4'];
-      //     $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect4'];
-      //     $achternaam = $_POST['changeMedewerkerAchternaamSelect4'];
+      //     $voornaam = $_POST['changeMedewerkerVoornaamSelect1'];
+      //     $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect1'];
+      //     $achternaam = $_POST['changeMedewerkerAchternaamSelect1'];
       //     $stmt->execute();
       //   } catch(PDOException $e) {
       //     echo $sql . "<br>" . $e->getMessage();
       //   }
       //     $conn = null;
-      //     header('Location: '.URL.'admin.php', TRUE, 302);
+      //     // header('Location: '.URL.'admin.php', TRUE, 302);
       // }
       //
       // public function changeMedewerkerW8() {
@@ -814,40 +813,40 @@
       //     $hashedPwd = password_hash($passwordUser, PASSWORD_DEFAULT);
       //
       //     $wachtwoord = $hashedPwd;
-      //     $voornaam = $_POST['changeMedewerkerVoornaamSelect5'];
-      //     $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect5'];
-      //     $achternaam = $_POST['changeMedewerkerAchternaamSelect5'];
+      //     $voornaam = $_POST['changeMedewerkerVoornaamSelect1'];
+      //     $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect1'];
+      //     $achternaam = $_POST['changeMedewerkerAchternaamSelect1'];
       //     $stmt->execute();
       //   } catch(PDOException $e) {
       //     echo $sql . "<br>" . $e->getMessage();
       //   }
       //     $conn = null;
-      //     header('Location: '.URL.'admin.php', TRUE, 302);
+      //     // header('Location: '.URL.'admin.php', TRUE, 302);
       // }
-      //
-      // public function removeMedewerker() {
-      //   try {
-      //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
-      //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //
-      //     $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
-      //     $stmt->execute();
-      //
-      //     $stmt = $conn->prepare("DELETE FROM medewerkers WHERE voornaam = :voornaam AND tussenvoegsel = :tussenvoegsel AND achternaam = :achternaam");
-      //     $stmt->bindParam(':voornaam', $voornaam);
-      //     $stmt->bindParam(':tussenvoegsel', $tussenvoegsel);
-      //     $stmt->bindParam(':achternaam', $achternaam);
-      //
-      //     $voornaam = $_POST['removeMedewerkerVoornaamSelect'];
-      //     $tussenvoegsel = $_POST['removeMedewerkerTussenvoegselSelect'];
-      //     $achternaam = $_POST['removeMedewerkerAchternaamSelect'];
-      //     $stmt->execute();
-      //   } catch(PDOException $e) {
-      //     echo $sql . "<br>" . $e->getMessage();
-      //   }
-      //     $conn = null;
-      //     header('Location: '.URL.'admin.php', TRUE, 302);
-      // }
+
+      public function removeMedewerker() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("DELETE FROM medewerkers WHERE voornaam = :voornaam AND tussenvoegsel = :tussenvoegsel AND achternaam = :achternaam");
+          $stmt->bindParam(':voornaam', $voornaam);
+          $stmt->bindParam(':tussenvoegsel', $tussenvoegsel);
+          $stmt->bindParam(':achternaam', $achternaam);
+
+          $voornaam = $_POST['removeMedewerkerVoornaamSelect'];
+          $tussenvoegsel = $_POST['removeMedewerkerTussenvoegselSelect'];
+          $achternaam = $_POST['removeMedewerkerAchternaamSelect'];
+          $stmt->execute();
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
   }
 ?>
 
