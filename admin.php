@@ -55,19 +55,17 @@
   } else if (isset($_GET['changeProductFabriekSelect']) && isset($_GET['changeProductFabriek']) && isset($_GET['changeProductFabriekSubmit'])) {
     $object->changeProductFabriek();
   } else if (isset($_GET['changeProductsNaamSelect3']) && isset($_GET['changeProductsTypeSelect3']) &&
-              isset($_GET['changeProductsFabriekSelect3']) && isset($_GET['changeProductsVoorraad']) &&
+              isset($_GET['changeProductsFabriekSelect3']) &&
+              isset($_GET['changeProductsVoorraad']) &&
+              isset($_GET['changeProductsMinimumVoorraad']) &&
+              isset($_GET['changeProductsMaximumVoorraad']) &&
+              isset($_GET['changeProductsVerkoopprijs']) &&
               isset($_GET['changeProductVoorraadSubmit'])) {
     $object->changeProductVoorraad();
+    $object->changeProductMinimumVoorraad();
   }
-  // else if (isset($_GET['changeProductsNaamSelect4']) && isset($_GET['changeProductsTypeSelect4']) &&
-  //             isset($_GET['changeProductsFabriekSelect4']) && isset($_GET['changeProductsMinimumVoorraad']) &&
-  //             isset($_GET['changeProductMinimumSubmit'])) {
-  //   $object->changeProductMinimumVoorraad();
-  // } else if (isset($_GET['changeProductsNaamSelect5']) && isset($_GET['changeProductsTypeSelect5']) &&
-  //             isset($_GET['changeProductsFabriekSelect5']) && isset($_GET['changeProductsVerkoopprijs']) &&
-  //             isset($_GET['changeProductVerkoopprijsSubmit'])) {
-  //   $object->changeProductVerkoopprijs();
-  // } else if (isset($_GET['removeProductsNaamSelect']) && isset($_GET['removeProductsTypeSelect']) &&
+
+  // else if (isset($_GET['removeProductsNaamSelect']) && isset($_GET['removeProductsTypeSelect']) &&
   //             isset($_GET['removeProductsFabriekSelect']) && isset($_GET['removeProductSubmit'])) {
   //   $object->removeProduct();
   // }
@@ -451,7 +449,6 @@
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
             $getProductId = $row['idproduct'];
-            echo $getProductId;
           }
 
           $stmt = $conn->prepare("SELECT idlocatie FROM vestiging_locatie WHERE naam = :naam");
@@ -462,7 +459,6 @@
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
             $getLocatieId = $row['idlocatie'];
-            echo $getLocatieId;
           }
 
 
@@ -473,7 +469,7 @@
 
           $voorraad = $_GET['changeProductsVoorraad'];
           $idproduct = $getProductId;
-          $idlocatie = $getLocatieId; 
+          $idlocatie = $getLocatieId;
           $stmt->execute();
         } catch(PDOException $e) {
           echo $sql . "<br>" . $e->getMessage();
@@ -482,32 +478,58 @@
           // header('Location: '.URL.'admin.php', TRUE, 302);
       }
 
-      // public function changeProductMinimumVoorraad() {
-      //   try {
-      //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
-      //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //
-      //     $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
-      //     $stmt->execute();
-      //
-      //     $stmt = $conn->prepare("UPDATE products SET minimumVoorraad = :minimumVoorraad WHERE product = :product AND type = :type AND fabriek = :fabriek");
-      //     $stmt->bindParam(':minimumVoorraad', $minimumVoorraad);
-      //     $stmt->bindParam(':product', $product);
-      //     $stmt->bindParam(':type', $type);
-      //     $stmt->bindParam(':fabriek', $fabriek);
-      //
-      //     $minimumVoorraad = $_GET['changeProductsMinimumVoorraad'];
-      //     $product = $_GET['changeProductsNaamSelect4'];
-      //     $type = $_GET['changeProductsTypeSelect4'];
-      //     $fabriek = $_GET['changeProductsFabriekSelect4'];
-      //     $stmt->execute();
-      //   } catch(PDOException $e) {
-      //     echo $sql . "<br>" . $e->getMessage();
-      //   }
-      //     $conn = null;
-      //     header('Location: '.URL.'admin.php', TRUE, 302);
-      // }
-      //
+      public function changeProductMinimumVoorraad() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $getProductId;
+
+          $stmt = $conn->prepare("SELECT idproduct FROM products WHERE product = :product AND type = :type AND fabriek = :fabriek");
+          $stmt->bindParam(':product', $product);
+          $stmt->bindParam(':type', $type);
+          $stmt->bindParam(':fabriek', $fabriek);
+
+          $product = $_GET['changeProductsNaamSelect3'];
+          $type = $_GET['changeProductsTypeSelect3'];
+          $fabriek = $_GET['changeProductsFabriekSelect3'];
+          $stmt->execute();
+          $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          foreach ($result as $key => $row) {
+            $getProductId = $row['idproduct'];
+          }
+
+          $stmt = $conn->prepare("SELECT idlocatie FROM vestiging_locatie WHERE naam = :naam");
+          $stmt->bindParam(':naam', $naam);
+
+          $naam = $_GET['changeProductsVestigingLocatieSelect3'];
+          $stmt->execute();
+          $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          foreach ($result as $key => $row) {
+            $getLocatieId = $row['idlocatie'];
+          }
+
+
+          $stmt = $conn->prepare("UPDATE locatie_has_products SET minimumVoorraad = :minimumVoorraad WHERE idproduct = :idproduct AND idlocatie = :idlocatie");
+          $stmt->bindParam(':minimumVoorraad', $minimumVoorraad);
+          $stmt->bindParam(':idproduct', $idproduct);
+          $stmt->bindParam(':idlocatie', $idlocatie);
+
+          $minimumVoorraad = $_GET['changeProductsMinimumVoorraad'];
+          $idproduct = $getProductId;
+          $idlocatie = $getLocatieId;
+          $stmt->execute();
+
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          // header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+
       // public function changeProductVerkoopprijs() {
       //   try {
       //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
