@@ -72,29 +72,21 @@
               isset($_POST['addMedewerkersAchternaam']) && isset($_POST['addMedewerkersWachtwoord']) &&
               isset($_POST['addMedewerkersRolSelect']) && isset($_POST['addMedewerkerSubmit'])) {
     $object->addMedewerker();
+  } else if (isset($_POST['changeMedewerkerVoornaamSelect1']) && isset($_POST['changeMedewerkerTussenvoegselSelect1']) &&
+              isset($_POST['changeMedewerkerAchternaamSelect1']) &&
+              isset($_POST['changeMedewerkersVoornaam']) &&
+              isset($_POST['changeMedewerkersTussenvoegsel']) &&
+              isset($_POST['changeMedewerkersAchternaam']) &&
+              isset($_POST['changeMedewerkerRolSelect']) &&
+              isset($_POST['changeMedewerkersWachtwoord']) &&
+              isset($_POST['changeMedewerkerSubmit'])) {
+    $object->changeMedewerkerVoornaam();
+    // $object->changeMedewerkerTussenvoegsel();
+    // $object->changeMedewerkerAchternaam();
+    // $object->changeMedewerkerRol();
+    // $object->changeMedewerkerW8();
   }
-  // else if (isset($_POST['changeMedewerkerVoornaamSelect1']) && isset($_POST['changeMedewerkerTussenvoegselSelect1']) &&
-  //             isset($_POST['changeMedewerkerAchternaamSelect1']) && isset($_POST['changeMedewerkersVoornaam']) &&
-  //             isset($_POST['changeMedewerkerVoornaamSubmit'])) {
-  //   $object->changeMedewerkerVoornaam();
-  // }
-  // else if (isset($_POST['changeMedewerkerVoornaamSelect2']) && isset($_POST['changeMedewerkerTussenvoegselSelect2']) &&
-  //             isset($_POST['changeMedewerkerAchternaamSelect2']) && isset($_POST['changeMedewerkersTussenvoegsel']) &&
-  //             isset($_POST['changeMedewerkerTussenvoegselSubmit'])) {
-  //   $object->changeMedewerkerTussenvoegsel();
-  // } else if (isset($_POST['changeMedewerkerVoornaamSelect3']) && isset($_POST['changeMedewerkerTussenvoegselSelect3']) &&
-  //             isset($_POST['changeMedewerkerAchternaamSelect3']) && isset($_POST['changeMedewerkersAchternaam']) &&
-  //             isset($_POST['changeMedewerkerAchternaamSubmit'])) {
-  //   $object->changeMedewerkerAchternaam();
-  // } else if (isset($_POST['changeMedewerkerVoornaamSelect4']) && isset($_POST['changeMedewerkerTussenvoegselSelect4']) &&
-  //             isset($_POST['changeMedewerkerAchternaamSelect4']) && isset($_POST['changeMedewerkerRolSelect']) &&
-  //             isset($_POST['changeMedewerkerRolSubmit'])) {
-  //   $object->changeMedewerkerRol();
-  // } else if (isset($_POST['changeMedewerkerVoornaamSelect5']) && isset($_POST['changeMedewerkerTussenvoegselSelect5']) &&
-  //             isset($_POST['changeMedewerkerAchternaamSelect5']) && isset($_POST['changePassW']) &&
-  //             isset($_POST['changeMedewerkerWachtwoordSubmit'])) {
-  //   $object->changeMedewerkerW8();
-  // } else if (isset($_POST['removeMedewerkerVoornaamSelect']) && isset($_POST['removeMedewerkerTussenvoegselSelect']) &&
+  // else if (isset($_POST['removeMedewerkerVoornaamSelect']) && isset($_POST['removeMedewerkerTussenvoegselSelect']) &&
   //             isset($_POST['removeMedewerkerAchternaamSelect']) && isset($_POST['removeMedewerkerSubmit'])) {
   //   $object->removeMedewerker();
   // }
@@ -459,7 +451,6 @@
             $getLocatieId = $row['idlocatie'];
           }
 
-
           $stmt = $conn->prepare("UPDATE locatie_has_products SET voorraad = :voorraad WHERE idproduct = :idproduct AND idlocatie = :idlocatie");
           $stmt->bindParam(':voorraad', $voorraad);
           $stmt->bindParam(':idproduct', $idproduct);
@@ -696,32 +687,32 @@
           header('Location: '.URL.'admin.php', TRUE, 302);
       }
 
-      // public function changeMedewerkerVoornaam() {
-      //   try {
-      //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
-      //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //
-      //     $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
-      //     $stmt->execute();
-      //
-      //     $stmt = $conn->prepare("UPDATE medewerkers SET voornaam = :nieuwVoornaam WHERE voornaam = :oudVoornaam AND tussenvoegsel = :tussenvoegsel AND achternaam = :achternaam");
-      //     $stmt->bindParam(':nieuwVoornaam', $nieuwVoornaam);
-      //     $stmt->bindParam(':oudVoornaam', $oudVoornaam);
-      //     $stmt->bindParam(':tussenvoegsel', $tussenvoegsel);
-      //     $stmt->bindParam(':achternaam', $achternaam);
-      //
-      //     $nieuwVoornaam = $_POST['changeMedewerkersVoornaam'];
-      //     $oudVoornaam = $_POST['changeMedewerkerVoornaamSelect1'];
-      //     $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect1'];
-      //     $achternaam = $_POST['changeMedewerkerAchternaamSelect1'];
-      //     $stmt->execute();
-      //   } catch(PDOException $e) {
-      //     echo $sql . "<br>" . $e->getMessage();
-      //   }
-      //     $conn = null;
-      //     header('Location: '.URL.'admin.php', TRUE, 302);
-      // }
-      //
+      public function changeMedewerkerVoornaam() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("UPDATE medewerkers SET voornaam = :nieuwVoornaam WHERE voornaam = :oudVoornaam AND tussenvoegsel = :tussenvoegsel AND achternaam = :achternaam");
+          $stmt->bindParam(':nieuwVoornaam', $nieuwVoornaam);
+          $stmt->bindParam(':oudVoornaam', $oudVoornaam);
+          $stmt->bindParam(':tussenvoegsel', $tussenvoegsel);
+          $stmt->bindParam(':achternaam', $achternaam);
+
+          $nieuwVoornaam = $_POST['changeMedewerkersVoornaam'];
+          $oudVoornaam = $_POST['changeMedewerkerVoornaamSelect1'];
+          $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect1'];
+          $achternaam = $_POST['changeMedewerkerAchternaamSelect1'];
+          $stmt->execute();
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+          header('Location: '.URL.'admin.php', TRUE, 302);
+      }
+
       // public function changeMedewerkerTussenvoegsel() {
       //   try {
       //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
