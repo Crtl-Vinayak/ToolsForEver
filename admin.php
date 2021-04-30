@@ -630,12 +630,29 @@
             $getProductId = $row['idproduct'];
           }
 
-          $stmt = $conn->prepare("DELETE FROM products WHERE idproduct = :idproduct");
+          $v;
+          $minV;
+          $maxV;
+
+          $stmt = $conn->prepare("SELECT voorraad, minimumVoorraad, maximumVoorraad FROM locatie_has_products WHERE idproduct = :idproduct");
           $stmt->bindParam(':idproduct', $idProduct);
 
-          $idProduct = $getProductId;
           $stmt->execute();
+          $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+          foreach ($result as $key => $row) {
+            $getProductId = $row['idproduct'];
+            $v = $row['voorraad'];
+            $minV = $row['minimumVoorraad'];
+            $maxV = $row['maximumVoorraad'];
+          }
 
+          if ($v == 0 && $minV == 0 && $maxV == 0) {
+            $stmt = $conn->prepare("DELETE FROM products WHERE idproduct = :idproduct");
+            $stmt->bindParam(':idproduct', $idProduct);
+
+            $idProduct = $getProductId;
+            $stmt->execute();
+          }
         } catch(PDOException $e) {
           echo $sql . "<br>" . $e->getMessage();
         }
