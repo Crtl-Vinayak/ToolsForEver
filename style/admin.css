@@ -138,7 +138,7 @@ input {
 }
 
 .formColumns {
-  grid-template-columns: 250px 20px 450px 69px auto 250px 50px;
+  grid-template-columns: 450px 20px 450px 5px auto 250px 50px;
 }
 
 .formSubmitColumns {
@@ -724,7 +724,7 @@ input {
 
 #removeProductForm {
   display: grid;
-  grid-template-columns: 230px 15px 230px 15px 230px 69px auto 250px 50px;
+  grid-template-columns: 300px 10px 300px 10px 300px 5px auto 250px 50px;
   grid-template-rows: auto;
 
   grid-column-start: 2;

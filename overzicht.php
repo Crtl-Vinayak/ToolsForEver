@@ -219,7 +219,7 @@
     <div id="yellow_bg">
         <div
         <?php
-          if (isset($GLOBALS['totalRows'])) {
+          if (isset($GLOBALS['totalRows']) && $GLOBALS['totalRows'] > 0) {
             echo "style=\"display:grid; grid-template-columns: 10px 4fr 9fr 4fr 10px; grid-template-rows: 10px 100px 30px 160px 50px 150px repeat(".$GLOBALS['totalRows'].", 65px) 50px\"";
           } else {
             echo "style=\"display:grid; grid-template-columns: 10px 4fr 9fr 4fr 10px; grid-template-rows: 10px 100px 30px 160px 50px 150px 50px\"";
