@@ -59,43 +59,71 @@
 
   else if (isset($_GET['changeProductsNaamSelect3']) && isset($_GET['changeProductsTypeSelect3']) &&
              isset($_GET['changeProductsFabriekSelect3']) && isset($_GET['changeProductVoorraadSubmit'])) {
-               if ((!isset($_GET['changeProductsVoorraad']) || $_GET['changeProductsVoorraad'] == '') === false) {
-                 $object->changeProductVoorraad();
-               }
-               if ((!isset($_GET['changeProductsMinimumVoorraad']) || $_GET['changeProductsMinimumVoorraad'] == '') === false) {
-                 $object->changeProductMinimumVoorraad();
-               }
-               if ((!isset($_GET['changeProductsMaximumVoorraad']) || $_GET['changeProductsMaximumVoorraad'] == '') === false) {
-                 $object->changeProductMaximumVoorraad();
-               }
-               if ((!isset($_GET['changeProductsVerkoopprijs']) || $_GET['changeProductsVerkoopprijs'] == '') === false) {
-                 $object->changeProductVerkoopprijs();
-               }
-               header('Location: '.URL.'admin.php', TRUE, 302);
- }
-
-
-   else if (isset($_GET['removeProductsNaamSelect']) && isset($_GET['removeProductsTypeSelect']) &&
+    if ((!isset($_GET['changeProductsVoorraad']) || $_GET['changeProductsVoorraad'] == '') === false) {
+     $object->changeProductVoorraad();
+    }
+    if ((!isset($_GET['changeProductsMinimumVoorraad']) || $_GET['changeProductsMinimumVoorraad'] == '') === false) {
+     $object->changeProductMinimumVoorraad();
+    }
+    if ((!isset($_GET['changeProductsMaximumVoorraad']) || $_GET['changeProductsMaximumVoorraad'] == '') === false) {
+     $object->changeProductMaximumVoorraad();
+    }
+    if ((!isset($_GET['changeProductsVerkoopprijs']) || $_GET['changeProductsVerkoopprijs'] == '') === false) {
+     $object->changeProductVerkoopprijs();
+    }
+    header('Location: '.URL.'admin.php', TRUE, 302);
+  } else if (isset($_GET['removeProductsNaamSelect']) && isset($_GET['removeProductsTypeSelect']) &&
               isset($_GET['removeProductsFabriekSelect']) && isset($_GET['removeProductSubmit'])) {
     $object->removeProduct();
   } else if (isset($_POST['addMedewerkersVoornaam']) && isset($_POST['addMedewerkersTussenvoegsel']) &&
               isset($_POST['addMedewerkersAchternaam']) && isset($_POST['addMedewerkersWachtwoord']) &&
               isset($_POST['addMedewerkersRolSelect']) && isset($_POST['addMedewerkerSubmit'])) {
     $object->addMedewerker();
-  } else if (isset($_POST['changeMedewerkerVoornaamSelect1']) && isset($_POST['changeMedewerkerTussenvoegselSelect1']) &&
-              isset($_POST['changeMedewerkerAchternaamSelect1']) &&
-              isset($_POST['changeMedewerkersVoornaam']) &&
-              isset($_POST['changeMedewerkersTussenvoegsel']) &&
-              isset($_POST['changeMedewerkersAchternaam']) &&
-              isset($_POST['changeMedewerkerRolSelect']) &&
-              isset($_POST['changeMedewerkersWachtwoord']) &&
-              isset($_POST['changeMedewerkerSubmit'])) {
-    $object->changeMedewerkerVoornaam();
-    $object->changeMedewerkerTussenvoegsel();
-    // $object->changeMedewerkerAchternaam();
-    // $object->changeMedewerkerRol();
-    // $object->changeMedewerkerW8();
-  } else if (isset($_POST['removeMedewerkerVoornaamSelect']) && isset($_POST['removeMedewerkerTussenvoegselSelect']) &&
+  }
+
+
+
+
+
+
+
+
+   else if (isset($_POST['changeMedewerkerVoornaamSelect1']) && isset($_POST['changeMedewerkerTussenvoegselSelect1']) &&
+          isset($_POST['changeMedewerkerAchternaamSelect1']) && isset($_POST['changeMedewerkerSubmit'])) {
+
+
+
+    if ((!isset($_POST['changeMedewerkersVoornaam']) || $_POST['changeMedewerkersVoornaam'] == '') === false) {
+      $object->changeMedewerkerVoornaam();
+    }
+
+    if ((!isset($_POST['changeMedewerkersTussenvoegsel']) || $_POST['changeMedewerkersTussenvoegsel'] == '') === false) {
+      $object->changeMedewerkerTussenvoegsel();
+    }
+
+    if ((!isset($_POST['changeMedewerkersAchternaam']) || $_POST['changeMedewerkersAchternaam'] == '') === false) {
+      $object->changeMedewerkerAchternaam();
+    }
+
+    if ($_POST['changeMedewerkerRolSelect'] == 0 || $_POST['changeMedewerkerRolSelect'] == 1) {
+      if ($_POST['changeMedewerkerRolSelect'] == "no change") {} else {
+        $object->changeMedewerkerRol();
+      }
+    }
+
+    if ((!isset($_POST['changeMedewerkersWachtwoord']) || $_POST['changeMedewerkersWachtwoord'] == '') === false) {
+      $object->changeMedewerkerW8();
+    }
+    header('Location: '.URL.'admin.php', TRUE, 302);
+
+
+
+  }
+
+
+
+
+else if (isset($_POST['removeMedewerkerVoornaamSelect']) && isset($_POST['removeMedewerkerTussenvoegselSelect']) &&
               isset($_POST['removeMedewerkerAchternaamSelect']) && isset($_POST['removeMedewerkerSubmit'])) {
     $object->removeMedewerker();
   }
@@ -473,7 +501,6 @@
           echo $sql . "<br>" . $e->getMessage();
         }
           $conn = null;
-          header('Location: '.URL.'admin.php', TRUE, 302);
       }
 
       public function changeProductMinimumVoorraad() {
@@ -525,7 +552,6 @@
           echo $sql . "<br>" . $e->getMessage();
         }
           $conn = null;
-          header('Location: '.URL.'admin.php', TRUE, 302);
       }
 
       public function changeProductMaximumVoorraad() {
@@ -577,7 +603,6 @@
           echo $sql . "<br>" . $e->getMessage();
         }
           $conn = null;
-          header('Location: '.URL.'admin.php', TRUE, 302);
       }
 
       public function changeProductVerkoopprijs() {
@@ -603,7 +628,6 @@
           echo $sql . "<br>" . $e->getMessage();
         }
           $conn = null;
-          header('Location: '.URL.'admin.php', TRUE, 302);
       }
 
       public function removeProduct() {
@@ -719,7 +743,6 @@
           echo $sql . "<br>" . $e->getMessage();
         }
           $conn = null;
-          header('Location: '.URL.'admin.php', TRUE, 302);
       }
 
       public function changeMedewerkerTussenvoegsel() {
@@ -750,89 +773,85 @@
           echo $sql . "<br>" . $e->getMessage();
         }
           $conn = null;
-          header('Location: '.URL.'admin.php', TRUE, 302);
       }
 
-      // public function changeMedewerkerAchternaam() {
-      //   try {
-      //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
-      //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //
-      //     $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
-      //     $stmt->execute();
-      //
-      //     $stmt = $conn->prepare("UPDATE medewerkers SET achternaam = :nieuwAchternaam WHERE voornaam = :voornaam AND tussenvoegsel = :tussenvoegsel AND achternaam = :oudAchternaam");
-      //     $stmt->bindParam(':voornaam', $voornaam);
-      //     $stmt->bindParam(':tussenvoegsel', $tussenvoegsel);
-      //     $stmt->bindParam(':nieuwAchternaam', $nieuwAchternaam);
-      //     $stmt->bindParam(':oudAchternaam', $oudAchternaam);
-      //
-      //     $voornaam = $_POST['changeMedewerkerVoornaamSelect1'];
-      //     $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect1'];
-      //     $oudAchternaam = $_POST['changeMedewerkerAchternaamSelect1'];
-      //     $nieuwAchternaam = $_POST['changeMedewerkersAchternaam'];
-      //     $stmt->execute();
-      //   } catch(PDOException $e) {
-      //     echo $sql . "<br>" . $e->getMessage();
-      //   }
-      //     $conn = null;
-      //     header('Location: '.URL.'admin.php', TRUE, 302);
-      // }
-      //
-      // public function changeMedewerkerRol() {
-      //   try {
-      //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
-      //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //
-      //     $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
-      //     $stmt->execute();
-      //
-      //     $stmt = $conn->prepare("UPDATE medewerkers SET rol = :rol WHERE voornaam = :voornaam AND tussenvoegsel = :tussenvoegsel AND achternaam = :achternaam");
-      //     $stmt->bindParam(':rol', $rol);
-      //     $stmt->bindParam(':voornaam', $voornaam);
-      //     $stmt->bindParam(':tussenvoegsel', $tussenvoegsel);
-      //     $stmt->bindParam(':achternaam', $achternaam);
-      //
-      //     $rol = $_POST['changeMedewerkerRolSelect'];
-      //     $voornaam = $_POST['changeMedewerkerVoornaamSelect1'];
-      //     $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect1'];
-      //     $achternaam = $_POST['changeMedewerkerAchternaamSelect1'];
-      //     $stmt->execute();
-      //   } catch(PDOException $e) {
-      //     echo $sql . "<br>" . $e->getMessage();
-      //   }
-      //     $conn = null;
-      //     // header('Location: '.URL.'admin.php', TRUE, 302);
-      // }
-      //
-      // public function changeMedewerkerW8() {
-      //   try {
-      //     $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
-      //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      //
-      //     $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
-      //     $stmt->execute();
-      //
-      //     $stmt = $conn->prepare("UPDATE medewerkers SET wachtwoord = :wachtwoord WHERE voornaam = :voornaam AND tussenvoegsel = :tussenvoegsel AND achternaam = :achternaam");
-      //     $stmt->bindParam(':wachtwoord', $wachtwoord);
-      //     $stmt->bindParam(':voornaam', $voornaam);
-      //     $stmt->bindParam(':tussenvoegsel', $tussenvoegsel);
-      //     $stmt->bindParam(':achternaam', $achternaam);
-      //
-      //     $passwordUser = $_POST['changePassW'];
-      //     $hashedPwd = password_hash($passwordUser, PASSWORD_DEFAULT);
-      //
-      //     $wachtwoord = $hashedPwd;
-      //     $voornaam = $_POST['changeMedewerkerVoornaamSelect1'];
-      //     $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect1'];
-      //     $achternaam = $_POST['changeMedewerkerAchternaamSelect1'];
-      //     $stmt->execute();
-      //   } catch(PDOException $e) {
-      //     echo $sql . "<br>" . $e->getMessage();
-      //   }
-      //     $conn = null;
-      //     // header('Location: '.URL.'admin.php', TRUE, 302);
-      // }
+      public function changeMedewerkerAchternaam() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("UPDATE medewerkers SET achternaam = :nieuwAchternaam WHERE voornaam = :voornaam AND tussenvoegsel = :tussenvoegsel AND achternaam = :oudAchternaam");
+          $stmt->bindParam(':voornaam', $voornaam);
+          $stmt->bindParam(':tussenvoegsel', $tussenvoegsel);
+          $stmt->bindParam(':nieuwAchternaam', $nieuwAchternaam);
+          $stmt->bindParam(':oudAchternaam', $oudAchternaam);
+
+          $voornaam = $_POST['changeMedewerkerVoornaamSelect1'];
+          $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect1'];
+          $oudAchternaam = $_POST['changeMedewerkerAchternaamSelect1'];
+          $nieuwAchternaam = $_POST['changeMedewerkersAchternaam'];
+          $stmt->execute();
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+      }
+
+      public function changeMedewerkerRol() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("UPDATE medewerkers SET rol = :rol WHERE voornaam = :voornaam AND tussenvoegsel = :tussenvoegsel AND achternaam = :achternaam");
+          $stmt->bindParam(':rol', $rol);
+          $stmt->bindParam(':voornaam', $voornaam);
+          $stmt->bindParam(':tussenvoegsel', $tussenvoegsel);
+          $stmt->bindParam(':achternaam', $achternaam);
+
+          $rol = $_POST['changeMedewerkerRolSelect'];
+          $voornaam = $_POST['changeMedewerkerVoornaamSelect1'];
+          $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect1'];
+          $achternaam = $_POST['changeMedewerkerAchternaamSelect1'];
+          $stmt->execute();
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+      }
+
+      public function changeMedewerkerW8() {
+        try {
+          $conn = new PDO("mysql:host=$this->servername;dbname=$this->dbname", $this->username, $this->password);
+          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+          $stmt = $conn->prepare("SET SQL_SAFE_UPDATES = 0");
+          $stmt->execute();
+
+          $stmt = $conn->prepare("UPDATE medewerkers SET wachtwoord = :wachtwoord WHERE voornaam = :voornaam AND tussenvoegsel = :tussenvoegsel AND achternaam = :achternaam");
+          $stmt->bindParam(':wachtwoord', $wachtwoord);
+          $stmt->bindParam(':voornaam', $voornaam);
+          $stmt->bindParam(':tussenvoegsel', $tussenvoegsel);
+          $stmt->bindParam(':achternaam', $achternaam);
+
+          $passwordUser = $_POST['changeMedewerkersWachtwoord'];
+          $hashedPwd = password_hash($passwordUser, PASSWORD_DEFAULT);
+
+          $wachtwoord = $hashedPwd;
+          $voornaam = $_POST['changeMedewerkerVoornaamSelect1'];
+          $tussenvoegsel = $_POST['changeMedewerkerTussenvoegselSelect1'];
+          $achternaam = $_POST['changeMedewerkerAchternaamSelect1'];
+          $stmt->execute();
+        } catch(PDOException $e) {
+          echo $sql . "<br>" . $e->getMessage();
+        }
+          $conn = null;
+      }
 
       public function removeMedewerker() {
         try {
@@ -1090,10 +1109,10 @@
                 <option value="0">Medewerker</option>
                 <option value="1">Manager</option>
               </select>
-              <input type="text" name="changeMedewerkersVoornaam" value="" placeholder="type hier de nieuwe gewijzigde voornaam" required id="changeMedewerkersVoornaam">
-              <input type="text" name="changeMedewerkersTussenvoegsel" value="" placeholder="type hier de nieuwe gewijzigde tussenvoegsel" required id="changeMedewerkersTussenvoegsel">
-              <input type="text" name="changeMedewerkersAchternaam" value="" placeholder="type hier de nieuwe gewijzigde achternaam" required id="changeMedewerkersAchternaam">
-              <input type="text" name="changeMedewerkersWachtwoord" value="" placeholder="type hier de nieuwe gewijzigde sterke wachtwoord" required id="changeMedewerkersWachtwoord">
+              <input type="text" name="changeMedewerkersVoornaam" value="" placeholder="type hier de nieuwe gewijzigde voornaam" id="changeMedewerkersVoornaam">
+              <input type="text" name="changeMedewerkersTussenvoegsel" value="" placeholder="type hier de nieuwe gewijzigde tussenvoegsel" id="changeMedewerkersTussenvoegsel">
+              <input type="text" name="changeMedewerkersAchternaam" value="" placeholder="type hier de nieuwe gewijzigde achternaam" id="changeMedewerkersAchternaam">
+              <input type="text" name="changeMedewerkersWachtwoord" value="" placeholder="type hier de nieuwe gewijzigde sterke wachtwoord" id="changeMedewerkersWachtwoord">
               <input type="submit" name="changeMedewerkerSubmit" value="Wijziging opslaan" id="changeMedewerkerSubmit" class="formSubmitColumns">
             </form>
           </div>
