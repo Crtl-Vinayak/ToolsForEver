@@ -54,18 +54,28 @@
     $object->changeProductType();
   } else if (isset($_GET['changeProductFabriekSelect']) && isset($_GET['changeProductFabriek']) && isset($_GET['changeProductFabriekSubmit'])) {
     $object->changeProductFabriek();
-  } else if (isset($_GET['changeProductsNaamSelect3']) && isset($_GET['changeProductsTypeSelect3']) &&
-              isset($_GET['changeProductsFabriekSelect3']) &&
-              isset($_GET['changeProductsVoorraad']) &&
-              isset($_GET['changeProductsMinimumVoorraad']) &&
-              isset($_GET['changeProductsMaximumVoorraad']) &&
-              isset($_GET['changeProductsVerkoopprijs']) &&
-              isset($_GET['changeProductVoorraadSubmit'])) {
-    $object->changeProductVoorraad();
-    $object->changeProductMinimumVoorraad();
-    $object->changeProductMaximumVoorraad();
-    $object->changeProductVerkoopprijs();
-  } else if (isset($_GET['removeProductsNaamSelect']) && isset($_GET['removeProductsTypeSelect']) &&
+  }
+
+
+  else if (isset($_GET['changeProductsNaamSelect3']) && isset($_GET['changeProductsTypeSelect3']) &&
+             isset($_GET['changeProductsFabriekSelect3']) && isset($_GET['changeProductVoorraadSubmit'])) {
+               if ((!isset($_GET['changeProductsVoorraad']) || $_GET['changeProductsVoorraad'] == '') === false) {
+                 $object->changeProductVoorraad();
+               }
+               if ((!isset($_GET['changeProductsMinimumVoorraad']) || $_GET['changeProductsMinimumVoorraad'] == '') === false) {
+                 $object->changeProductMinimumVoorraad();
+               }
+               if ((!isset($_GET['changeProductsMaximumVoorraad']) || $_GET['changeProductsMaximumVoorraad'] == '') === false) {
+                 $object->changeProductMaximumVoorraad();
+               }
+               if ((!isset($_GET['changeProductsVerkoopprijs']) || $_GET['changeProductsVerkoopprijs'] == '') === false) {
+                 $object->changeProductVerkoopprijs();
+               }
+               header('Location: '.URL.'admin.php', TRUE, 302);
+ }
+
+
+   else if (isset($_GET['removeProductsNaamSelect']) && isset($_GET['removeProductsTypeSelect']) &&
               isset($_GET['removeProductsFabriekSelect']) && isset($_GET['removeProductSubmit'])) {
     $object->removeProduct();
   } else if (isset($_POST['addMedewerkersVoornaam']) && isset($_POST['addMedewerkersTussenvoegsel']) &&
@@ -996,10 +1006,10 @@
                     }
                   ?>
                 </select>
-                <input type="number" name="changeProductsVoorraad" required value="" min="0" placeholder="type hier het nieuwe getal voor de voorraad" id="changeProductsVoorraad">
-                <input type="number" name="changeProductsMinimumVoorraad" required value="" min="0" placeholder="type hier het nieuwe getal voor de minimum voorraad." id="changeProductsMinimumVoorraad">
-                <input type="number" name="changeProductsMaximumVoorraad" required value="" min="0" placeholder="type hier het nieuwe getal voor de maximum voorraad." id="changeProductsMaximumVoorraad">
-                <input type="number" name="changeProductsVerkoopprijs" required value="" min="0" step="0.01" placeholder="type hier het nieuwe getal voor de verkoopprijs." id="changeProductsVerkoopprijs">
+                <input type="number" name="changeProductsVoorraad" value="" min="0" placeholder="type hier het nieuwe getal voor de voorraad" id="changeProductsVoorraad">
+                <input type="number" name="changeProductsMinimumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal voor de minimum voorraad." id="changeProductsMinimumVoorraad">
+                <input type="number" name="changeProductsMaximumVoorraad" value="" min="0" placeholder="type hier het nieuwe getal voor de maximum voorraad." id="changeProductsMaximumVoorraad">
+                <input type="number" name="changeProductsVerkoopprijs" value="" min="0" step="0.01" placeholder="type hier het nieuwe getal voor de verkoopprijs." id="changeProductsVerkoopprijs">
                 <input type="submit" name="changeProductVoorraadSubmit" value="Wijziging opslaan" id="changeProductVoorraadSubmit" class="formSubmitColumns">
               </form>
           </div>
