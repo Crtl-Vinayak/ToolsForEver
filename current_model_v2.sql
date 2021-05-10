@@ -22,9 +22,9 @@ DROP TABLE IF EXISTS `toolsforever`.`products` ;
 
 CREATE TABLE IF NOT EXISTS `toolsforever`.`products` (
   `idproduct` INT NOT NULL AUTO_INCREMENT,
-  `product` VARCHAR(45) NOT NULL,
-  `type` VARCHAR(45) NULL,
-  `fabriek` VARCHAR(45) NOT NULL,
+  `product` VARCHAR(80) NOT NULL,
+  `type` VARCHAR(80) NULL,
+  `fabriek` VARCHAR(80) NOT NULL,
   `verkoopprijs` DOUBLE NOT NULL,
   PRIMARY KEY (`idproduct`))
 ENGINE = InnoDB;
