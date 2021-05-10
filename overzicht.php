@@ -220,7 +220,7 @@
         <div
         <?php
           if (isset($GLOBALS['totalRows']) && $GLOBALS['totalRows'] > 0) {
-            echo "style=\"display:grid; grid-template-columns: 10px 4fr 9fr 4fr 10px; grid-template-rows: 10px 100px 30px 160px 50px 150px repeat(".$GLOBALS['totalRows'].", 65px) 50px\"";
+            echo "style=\"display:grid; grid-template-columns: 10px 4fr 9fr 4fr 10px; grid-template-rows: 10px 100px 30px 160px 50px 150px repeat(".$GLOBALS['totalRows'].", 110px) 50px\"";
           } else {
             echo "style=\"display:grid; grid-template-columns: 10px 4fr 9fr 4fr 10px; grid-template-rows: 10px 100px 30px 160px 50px 150px 50px\"";
           }
@@ -306,9 +306,9 @@
           <div id="table"
           <?php
             if (isset($GLOBALS['totalRows'])) {
-              echo "style=\"display:grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: 70px repeat(".$GLOBALS['totalRows'].", 65px)\"";
+              echo "style=\"display:grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: 80px repeat(".$GLOBALS['totalRows'].", auto)\"";
             } else {
-              echo "style=\"display:grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: 70px\"";
+              echo "style=\"display:grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: 80px\"";
             }
           ?>>
             <!-- Col means column -->
@@ -324,7 +324,7 @@
             <?php
               if (isset($_GET['verzend'])) {
                 for ($i = 0; $i < $GLOBALS['totalRows']; $i++) {
-                  echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['product'][$i] ."</span>";
+                  echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black; padding-bottom: 20px; padding-top: 20px;\">". $GLOBALS['product'][$i] ."</span>";
                   echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['type'][$i] ."</span>";
                   echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['fabriek'][$i] ."</span>";
                   echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['voorraad'][$i] ."</span>";

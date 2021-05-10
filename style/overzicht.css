@@ -15,7 +15,7 @@ body {
   background-color: #EEE8AA;
   border-radius: 20px;
   box-shadow: 10px 10px 20px 1px #00000066;
-  min-width: 1400px;
+  min-width: 1550px;
 }
 
 #logoDiv {
@@ -151,7 +151,7 @@ form {
 
 #overzicht {
   display: grid;
-  grid-template-columns: auto 1350px auto;
+  grid-template-columns: auto 1500px auto;
   grid-template-rows: 20px 20px 40px 70px;
 
   grid-column-start: 2;
