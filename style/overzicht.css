@@ -152,7 +152,7 @@ form {
 #overzicht {
   display: grid;
   grid-template-columns: auto 1500px auto;
-  grid-template-rows: 20px 20px 40px 70px;
+  grid-template-rows: 20px 20px 40px auto 50px 100px;
 
   grid-column-start: 2;
   grid-column-end: 5;
@@ -206,4 +206,27 @@ form {
   align-items: center;
 
   background-color: #D3D3D3;
+}
+
+#newTableForm {
+  display: grid;
+  grid-template-columns: auto 300px auto 300px auto;
+  grid-template-rows: 55px;
+
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+#prev {
+  font-size: 25px;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+#next {
+  font-size: 25px;
+  grid-column-start: 4;
+  grid-column-end: 5;
 }

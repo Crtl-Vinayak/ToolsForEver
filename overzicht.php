@@ -84,6 +84,24 @@
           $GLOBALS['verkoopprijs'] = array("");
           $GLOBALS['naam'] = array("");
           $GLOBALS['totalRows'] = 0;
+          $GLOBALS['tabelNum'] = 0;
+
+          // if (isset($_GET['next'])) {
+          //   $GLOBALS['tabelNum']++;
+          //   $stmt = $conn->prepare("SELECT products.product, products.type, products.fabriek, \n
+          //     locatie_has_products.voorraad, locatie_has_products.minimumVoorraad, locatie_has_products.maximumVoorraad, products.verkoopprijs, \n
+          //     vestiging_locatie.naam \n
+          //     FROM products \n
+          //     INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
+          //     INNER JOIN vestiging_locatie ON locatie_has_products.idlocatie = vestiging_locatie.idlocatie \n
+          //     WHERE vestiging_locatie.naam = :naam ORDER BY products.product LIMIT 100 OFFSET ");
+          // }
+          //
+          // if (isset($_GET['previous'])) {
+          //   if ($GLOBALS['tabelNum'] >= 1) {
+          //     $GLOBALS['tabelNum']--;
+          //   }
+          // }
 
           $stmt = $conn->prepare("SELECT products.product, products.type, products.fabriek, \n
             locatie_has_products.voorraad, locatie_has_products.minimumVoorraad, locatie_has_products.maximumVoorraad, products.verkoopprijs, \n
@@ -220,9 +238,9 @@
         <div
         <?php
           if (isset($GLOBALS['totalRows']) && $GLOBALS['totalRows'] > 0) {
-            echo "style=\"display:grid; grid-template-columns: 10px 4fr 9fr 4fr 10px; grid-template-rows: 10px 100px 30px 160px 50px 150px repeat(".$GLOBALS['totalRows'].", 110px) 50px\"";
+            echo "style=\"display:grid; grid-template-columns: 10px 4fr 9fr 4fr 10px; grid-template-rows: 10px 100px 30px 160px 50px 150px repeat(".$GLOBALS['totalRows'].", 140px) 50px;\"";
           } else {
-            echo "style=\"display:grid; grid-template-columns: 10px 4fr 9fr 4fr 10px; grid-template-rows: 10px 100px 30px 160px 50px 150px 50px\"";
+            echo "style=\"display:grid; grid-template-columns: 10px 4fr 9fr 4fr 10px; grid-template-rows: 10px 100px 30px 160px 50px 150px 50px;\"";
           }
         ?>
         >
@@ -306,9 +324,9 @@
           <div id="table"
           <?php
             if (isset($GLOBALS['totalRows'])) {
-              echo "style=\"display:grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: 80px repeat(".$GLOBALS['totalRows'].", auto)\"";
+              echo "style=\"display:grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: 80px repeat(".$GLOBALS['totalRows'].", auto);\"";
             } else {
-              echo "style=\"display:grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: 80px\"";
+              echo "style=\"display:grid; grid-template-columns: repeat(8, 1fr); grid-template-rows: 80px;\"";
             }
           ?>>
             <!-- Col means column -->
@@ -324,7 +342,7 @@
             <?php
               if (isset($_GET['verzend'])) {
                 for ($i = 0; $i < $GLOBALS['totalRows']; $i++) {
-                  echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black; padding-bottom: 20px; padding-top: 20px;\">". $GLOBALS['product'][$i] ."</span>";
+                  echo "<span id=\"getH".$i."\" class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black; padding-bottom: 20px; padding-top: 20px;\">". $GLOBALS['product'][$i] ."</span>";
                   echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['type'][$i] ."</span>";
                   echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['fabriek'][$i] ."</span>";
                   echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['voorraad'][$i] ."</span>";
@@ -336,6 +354,10 @@
               }
             ?>
           </div>
+          <form id="newTableForm" method="GET">
+            <input id="prev" type="submit" value="vorige tabel" name="prev">
+            <input id="next" type="submit" value="volgende tabel" name="next">
+          </form>
         </div>
       </div>
     </div>
