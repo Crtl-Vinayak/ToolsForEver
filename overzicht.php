@@ -1,4 +1,50 @@
 <?php
+  define('URL', 'http://localhost/toolsforever/');
+  $object = new Dbh;
+  session_start();
+
+  /**
+    if you try to enter overzicht page without login in, you will get send back
+    to the login page. As you can see, by using if statement and using the function empty,
+    to check if the SESSION variable of "naam" is empty or not. If SESSION "naam" is empty,
+    you get back to the login page.
+  */
+
+  if (empty($_SESSION['naam'])) {
+    header('Location: http://localhost/toolsforever/', TRUE, 302);
+  }
+
+  /**
+    If the time of now minus the SESSION login_time_stamp is greater than 3600 seconds,
+    the session will be unset and destroyed and you get back to the login page.
+    The header "refresh 3600" means, that you enter this page overzicht, that the counter will start.
+    After the 3600 seconds, the page will refresh and checks the time and login_time_stamp again, to go back to the login page.
+  */
+
+  if (time() - $_SESSION["login_time_stamp"] > 3600) {
+    session_unset();
+    session_destroy();
+    header('Location: '.URL.'index.php', TRUE, 302);
+  }
+  header("refresh: 3600");
+
+  /**
+    Below, it calls 4 php functions.
+    verzend func.
+    connect func.
+    uitlog func.
+    admin func.
+  */
+
+  $GLOBALS['totalRows'] = 0;
+  $GLOBALS['rowsRemainder'] = 0;
+  $object->verzend();
+  $object->connect();
+  $object->uitlog();
+  $object->admin();
+?>
+
+<?php
     class Dbh {
 
       private $servername = "localhost";
@@ -54,7 +100,7 @@
       */
 
       public function verzend() {
-        if(isset($_GET['verzend'])) {
+        if(isset($_GET['verzend']) || isset($_GET['prev']) || isset($_GET['next'])) {
           $GLOBALS['locatieSelected'] = $_GET['locatie'];
           $this->getTableData();
         }
@@ -83,43 +129,74 @@
           $GLOBALS['aantalTeBestellen'] = array("");
           $GLOBALS['verkoopprijs'] = array("");
           $GLOBALS['naam'] = array("");
-          $GLOBALS['totalRows'] = 0;
-          $GLOBALS['tabelNum'] = 0;
 
-          // if (isset($_GET['next'])) {
-          //   $GLOBALS['tabelNum']++;
-          //   $stmt = $conn->prepare("SELECT products.product, products.type, products.fabriek, \n
-          //     locatie_has_products.voorraad, locatie_has_products.minimumVoorraad, locatie_has_products.maximumVoorraad, products.verkoopprijs, \n
-          //     vestiging_locatie.naam \n
-          //     FROM products \n
-          //     INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
-          //     INNER JOIN vestiging_locatie ON locatie_has_products.idlocatie = vestiging_locatie.idlocatie \n
-          //     WHERE vestiging_locatie.naam = :naam ORDER BY products.product LIMIT 100 OFFSET ");
-          // }
-          //
-          // if (isset($_GET['previous'])) {
-          //   if ($GLOBALS['tabelNum'] >= 1) {
-          //     $GLOBALS['tabelNum']--;
-          //   }
-          // }
+          if (isset($_GET['prev'])) {
+            if ($_SESSION['tabelNum'] != 1) {
+              $_SESSION['tabelNum']--;
 
-          $stmt = $conn->prepare("SELECT products.product, products.type, products.fabriek, \n
-            locatie_has_products.voorraad, locatie_has_products.minimumVoorraad, locatie_has_products.maximumVoorraad, products.verkoopprijs, \n
-            vestiging_locatie.naam \n
-            FROM products \n
-            INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
-            INNER JOIN vestiging_locatie ON locatie_has_products.idlocatie = vestiging_locatie.idlocatie \n
-            WHERE vestiging_locatie.naam = :naam ORDER BY products.product");
+              $stmt = $conn->prepare("SELECT products.product, products.type, products.fabriek, \n
+                locatie_has_products.voorraad, locatie_has_products.minimumVoorraad, locatie_has_products.maximumVoorraad, products.verkoopprijs, \n
+                vestiging_locatie.naam \n
+                FROM products \n
+                INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
+                INNER JOIN vestiging_locatie ON locatie_has_products.idlocatie = vestiging_locatie.idlocatie \n
+                WHERE vestiging_locatie.naam = :naam AND locatie_has_products.voorraad < locatie_has_products.maximumVoorraad ORDER BY products.product LIMIT 100 OFFSET :off");
 
-          $stmt->bindParam(':naam', $vestiging_locatie);
-          $vestiging_locatie = $_GET['locatie'];
+                $stmt->bindParam(':naam', $vestiging_locatie);
+                $stmt->bindParam(':off', $off, PDO::PARAM_INT);
+                $vestiging_locatie = $_GET['locatie'];
+                $off = ($_SESSION['tabelNum'] - 1) * 100;
+            } else {
+              $_SESSION['tabelNum'] = 1;
+
+              $stmt = $conn->prepare("SELECT products.product, products.type, products.fabriek, \n
+                locatie_has_products.voorraad, locatie_has_products.minimumVoorraad, locatie_has_products.maximumVoorraad, products.verkoopprijs, \n
+                vestiging_locatie.naam \n
+                FROM products \n
+                INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
+                INNER JOIN vestiging_locatie ON locatie_has_products.idlocatie = vestiging_locatie.idlocatie \n
+                WHERE vestiging_locatie.naam = :naam AND locatie_has_products.voorraad < locatie_has_products.maximumVoorraad ORDER BY products.product LIMIT 100");
+
+                $stmt->bindParam(':naam', $vestiging_locatie);
+                $vestiging_locatie = $_GET['locatie'];
+            }
+          }
+
+          if (isset($_GET['next'])) {
+            $_SESSION['tabelNum']++;
+
+            $stmt = $conn->prepare("SELECT products.product, products.type, products.fabriek, \n
+              locatie_has_products.voorraad, locatie_has_products.minimumVoorraad, locatie_has_products.maximumVoorraad, products.verkoopprijs, \n
+              vestiging_locatie.naam \n
+              FROM products \n
+              INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
+              INNER JOIN vestiging_locatie ON locatie_has_products.idlocatie = vestiging_locatie.idlocatie \n
+              WHERE vestiging_locatie.naam = :naam AND locatie_has_products.voorraad < locatie_has_products.maximumVoorraad ORDER BY products.product LIMIT 100 OFFSET :off");
+
+              $stmt->bindParam(':naam', $vestiging_locatie);
+              $stmt->bindParam(':off', $off, PDO::PARAM_INT);
+              $vestiging_locatie = $_GET['locatie'];
+              $off = ($_SESSION['tabelNum'] - 1) * 100;
+          }
+
+          if (isset($_GET['verzend'])) {
+            $_SESSION['tabelNum'] = 1;
+
+            $stmt = $conn->prepare("SELECT products.product, products.type, products.fabriek, \n
+              locatie_has_products.voorraad, locatie_has_products.minimumVoorraad, locatie_has_products.maximumVoorraad, products.verkoopprijs, \n
+              vestiging_locatie.naam \n
+              FROM products \n
+              INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
+              INNER JOIN vestiging_locatie ON locatie_has_products.idlocatie = vestiging_locatie.idlocatie \n
+              WHERE vestiging_locatie.naam = :naam AND locatie_has_products.voorraad < locatie_has_products.maximumVoorraad ORDER BY products.product LIMIT 100");
+
+              $stmt->bindParam(':naam', $vestiging_locatie);
+              $vestiging_locatie = $_GET['locatie'];
+          }
 
           $stmt->execute();
           $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
           foreach ($result as $key => $row) {
-            if (($row['maximumVoorraad'] - $row['voorraad']) == 0) {
-              continue;
-            }
             $GLOBALS['totalRows']++;
             array_push($GLOBALS['product'], $row['product']);
             array_push($GLOBALS['type'], $row['type']);
@@ -138,6 +215,24 @@
           array_shift($GLOBALS['maximumVoorraad']);
           array_shift($GLOBALS['aantalTeBestellen']);
           array_shift($GLOBALS['verkoopprijs']);
+
+          // check how many rows all tables can have in total without its limit.
+          $stmt = $conn->prepare("SELECT products.product, products.type, products.fabriek, \n
+            locatie_has_products.voorraad, locatie_has_products.minimumVoorraad, locatie_has_products.maximumVoorraad, products.verkoopprijs, \n
+            vestiging_locatie.naam \n
+            FROM products \n
+            INNER JOIN locatie_has_products ON products.idproduct = locatie_has_products.idproduct \n
+            INNER JOIN vestiging_locatie ON locatie_has_products.idlocatie = vestiging_locatie.idlocatie \n
+            WHERE vestiging_locatie.naam = :naam AND locatie_has_products.voorraad < locatie_has_products.maximumVoorraad ORDER BY products.product");
+
+            $stmt->bindParam(':naam', $vestiging_locatie);
+            $vestiging_locatie = $_GET['locatie'];
+            $stmt->execute();
+            $result = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            foreach ($result as $key => $row) {
+              $GLOBALS['rowsRemainder']++;
+            }
+
         } catch(PDOException $e) {
           echo $sql . "<br>" . $e->getMessage();
         }
@@ -161,69 +256,25 @@
         $dbname = "toolsforever";
         $charset = "utf8";
 
-      try {
-        $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
-        $pdo = new PDO($dsn, $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        try {
+          $dsn = "mysql:host=".$servername.";dbname=".$dbname.";charset".$charset;
+          $pdo = new PDO($dsn, $username, $password);
+          $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // get product values
-        $GLOBALS['locatie'] = array("");
-        foreach ($pdo->query("SELECT DISTINCT naam FROM vestiging_locatie") as $row) {
-          array_push($GLOBALS['locatie'], $row[0]);
+          // get product values
+          $GLOBALS['locatie'] = array("");
+          foreach ($pdo->query("SELECT DISTINCT naam FROM vestiging_locatie") as $row) {
+            array_push($GLOBALS['locatie'], $row[0]);
+          }
+          array_shift($GLOBALS['locatie']);
+
+          $pdo = null;
+        } catch (PDOException $e) {
+          echo "Connection failed: ".$e->getMessage();
+          die();
         }
-        array_shift($GLOBALS['locatie']);
-
-        $pdo = null;
-      } catch (PDOException $e) {
-        echo "Connection failed: ".$e->getMessage();
-        die();
       }
-    }
   }
-?>
-
-<?php
-  define('URL', 'http://localhost/toolsforever/');
-  $object = new Dbh;
-  session_start();
-
-  /**
-    if you try to enter overzicht page without login in, you will get send back
-    to the login page. As you can see, by using if statement and using the function empty,
-    to check if the SESSION variable of "naam" is empty or not. If SESSION "naam" is empty,
-    you get back to the login page.
-  */
-
-  if (empty($_SESSION['naam'])) {
-    header('Location: http://localhost/toolsforever/', TRUE, 302);
-  }
-
-  /**
-    If the time of now minus the SESSION login_time_stamp is greater than 3600 seconds,
-    the session will be unset and destroyed and you get back to the login page.
-    The header "refresh 3600" means, that you enter this page overzicht, that the counter will start.
-    After the 3600 seconds, the page will refresh and checks the time and login_time_stamp again, to go back to the login page.
-  */
-
-  if (time() - $_SESSION["login_time_stamp"] > 3600) {
-    session_unset();
-    session_destroy();
-    header('Location: '.URL.'index.php', TRUE, 302);
-  }
-  header("refresh: 3600");
-
-  /**
-    Below, it calls 4 php functions.
-    verzend func.
-    connect func.
-    uitlog func.
-    admin func.
-  */
-
-  $object->verzend();
-  $object->connect();
-  $object->uitlog();
-  $object->admin();
 ?>
 
 <!DOCTYPE html>
@@ -238,9 +289,9 @@
         <div
         <?php
           if (isset($GLOBALS['totalRows']) && $GLOBALS['totalRows'] > 0) {
-            echo "style=\"display:grid; grid-template-columns: 10px 4fr 9fr 4fr 10px; grid-template-rows: 10px 100px 30px 160px 50px 150px repeat(".$GLOBALS['totalRows'].", 140px) 50px;\"";
+            echo "style=\"display:grid; grid-template-columns: 10px 4fr 9fr 4fr 10px; grid-template-rows: 10px 100px 30px auto 50px;\"";
           } else {
-            echo "style=\"display:grid; grid-template-columns: 10px 4fr 9fr 4fr 10px; grid-template-rows: 10px 100px 30px 160px 50px 150px 50px;\"";
+            echo "style=\"display:grid; grid-template-columns: 10px 4fr 9fr 4fr 10px; grid-template-rows: 10px 100px 30px auto 50px;\"";
           }
         ?>
         >
@@ -272,22 +323,6 @@
               }
             ?>
           </select>
-
-          <!--
-            This script is used, so the selected option won't get reset.
-            Usually, when you submit a form. The Select option are going to reset to the First
-            value of the options.
-          -->
-
-          <script type="text/javascript">
-            if (<?php if (!empty($_GET['locatie'])) { echo "true"; } ?>) {
-              document.getElementById('locatieSelect').value = "<?php
-                if(isset($_GET['verzend'])) {
-                  echo $GLOBALS['locatieSelected'];
-                }
-              ?>";
-            }
-          </script>
           <div id="submitDiv">
             <?php
 
@@ -308,19 +343,17 @@
               }
             ?>
         </div>
-        </form>
+        <span id="locatieTxt">
+          Vestigingslocatie:
+          <?php
+            if (empty($GLOBALS['locatieSelected'])) {
+              echo "---";
+            } else {
+              echo $GLOBALS['locatieSelected'];
+            }
+          ?>
+        </span>
         <div id="overzicht">
-          <span id="locatieTxt">
-            Vestigingslocatie:
-            <?php
-              if (empty($GLOBALS['locatieSelected'])) {
-                echo "---";
-              } else {
-                echo $GLOBALS['locatieSelected'];
-              }
-            ?>
-          </span>
-
           <div id="table"
           <?php
             if (isset($GLOBALS['totalRows'])) {
@@ -340,9 +373,9 @@
             <span id="verkoopprijsCol" class="textStyleBold" style="border-right: 1px solid black;">Verkoopprijs</span>
 
             <?php
-              if (isset($_GET['verzend'])) {
+              if (isset($_GET['verzend']) || isset($_GET['prev']) || isset($_GET['next'])) {
                 for ($i = 0; $i < $GLOBALS['totalRows']; $i++) {
-                  echo "<span id=\"getH".$i."\" class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black; padding-bottom: 20px; padding-top: 20px;\">". $GLOBALS['product'][$i] ."</span>";
+                  echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black; padding: 10px; min-height: 70px;\">". $GLOBALS['product'][$i] ."</span>";
                   echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['type'][$i] ."</span>";
                   echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['fabriek'][$i] ."</span>";
                   echo "<span class=\"textStyle\" style=\"grid-row-start: ".($i + 2)."; grid-row-end: ".($i + 3)."; border-left: 1px solid black; border-bottom: 1px solid black;\">". $GLOBALS['voorraad'][$i] ."</span>";
@@ -354,11 +387,23 @@
               }
             ?>
           </div>
-          <form id="newTableForm" method="GET">
-            <input id="prev" type="submit" value="vorige tabel" name="prev">
-            <input id="next" type="submit" value="volgende tabel" name="next">
-          </form>
         </div>
+        <!-- newTableContainer is a container, that contains 2 submit buttons, but if you clicked on "verzend" and there is less than 100 product results on the table, then there is no button for "next".
+            If the table results have 100 products on it and if the results of the server side says there is more than 100 products to show the next table, then you can click on "next".
+            If you clicked on "next", than you can also go back. -->
+        <div id="newTableContainer">
+          <?php
+            if (isset($_GET['verzend']) || isset($_GET['prev']) || isset($_GET['next'])) {
+              if ($_SESSION['tabelNum'] != 1) {
+                echo "<input id=\"prev\" type=\"submit\" value=\"vorige tabel\" name=\"prev\">";
+              }
+              if ($GLOBALS['totalRows'] == 100 && ($GLOBALS['rowsRemainder'] - (($_SESSION['tabelNum']) * 100) > 0)) {
+                echo "<input id=\"next\" type=\"submit\" value=\"volgende tabel\" name=\"next\">";
+              }
+            }
+          ?>
+        </div>
+        </form>
       </div>
     </div>
   </body>

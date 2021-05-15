@@ -932,7 +932,7 @@
                 <select name="changeLocatieSelect" id="changeLocatieSelect">
                   <?php
                     foreach ($GLOBALS['locatieNaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                      echo "<option value=\"".$val."\">".$val."</option>";
                     }
                   ?>
                 </select>
@@ -946,7 +946,7 @@
                 <select name="removeLocatieSelect" id="removeLocatieSelect">
                   <?php
                     foreach ($GLOBALS['locatieNaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                      echo "<option value=\"".$val."\">".$val."</option>";
                     }
                   ?>
                 </select>
@@ -975,7 +975,7 @@
                 <select name="changeProductNaamSelect" id="changeProductNaamSelect">
                   <?php
                     foreach ($GLOBALS['productNaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                      echo "<option value=\"".$val."\">".$val."</option>";
                     }
                   ?>
                 </select>
@@ -987,7 +987,7 @@
                 <select name="changeProductTypeSelect" id="changeProductTypeSelect">
                   <?php
                     foreach ($GLOBALS['productType'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                      echo "<option value=\"".$val."\">".$val."</option>";
                     }
                   ?>
                 </select>
@@ -999,7 +999,7 @@
                 <select name="changeProductFabriekSelect" id="changeProductFabriekSelect">
                   <?php
                     foreach ($GLOBALS['productFabriek'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                      echo "<option value=\"".$val."\">".$val."</option>";
                     }
                   ?>
                 </select>
@@ -1015,28 +1015,28 @@
                 <select name="changeProductsNaamSelect3" id="changeProductsNaamSelect3">
                   <?php
                     foreach ($GLOBALS['productNaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                      echo "<option value=\"".$val."\">".$val."</option>";
                     }
                   ?>
                 </select>
                 <select name="changeProductsTypeSelect3" id="changeProductsTypeSelect3">
                   <?php
                     foreach ($GLOBALS['productType'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                      echo "<option value=\"".$val."\">".$val."</option>";
                     }
                   ?>
                 </select>
                 <select name="changeProductsFabriekSelect3" id="changeProductsFabriekSelect3">
                   <?php
                     foreach ($GLOBALS['productFabriek'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                      echo "<option value=\"".$val."\">".$val."</option>";
                     }
                   ?>
                 </select>
                 <select name="changeProductsVestigingLocatieSelect3" id="changeProductsVestigingLocatieSelect3">
                   <?php
                     foreach ($GLOBALS['locatieNaam'] as $val) {
-                      echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                      echo "<option value=\"".$val."\">".$val."</option>";
                     }
                   ?>
                 </select>
@@ -1053,21 +1053,21 @@
               <select name="removeProductsNaamSelect" id="removeProductsNaamSelect">
                 <?php
                   foreach ($GLOBALS['productNaam'] as $val) {
-                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    echo "<option value=\"".$val."\">".$val."</option>";
                   }
                 ?>
               </select>
               <select name="removeProductsTypeSelect" id="removeProductsTypeSelect">
                 <?php
                   foreach ($GLOBALS['productType'] as $val) {
-                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    echo "<option value=\"".$val."\">".$val."</option>";
                   }
                 ?>
               </select>
               <select name="removeProductsFabriekSelect" id="removeProductsFabriekSelect">
                 <?php
                   foreach ($GLOBALS['productFabriek'] as $val) {
-                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    echo "<option value=\"".$val."\">".$val."</option>";
                   }
                 ?>
               </select>
@@ -1101,21 +1101,21 @@
               <select name="changeMedewerkerVoornaamSelect1" class="changeMedewerkerVoornaamSelect">
                 <?php
                   foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
-                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    echo "<option value=\"".$val."\">".$val."</option>";
                   }
                 ?>
               </select>
               <select name="changeMedewerkerTussenvoegselSelect1" class="changeMedewerkerTussenvoegselSelect">
                 <?php
                   foreach ($GLOBALS['medewerkerTussenvoegsel'] as $val) {
-                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    echo "<option value=\"".$val."\">".$val."</option>";
                   }
                 ?>
               </select>
               <select name="changeMedewerkerAchternaamSelect1" class="changeMedewerkerAchternaamSelect">
                 <?php
                   foreach ($GLOBALS['medewerkerAchternaam'] as $val) {
-                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    echo "<option value=\"".$val."\">".$val."</option>";
                   }
                 ?>
               </select>
@@ -1140,21 +1140,21 @@
               <select name="removeMedewerkerVoornaamSelect" id="removeMedewerkerVoornaamSelect">
                 <?php
                   foreach ($GLOBALS['medewerkerVoornaam'] as $val) {
-                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    echo "<option value=\"".$val."\">".$val."</option>";
                   }
                 ?>
               </select>
               <select name="removeMedewerkerTussenvoegselSelect" id="removeMedewerkerTussenvoegselSelect">
                 <?php
                   foreach ($GLOBALS['medewerkerTussenvoegsel'] as $val) {
-                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    echo "<option value=\"".$val."\">".$val."</option>";
                   }
                 ?>
               </select>
               <select name="removeMedewerkerAchternaamSelect" id="removeMedewerkerAchternaamSelect">
                 <?php
                   foreach ($GLOBALS['medewerkerAchternaam'] as $val) {
-                    echo "<option value=\"".utf8_encode($val)."\">".utf8_encode($val)."</option>";
+                    echo "<option value=\"".$val."\">".$val."</option>";
                   }
                 ?>
               </select>
