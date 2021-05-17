@@ -323,6 +323,18 @@
               }
             ?>
           </select>
+
+          <!-- set value for option selection of locatie vestiging to what you had clicked on. -->
+          <script type="text/javascript">
+            if (<?php if (!empty($_GET['locatie'])) { echo "true"; } else { echo "false"; } ?>) {
+              document.getElementById('locatieSelect').value = "<?php
+                if (isset($_GET['verzend']) || isset($_GET['prev']) || isset($_GET['next'])) {
+                  echo $GLOBALS['locatieSelected'];
+                }
+              ?>";
+            }
+          </script>
+
           <div id="submitDiv">
             <?php
 
