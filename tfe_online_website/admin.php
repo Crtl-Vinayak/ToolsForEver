@@ -818,7 +818,7 @@
             $tussenvoegsel = $_POST['changeMedewerkerVoornaamSelect1'];
           }
 
-          if ($GLOBALS['changedTussenvoegsel']) {
+          if ($GLOBALS['changedAchternaam']) {
             $achternaam = $GLOBALS['nieuwAchternaam'];
           } else {
             $achternaam = $_POST['changeMedewerkerAchternaamSelect1'];
@@ -857,7 +857,7 @@
             $tussenvoegsel = $_POST['changeMedewerkerVoornaamSelect1'];
           }
 
-          if ($GLOBALS['changedTussenvoegsel']) {
+          if ($GLOBALS['changedAchternaam']) {
             $achternaam = $GLOBALS['nieuwAchternaam'];
           } else {
             $achternaam = $_POST['changeMedewerkerAchternaamSelect1'];
